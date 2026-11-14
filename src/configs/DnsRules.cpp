@@ -1,6 +1,7 @@
 #include "include/configs/DnsRules.h"
 #include "include/configs/generate.h"
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QJsonDocument>
 #include <QRegularExpression>
@@ -19,17 +20,17 @@ namespace Configs {
 
     QString DnsRule::Problem() const {
         if (!enabled) return {};
-        if (ParseDnsRuleSites(sites).IsEmpty()) return QStringLiteral("Нет ни одного сайта");
+        if (ParseDnsRuleSites(sites).IsEmpty()) return QCoreApplication::translate("DnsRules", "No sites");
         for (const auto &site : sites) {
             QString kind, value;
             splitDnsRuleSite(site, kind, value);
-            if (!dnsRuleKinds.contains(kind)) return QStringLiteral("Неизвестный вид «%1:» в «%2»").arg(kind, site.trimmed());
+            if (!dnsRuleKinds.contains(kind)) return QCoreApplication::translate("DnsRules", "Unknown kind «%1:» in «%2»").arg(kind, site.trimmed());
             if ((kind == "regexp" || kind == "regex") && !QRegularExpression(value).isValid())
-                return QStringLiteral("Неверное регулярное выражение «%1»").arg(value);
+                return QCoreApplication::translate("DnsRules", "Invalid regular expression «%1»").arg(value);
         }
         DnsAddress address;
         QString why;
-        if (!ParseDnsAddress(server, &address, &why)) return QStringLiteral("DNS-сервер «%1»: %2").arg(server, why);
+        if (!ParseDnsAddress(server, &address, &why)) return QCoreApplication::translate("DnsRules", "DNS server «%1»: %2").arg(server, why);
         return {};
     }
 

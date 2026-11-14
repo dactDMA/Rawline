@@ -287,9 +287,9 @@ void DialogManageRoutes::reloadProfileItems() {
 void DialogManageRoutes::show_dns_rules_editor() {
     auto rules = std::make_shared<QList<Configs::DnsRule>>(Configs::DecodeDnsRules(dns_rules_text));
     QDialog w(this);
-    w.setWindowTitle(QStringLiteral("DNS-правила"));
+    w.setWindowTitle(tr("DNS Rules"));
     auto *layout = new QVBoxLayout(&w);
-    auto *note = new QLabel(QStringLiteral("Сайты из правила разрешаются через его DNS-сервер раньше остальных правил DNS."), &w);
+    auto *note = new QLabel(tr("Sites of a rule resolve through its DNS server ahead of the other DNS rules."), &w);
     note->setWordWrap(true);
     layout->addWidget(note);
     auto *list = new QListWidget(&w);
@@ -298,34 +298,34 @@ void DialogManageRoutes::show_dns_rules_editor() {
         list->clear();
         for (const auto &rule : *rules) {
             QString title = rule.sites.mid(0, 2).join(", ");
-            if (rule.sites.size() > 2) title += QStringLiteral(" и ещё %1").arg(rule.sites.size() - 2);
-            QStringList parts{title, rule.server, rule.direct ? QStringLiteral("напрямую") : QStringLiteral("через прокси")};
-            if (!rule.enabled) parts << QStringLiteral("выключено");
+            if (rule.sites.size() > 2) title = tr("%1 and %2 more").arg(title).arg(rule.sites.size() - 2);
+            QStringList parts{title, rule.server, rule.direct ? tr("directly") : tr("through the proxy")};
+            if (!rule.enabled) parts << tr("off");
             list->addItem(parts.join(QStringLiteral(" · ")));
         }
     };
     const auto edit = [=, &w](int index) {
         Configs::DnsRule rule = index >= 0 ? rules->at(index) : Configs::DnsRule{};
         QDialog e(&w);
-        e.setWindowTitle(index >= 0 ? QStringLiteral("Правило") : QStringLiteral("Новое правило"));
+        e.setWindowTitle(index >= 0 ? tr("Rule") : tr("New rule"));
         auto *form = new QFormLayout(&e);
         auto *sites = new QPlainTextEdit(&e);
-        sites->setPlaceholderText(QStringLiteral("По одному в строке:
-domain:example.com с поддоменами
+        sites->setPlaceholderText(tr("One per line, domain: takes the subdomains too:") + QStringLiteral("
+domain:example.com
 full:only.example.com
 keyword:openai
 regexp:^chat[0-9]+\.example\.org$
 geosite:category-ai-chat-!cn"));
         sites->setPlainText(rule.sites.join("
 "));
-        form->addRow(QStringLiteral("Сайты"), sites);
+        form->addRow(tr("Sites"), sites);
         auto *server = new QLineEdit(rule.server, &e);
         server->setPlaceholderText(QStringLiteral("https://dns.example/dns-query"));
-        form->addRow(QStringLiteral("DNS-сервер"), server);
-        auto *direct = new QCheckBox(QStringLiteral("Напрямую, без прокси"), &e);
+        form->addRow(tr("DNS server"), server);
+        auto *direct = new QCheckBox(tr("Directly, without the proxy"), &e);
         direct->setChecked(rule.direct);
         form->addRow(direct);
-        auto *enabled = new QCheckBox(QStringLiteral("Включено"), &e);
+        auto *enabled = new QCheckBox(tr("Enabled"), &e);
         enabled->setChecked(rule.enabled);
         form->addRow(enabled);
         auto *error = new QLabel(&e);
@@ -351,9 +351,9 @@ geosite:category-ai-chat-!cn"));
         if (e.exec() == QDialog::Accepted) refresh();
     };
     auto *row = new QHBoxLayout;
-    auto *add = new QPushButton(QStringLiteral("Добавить"), &w);
-    auto *change = new QPushButton(QStringLiteral("Изменить"), &w);
-    auto *remove = new QPushButton(QStringLiteral("Удалить"), &w);
+    auto *add = new QPushButton(tr("Add"), &w);
+    auto *change = new QPushButton(tr("Edit"), &w);
+    auto *remove = new QPushButton(tr("Delete"), &w);
     row->addWidget(add);
     row->addWidget(change);
     row->addWidget(remove);
@@ -365,7 +365,7 @@ geosite:category-ai-chat-!cn"));
     connect(remove, &QPushButton::clicked, &w, [=, &w] {
         const int index = list->currentRow();
         if (index < 0) return;
-        if (QMessageBox::question(&w, QStringLiteral("DNS-правила"), QStringLiteral("Удалить правило?")) != QMessageBox::Yes) return;
+        if (QMessageBox::question(&w, tr("DNS Rules"), tr("Delete the rule?")) != QMessageBox::Yes) return;
         rules->removeAt(index);
         refresh();
     });

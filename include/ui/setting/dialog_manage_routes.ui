@@ -576,7 +576,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string notr="true">DNS-правила</string>
+               <string>DNS Rules</string>
               </property>
              </widget>
             </item>

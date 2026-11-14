@@ -1451,6 +1451,66 @@ For more information, see the document &quot;Configuration/DNS&quot;.</source>
         <source>Generate the WARP config in Routing Settings before enabling it.</source>
         <translation>پیش از فعال‌سازی، پیکربندی WARP را در تنظیمات مسیریابی بسازید.</translation>
     </message>
+    <message>
+        <source>DNS Rules</source>
+        <translation>قوانین DNS</translation>
+    </message>
+    <message>
+        <source>Sites of a rule resolve through its DNS server ahead of the other DNS rules.</source>
+        <translation>سایت‌های یک قانون پیش از دیگر قوانین DNS با سرور DNS همان قانون resolve می‌شوند.</translation>
+    </message>
+    <message>
+        <source>%1 and %2 more</source>
+        <translation>%1 و %2 مورد دیگر</translation>
+    </message>
+    <message>
+        <source>directly</source>
+        <translation>مستقیم</translation>
+    </message>
+    <message>
+        <source>through the proxy</source>
+        <translation>از طریق پروکسی</translation>
+    </message>
+    <message>
+        <source>off</source>
+        <translation>خاموش</translation>
+    </message>
+    <message>
+        <source>Rule</source>
+        <translation>قانون</translation>
+    </message>
+    <message>
+        <source>New rule</source>
+        <translation>قانون جدید</translation>
+    </message>
+    <message>
+        <source>One per line, domain: takes the subdomains too:</source>
+        <translation>هر کدام در یک خط، domain: زیردامنه‌ها را هم می‌گیرد:</translation>
+    </message>
+    <message>
+        <source>Sites</source>
+        <translation>سایت‌ها</translation>
+    </message>
+    <message>
+        <source>DNS server</source>
+        <translation>سرور DNS</translation>
+    </message>
+    <message>
+        <source>Directly, without the proxy</source>
+        <translation>مستقیم، بدون پروکسی</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>فعال</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>افزودن</translation>
+    </message>
+    <message>
+        <source>Delete the rule?</source>
+        <translation>قانون حذف شود؟</translation>
+    </message>
 </context>
 <context>
     <name>DialogVPNSettings</name>
@@ -3295,5 +3355,24 @@ Error: %1</source>
     <name>EditSSTP</name>
     <message><source>Use VPN server DNS</source><translation>استفاده از DNS سرور VPN</translation></message>
     <message><source>Use DNS received from this VPN server for remote queries. Other routing rules and saved DNS settings stay unchanged.</source><translation>برای پرس‌وجوهای راه دور از DNS ارائه‌شده توسط این سرور VPN استفاده شود. سایر قواعد مسیریابی و تنظیمات ذخیره‌شده DNS تغییر نمی‌کنند.</translation></message>
+</context>
+<context>
+    <name>DnsRules</name>
+    <message>
+        <source>No sites</source>
+        <translation>هیچ سایتی نیست</translation>
+    </message>
+    <message>
+        <source>Unknown kind «%1:» in «%2»</source>
+        <translation>نوع ناشناخته «%1:» در «%2»</translation>
+    </message>
+    <message>
+        <source>Invalid regular expression «%1»</source>
+        <translation>عبارت باقاعده نامعتبر «%1»</translation>
+    </message>
+    <message>
+        <source>DNS server «%1»: %2</source>
+        <translation>سرور DNS «%1»: %2</translation>
+    </message>
 </context>
 </TS>

@@ -4372,6 +4372,66 @@ A domain listed with only one address family is answered NXDOMAIN for the other,
         <source>Generate the WARP config in Routing Settings before enabling it.</source>
         <translation>Сначала сгенерируйте конфиг WARP в настройках маршрутизации.</translation>
     </message>
+    <message>
+        <source>DNS Rules</source>
+        <translation>DNS-правила</translation>
+    </message>
+    <message>
+        <source>Sites of a rule resolve through its DNS server ahead of the other DNS rules.</source>
+        <translation>Сайты из правила разрешаются через его DNS-сервер раньше остальных правил DNS.</translation>
+    </message>
+    <message>
+        <source>%1 and %2 more</source>
+        <translation>%1 и ещё %2</translation>
+    </message>
+    <message>
+        <source>directly</source>
+        <translation>напрямую</translation>
+    </message>
+    <message>
+        <source>through the proxy</source>
+        <translation>через прокси</translation>
+    </message>
+    <message>
+        <source>off</source>
+        <translation>выключено</translation>
+    </message>
+    <message>
+        <source>Rule</source>
+        <translation>Правило</translation>
+    </message>
+    <message>
+        <source>New rule</source>
+        <translation>Новое правило</translation>
+    </message>
+    <message>
+        <source>One per line, domain: takes the subdomains too:</source>
+        <translation>По одному в строке, domain: берёт и поддомены:</translation>
+    </message>
+    <message>
+        <source>Sites</source>
+        <translation>Сайты</translation>
+    </message>
+    <message>
+        <source>DNS server</source>
+        <translation>DNS-сервер</translation>
+    </message>
+    <message>
+        <source>Directly, without the proxy</source>
+        <translation>Напрямую, без прокси</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Включено</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <source>Delete the rule?</source>
+        <translation>Удалить правило?</translation>
+    </message>
 </context>
 <context>
     <name>DialogNewScan</name>
@@ -19478,6 +19538,25 @@ connection</source>
     <message>
         <source>Custom Mux</source>
         <translation>Свой мультиплекс</translation>
+    </message>
+</context>
+<context>
+    <name>DnsRules</name>
+    <message>
+        <source>No sites</source>
+        <translation>Нет ни одного сайта</translation>
+    </message>
+    <message>
+        <source>Unknown kind «%1:» in «%2»</source>
+        <translation>Неизвестный вид «%1:» в «%2»</translation>
+    </message>
+    <message>
+        <source>Invalid regular expression «%1»</source>
+        <translation>Неверное регулярное выражение «%1»</translation>
+    </message>
+    <message>
+        <source>DNS server «%1»: %2</source>
+        <translation>DNS-сервер «%1»: %2</translation>
     </message>
 </context>
 </TS>

@@ -3702,6 +3702,66 @@ Use a number followed by ns, us, ms, s, m, h or d.</source>
         <source>Generate the WARP config in Routing Settings before enabling it.</source>
         <translation>请先在路由设置中生成 WARP 配置，然后再启用。</translation>
     </message>
+    <message>
+        <source>DNS Rules</source>
+        <translation>DNS 规则</translation>
+    </message>
+    <message>
+        <source>Sites of a rule resolve through its DNS server ahead of the other DNS rules.</source>
+        <translation>规则中的网站会先于其他 DNS 规则，通过该规则的 DNS 服务器解析。</translation>
+    </message>
+    <message>
+        <source>%1 and %2 more</source>
+        <translation>%1 等 %2 项</translation>
+    </message>
+    <message>
+        <source>directly</source>
+        <translation>直连</translation>
+    </message>
+    <message>
+        <source>through the proxy</source>
+        <translation>通过代理</translation>
+    </message>
+    <message>
+        <source>off</source>
+        <translation>已关闭</translation>
+    </message>
+    <message>
+        <source>Rule</source>
+        <translation>规则</translation>
+    </message>
+    <message>
+        <source>New rule</source>
+        <translation>新规则</translation>
+    </message>
+    <message>
+        <source>One per line, domain: takes the subdomains too:</source>
+        <translation>每行一个，domain: 也包括子域名：</translation>
+    </message>
+    <message>
+        <source>Sites</source>
+        <translation>网站</translation>
+    </message>
+    <message>
+        <source>DNS server</source>
+        <translation>DNS 服务器</translation>
+    </message>
+    <message>
+        <source>Directly, without the proxy</source>
+        <translation>直连，不经过代理</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>启用</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <source>Delete the rule?</source>
+        <translation>删除此规则？</translation>
+    </message>
 </context>
 <context>
     <name>DialogOtpManager</name>
@@ -12247,6 +12307,25 @@ Remove that endpoint from this routing profile as well?</source>
     <message>
         <source>A background Rawline (PID %1) owns Tun on this computer; stop it or use rawlinectl.</source>
         <translation>此计算机上的 Tun 由后台 Rawline（PID %1）占用；请停止它或使用 rawlinectl。</translation>
+    </message>
+</context>
+<context>
+    <name>DnsRules</name>
+    <message>
+        <source>No sites</source>
+        <translation>没有任何网站</translation>
+    </message>
+    <message>
+        <source>Unknown kind «%1:» in «%2»</source>
+        <translation>«%2» 中的类型 «%1:» 未知</translation>
+    </message>
+    <message>
+        <source>Invalid regular expression «%1»</source>
+        <translation>正则表达式 «%1» 无效</translation>
+    </message>
+    <message>
+        <source>DNS server «%1»: %2</source>
+        <translation>DNS 服务器 «%1»：%2</translation>
     </message>
 </context>
 </TS>

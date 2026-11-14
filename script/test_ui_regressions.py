@@ -112,6 +112,16 @@ class InterfaceRegressions(unittest.TestCase):
         self.assertIn("--self-test-dns-rules", read(".github/workflows/build.yml"))
         self.assertIn("settingsRepo->dns_rules = dns_rules_text;", read("src/ui/setting/dialog_manage_routes.cpp"))
 
+    def test_dns_rules_speak_every_shipped_language(self):
+        sources = tr_strings("src/ui/setting/dialog_manage_routes.cpp")
+        for name in ["DNS Rules", "Delete the rule?", "Directly, without the proxy", "%1 and %2 more"]:
+            self.assertIn(name, sources)
+        for ts in ["ru_RU", "zh_CN", "fa_IR"]:
+            text = read("res/translations/%s.ts" % ts)
+            for source in ["DNS Rules", "Delete the rule?", "Directly, without the proxy", "Unknown kind «%1:» in «%2»"]:
+                with self.subTest(ts=ts, source=source):
+                    self.assertIn("<source>%s</source>" % source, text)
+
     def test_protocol_deploys_live_beside_the_panel(self):
         relay = read("src/ui/setting/dialog_vk_relay.cpp")
         self.assertIn('"Деплой WDTT Panel"', relay)
