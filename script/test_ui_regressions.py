@@ -71,6 +71,17 @@ class InterfaceRegressions(unittest.TestCase):
         self.assertLess(setup.index("trayMenu->setAttribute(Qt::WA_TranslucentBackground);"), setup.index("tray->setContextMenu(trayMenu);"))
         self.assertGreater(setup.index("trayMenu->setAttribute(Qt::WA_TranslucentBackground);"), made)
 
+    def test_dialogs_are_round_without_the_system(self):
+        # Windows 10 never rounds a framed window: dialogs draw their own round body and title bar.
+        text = read("src/ui/widget/NewHome.cpp")
+        self.assertIn("if (auto *dialog = qobject_cast<QDialog *>(watched); dialog && dialog->isWindow()) frameDialog(dialog);", text)
+        self.assertIn("paintDialogBody(widget);", text)
+
+    def test_centered_panel_takes_the_whole_column(self):
+        text = read("src/ui/widget/NewHome.cpp")
+        block = text.split("void NewHome::applyArrangement()", 1)[1].split("\n}\n", 1)[0]
+        self.assertIn("m_side->setMaximumWidth(QWIDGETSIZE_MAX);", block)
+
     def test_tabs_let_the_window_narrow(self):
         self.assertIn("m_kind == Tab || m_kind == Text ? QSize(40,", read("src/ui/widget/NewHome.cpp"))
         # The minimum is read only after the layout has worked out the new arrangement.

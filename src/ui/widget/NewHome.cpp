@@ -287,6 +287,45 @@ namespace {
         if (QWindow *window = menu->windowHandle(); window && window->handle() && !menu->isVisible()) window->destroy();
     }
 
+    // A dialog in the new style is drawn like the main window: no system frame, our own title bar, a round body.
+    // Windows 10 never rounds a framed window, so the corners come only from painting them.
+    constexpr int kDialogBar = 36, kDialogRadius = 14, kDialogGrip = 6;
+
+    void frameDialog(QDialog *dialog) {
+        if (dialog->property("newFrame").toBool()) return;
+        dialog->setProperty("newFrame", true);
+        dialog->setWindowFlags(dialog->windowFlags() | Qt::FramelessWindowHint);
+        // See-through, so only the round body shows; this also stops the sheet's square background.
+        dialog->setAttribute(Qt::WA_TranslucentBackground);
+        dialog->setMouseTracking(true);
+        const QMargins margins = dialog->contentsMargins();
+        dialog->setContentsMargins(margins.left(), margins.top() + kDialogBar, margins.right(), margins.bottom());
+        auto *bar = new NewTitleBar(dialog);
+        bar->setObjectName(QStringLiteral("newDialogBar"));
+        // A dialog only closes: its minimise and maximise buttons go.
+        const auto buttons = bar->findChildren<QAbstractButton *>();
+        for (int i = 0; i + 1 < buttons.size(); ++i) buttons[i]->hide();
+        bar->follow(dialog);
+    }
+
+    Qt::Edges dialogEdges(QWidget *dialog, const QPoint &pos) {
+        if (dialog->minimumSize() == dialog->maximumSize() || dialog->isMaximized()) return {};
+        Qt::Edges edges;
+        if (pos.x() <= kDialogGrip) edges |= Qt::LeftEdge;
+        if (pos.x() >= dialog->width() - kDialogGrip) edges |= Qt::RightEdge;
+        if (pos.y() <= kDialogGrip) edges |= Qt::TopEdge;
+        if (pos.y() >= dialog->height() - kDialogGrip) edges |= Qt::BottomEdge;
+        return edges;
+    }
+
+    void paintDialogBody(QWidget *dialog) {
+        QPainter p(dialog);
+        p.setRenderHint(QPainter::Antialiasing);
+        p.setPen(QPen(NewStyle::light() ? QColor(0, 0, 0, 40) : QColor(255, 255, 255, 40), 1));
+        p.setBrush(NewStyle::background());
+        p.drawRoundedRect(QRectF(dialog->rect()).adjusted(.5, .5, -.5, -.5), kDialogRadius, kDialogRadius);
+    }
+
     // A menu gets round corners, which a stylesheet radius only shows on a window without a background of its own;
     // a list popup and a tooltip get the system's round corners.
     class MenuCorners : public QObject {
@@ -296,6 +335,34 @@ namespace {
         bool eventFilter(QObject *watched, QEvent *event) override {
             if (!NewStyle::active() || !watched->isWidgetType()) return false;
             auto *widget = static_cast<QWidget *>(watched);
+            if (widget->property("newFrame").toBool()) {
+                // The framed dialog's body, its title bar's place and its edges for resizing.
+                if (event->type() == QEvent::Paint && !m_painting) {
+                    paintDialogBody(widget);
+                    m_painting = true;
+                    watched->event(event);
+                    m_painting = false;
+                    return true;
+                }
+                if (event->type() == QEvent::Resize || event->type() == QEvent::Show) {
+                    if (auto *bar = widget->findChild<QWidget *>(QStringLiteral("newDialogBar"), Qt::FindDirectChildrenOnly)) {
+                        bar->setGeometry(10, 0, widget->width() - 16, kDialogBar);
+                        bar->raise();
+                    }
+                }
+                if (event->type() == QEvent::MouseMove) {
+                    const Qt::Edges edges = dialogEdges(widget, static_cast<QMouseEvent *>(event)->position().toPoint());
+                    if (edges == (Qt::LeftEdge | Qt::TopEdge) || edges == (Qt::RightEdge | Qt::BottomEdge)) widget->setCursor(Qt::SizeFDiagCursor);
+                    else if (edges == (Qt::RightEdge | Qt::TopEdge) || edges == (Qt::LeftEdge | Qt::BottomEdge)) widget->setCursor(Qt::SizeBDiagCursor);
+                    else if (edges & (Qt::LeftEdge | Qt::RightEdge)) widget->setCursor(Qt::SizeHorCursor);
+                    else if (edges) widget->setCursor(Qt::SizeVerCursor);
+                    else widget->unsetCursor();
+                }
+                if (event->type() == QEvent::MouseButtonPress && static_cast<QMouseEvent *>(event)->button() == Qt::LeftButton) {
+                    const Qt::Edges edges = dialogEdges(widget, static_cast<QMouseEvent *>(event)->position().toPoint());
+                    if (edges && widget->windowHandle()) { widget->windowHandle()->startSystemResize(edges); return true; }
+                }
+            }
             if (event->type() == QEvent::Paint) {
                 if (m_painting || !outlined(widget)) return false;
                 // The control paints itself first; the outline goes over it within the same paint.
@@ -311,6 +378,7 @@ namespace {
             } else if (event->type() == QEvent::Polish) {
                 giveHand(widget);
                 if (auto *menu = qobject_cast<QMenu *>(watched)) clearMenuWindow(menu);
+                if (auto *dialog = qobject_cast<QDialog *>(watched); dialog && dialog->isWindow()) frameDialog(dialog);
             } else if (event->type() == QEvent::Show && widget->isWindow() &&
                        (widget->inherits("QComboBoxPrivateContainer") || widget->inherits("QTipLabel"))) {
                 NewStyle::roundCorners(widget, true);
@@ -508,6 +576,17 @@ void NewStyle::setTheme(const QString &theme) {
             }
             if (widget->property("newHand").toBool()) { widget->unsetCursor(); widget->setProperty("newHand", QVariant()); }
             if (widget->property("newPopup").toBool()) { widget->setStyleSheet(QString()); widget->setProperty("newPopup", QVariant()); }
+            // A dialog kept between uses gets its system frame back.
+            if (widget->property("newFrame").toBool()) {
+                widget->setProperty("newFrame", QVariant());
+                delete widget->findChild<QWidget *>(QStringLiteral("newDialogBar"), Qt::FindDirectChildrenOnly);
+                const QMargins m = widget->contentsMargins();
+                widget->setContentsMargins(m.left(), std::max(0, m.top() - kDialogBar), m.right(), m.bottom());
+                widget->setAttribute(Qt::WA_TranslucentBackground, false);
+                const bool shown = widget->isVisible();
+                widget->setWindowFlag(Qt::FramelessWindowHint, false);
+                if (shown) widget->show();
+            }
         }
     }
     const bool entering = !isTheme(g_theme) && isTheme(theme);
@@ -1373,6 +1452,8 @@ void NewTitleBar::mouseMoveEvent(QMouseEvent *e) {
 }
 
 void NewTitleBar::mouseDoubleClickEvent(QMouseEvent *e) {
+    // A dialog's bar only moves it.
+    if (qobject_cast<QDialog *>(window())) return;
     if (e->button() == Qt::LeftButton) window()->isMaximized() ? window()->showNormal() : window()->showMaximized();
 }
 
