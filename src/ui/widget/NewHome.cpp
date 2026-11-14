@@ -2655,6 +2655,17 @@ namespace {
     };
 }
 
+QSize NewHome::windowMinimum() {
+    // Freshly rearranged, the layout still holds the old arrangement's minimum until it is worked out again.
+    layout()->invalidate();
+    layout()->activate();
+    QSize size = minimumSizeHint();
+    // The centering margins follow the window's width: counted in, the window could never narrow.
+    const QMargins room = m_columns->contentsMargins();
+    size.rwidth() -= room.left() + room.right();
+    return size;
+}
+
 void NewHome::updateCentering() {
     const bool centered = Configs::dataManager->settingsRepo->new_layout_panel == QLatin1String("center");
     const int margin = centered ? std::max(0, (width() - 32 - 480) / 2) : 0;

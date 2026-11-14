@@ -221,6 +221,8 @@ public:
     void groupChanged();
     void refresh();
     void arrange() { setArranging(true); }
+    // The smallest window the arrangement fits in, without the side room that centering adds.
+    QSize windowMinimum();
     // --ui-tour: opens every screen in each theme and saves the screen, for CI.
     static void runTour(MainWindow *mw, const QString &dir);
 

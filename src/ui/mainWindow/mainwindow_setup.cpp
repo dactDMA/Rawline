@@ -712,7 +712,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     trayMenu->addAction(ui->actionRestart_Program);
     trayMenu->addAction(ui->menu_exit);
     tray->setVisible(!Configs::dataManager->settingsRepo->disable_tray);
+#ifdef Q_OS_WIN
+    // Shown by Rawline itself: a menu handed to the Windows tray gets an opaque window, black behind round corners.
+    connect(tray, &TrayIcon::activated, qApp, [this](QSystemTrayIcon::ActivationReason reason) {
+        if (reason == QSystemTrayIcon::Context) {
+            trayMenu->popup(QCursor::pos());
+            trayMenu->activateWindow();
+        }
+    });
+#else
+    // macOS and the Linux trays draw the menu themselves and need it handed over.
     tray->setContextMenu(trayMenu);
+#endif
     connect(tray, &TrayIcon::activated, qApp, [=, this](QSystemTrayIcon::ActivationReason reason) {
         if (reason == QSystemTrayIcon::Trigger && getOS() != Darwin) {
             trayClickEvent();

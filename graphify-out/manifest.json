@@ -2400,9 +2400,9 @@
     "semantic_hash": ""
   },
   "script/release_notes.py": {
-    "mtime": 1794584645.4519985,
-    "seen": 1794651495.4001956,
-    "ast_hash": "5936df2e2348f4ed6d7bd30dfc844d55",
+    "mtime": 1794681919.5958488,
+    "seen": 1794682152.2629867,
+    "ast_hash": "aef0c9889289516029e1c9442eb82301",
     "semantic_hash": ""
   },
   "script/s3bypass/main.go": {
@@ -3156,9 +3156,9 @@
     "semantic_hash": ""
   },
   "src/ui/mainWindow/mainwindow_setup.cpp": {
-    "mtime": 1794675450.1402419,
-    "seen": 1794675565.5295658,
-    "ast_hash": "ffb50d09e7215c5441f9baa45fed305f",
+    "mtime": 1794682015.0649455,
+    "seen": 1794682152.2639866,
+    "ast_hash": "63ba6ce59546bbcfa5a5a16868b339ca",
     "semantic_hash": ""
   },
   "src/ui/mainWindow/mainwindow_system.cpp": {
@@ -3168,9 +3168,9 @@
     "semantic_hash": ""
   },
   "src/ui/mainWindow/mainwindow_view.cpp": {
-    "mtime": 1794675456.6849368,
-    "seen": 1794675565.5295658,
-    "ast_hash": "17493b23effa14f2b401486cbe89d5f4",
+    "mtime": 1794682025.2316866,
+    "seen": 1794682152.2639866,
+    "ast_hash": "541f4caba0ef2bf3db8538717da2edde",
     "semantic_hash": ""
   },
   "src/ui/profile/ProxyItem.cpp": {
@@ -9732,9 +9732,9 @@
     "semantic_hash": ""
   },
   "include/ui/widget/NewHome.hpp": {
-    "mtime": 1794668138.293474,
-    "seen": 1794668268.810358,
-    "ast_hash": "05626bafdfb75ba586cba0b34bb03303",
+    "mtime": 1794682024.8421783,
+    "seen": 1794682152.2629867,
+    "ast_hash": "c02d4adf5c4e90195cec366cbfd85ba9",
     "semantic_hash": ""
   },
   "include/ui/widget/NewIcons.h": {
@@ -9744,9 +9744,9 @@
     "semantic_hash": ""
   },
   "src/ui/widget/NewHome.cpp": {
-    "mtime": 1794675783.0796428,
-    "seen": 1794675894.8992977,
-    "ast_hash": "f3b702ef6f1734e301f61eafd8e6adf9",
+    "mtime": 1794682024.982232,
+    "seen": 1794682152.2639866,
+    "ast_hash": "df296555e45f5df0dabd7b744d3f617c",
     "semantic_hash": ""
   },
   "res/flags/SOURCE.txt": {
@@ -11964,9 +11964,9 @@
     "semantic_hash": ""
   },
   "script/test_ui_regressions.py": {
-    "mtime": 1794675792.9159827,
-    "seen": 1794675894.898295,
-    "ast_hash": "202b21b9865d4b41e06869824c6e8f20",
+    "mtime": 1794682048.2447119,
+    "seen": 1794682152.2629867,
+    "ast_hash": "e5dc8c351da5c823c6774d0969331e4d",
     "semantic_hash": ""
   },
   "src/ui/widget/NewHomeTour.cpp": {

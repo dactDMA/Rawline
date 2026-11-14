@@ -84,9 +84,18 @@ class InterfaceRegressions(unittest.TestCase):
 
     def test_tabs_let_the_window_narrow(self):
         self.assertIn("m_kind == Tab || m_kind == Text ? QSize(40,", read("src/ui/widget/NewHome.cpp"))
-        # The minimum is read only after the layout has worked out the new arrangement.
-        view = read("src/ui/mainWindow/mainwindow_view.cpp")
-        self.assertLess(view.index("layout->activate();"), view.index("setMinimumSize(newHome->minimumSizeHint()"))
+        # The minimum is worked out for the new arrangement and leaves out the centering room,
+        # which follows the window's width and would otherwise keep it from narrowing.
+        self.assertIn("setMinimumSize(newHome->windowMinimum()", read("src/ui/mainWindow/mainwindow_view.cpp"))
+        body = read("src/ui/widget/NewHome.cpp").split("QSize NewHome::windowMinimum()", 1)[1].split("\n}\n", 1)[0]
+        self.assertIn("layout()->activate();", body)
+        self.assertIn("size.rwidth() -= room.left() + room.right();", body)
+
+    def test_windows_tray_menu_is_shown_by_rawline(self):
+        setup = read("src/ui/mainWindow/mainwindow_setup.cpp")
+        win = setup.split("// Shown by Rawline itself", 1)[1].split("#endif", 1)[0]
+        self.assertIn("trayMenu->popup(QCursor::pos());", win)
+        self.assertIn("tray->setContextMenu(trayMenu);", win.split("#else", 1)[1])
 
     def test_tab_close_button_is_drawn_by_the_new_style(self):
         self.assertIn("case PE_IndicatorTabClose:", read("src/ui/widget/NewHome.cpp"))
