@@ -62,6 +62,8 @@ private:
     int tooltipID = 0;
 
     void show_predefined_dns_editor();
+    // Sites that resolve through a server of their own (Configs::DnsRule), saved with the dialog.
+    void show_dns_rules_editor();
 
     void show_dns_advanced_editor();
 
@@ -89,6 +91,7 @@ private:
     // Held until accept() so the popups can be cancelled without touching the settings.
     bool predefined_dns_enabled = true;
     QString predefined_dns_text;
+    QString dns_rules_text;
     DnsAdvancedDraft dns_advanced{};
     QString dns_object_text;
 

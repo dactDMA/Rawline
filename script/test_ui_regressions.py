@@ -104,6 +104,22 @@ class InterfaceRegressions(unittest.TestCase):
         self.assertNotIn('addAction(T("Arrange the window"))', read("src/ui/widget/NewHome.cpp"))
         self.assertIn('"Arrange the window"', read("src/ui/setting/dialog_basic_settings.cpp"))
 
+    def test_dns_rules_reach_the_config_and_are_self_tested(self):
+        gen = read("src/configs/generate.cpp")
+        self.assertIn("DecodeDnsRules(dataManager->settingsRepo->dns_rules)", gen)
+        self.assertIn('hopTag("dns-user", userIndex++)', gen)
+        self.assertIn('{"dns_rules",                  &dns_rules}', read("src/database/SettingsRepo.cpp"))
+        self.assertIn("--self-test-dns-rules", read(".github/workflows/build.yml"))
+        self.assertIn("settingsRepo->dns_rules = dns_rules_text;", read("src/ui/setting/dialog_manage_routes.cpp"))
+
+    def test_protocol_deploys_live_beside_the_panel(self):
+        relay = read("src/ui/setting/dialog_vk_relay.cpp")
+        self.assertIn('"Деплой WDTT Panel"', relay)
+        self.assertIn('"Деплой " + kindTitle(kind)', relay)
+        protocol = read("core/internal/relay/protocol.go")
+        self.assertIn('case "deploy", "uninstall":', protocol)
+        self.assertIn('case "panel":', protocol)
+
     def test_new_screens_are_translated_to_russian(self):
         # Names of protocols and the like stay as they are.
         keep = {"example.com", "AdBlock", "TCP Brutal", "UDP/443"}

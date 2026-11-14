@@ -245,6 +245,8 @@ namespace Configs {
         bool enable_dns_routing = true;
         bool use_dns_object = false;
         QString dns_object = "";
+        // Configs::EncodeDnsRules: sites that resolve through a server of their own.
+        QString dns_rules = "";
         QString dns_final_out = "remote";
         bool dns_optimistic = true;
         bool block_quic = true;

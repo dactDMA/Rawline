@@ -420,6 +420,8 @@ set(PROJECT_SOURCES
         include/ui/profile/edit_wdttplus.h
         src/configs/sub/qwdtt_import_test.cpp
         src/global/core_startup_test.cpp
+        src/configs/DnsRules.cpp
+        include/configs/DnsRules.h
         include/configs/outbounds/qwdtt.h
         src/ui/profile/edit_qwdtt.cpp
         include/ui/profile/edit_qwdtt.h

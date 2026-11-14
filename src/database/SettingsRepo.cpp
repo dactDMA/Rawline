@@ -271,6 +271,7 @@ namespace Configs {
             {"remote_dns",                 &remote_dns},
             {"direct_dns",                 &direct_dns},
             {"dns_object",                 &dns_object},
+            {"dns_rules",                  &dns_rules},
             {"dns_optimistic_timeout",     &dns_optimistic_timeout},
             {"dns_query_timeout",          &dns_query_timeout},
             {"dns_final_out",              &dns_final_out},

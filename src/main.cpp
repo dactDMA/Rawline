@@ -69,6 +69,7 @@ void signal_handler(int signum) {
 
 int TestQwdttImport();
 int TestCoreStartup();
+#include "include/configs/DnsRules.h"
 
 int main(int argc, char* argv[]) {
 #ifdef Q_OS_WIN
@@ -114,6 +115,7 @@ int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
     if (QApplication::arguments().contains("--self-test-qwdtt-import")) return TestQwdttImport();
     if (QApplication::arguments().contains("--self-test-core-startup")) return TestCoreStartup();
+    if (QApplication::arguments().contains("--self-test-dns-rules")) return Configs::TestDnsRules();
 
     SetNoticeSink([](const Notice &n) { ShowPassiveWarning(n.title, n.text); });
     Engine::Bootstrap::SetSoftwareNames();

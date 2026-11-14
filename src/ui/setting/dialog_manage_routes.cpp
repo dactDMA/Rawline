@@ -1,3 +1,4 @@
+#include "include/configs/DnsRules.h"
 #include "include/ui/setting/dialog_manage_routes.h"
 #include "include/ui/group/dialog_provider_routing.h"
 #include "include/configs/sub/ProviderRouting.h"
@@ -283,6 +284,100 @@ void DialogManageRoutes::reloadProfileItems() {
     blocker.unblock();
 }
 
+void DialogManageRoutes::show_dns_rules_editor() {
+    auto rules = std::make_shared<QList<Configs::DnsRule>>(Configs::DecodeDnsRules(dns_rules_text));
+    QDialog w(this);
+    w.setWindowTitle(QStringLiteral("DNS-правила"));
+    auto *layout = new QVBoxLayout(&w);
+    auto *note = new QLabel(QStringLiteral("Сайты из правила разрешаются через его DNS-сервер раньше остальных правил DNS."), &w);
+    note->setWordWrap(true);
+    layout->addWidget(note);
+    auto *list = new QListWidget(&w);
+    layout->addWidget(list, 1);
+    const auto refresh = [=] {
+        list->clear();
+        for (const auto &rule : *rules) {
+            QString title = rule.sites.mid(0, 2).join(", ");
+            if (rule.sites.size() > 2) title += QStringLiteral(" и ещё %1").arg(rule.sites.size() - 2);
+            QStringList parts{title, rule.server, rule.direct ? QStringLiteral("напрямую") : QStringLiteral("через прокси")};
+            if (!rule.enabled) parts << QStringLiteral("выключено");
+            list->addItem(parts.join(QStringLiteral(" · ")));
+        }
+    };
+    const auto edit = [=, &w](int index) {
+        Configs::DnsRule rule = index >= 0 ? rules->at(index) : Configs::DnsRule{};
+        QDialog e(&w);
+        e.setWindowTitle(index >= 0 ? QStringLiteral("Правило") : QStringLiteral("Новое правило"));
+        auto *form = new QFormLayout(&e);
+        auto *sites = new QPlainTextEdit(&e);
+        sites->setPlaceholderText(QStringLiteral("По одному в строке:
+domain:example.com с поддоменами
+full:only.example.com
+keyword:openai
+regexp:^chat[0-9]+\.example\.org$
+geosite:category-ai-chat-!cn"));
+        sites->setPlainText(rule.sites.join("
+"));
+        form->addRow(QStringLiteral("Сайты"), sites);
+        auto *server = new QLineEdit(rule.server, &e);
+        server->setPlaceholderText(QStringLiteral("https://dns.example/dns-query"));
+        form->addRow(QStringLiteral("DNS-сервер"), server);
+        auto *direct = new QCheckBox(QStringLiteral("Напрямую, без прокси"), &e);
+        direct->setChecked(rule.direct);
+        form->addRow(direct);
+        auto *enabled = new QCheckBox(QStringLiteral("Включено"), &e);
+        enabled->setChecked(rule.enabled);
+        form->addRow(enabled);
+        auto *error = new QLabel(&e);
+        error->setWordWrap(true);
+        error->setStyleSheet(QStringLiteral("color: #e87870;"));
+        form->addRow(error);
+        auto *buttons = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, &e);
+        form->addRow(buttons);
+        connect(buttons, &QDialogButtonBox::rejected, &e, &QDialog::reject);
+        connect(buttons, &QDialogButtonBox::accepted, &e, [&] {
+            Configs::DnsRule next{enabled->isChecked(), Configs::DnsRuleLines(sites->toPlainText()), server->text().trimmed(), direct->isChecked()};
+            auto checked = next;
+            checked.enabled = true;
+            if (const auto problem = checked.Problem(); !problem.isEmpty()) {
+                error->setText(problem);
+                return;
+            }
+            if (index >= 0) (*rules)[index] = next;
+            else rules->append(next);
+            e.accept();
+        });
+        e.resize(e.sizeHint().expandedTo(QSize(520, 380)));
+        if (e.exec() == QDialog::Accepted) refresh();
+    };
+    auto *row = new QHBoxLayout;
+    auto *add = new QPushButton(QStringLiteral("Добавить"), &w);
+    auto *change = new QPushButton(QStringLiteral("Изменить"), &w);
+    auto *remove = new QPushButton(QStringLiteral("Удалить"), &w);
+    row->addWidget(add);
+    row->addWidget(change);
+    row->addWidget(remove);
+    row->addStretch();
+    layout->addLayout(row);
+    connect(add, &QPushButton::clicked, &w, [=] { edit(-1); });
+    connect(change, &QPushButton::clicked, &w, [=] { if (list->currentRow() >= 0) edit(list->currentRow()); });
+    connect(list, &QListWidget::itemDoubleClicked, &w, [=] { edit(list->currentRow()); });
+    connect(remove, &QPushButton::clicked, &w, [=, &w] {
+        const int index = list->currentRow();
+        if (index < 0) return;
+        if (QMessageBox::question(&w, QStringLiteral("DNS-правила"), QStringLiteral("Удалить правило?")) != QMessageBox::Yes) return;
+        rules->removeAt(index);
+        refresh();
+    });
+    auto *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &w);
+    layout->addWidget(buttons);
+    connect(buttons, &QDialogButtonBox::accepted, &w, &QDialog::accept);
+    connect(buttons, &QDialogButtonBox::rejected, &w, &QDialog::reject);
+    refresh();
+    w.resize(w.sizeHint().expandedTo(QSize(600, 400)));
+    if (w.exec() == QDialog::Accepted) dns_rules_text = Configs::EncodeDnsRules(*rules);
+}
+
 void DialogManageRoutes::show_predefined_dns_editor() {
     auto w = new QDialog(this);
     w->setWindowTitle(tr("Predefined DNS Answers"));
@@ -561,6 +656,8 @@ DialogManageRoutes::DialogManageRoutes(QWidget *parent) : QDialog(parent), ui(ne
     predefined_dns_enabled = Configs::dataManager->settingsRepo->dns_predefined_enable;
     predefined_dns_text = Configs::dataManager->settingsRepo->dns_predefined_rules.join("\n");
     connect(ui->predefined_dns, &QPushButton::clicked, this, &DialogManageRoutes::show_predefined_dns_editor);
+    dns_rules_text = Configs::dataManager->settingsRepo->dns_rules;
+    connect(ui->dns_rules, &QPushButton::clicked, this, &DialogManageRoutes::show_dns_rules_editor);
     reloadProfileItems();
 
     connect(ui->route_profiles, &QListWidget::itemDoubleClicked, this, [=,this](const QListWidgetItem* item){
@@ -816,6 +913,7 @@ void DialogManageRoutes::accept() {
         if (!line.trimmed().isEmpty()) predefinedRules.append(line.trimmed());
     }
     Configs::dataManager->settingsRepo->dns_predefined_rules = predefinedRules;
+    Configs::dataManager->settingsRepo->dns_rules = dns_rules_text;
 
     Configs::dataManager->routesRepo->UpdateRouteProfiles(chainList, removedIds);
     Configs::dataManager->settingsRepo->current_route_id = currentRoute->id;

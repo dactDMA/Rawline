@@ -1,3 +1,4 @@
+#include "include/configs/DnsRules.h"
 #include "include/configs/generate.h"
 #include "include/configs/outbounds/qwdtt.h"
 #include "include/configs/outbounds/sstp.h"
@@ -165,6 +166,8 @@ namespace Configs {
             DomainSelectors direct;
             bool needProxyDnsRules = false;
             DomainSelectors proxy;
+            // The user's DNS rules that can be used, with their sites; the catalog lists are in neededRuleSets.
+            QList<std::pair<DnsRule, DomainSelectors>> user;
         };
 
         struct TunDeps {
@@ -1161,6 +1164,26 @@ namespace Configs {
                 if (!preReqs.routing.neededRuleSets.contains(item)) preReqs.routing.neededRuleSets << item;
             }
 
+            // The user's DNS rules. One the editor would refuse, or a catalog list it does not know, is left out
+            // rather than stopping the connection.
+            if (!ctx.forTest && !dataManager->settingsRepo->use_dns_object) {
+                for (const auto &rule : DecodeDnsRules(dataManager->settingsRepo->dns_rules)) {
+                    if (!rule.enabled || !rule.Problem().isEmpty()) continue;
+                    const auto match = ParseDnsRuleSites(rule.sites);
+                    DomainSelectors selectors;
+                    selectors.domains = match.domains;
+                    selectors.suffixes = match.suffixes;
+                    selectors.keywords = match.keywords;
+                    selectors.regexes = match.regexes;
+                    for (const auto &name : match.ruleSets) {
+                        if (ruleSetUrl(name.toStdString()).empty()) continue;
+                        if (!preReqs.routing.neededRuleSets.contains(name)) preReqs.routing.neededRuleSets << name;
+                        selectors.ruleSets << name;
+                    }
+                    if (selectors.hasInlineConditions() || !selectors.ruleSets.isEmpty()) preReqs.dns.user << std::make_pair(rule, selectors);
+                }
+            }
+
             if (ctx.dns.enable_dns_routing) {
                 auto sets = routeChain->get_direct_sites();
                 parseSelectorList(sets, sinkFor(preReqs.dns.direct));
@@ -1598,6 +1621,25 @@ namespace Configs {
                      {"server", tags::dnsFake}
                 };
                 independentCache = true;
+            }
+
+            // The user's DNS rules first: a site named there resolves through its server whatever the profile's lists say.
+            if (!ctx.forTest) {
+                int userIndex = 0;
+                for (const auto &[rule, selectors] : dns.user) {
+                    const QString tag = hopTag("dns-user", userIndex++);
+                    auto server = buildDnsObj(ctx, rule.server);
+                    const QString type = server.value("type").toString();
+                    const bool viaProxy = !rule.direct && type != "local" && type != "dhcp";
+                    // Through Xray a resolver cannot use udp or quic, as for dns-remote.
+                    if (viaProxy && ctx.proxyUsesXray && (type == "udp" || type == "quic"))
+                        server = buildDnsObj(ctx, upgradeUdpDnsToDoH(server.value("server").toString()));
+                    server["tag"] = tag;
+                    if (type != "local" && type != "dhcp") server["domain_resolver"] = tags::dnsLocal;
+                    if (viaProxy) server["detour"] = ctx.sstpDnsTag.isEmpty() ? QString(tags::proxy) : ctx.sstpDnsTag;
+                    servers += server;
+                    appendDnsRoutingRules(rules, selectors, tag, rule.direct ? ctx.dns.direct_dns_disable_ipv6 : ctx.dns.remote_dns_disable_ipv6, race);
+                }
             }
 
             // An application's rule routes its connections through another chain: the destination is resolved through
