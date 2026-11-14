@@ -2585,10 +2585,16 @@ void NewHome::applyArrangement() {
     // Left or right of the servers, or above them in one narrow column as on the phone.
     const bool centered = settings.new_layout_panel == QLatin1String("center");
     m_columns->setDirection(centered ? QBoxLayout::TopToBottom : QBoxLayout::LeftToRight);
-    // The panel is one whole block, 300 px wide wherever it stands; centered, it sits over the servers.
+    // The panel is one whole block: 300 px beside the servers, the full column width over them.
     m_columns->removeWidget(m_side);
-    m_columns->insertWidget(settings.new_layout_panel == QLatin1String("right") ? 1 : 0, m_side, 0, centered ? Qt::AlignHCenter : Qt::Alignment());
-    m_side->setFixedWidth(300);
+    m_columns->insertWidget(settings.new_layout_panel == QLatin1String("right") ? 1 : 0, m_side);
+    // Centered, the panel takes the column's whole width like the servers under it, with no empty sides.
+    if (centered) {
+        m_side->setMinimumWidth(0);
+        m_side->setMaximumWidth(QWIDGETSIZE_MAX);
+    } else {
+        m_side->setFixedWidth(300);
+    }
     updateCentering();
     // Inside it the order never changes: header, card, the connect block, room, the status lines.
     m_sideLayout->removeWidget(m_header);

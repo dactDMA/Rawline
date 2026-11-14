@@ -1,7 +1,7 @@
 # Graph Report - qThroneDesktop  (2026-11-14)
 
 ## Corpus Check
-- 1355 files · ~3,377,428 words
+- 1355 files · ~3,377,448 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 168 file(s) not represented in the graph (top: .ui 62, (none) 22, .proto 21)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8fd0a4cc`
+- Built from commit: `a5f5e925`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
