@@ -65,8 +65,17 @@ class InterfaceRegressions(unittest.TestCase):
         # Every dialog's frame follows the theme.
         self.assertIn("NewStyle::themeFrame(widget);", text)
 
+    def test_tray_menu_is_see_through_from_birth(self):
+        setup = read("src/ui/mainWindow/mainwindow_setup.cpp")
+        made = setup.index("trayMenu = new QMenu();")
+        self.assertLess(setup.index("trayMenu->setAttribute(Qt::WA_TranslucentBackground);"), setup.index("tray->setContextMenu(trayMenu);"))
+        self.assertGreater(setup.index("trayMenu->setAttribute(Qt::WA_TranslucentBackground);"), made)
+
     def test_tabs_let_the_window_narrow(self):
         self.assertIn("m_kind == Tab || m_kind == Text ? QSize(40,", read("src/ui/widget/NewHome.cpp"))
+        # The minimum is read only after the layout has worked out the new arrangement.
+        view = read("src/ui/mainWindow/mainwindow_view.cpp")
+        self.assertLess(view.index("layout->activate();"), view.index("setMinimumSize(newHome->minimumSizeHint()"))
 
     def test_tab_close_button_is_drawn_by_the_new_style(self):
         self.assertIn("case PE_IndicatorTabClose:", read("src/ui/widget/NewHome.cpp"))

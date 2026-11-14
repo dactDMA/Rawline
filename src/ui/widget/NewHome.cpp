@@ -501,7 +501,8 @@ void NewStyle::setTheme(const QString &theme) {
     if (isTheme(g_theme) && !isTheme(theme)) {
         // Back in the classic look: menus get their own background again, and every control its own cursor.
         for (auto *widget : QApplication::allWidgets()) {
-            if (auto *menu = qobject_cast<QMenu *>(widget)) {
+            // The tray menu stays see-through: its window cannot be made again once the tray holds it.
+            if (auto *menu = qobject_cast<QMenu *>(widget); menu && menu->objectName() != QLatin1String("trayMenu")) {
                 menu->setAttribute(Qt::WA_TranslucentBackground, false);
                 menu->setProperty("newCleared", QVariant());
             }

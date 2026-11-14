@@ -3156,9 +3156,9 @@
     "semantic_hash": ""
   },
   "src/ui/mainWindow/mainwindow_setup.cpp": {
-    "mtime": 1794660991.2384672,
-    "seen": 1794661254.2138186,
-    "ast_hash": "09b40d3af8ad2ed3bbf78a64a43f7cd4",
+    "mtime": 1794675450.1402419,
+    "seen": 1794675565.5295658,
+    "ast_hash": "ffb50d09e7215c5441f9baa45fed305f",
     "semantic_hash": ""
   },
   "src/ui/mainWindow/mainwindow_system.cpp": {
@@ -3168,9 +3168,9 @@
     "semantic_hash": ""
   },
   "src/ui/mainWindow/mainwindow_view.cpp": {
-    "mtime": 1794660791.7600257,
-    "seen": 1794661254.2138186,
-    "ast_hash": "d42b499592e361a9754aca94bd8e6d64",
+    "mtime": 1794675456.6849368,
+    "seen": 1794675565.5295658,
+    "ast_hash": "17493b23effa14f2b401486cbe89d5f4",
     "semantic_hash": ""
   },
   "src/ui/profile/ProxyItem.cpp": {
@@ -9744,9 +9744,9 @@
     "semantic_hash": ""
   },
   "src/ui/widget/NewHome.cpp": {
-    "mtime": 1794668157.48129,
-    "seen": 1794668268.8114054,
-    "ast_hash": "52a1571aea2676b44d9367a2c5bffd01",
+    "mtime": 1794675450.300822,
+    "seen": 1794675565.5295658,
+    "ast_hash": "92a3f7f0c86a447c69363a3ae2cb536b",
     "semantic_hash": ""
   },
   "res/flags/SOURCE.txt": {
@@ -11964,9 +11964,9 @@
     "semantic_hash": ""
   },
   "script/test_ui_regressions.py": {
-    "mtime": 1794668168.1736152,
-    "seen": 1794668268.8108835,
-    "ast_hash": "804aab136ea574c55077439219ee1b9a",
+    "mtime": 1794675469.226273,
+    "seen": 1794675565.5285668,
+    "ast_hash": "06dceb0c21b3e3459a8ad3a0d60869be",
     "semantic_hash": ""
   },
   "src/ui/widget/NewHomeTour.cpp": {

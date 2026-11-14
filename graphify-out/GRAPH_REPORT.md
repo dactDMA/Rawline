@@ -1,45 +1,45 @@
 # Graph Report - qThroneDesktop  (2026-11-14)
 
 ## Corpus Check
-- 1355 files · ~3,377,301 words
+- 1355 files · ~3,377,428 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 168 file(s) not represented in the graph (top: .ui 62, (none) 22, .proto 21)
 
 ## Summary
-- 32773 nodes · 88867 edges · 831 communities (698 shown, 133 thin omitted)
+- 32774 nodes · 88869 edges · 807 communities (686 shown, 121 thin omitted)
 - Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 6146 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `85640b37`
+- Built from commit: `8fd0a4cc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- listenerTestSession
-- QString
+- sqlite3
+- Algorithm
 - wireguard.cpp
-- captcha_wdttplus.go
+- u8
 - wdttplus_bridge.go
-- SQLITE_PRIVATE
+- Parse
 - gpb-compatibility.cpp
 - context.Context
 - sqlite3VdbeExec
-- sync.Mutex
+- creds.go
 - SettingsRepo
-- ArrangeOverlay
+- Expr
 - MainWindow
-- go_pkg_context
-- shadowsocks.cpp
+- decodeObject
+- Vdbe
 - testing.T
-- u8
+- sqlite3_stricmp
 - RouteItem::syncEndpointRules
 - sqlite3.c
 - Utils.cpp
 - EngineHost::PolicyRelay
 - Proxies
 - RowEntry
-- generate.cpp
+- Profile
 - KillSwitch
 - sqlite3_value
 - DialogAutoSelector::buildRows
@@ -48,17 +48,17 @@
 - dialog_otp_manager.cpp
 - provider_crypt.go
 - Session
-- gate_test.go
+- Instance
 - freeturn/main.go
 - wireguard
 - SupervisorLink
 - DialogBasicSettings
 - process_windows.go
-- ProfilesFilterProxyModel.cpp
+- FilterKey
 - DialogEditProfile
 - decode.c
 - net.Conn
-- sqlite3_free
+- sqlite3_step
 - ResolverSource.cpp
 - QJsonObject
 - TuneWorker
@@ -66,20 +66,20 @@
 - sqlite3_mutex_held
 - StartStopButton
 - DialogScanInstance
-- RouteItem::RouteItem
+- SQLITE_PRIVATE
 - nanobench.h
 - HeadlessRuntime
-- array
-- sqlite3_vtab
+- DataViewHtmlGenerator.cpp
+- sqlite3_free
 - LiveChart::Impl
 - DatabaseManager
 - LiveChart.cpp
 - SubscriptionInfoCard
 - ScanItem.cpp
-- sqlite3LogEst
+- SQLITE_NOINLINE
 - Server::Worker
-- ElidingLabel.cpp
-- Split
+- Fts3Cursor
+- Rtree
 - RouteProfile
 - OTP.cpp
 - QString
@@ -89,16 +89,16 @@
 - doctest.h
 - RouteItem.cpp
 - ConnectionManager
-- SortSubtask
+- u32
 - Router
 - .deserialize_node
 - QApplication
 - QJsonArray
-- ChainBuildMark
-- TLS.cpp
+- HeadlessCli.cpp
+- TLS
 - PanelDeploy
 - RouteRule
-- dnstunnel
+- Table
 - io.Writer
 - IpScan
 - openvpn
@@ -117,14 +117,14 @@
 - dnstt
 - obfs/wireguard.go
 - CoreElevation.cpp
-- RawRouteItem
+- JsonCodeEdit.cpp
 - DialogEditIpList
 - sysdns_darwin.go
 - size_t
 - proto_field
 - database/Database.cpp
 - EngineHost
-- ProfilesRepo.cpp
+- ProfilesRepo
 - Router.cpp
 - IpListsRepo.cpp
 - NewHome
@@ -145,7 +145,7 @@
 - JsonCodeEdit
 - AutoSelectorPlan
 - ThemeColors
-- MainWindow::MainWindow
+- RouteService.cpp
 - EditWdttPlus
 - DialogScanner
 - proto_file
@@ -178,7 +178,7 @@
 - Multiplex
 - TaskRoot
 - Logger.cpp
-- RoutingDeps
+- sqlite3.h
 - EditQWDTT
 - IpListsRepo
 - ProviderRouting.cpp
@@ -188,13 +188,13 @@
 - xrayStreamSetting.cpp
 - DataViewHtmlGenerator
 - IpListItem
-- MibIPInterfaceRow
+- zwinipcfg_windows.go
 - MibIPforwardRow2
 - GroupUpdater
 - ContentIndex
 - RelayTask
 - vpnFileImport.cpp
-- Instance
+- gpb-compatibility.cpp
 - wdttplus
 - Profile
 - register.go
@@ -214,7 +214,7 @@
 - SeasonalDecoration
 - EditDnsTunnel
 - windows_service.ps1
-- StartURLTest
+- sqlite3ExprDup
 - nftables_linux.go
 - host
 - EditOLCRTC
@@ -225,27 +225,27 @@
 - xrayVless
 - ProfilesTableFilterHeader
 - SeasonalDecoration
-- creds.go
+- RouteRule.cpp
 - basic_node
 - .PanelDeploy
 - Client
-- ProcessRules.cpp
+- Spellings
 - WebDavSession
 - Statement
 - Job
-- nanopb/benchmark.cpp
+- example/addressbook.cpp
 - State
 - go_pkg_time
 - LinuxPerformanceCounters
-- dnstun/tunnel.go
+- masterdns
 - csqtt
 - DialogVpnAuth
 - ScannerPanelItem
 - .decode
-- IpListUpdater.cpp
+- ServiceChecks.cpp
 - headless_smoke.sh
 - CoreSupervisor.cpp
-- QKeyEvent
+- ProfilesTableModel.cpp
 - ServiceManager.cpp
 - sys
 - DialogIpLists
@@ -277,8 +277,8 @@
 - ipv6cp_test.go
 - types.go
 - vmess
-- QUrlQuery
-- DialogEditGroupAdvanced
+- RunConfigDump
+- BuildTestConfigResult
 - identify.c
 - Installing SQLiteCpp (vcpkg)
 - EditShadowsocksR
@@ -304,8 +304,8 @@
 - DialogScanInstance::loadForm
 - ScanHttpOptions
 - ResumeGuard
-- mobile_safe.py
-- operator==
+- VpnAuthChallenge
+- rbegin
 - naive
 - RuntimeStatus
 - IpListUpdater
@@ -313,7 +313,7 @@
 - data
 - validationParseInt
 - GroupsRepo
-- LogFilter
+- Statement.cpp
 - linux_packages.sh
 - TrafficStatsManager
 - Key
@@ -327,13 +327,13 @@
 - golang.org/x/sys/windows.Handle
 - TunePlanner.cpp
 - RuntimeStatsWidget
-- edit_vless.cpp
+- Association
 - DialogRuleTester::finish
 - fromHapp
 - dump_cpp
 - HttpGetOptions
 - PlatformInterface
-- GroupSortMethod
+- TuneProfiles.cpp
 - UiMode.cpp
 - QJsonArray
 - SpeedtestPanelState
@@ -342,7 +342,7 @@
 - Value
 - Target
 - KdeBackend
-- TuneWorker.cpp
+- Bootstrap.cpp
 - golang.org/x/sys/windows.GUID
 - .showResult
 - espCBC
@@ -351,7 +351,7 @@
 - PreflightReport
 - parse_test.go
 - Group.cpp
-- Register
+- IsBeingEdited
 - X11Backend
 - AutoSelectorMonitor
 - ProcessPicker
@@ -363,16 +363,16 @@
 - ssh
 - IpList
 - OtpProfilesRepo.cpp
-- FixProfileDisplayName
-- shadowsocks
+- ClaimDataDir
+- ProcessCatalog
 - StatsService
 - test_verify_common_artifacts.py
 - LiveChart
 - linux_scenarios.sh
 - windows/GlobalHotkeys.cpp
-- edit_openvpn.cpp
+- edit_dnstt.cpp
 - anyTLS
-- DialogScanInstance::bindValidation
+- Session
 - PreflightInstance
 - socks
 - DialogScanInstance::setupTargets
@@ -394,10 +394,10 @@
 - xrayTLS
 - snell
 - TrafficStatsRepo.cpp
-- CoreSupervisorStderrTail
+- DialogEditIpList::onFetched
 - TrafficStatsRepo
 - FormIssue
-- RuleNames
+- Profile.cpp
 - OpenConnectTLS
 - AutoSelectorMemberView
 - simple-protobuf
@@ -414,9 +414,9 @@
 - Config
 - xrayXDrive
 - Column
-- MonotonicMs
-- MainWindow::setupConnectionList
-- xrayCollectUnmodelled
+- RunHeadless
+- ResumeGuard.cpp
+- linux/UrlScheme.cpp
 - TrafficLooper
 - clash.hpp
 - sqlite3Parser
@@ -424,28 +424,28 @@
 - dnstt.cpp
 - ImportFilter
 - Enum
-- GroupsRepo.cpp
+- ProcessPickerProgram
 - VpnEndpointView
 - BufferedSlice
-- edit_autoselector.cpp
+- EditChain
 - DataViewItem
-- ChainBuildRequest
+- ResolverSourceScope
 - WebDavUpdateIndex
-- DialogScanInstance::setupResults
+- DialogScanInstance::DialogScanInstance
 - UpdateOutcome
-- olcrtc
+- exiting
 - EditLock
 - EditHysteriaRealm
 - indented_streambuf
-- MainWindow::dialog_message_impl
+- EditOpenVPNAdvanced
 - Config
-- ExitReason
+- InstanceServer
 - echoPair
 - BigO
 - dialog_edit_profile_singbox.cpp
 - Parser
-- DefaultIpLists.cpp
-- tailscale.cpp
+- RuleIssue
+- EngineEvents::instance
 - Space
 - IpListItem::IpListItem
 - TestRunner
@@ -455,7 +455,7 @@
 - EditHysteria
 - buffered_reader
 - Overlay
-- MainWindow::eventFilter
+- edit_chain.cpp
 - iterator.go
 - Rng
 - SubscriptionScan.hpp
@@ -471,36 +471,36 @@
 - EditWireguardAmnezia
 - TrayIcon
 - PeriodicRunner
-- SupervisorLink.cpp
+- QStringList
 - sampleInsert
-- ParseDiagnostics.cpp
+- snell.cpp
 - NewOrb
 - sqlite3_rtree_query_info
 - ProfilesTableVerticalHeader
 - coreElevationGrant
 - IpEntriesModel
-- ScanLiveState
-- aivpn
+- ProxyItem
+- dialog_edit_profile_kcp.cpp
 - ProfilesFilterProxyModel
 - DialogEditProfile::typeSelected
 - ProcessCompletionModel
 - MacHotkeyBackend
 - sources/halloween.py
 - seasonal_sources/halloween.py
-- openflux
+- DialogEditIpList::accept
 - dialog_scan_instance.cpp
 - IpEntriesModel.cpp
-- ProcessPickerProgram
+- ProcessPickerModel
 - HotkeyEdit
 - DialogScanInstance::applyTuneResult
 - xrayReality
-- MainWindow::handle_deeplink_impl
+- ProfilesFilterProxyModel.cpp
 - EditTrustTunnel
 - QObject
 - Colors
 - build_go.sh
 - pack_release.sh
-- fts5PorterCb
+- JsonEditorDialog
 - ConnectionSort
 - QJsonArray
 - xrayKCP
@@ -510,11 +510,11 @@
 - RawlineSession
 - AutoSelectorPlan.cpp
 - DWORD
-- WebDavResponse
+- IpListUpdater.cpp
 - ConnectionsTreeFilterProxyModel
 - LaunchOptions
 - Protocol.cpp
-- RouteRuleOrigin
+- Effective
 - sources/easter.py
 - seasonal_sources/easter.py
 - json/deserialize.hpp
@@ -524,8 +524,8 @@
 - StartOutcome
 - NullLogger
 - Trial
-- ChainStepReport
-- EngineEvents
+- TestRunner
+- ApplyConfig
 - Peer
 - Entry
 - StreamStateRestorer
@@ -534,10 +534,10 @@
 - DetailRow
 - OtpListWidget.cpp
 - EngineEvents.cpp
-- Exchange
+- Mailbox
 - Reality
 - WarpIdentity
-- MainWindow::setupLogView
+- LiveRates
 - TrayPopupFrame
 - RouteRuleOriginKind
 - ScanWorkerConfigTest
@@ -551,11 +551,11 @@
 - ConfigMetaRow
 - EditAivpn
 - RuntimeStatsWidget::RuntimeStatsWidget
-- DnsAddress
+- DialogEditProfile::DialogEditProfile
 - TrayProfileSelector::TrayProfileSelector
 - PreflightApi
-- xrayMultiplex.cpp
-- MuxSettingsWidget.cpp
+- EditOpenConnect::editPem
+- ProxyItem.cpp
 - TrayIconStatus
 - EditOpenFlux
 - ThemeManager.cpp
@@ -564,13 +564,13 @@
 - View
 - qThrone
 - edit_tuic.cpp
-- extracore
-- edit_masterdns.cpp
+- DurationRule
+- EditS3Bypass
 - Put
 - TestObserver
 - .paint
-- count
-- edit_dnstt.cpp
+- SourceKind
+- EngineEvents
 - GlobalHotkeys
 - .OpenInterface
 - CrossRule
@@ -580,19 +580,20 @@
 - ChunkResult
 - SeriesBuffer.cpp
 - GlobalHotkeyBackend_Create
+- Import
 - from_node
 - ProcessMetrics
 - RuntimeStatsWidget::refreshLive
 - Hotkey
 - Page
 - rawline.rs
-- chainScan
-- Tuning
+- ProfileConfig
+- Register
 - PortRangeStyle
 - EditWireguardObfs
-- edit_snell.cpp
-- MainWindow::collectMenuShortcuts
-- MainWindow::show_group
+- StatsSink
+- Layout
+- DialogAutoSelector::sortRows
 - OpenConnectToken
 - wgPeer
 - json/serialize.hpp
@@ -600,28 +601,28 @@
 - EditSSTP
 - ImportReport
 - edit_direct.cpp
-- .handleIPv6CPConfigReq
+- parseOptions
 - LongPress
 - QScopeGuard
 - .add
-- Mode
+- CoreState
 - Highlighter
 - Backup
 - Outcome
-- Response
+- DownloadProgressReport
 - uTLS
-- edit_http.cpp
+- EditChain::on_test_hops_clicked
 - simpleAction
 - edit_juicity.cpp
-- OrgFreedesktopPortalRequestInterface
+- EditHttp
 - TrafficChartWidget
-- edit_naive.cpp
+- EditJuicity
 - RawSockaddrInet
-- RestartReason
-- edit_shadowtls.cpp
+- EditNaive
+- EditShadowTLS
 - Definitions
-- edit_socks.cpp
-- Variant
+- EditSocks
+- EditTrojan
 - Stage
 - PrivilegeInfo
 - Bucket
@@ -633,34 +634,34 @@
 - FloatCheckBox
 - DialogVPNSettings
 - ImportReport.cpp
-- RunningProfiles.cpp
+- DialogIpLists::rebuildRows
 - Issue
 - AutoUpdatePlan
-- MainWindow::HotkeyEvent
+- IPConfig
 - monocypher.h
-- DeviceDetailsHelper.cpp
+- KillSwitch.cpp
 - HistoryEntry
-- edit_mrtt.h
-- Planner::openRefine
-- SelectorSink
+- Exception
+- combo
+- judgeSteps
 - SpeedTestMode
 - GlobalHotkeyBackend
-- testCandidate
+- geopolyParseJson
 - NewHome.cpp
 - Issue
 - sessionCaptcha
 - Callbacks
-- BOOL
+- mobile.go
 - ThemeManager::ApplyTheme
-- VpnAuthAnswer
+- ConnectionState
 - .saveAllSettings
-- Scope
+- PutResult
 - IpListsRepo::ListClaim
-- Request
+- Change
 - Series
 - internal/mschap
-- DialogScanInstance::buildPhases
-- RunMarker
+- InterfaceFields
+- Column
 - StringIterator
 - Role
 - NetworkRequestHelper
@@ -669,48 +670,48 @@
 - Info
 - Status
 - openfluxkey/captcha.go
-- parseCP
+- sqlite3GenerateColumnNames
 - ScanRun
 - HelperExit
 - HostTun.cpp
 - AppUsage
 - edit_trojan.cpp
-- testShowItems
+- Limits
 - MarkersRepo
-- done
+- CheckDelete
 - release_notes_next.md
 - i64
-- AutoSelectorMonitor.cpp
-- LogLine
+- AutoSelectorMonitor::poll
+- EditAdvanced::EditAdvanced
 - .refresh
-- ConnectionManager::attach
+- EditOpenVPNAdvanced::EditOpenVPNAdvanced
 - deploy_linux64.sh
 - test_arch_package.sh
 - Stage
 - qThrone 1.6
-- Request
+- newyear.py
 - DialogUpdate
-- OpenConnectMobile
+- StepVerdict
 - XrayVlessPreference
 - CoreDiagnostics::succeed
 - LiveChartAlign
-- Outcome
-- ScanRunHooks
+- github.com/sagernet/sing-tun.DefaultInterfaceMonitor
+- ProfileFilter
 - ChangeTopic
 - Config
 - feature_request-en.md
-- Response
-- OpenVPNRemote
-- GenerateServerless
+- RoutesRepo::loadRulesForProfileIdsChunk
+- AppMetaRow
+- NewGroup
 - serviceManagerWinWindowProc
-- ParseSink
+- VpnEndpointState
 - translate.sh
 - HappEntry
 - Column
 - Item
 - PreflightListener
 - ParseResult
-- OutboundGroup
+- Planner::EstimateTotal
 - .labelFor
 - README.Rawline.md
 - LICENCE.md
@@ -742,80 +743,54 @@
 - xhttpReuseSettings
 - .updateTuneControls
 - net/netip.Addr
-- DeviceSlots
-- Planner::startConfirm
+- DbErrorTally
+- preflightOpenToOthers
 - RoutePrefix
-- RelayAutoHashes
-- XraySubType
-- ScanTestTarget
+- TestRunnerClaimedTags
+- SetInterfaceDnsSettings
+- bindOne
 - build_mrtt.sh
 - seasonal/README.md
-- .setGroup
-- ExitController::ExitController
+- HeadlessApiState
+- HitType
 - swiftsstp
 - wg-turn-client
-- MainWindow::log_process_loop
-- testBy
+- MarkerItem
 - GrantAsync
 - Options
 - folding_state_t
 - TrayIcon.mm
-- Router::getEvents
+- Router::Router
 - Entry
 - capcheck_other.go
-- Mode
-- ConfigUsage
+- ConfigApplied
+- PortUser
 - VpnEndpointPanelState
 - .Run
 - Client::ScanURLTest
-- Router::eventsResponse
+- Write
+- validationDurationUnit
 - Protocol
-- SingBoxSubType
-- .showVk
 - paint
 - TestQwdttImport
-- RuleTesterColumn
-- EditMasque::bindValidation
+- RoutesRepo::GetAllRouteProfiles
+- AllOf
 - .paint
 - RecolorIcon
 - UniformFormLayouts
-- Family
-- .selectProfileRows
-- AutoSelectorPanelState
 - MW_show_log
-- PendingRestartPanelState
 - serverRecordHandler
-- .clearUnavailableProfiles
-- Effect
-- .confirm_disable_kill_switch
-- MainWindow::showCommandPalette
 - quint64
 - build_aivpn.sh
-- .showScannerDialog
 - RecolorIcon
 - Client::QueryScan
-- .usesTightLabels
-- ItemKind
 - Response
-- VpnAuthController::VpnAuthController
 - CoreDiagnostics::complete
 - RecolorIpListItemIcon
-- sqlite3_index_constraint_usage
 - Error
-- autoSelector::Validate
-- DomainMatcher
-- ScopedBuildRoute
-- EditMRTT::onStart
-- namespace
 - pipeAddr
-- requestRestart
-- DialogUpdate::DialogUpdate
-- DialogManageGroups::deleteGroup
 - ThemeManager::standardIcon
 - dnsPacketPipe
-- RoutesRepo::routeProfileToJson
-- RoutesRepo::saveToDatabase
-- HasError
 
 ## God Nodes (most connected - your core abstractions)
 1. `QString` - 3115 edges
@@ -836,151 +811,151 @@
   src/global/Validation.cpp → include/configs/generate.h
 - `buildOutboundChain()` --calls--> `bridgePort`  [INFERRED]
   src/configs/generate.cpp → include/configs/outbounds/custom.h
-- `TestRunner::pollUrlStream()` --calls--> `onResult`  [INFERRED]
-  src/engine/tests/TestRunner.cpp → include/engine/tests/TestRunner.h
 - `ResumeGuard::save()` --references--> `QJsonObject`  [INFERRED]
   src/engine/headless/ResumeGuard.cpp → include/global/Utils.hpp
+- `wireguard::FixAddress()` --references--> `QString`  [INFERRED]
+  src/configs/outbounds/wireguard.cpp → include/sys/windows/guihelper.h
 
 ## Import Cycles
 - None detected.
 
-## Communities (831 total, 133 thin omitted)
+## Communities (807 total, 121 thin omitted)
 
-### Community 0 - "listenerTestSession"
-Cohesion: 0.05
-Nodes (30): Check, Result, Report(), flag(), hasNetAdmin(), nftablesUsable(), openTun(), Report() (+22 more)
-
-### Community 1 - "QString"
+### Community 0 - "sqlite3"
 Cohesion: 0.01
-Nodes (149): Group, Profile, RouteProfile, ServiceError, UpdateOutcome, QLocalSocket, autoSelector, Profile (+141 more)
+Nodes (449): sqlite3_api_routines, sqlite3_blob, sqlite3_module, iVersion, sqlite3_rebaser, Database::loadExtension(), addAggInfoColumn(), addAggInfoFunc() (+441 more)
+
+### Community 1 - "Algorithm"
+Cohesion: 0.01
+Nodes (142): createQThread(), createThreadImpl(), QThreadCreateThread, m_future, QLocalSocket, QWidget, Profile, QLocalSocket (+134 more)
 
 ### Community 2 - "wireguard.cpp"
 Cohesion: 0.06
-Nodes (37): AmneziaHeaderProtection(), AmneziaHeaders(), AmneziaJunkSizes(), AmneziaRange(), AmneziaSignature(), ParseAmneziaBool(), Peer::ExportToLink(), Peer::ParseFromJson() (+29 more)
+Nodes (36): AmneziaHeaderProtection(), AmneziaHeaders(), AmneziaJunkSizes(), AmneziaRange(), AmneziaSignature(), ParseAmneziaBool(), Peer::ExportToLink(), Peer::ParseFromLink() (+28 more)
 
-### Community 3 - "captcha_wdttplus.go"
-Cohesion: 0.13
-Nodes (24): TestDesktopCaptchaResponseAndURLValidation(), captchaClickDelay(), captchaClickPoint(), pressCaptchaCheckbox(), readCaptchaState(), TestCaptchaAutoPassFollowsOriginalTiming(), watchCaptchaPage(), captchaSuccessToken() (+16 more)
+### Community 3 - "u8"
+Cohesion: 0.02
+Nodes (289): u64, u8, actionName(), fts3ChecksumEntry(), fts5ApiInstToken(), fts5AppendPoslist(), fts5AppendRowid(), fts5AppendTokendataIter() (+281 more)
 
 ### Community 4 - "wdttplus_bridge.go"
-Cohesion: 0.05
-Nodes (68): sshAuth(), encodeSOCKSAddress(), readSOCKSAddress(), runBridgeSOCKS(), serveBridgeSOCKS(), socksHandshake(), socksReply(), socksUDPAssociation() (+60 more)
+Cohesion: 0.04
+Nodes (68): PacketStream, newVirtualNet(), encodeSOCKSAddress(), readSOCKSAddress(), runBridgeSOCKS(), serveBridgeSOCKS(), socksHandshake(), socksReply() (+60 more)
 
-### Community 5 - "SQLITE_PRIVATE"
-Cohesion: 0.01
-Nodes (898): i16, i8, addAggInfoColumn(), addAggInfoFunc(), addArgumentToVtab(), addModuleArgument(), addOp4IntSlow(), adjustOrderByCol() (+890 more)
+### Community 5 - "Parse"
+Cohesion: 0.04
+Nodes (222): addArgumentToVtab(), addModuleArgument(), adjustOrderByCol(), analyzeDatabase(), analyzeTable(), attachWithToSelect(), binaryToUnaryIfNull(), cannotBeFunction() (+214 more)
 
 ### Community 6 - "gpb-compatibility.cpp"
-Cohesion: 0.02
-Nodes (39): serialize(), serialize_size(), "base64", base64_decode(), base64_decode_fixed(), base64_encode(), base64_encode_size(), "bool" (+31 more)
+Cohesion: 0.04
+Nodes (17): "base64", base64_decode(), base64_decode_fixed(), base64_encode(), base64_encode_size(), "json", json_test(), operator==() (+9 more)
 
 ### Community 7 - "context.Context"
 Cohesion: 0.01
-Nodes (137): Options, Context(), Box, New(), Check(), newBoxContext(), closeMonitor(), Create() (+129 more)
+Nodes (137): Options, Box, New(), Check(), newBoxContext(), closeMonitor(), Create(), parseConfig() (+129 more)
 
 ### Community 8 - "sqlite3VdbeExec"
 Cohesion: 0.02
-Nodes (205): Mem, agginfoFree(), allocateCursor(), alsoAnInt(), applyAffinity(), applyNumericAffinity(), blobSeekToRow(), bytecodevtabClose() (+197 more)
+Nodes (236): Mem, addToVTrans(), agginfoFree(), allocateCursor(), alsoAnInt(), applyAffinity(), applyNumericAffinity(), blobSeekToRow() (+228 more)
 
-### Community 9 - "sync.Mutex"
+### Community 9 - "creds.go"
 Cohesion: 0.02
-Nodes (108): countingWriter, TestRAWConfigWaitCanBeStopped(), TestRAWDisconnectCompletesBeforeRelayCleanup(), TestTURNAllocationCanBeStopped(), TestTURNConnectHonorsCancelledContext(), CallUnavailableError, Credentials, asCallUnavailableError() (+100 more)
+Nodes (137): applyBridgeConfig(), enterDesktopState(), CallUnavailableError, applyBrowserProfileFhttp(), captchaDomainFromRedirectURI(), captchaV2AcceptLanguage(), captchaV2BaseValues(), captchaV2BrowserFP() (+129 more)
 
 ### Community 10 - "SettingsRepo"
 Cohesion: 0.01
 Nodes (269): SettingsRepo, active_routing, adblock_enable, allow_beta_update, allow_stopping_active_profile, appdataDir, argv, block_quic (+261 more)
 
-### Community 12 - "ArrangeOverlay"
-Cohesion: 0.07
-Nodes (25): ArrangeOverlay, m_blocks, m_buttons, m_done, m_dragged, m_ghost, m_grab, m_mouse (+17 more)
+### Community 12 - "Expr"
+Cohesion: 0.02
+Nodes (207): agginfoPersistExprCb(), aggregateConvertIndexedExprRefToColumn(), aggregateIdxEprRefToColCallback(), analyzeAggFuncArgs(), analyzeAggregate(), areDoubleQuotedStringsEnabled(), assignAggregateRegisters(), binaryCompareP5() (+199 more)
 
 ### Community 13 - "MainWindow"
 Cohesion: 0.01
-Nodes (100): CommandPalette, DialogIpLists, DialogRuleTester, DialogScanner, DialogVpnAuth, GlobalHotkeys, MainWindow, addressFilterString (+92 more)
+Nodes (222): RunMarker, Started, Stopped, Switched, connectOnce(), CommandPalette, ConnectionManager, CoreSupervisor (+214 more)
 
-### Community 14 - "go_pkg_context"
-Cohesion: 0.02
-Nodes (64): boxComponent, Register(), Registries(), decodeObject(), failure(), jsonFields(), parseIP2Location(), parseIPAPI() (+56 more)
+### Community 14 - "decodeObject"
+Cohesion: 0.50
+Nodes (8): decodeObject(), failure(), jsonFields(), parseIP2Location(), parseIPAPI(), parseIPAPICo(), parseIPWho(), stringField()
 
-### Community 15 - "shadowsocks.cpp"
-Cohesion: 0.08
-Nodes (35): SubStrAfter(), SubStrBefore(), http::ParseFromLink(), shadowsocks::Build(), shadowsocks::DisplayType(), shadowsocks::ExportToJson(), shadowsocks::ExportToLink(), shadowsocks::GetSecurity() (+27 more)
+### Community 15 - "Vdbe"
+Cohesion: 0.05
+Nodes (205): analyzeOneTable(), autoIncrementEnd(), autoIncStep(), callStatGet(), codeAllEqualityTerms(), codeApplyAffinity(), codeCompare(), codeDeferredSeek() (+197 more)
 
 ### Community 16 - "testing.T"
 Cohesion: 0.02
-Nodes (209): TestCheckObfuscatedWireGuardAndPhobos(), TestReportDetailNamesTheFirstFailure(), TestLimitWireGuardWorkers(), TestObserverReceivesWholeLines(), NewProcess(), TestCSQTTDelayedShutdownHelper(), TestCSQTTShutdownAllowsNativeChildCleanup(), TestFailedProbeDoesNotSignalActiveProfileCrash() (+201 more)
+Nodes (205): TestReportDetailNamesTheFirstFailure(), TestURLWarmupCanBeCancelled(), TestURLWarmupDoesNotChangeMeasuredTimeout(), TestObserverReceivesWholeLines(), NewProcess(), TestCSQTTDelayedShutdownHelper(), TestCSQTTShutdownAllowsNativeChildCleanup(), TestFailedProbeDoesNotSignalActiveProfileCrash() (+197 more)
 
-### Community 17 - "u8"
-Cohesion: 0.03
-Nodes (170): u8, Fts5Tokenizer, sqlite3_changegroup, sqlite3_changeset_iter, sqlite3_rebaser, actionName(), fts3ShadowName(), fts5_remove_diacritic() (+162 more)
+### Community 17 - "sqlite3_stricmp"
+Cohesion: 0.04
+Nodes (109): sqlite3_changegroup, sqlite3_changeset_iter, sqlite3_session, fts3ShadowName(), fts5ShadowName(), geopolyFindFunction(), pragmaLocate(), rbuStrCompare() (+101 more)
 
 ### Community 18 - "RouteItem::syncEndpointRules"
-Cohesion: 0.10
-Nodes (14): RouteItem::applyRuleEditLock(), RouteItem::innerHopOwner(), RouteItem::listedInnerHopEndpointIDs(), RouteItem::on_delete_route_item_clicked(), RouteItem::on_movedown_route_item_clicked(), RouteItem::on_moveup_route_item_clicked(), RouteItem::on_new_route_item_clicked(), RouteItem::persistCurrentRuleAttrTabLabel() (+6 more)
+Cohesion: 0.13
+Nodes (12): RouteItem::applyRuleEditLock(), RouteItem::innerHopOwner(), RouteItem::on_delete_route_item_clicked(), RouteItem::on_movedown_route_item_clicked(), RouteItem::on_moveup_route_item_clicked(), RouteItem::on_new_route_item_clicked(), RouteItem::persistCurrentRuleAttrTabLabel(), RouteItem::syncEndpointRules() (+4 more)
 
 ### Community 19 - "sqlite3.c"
 Cohesion: 0.01
-Nodes (911): sqlite3_api_routines, sqlite3_blob, sqlite3_file, pMethods, sqlite3_io_methods, iVersion, sqlite3_module, iVersion (+903 more)
+Nodes (561): BOOL, sqlite3_file, pMethods, sqlite3_mutex, sqlite3_snapshot, hidden, sqlite3_vfs, iVersion (+553 more)
 
 ### Community 20 - "Utils.cpp"
 Cohesion: 0.02
-Nodes (123): ShowMode, ShowHide, ShowMinimized, ShowNormal, WinCommander, CurrentLinkScheme(), isDarkMode(), GetMainWindow() (+115 more)
+Nodes (144): ShowMode, ShowHide, ShowMinimized, ShowNormal, WinCommander, ExitReason, None, Restart (+136 more)
 
 ### Community 21 - "EngineHost::PolicyRelay"
-Cohesion: 0.10
-Nodes (8): EngineHost::applySettingsChange(), EngineHost::policy(), EngineHost::PolicyRelay, m_fallback, m_target, m_warnedUnbound, listenWithRetry(), MkPort()
+Cohesion: 0.09
+Nodes (10): SlowOperation, SlowOperationKind, Start, Stop, EngineHost::policy(), EngineHost::PolicyRelay, m_fallback, m_target (+2 more)
 
 ### Community 22 - "Proxies"
-Cohesion: 0.02
-Nodes (81): Proxies, alpn, alterId, amnezia_wg_option, auth_str, auth_str1, cipher, client_fingerprint (+73 more)
+Cohesion: 0.03
+Nodes (79): Proxies, alpn, alterId, amnezia_wg_option, auth_str, auth_str1, cipher, client_fingerprint (+71 more)
 
 ### Community 23 - "RowEntry"
-Cohesion: 0.11
-Nodes (17): LiveChartRow, color, key, kind, label, paletteSlot, wash, RowEntry (+9 more)
+Cohesion: 0.05
+Nodes (33): LiveChartRow, color, key, kind, label, paletteSlot, wash, LiveChartState (+25 more)
 
-### Community 24 - "generate.cpp"
-Cohesion: 0.03
-Nodes (181): get_rule_set_name(), getDirectDomainStrategy(), getXrayOutboundDomainStrategy(), adaptWarpToTransport(), apply(), AuxEndpointInnerHops(), bridgeIngressMismatch(), bridgesFor() (+173 more)
+### Community 24 - "Profile"
+Cohesion: 0.01
+Nodes (350): DnsAddress, iface, path, port, server, type, EndpointResolution, address (+342 more)
 
 ### Community 25 - "KillSwitch"
 Cohesion: 0.03
-Nodes (44): GuardProcess, KillSwitch, active_, identityDetail_, kCoreIdentityExitCode, lastRespawn_, overridden_, pending_ (+36 more)
+Nodes (47): GuardProcess, KillSwitch, active_, identityDetail_, kCoreIdentityExitCode, lastRespawn_, overridden_, pending_ (+39 more)
 
 ### Community 26 - "sqlite3_value"
 Cohesion: 0.02
-Nodes (473): u32, Fts5ExtensionApi, iVersion, sqlite3_str, absFunc(), addSpaceSeparator(), autoAdjustDate(), avgFinalize() (+465 more)
+Nodes (415): Fts5ExtensionApi, iVersion, sqlite3_str, absFunc(), addSpaceSeparator(), autoAdjustDate(), avgFinalize(), bytecodevtabColumn() (+407 more)
 
 ### Community 27 - "DialogAutoSelector::buildRows"
-Cohesion: 0.22
-Nodes (8): agoText(), DialogAutoSelector::buildRows(), FailbackContext, checks, delayMs, noteText(), realTrafficTip(), stateText()
+Cohesion: 0.14
+Nodes (11): AutoSelectorView::summary(), elapsedText(), agoText(), DialogAutoSelector::buildRows(), FailbackContext, checks, delayMs, selectedPriority (+3 more)
 
 ### Community 28 - "definitions.go"
-Cohesion: 0.03
-Nodes (79): Convert(), TestProviderCategoryConversion(), TestProviderGeoIPConversion(), entries(), entryCode(), field(), newGeoReader(), TestInvalidGeoDatabase() (+71 more)
+Cohesion: 0.04
+Nodes (72): Convert(), TestProviderCategoryConversion(), TestProviderGeoIPConversion(), entries(), entryCode(), field(), newGeoReader(), TestInvalidGeoDatabase() (+64 more)
 
 ### Community 29 - "node.hpp"
 Cohesion: 0.02
-Nodes (125): as_uint(), atof(), atof_impl(), block_scalar_header, chomp, indent, call_reserve_if_available, call_reserve_if_available<ContainerType, enable_if_t<detect::has_reserve<ContainerType>::value>> (+117 more)
+Nodes (126): as_uint(), atof(), atof_impl(), block_scalar_header, chomp, indent, call_reserve_if_available, call_reserve_if_available<ContainerType, enable_if_t<detect::has_reserve<ContainerType>::value>> (+118 more)
 
 ### Community 30 - "dialog_otp_manager.cpp"
-Cohesion: 0.04
-Nodes (37): QrDecoder, m_qr, quirc, quirc_destroy(), QWidget, Icon, DialogIpLists::DialogIpLists(), DialogIpLists::importFromFiles() (+29 more)
+Cohesion: 0.05
+Nodes (37): getOpenFileName(), getOpenFileNames(), getSaveFileName(), run(), Icon, DialogIpLists::DialogIpLists(), DialogIpLists::importFromFiles(), DialogIpLists::on_duplicate_clicked() (+29 more)
 
 ### Community 31 - "provider_crypt.go"
-Cohesion: 0.03
-Nodes (80): DHGroup, ecdhGroup, ESPCrypter, Integrity, modpGroup, PRF, SKCipher, SKParams (+72 more)
+Cohesion: 0.04
+Nodes (50): DHGroup, ecdhGroup, ESPCrypter, Integrity, modpGroup, PRF, SKCipher, SKParams (+42 more)
 
 ### Community 32 - "Session"
-Cohesion: 0.05
-Nodes (50): BuildCallConnected(), hmacSha256(), HTTPHandshake(), newCorrelationID(), ReadCallConnectAck(), readHTTPHeader(), SendCallConnectRequest(), sha256Sum() (+42 more)
+Cohesion: 0.04
+Nodes (74): SecretEqual(), ClientHLAK(), getAsymmetricStartKey(), getMasterKey(), AuthenticatorResponse(), ChallengeHash(), challengeResponse(), desBlock() (+66 more)
 
-### Community 33 - "gate_test.go"
-Cohesion: 0.06
-Nodes (39): setXray(), setXrayFullGates(), closeXrayInstances(), startXrayFullConfigs(), startXrayFullGates(), CreateXrayInstance(), RestartInstance(), closeListeners() (+31 more)
+### Community 33 - "Instance"
+Cohesion: 0.02
+Nodes (100): setStop(), Monitor(), TrackDNSTunnels(), TestContext(), LimitWireGuardWorkers(), TestLimitWireGuardWorkers(), directTransport(), Domains() (+92 more)
 
 ### Community 34 - "freeturn/main.go"
-Cohesion: 0.05
-Nodes (12): closeAll(), control(), fatal(), main(), manualSolver(), powCapture(), readConfig(), wgDevice() (+4 more)
+Cohesion: 0.04
+Nodes (23): closeAll(), init(), newPlatformLogWriter(), SetLogSink(), xrayLogLevel(), control(), fatal(), main() (+15 more)
 
 ### Community 35 - "wireguard"
 Cohesion: 0.03
@@ -991,16 +966,16 @@ Cohesion: 0.08
 Nodes (12): QTimer, RuntimeStatus, SupervisorLink, m_extend, m_inPlaceRestart, m_lastStatus, m_ready, m_reloadSent (+4 more)
 
 ### Community 37 - "DialogBasicSettings"
-Cohesion: 0.03
-Nodes (39): DialogBasicSettings, CACHE, form, initialCustomInbound, initialFormState, public, settingsLock, ui (+31 more)
+Cohesion: 0.02
+Nodes (76): DialogBasicSettings, CACHE, form, initialCustomInbound, initialFormState, public, settingsLock, ui (+68 more)
 
 ### Community 38 - "process_windows.go"
-Cohesion: 0.03
-Nodes (85): applyEnv(), envAllowed(), oneLine(), Requested(), newKillOnCloseJob(), newRequest(), parseOK(), readLines() (+77 more)
+Cohesion: 0.04
+Nodes (80): childEnv(), newCmd(), startCmd(), applyPrivilegeDrop(), createSecureConfigFile(), makeConfigReadable(), startChild(), supplementaryGroups() (+72 more)
 
-### Community 39 - "ProfilesFilterProxyModel.cpp"
-Cohesion: 0.06
-Nodes (23): ServiceFilterKey, names, state, words, ProfilesFilterProxyModel::filterAcceptsRow(), ProfilesFilterProxyModel::portMatches(), ProfilesFilterProxyModel::ProfilesFilterProxyModel(), ProfilesFilterProxyModel::profilesModel() (+15 more)
+### Community 39 - "FilterKey"
+Cohesion: 0.08
+Nodes (20): FilterKey, address, country, effectiveAddress, name, port, services, type (+12 more)
 
 ### Community 40 - "DialogEditProfile"
 Cohesion: 0.04
@@ -1012,43 +987,43 @@ Nodes (27): alpha_tuple(), berlekamp_massey(), bits_remaining(), block_syndromes
 
 ### Community 42 - "net.Conn"
 Cohesion: 0.02
-Nodes (72): ConnectIPC(), BrateToStr(), CalculateBRate(), getNetDialer(), getSpeedtestServer(), BatchSpeedTest(), countryTest(), SpeedTestResult (+64 more)
+Nodes (81): ConnectIPC(), relay(), backend, backendConfig, config, dnsTunnel, shadowsocksBackend, slipstream (+73 more)
 
-### Community 43 - "sqlite3_free"
-Cohesion: 0.01
-Nodes (823): u64, Column::Column(), Column::getBlob(), Column::getBytes(), Column::getDouble(), Column::getInt(), Column::getInt64(), Column::getName() (+815 more)
+### Community 43 - "sqlite3_step"
+Cohesion: 0.02
+Nodes (342): Column::Column(), Column::getBlob(), Column::getBytes(), Column::getDouble(), Column::getInt(), Column::getInt64(), Column::getName(), Column::getOriginName() (+334 more)
 
 ### Community 44 - "ResolverSource.cpp"
-Cohesion: 0.06
-Nodes (52): ResolverBuild, error, resolvers, ResolverFlavor, Dnstt, MasterDns, Xdns, BuildResolvers() (+44 more)
+Cohesion: 0.05
+Nodes (56): ResolverBuild, error, resolvers, ResolverFlavor, Dnstt, MasterDns, Xdns, BuildResolvers() (+48 more)
 
 ### Community 45 - "QJsonObject"
 Cohesion: 0.01
-Nodes (214): BuildResult, error, object, SingBoxTransportType(), ConfigInput, link, outbound, QJsonObject (+206 more)
+Nodes (229): BuildResult, error, object, direct, EndpointSource, address, ipListId, mode (+221 more)
 
 ### Community 46 - "TuneWorker"
-Cohesion: 0.04
-Nodes (27): TuneWorker, attemptStarts_, base_, best_, bodyBytes_, clock_, dialHost_, elapsedBeforeMs_ (+19 more)
+Cohesion: 0.03
+Nodes (36): ScanRunHooks, finished, progress, results, Outcome, Failed, NetworkLost, Passed (+28 more)
 
 ### Community 47 - "RouteItem.cpp"
 Cohesion: 0.03
-Nodes (38): QListWidget, RouteDnsEditor, RouteItem, attrEditors, chain, currentIndex, deleteShortcut, dnsEditor (+30 more)
+Nodes (48): QListWidget, RouteDnsEditor, RouteItem, attrEditors, chain, currentIndex, deleteShortcut, dnsEditor (+40 more)
 
 ### Community 48 - "sqlite3_mutex_held"
-Cohesion: 0.02
-Nodes (265): u16, Backup::Backup(), Backup::executeStep(), Backup::getRemainingPageCount(), Backup::getTotalPageCount(), SQLite::Backup::Deleter::operator()(), accessPayload(), accessPayloadChecked() (+257 more)
+Cohesion: 0.03
+Nodes (246): Backup::executeStep(), accessPayload(), accessPayloadChecked(), allocateBtreePage(), allocateSpace(), allocateTempSpace(), anotherValidCursor(), assertCellInfo() (+238 more)
 
 ### Community 49 - "StartStopButton"
 Cohesion: 0.02
-Nodes (64): Lock, Blocking, Fault, Hidden, Passing, Pending, Mode, Core (+56 more)
+Nodes (65): Lock, Blocking, Fault, Hidden, Passing, Pending, Mode, Core (+57 more)
 
 ### Community 50 - "DialogScanInstance"
 Cohesion: 0.03
-Nodes (50): DialogScanInstance, baseListNames, config, configProfileIds, configProfileNames, defaults, dirty, discarding (+42 more)
+Nodes (52): DialogScanInstance, baseListNames, config, configProfileIds, configProfileNames, defaults, dirty, discarding (+44 more)
 
-### Community 51 - "RouteItem::RouteItem"
-Cohesion: 0.07
-Nodes (16): GetRandomUint64(), RouteItem::accept(), RouteItem::addEndpointRow(), RouteItem::attributeEditor(), RouteItem::eventFilter(), RouteItem::refreshEndpointCandidates(), RouteItem::reloadRuleViewsFromChain(), RouteItem::removeEndpointRow() (+8 more)
+### Community 51 - "SQLITE_PRIVATE"
+Cohesion: 0.04
+Nodes (117): clearSelect(), columnTypeImpl(), explainSimpleCount(), getAutoVacuum(), getSafetyLevel(), matchQuality(), pragmaFunclistLine(), resolveP2Values() (+109 more)
 
 ### Community 52 - "nanobench.h"
 Cohesion: 0.06
@@ -1058,65 +1033,65 @@ Nodes (16): Bench, Bench::Bench(), mConfig, mResults, doNotOptimizeAway(), doNot
 Cohesion: 0.03
 Nodes (42): HeadlessPolicy, HeadlessRuntime, kConnectingLimitMs, kCoreUnusableLimitMs, kStayUpRetryMs, kStoppingLimitMs, kWatchdogTickMs, m_bootMonoMs (+34 more)
 
-### Community 54 - "array"
-Cohesion: 0.03
-Nodes (54): array, FromAsset(), IsNewer(), Parse(), RuntimeStatus::refreshSummary(), DialogEditProfile::loadXrayKCP(), DialogEditProfile::saveXrayKCP(), DialogEditProfile::setupXrayKCPControls() (+46 more)
+### Community 54 - "DataViewHtmlGenerator.cpp"
+Cohesion: 0.09
+Nodes (18): Content, html, toolTip, DataViewHtmlGenerator::autoSelectorSectionHtml(), DataViewHtmlGenerator::build(), DataViewHtmlGenerator::downloadSectionHtml(), DataViewHtmlGenerator::getProgressBar(), DataViewHtmlGenerator::latencyTestSectionHtml() (+10 more)
 
-### Community 55 - "sqlite3_vtab"
-Cohesion: 0.01
-Nodes (209): fts5_api, iVersion, fts5_tokenizer, fts5_tokenizer_v2, iVersion, sqlite3, sqlite3_backup, sqlite3_context (+201 more)
+### Community 55 - "sqlite3_free"
+Cohesion: 0.02
+Nodes (216): Fts5Tokenizer, sqlite3_index_constraint_usage, argvIndex, omit, sqlite3_index_info, aConstraint, aConstraintUsage, aOrderBy (+208 more)
 
 ### Community 56 - "LiveChart::Impl"
 Cohesion: 0.02
-Nodes (114): Hit, rect, type, HitType, ColumnHit, NoHit, RangeHit, RowHit (+106 more)
+Nodes (99): Band, labeled, rect, LiveChart::addMenuAction(), LiveChart::Impl, anchor, animation, ap (+91 more)
 
 ### Community 57 - "DatabaseManager"
-Cohesion: 0.06
-Nodes (26): DatabaseManager, db, groupsRepo, ipListsRepo, ipScansRepo, markersRepo, otpProfilesRepo, profilesRepo (+18 more)
+Cohesion: 0.05
+Nodes (28): DatabaseManager, db, groupsRepo, ipListsRepo, ipScansRepo, markersRepo, otpProfilesRepo, profilesRepo (+20 more)
 
 ### Community 58 - "LiveChart.cpp"
-Cohesion: 0.07
-Nodes (34): QPainter, ShortDisplayName(), DialogVpnAuth::fitToContent(), TrafficChartWidget::paintEvent(), AxisLabel, base, rect, text (+26 more)
+Cohesion: 0.05
+Nodes (46): QPainter, ShortDisplayName(), DialogVpnAuth::fitToContent(), TrafficChartWidget::paintEvent(), AxisLabel, base, rect, text (+38 more)
 
 ### Community 59 - "SubscriptionInfoCard"
-Cohesion: 0.02
-Nodes (62): Group, QLabel, QProgressBar, QPushButton, QResizeEvent, SubscriptionInfoCard, m_announceBadge, m_announceIcon (+54 more)
+Cohesion: 0.03
+Nodes (59): namespace(), QWidget(), Group, QLabel, QProgressBar, QPushButton, QResizeEvent, SubscriptionInfoCard (+51 more)
 
 ### Community 60 - "ScanItem.cpp"
-Cohesion: 0.04
-Nodes (33): QLabel, QProgressBar, QToolButton, ScanItem, actions, item, kindLabel, nameLabel (+25 more)
+Cohesion: 0.03
+Nodes (47): ScanLiveState, error, found, log, removed, running, stage, stopping (+39 more)
 
-### Community 61 - "sqlite3LogEst"
-Cohesion: 0.10
-Nodes (41): allConstraintsUsed(), estLog(), freeIdxStr(), freeIndexInfo(), indexColumnNotNull(), indexMightHelpWithOrderBy(), isLimitTerm(), sqlite3LogEst() (+33 more)
+### Community 61 - "SQLITE_NOINLINE"
+Cohesion: 0.03
+Nodes (122): i8, u16, addOp4IntSlow(), allConstraintsUsed(), allocateIndexInfo(), analyzeVdbeCommentIndexWithColumnName(), codeEqualityTerm(), codeINTerm() (+114 more)
 
 ### Community 62 - "Server::Worker"
 Cohesion: 0.03
-Nodes (65): ParseRequest(), SerializeResponse(), Connection, address, body, closed, exchanges, id (+57 more)
+Nodes (70): ParseRequest(), SerializeResponse(), Connection, address, body, closed, exchanges, id (+62 more)
 
-### Community 63 - "ElidingLabel.cpp"
-Cohesion: 0.18
-Nodes (5): ElidingLabel, toolTip, ElidingLabel::event(), ElidingLabel::fittedText(), ElidingLabel::paintEvent()
+### Community 63 - "Fts3Cursor"
+Cohesion: 0.04
+Nodes (102): exprToString(), fts3BestSnippet(), fts3ClearCursor(), fts3CloseMethod(), fts3ColumnlistCopy(), fts3ColumnlistCount(), fts3DoclistCountDocids(), fts3DoclistOrMerge() (+94 more)
 
-### Community 64 - "Split"
-Cohesion: 0.33
-Nodes (6): ConsoleReporter::printHelp(), Split, Comma, CommaOrNewline, Newline, Whitespace
+### Community 64 - "Rtree"
+Cohesion: 0.10
+Nodes (62): AdjustTree(), cellArea(), cellContains(), cellMargin(), cellOverlap(), cellUnion(), ChooseLeaf(), deleteCell() (+54 more)
 
 ### Community 65 - "RouteProfile"
-Cohesion: 0.16
-Nodes (11): RoutesRepo::AddRouteProfile(), RoutesRepo::GetAllRouteProfiles(), RoutesRepo::GetRouteProfile(), RoutesRepo::loadFromDatabase(), RoutesRepo::loadRulesForProfileIdsChunk(), RoutesRepo::NewRouteProfile(), RoutesRepo::routeProfileFromJson(), RoutesRepo::routeProfileFromProfileRow() (+3 more)
+Cohesion: 0.21
+Nodes (9): RoutesRepo::AddRouteProfile(), RoutesRepo::DeleteRouteProfile(), RoutesRepo::GetRouteProfile(), RoutesRepo::NewRouteProfile(), RoutesRepo::routeProfileFromProfileRow(), RoutesRepo::routeRuleFromJson(), RoutesRepo::Save(), RoutesRepo::saveToDatabaseInTx() (+1 more)
 
 ### Community 66 - "OTP.cpp"
-Cohesion: 0.10
-Nodes (44): csqtt::ParseFromLink(), dnsDecodeBase64(), dnstunnel::parseDnst(), dnstunnel::parseWhiteDns(), freeturn::ParseFromLink(), s3bypass::ParseFromXrayConfig(), AlgorithmFromString(), AlgorithmToString() (+36 more)
+Cohesion: 0.03
+Nodes (98): dnstunnel, bridgeAuth, data, kind, aivpn::ParseFromJson(), aivpn::ParseFromLink(), aivpn::Prepare(), aivpn::Validate() (+90 more)
 
 ### Community 67 - "QString"
-Cohesion: 0.05
-Nodes (12): ScanManager, persistDisabled, public, watched, workers, ScanManager::instance(), ScanWorker::networkUp(), ScanWorker::pollOnce() (+4 more)
+Cohesion: 0.04
+Nodes (19): ScanManager, persistDisabled, public, watched, workers, BuildTestConfigResult, Variant, build (+11 more)
 
 ### Community 68 - "shadowsocksr"
-Cohesion: 0.07
-Nodes (16): shadowsocksr, method, obfs, obfs_param, password, protocol, protocol_param, alias() (+8 more)
+Cohesion: 0.12
+Nodes (7): shadowsocksr, method, obfs, obfs_param, password, protocol, protocol_param
 
 ### Community 69 - "parser/parser.cpp"
 Cohesion: 0.06
@@ -1132,19 +1107,19 @@ Nodes (131): line, allocator, basic_istream, basic_ostream, can_use_op, char_tra
 
 ### Community 72 - "RouteItem.cpp"
 Cohesion: 0.01
-Nodes (125): namespace(), namespace(), namespace(), namespace(), namespace(), namespace(), namespace(), namespace() (+117 more)
+Nodes (136): AutoCompleteTextEdit::keyPressEvent(), array, namespace(), namespace(), namespace(), namespace(), namespace(), namespace() (+128 more)
 
 ### Community 73 - "ConnectionManager"
 Cohesion: 0.02
-Nodes (64): AutoSelectorController, ConnectionManager, kGuardRestartWindowMs, m_autoSelector, m_bootSerial, m_coreStartRequest, m_coreSupervisor, m_geoRetriedProfile (+56 more)
+Nodes (65): AutoSelectorController, ConnectionManager, kGuardRestartWindowMs, m_autoSelector, m_bootSerial, m_coreStartRequest, m_coreSupervisor, m_geoRetriedProfile (+57 more)
 
-### Community 74 - "SortSubtask"
-Cohesion: 0.06
-Nodes (62): sqlite3OsCurrentTimeInt64(), sqlite3OsRead(), sqlite3OsUnfetch(), sqlite3OsWrite(), sqlite3ThreadCreate(), sqlite3ThreadJoin(), sqlite3VarintLen(), sqlite3VdbeSorterNext() (+54 more)
+### Community 74 - "u32"
+Cohesion: 0.07
+Nodes (60): u32, btreeHeapInsert(), btreeHeapPull(), chacha_block(), countLookasideSlots(), json5Whitespace(), jsonAfterEditSizeAdjust(), jsonAppendPathName() (+52 more)
 
 ### Community 75 - "Router"
 Cohesion: 0.02
-Nodes (34): EngineControl, QTimer, Router, backups_, changeSeq_, engine_, eventSettle_, eventWaiters_ (+26 more)
+Nodes (40): EngineControl, QTimer, Router, backups_, changeSeq_, engine_, eventSettle_, eventWaiters_ (+32 more)
 
 ### Community 76 - ".deserialize_node"
 Cohesion: 0.07
@@ -1152,35 +1127,35 @@ Nodes (35): add_anchor_name(), add_tag_name(), count, anchor_this_node(), basic_
 
 ### Community 77 - "QApplication"
 Cohesion: 0.02
-Nodes (91): Association, ConfigFiles, Links, QApplication, Profile, connection, StatsService::clearConnectionList(), AutoRun_IsEnabled() (+83 more)
+Nodes (65): AutoCompleteTextEdit::focusInEvent(), AutoCompleteTextEdit::insertCompletion(), AutoCompleteTextEdit::lineUnderCursor(), AutoCompleteTextEdit::selectCompletion(), AutoCompleteTextEdit::wordUnderCursor(), namespace(), QApplication, DialogVKRelay (+57 more)
 
 ### Community 78 - "QJsonArray"
 Cohesion: 0.02
-Nodes (122): RouteDns, direct_dns, direct_dns_disable_ipv6, dns_final_out, enable_dns_routing, fake_dns, fakeip_disable_ipv6, remote_dns (+114 more)
+Nodes (125): RouteDns, direct_dns, direct_dns_disable_ipv6, dns_final_out, enable_dns_routing, fake_dns, fakeip_disable_ipv6, remote_dns (+117 more)
 
-### Community 79 - "ChainBuildMark"
-Cohesion: 0.17
-Nodes (10): ChainBuildMark, chainGroups, endpoints, isXrayNeeded, singIngressTags, singToXrayBridges, xrayConfig, xrayIngressTags (+2 more)
+### Community 79 - "HeadlessCli.cpp"
+Cohesion: 0.05
+Nodes (40): Launch, mode, service, Mode, DumpConfigs, Gui, Headless, HeadlessClient (+32 more)
 
-### Community 80 - "TLS.cpp"
-Cohesion: 0.02
-Nodes (118): ECH, config, config_path, enabled, resolver, serverName, splitCipherSuites(), TLS (+110 more)
+### Community 80 - "TLS"
+Cohesion: 0.03
+Nodes (37): ECH, config, config_path, enabled, resolver, serverName, TLS, alpn (+29 more)
 
 ### Community 81 - "PanelDeploy"
 Cohesion: 0.05
-Nodes (31): PanelDeploy, accessGroup, auth, back, busy, checkPassed, checkText, connectForm (+23 more)
+Nodes (34): GroupUpdater::drain(), PanelDeploy, accessGroup, auth, back, busy, checkPassed, checkText (+26 more)
 
 ### Community 82 - "RouteRule"
-Cohesion: 0.02
-Nodes (137): RouteRule, action, disabled, domain, domain_keyword, domain_regex, domain_suffix, inbound (+129 more)
+Cohesion: 0.03
+Nodes (59): RouteRule, action, disabled, domain, domain_keyword, domain_regex, domain_suffix, inbound (+51 more)
 
-### Community 83 - "dnstunnel"
-Cohesion: 0.10
-Nodes (5): dnstunnel, bridgeAuth, data, kind, dnstunnel::ParseFromLink()
+### Community 83 - "Table"
+Cohesion: 0.09
+Nodes (43): i16, checkColumnOverlap(), codeReturningTrigger(), codeRowTrigger(), destroyTable(), fkChildIsModified(), fkParentIsModified(), getRowTrigger() (+35 more)
 
 ### Community 84 - "io.Writer"
 Cohesion: 0.06
-Nodes (38): attachmentName(), Capture(), captureWindow(), Attachment, histogramQuantile(), histogramSummary(), newMeta(), TestCaptureRejectsAnEmptyWindow() (+30 more)
+Nodes (36): attachmentName(), Capture(), captureWindow(), Attachment, histogramQuantile(), histogramSummary(), newMeta(), TestCaptureRejectsAnEmptyWindow() (+28 more)
 
 ### Community 85 - "IpScan"
 Cohesion: 0.05
@@ -1191,8 +1166,8 @@ Cohesion: 0.03
 Nodes (60): openvpn, address, allow_compression, auth, auth_retry, block_ipv6, cipher, compression (+52 more)
 
 ### Community 87 - "CoreSupervisor"
-Cohesion: 0.02
-Nodes (66): CoreProcess, CoreState, Backoff, Connected, GaveUp, ListenFailed, NotStarted, ShuttingDown (+58 more)
+Cohesion: 0.03
+Nodes (39): CoreProcess, CoreSupervisor, kBackoffCapMs, kBackoffFirstMs, kGiveUpAfter, kIntentRestartDelayMs, kLogWindowMs, kPrivilegeProbeRetries (+31 more)
 
 ### Community 88 - "xrayXHTTP"
 Cohesion: 0.04
@@ -1204,31 +1179,31 @@ Nodes (6): ProfilesTableView, m_filterHeader, m_filterProxy, m_verticalHeader, p
 
 ### Community 90 - "qrcodegen.cpp"
 Cohesion: 0.05
-Nodes (30): BitBuffer, data_too_long, data_too_long::data_too_long(), Ecc, HIGH, LOW, MEDIUM, QUARTILE (+22 more)
+Nodes (37): BitBuffer, data_too_long, data_too_long::data_too_long(), Ecc, HIGH, LOW, MEDIUM, QUARTILE (+29 more)
 
 ### Community 91 - "BuildConfigResult"
-Cohesion: 0.03
-Nodes (73): AutoSelectorBuildInfo, groupTag, members, profile, upstream, BuildConfigResult, autoSelectors, chainGroups (+65 more)
+Cohesion: 0.05
+Nodes (42): AutoSelectorBuildInfo, groupTag, members, profile, upstream, BuildConfigResult, autoSelectors, chainGroups (+34 more)
 
 ### Community 92 - "MibAnycastIPAddressRow"
-Cohesion: 0.27
-Nodes (7): GetAnycastIPAddressTable(), createAnycastIPAddressEntry(), deleteAnycastIPAddressEntry(), getAnycastIPAddressEntry(), getAnycastIPAddressTable(), MibAnycastIPAddressRow, mibAnycastIPAddressTable
+Cohesion: 0.21
+Nodes (9): GetAnycastIPAddressTable(), createAnycastIPAddressEntry(), deleteAnycastIPAddressEntry(), getAnycastIPAddressEntry(), getAnycastIPAddressTable(), IPAdapterGatewayAddress, IPAdapterWINSServerAddress, MibAnycastIPAddressRow (+1 more)
 
 ### Community 93 - "hysteria.cpp"
 Cohesion: 0.08
-Nodes (34): applyRealmObject(), buildRealmObject(), clashBandwidthToMbps(), hopSeconds(), hysteria::Build(), hysteria::DisplayAddress(), hysteria::DisplayType(), hysteria::ExportIdentity() (+26 more)
+Nodes (33): applyRealmObject(), buildRealmObject(), clashBandwidthToMbps(), hopSeconds(), hysteria::Build(), hysteria::DisplayAddress(), hysteria::DisplayType(), hysteria::ExportIdentity() (+25 more)
 
 ### Community 94 - "platformTransport"
 Cohesion: 0.10
 Nodes (7): newPlatformTransport(), ExchangeContext, Func, localDNSError, LocalDNSTransport, networkServerSet, platformTransport
 
 ### Community 95 - "openflux/main.go"
-Cohesion: 0.10
-Nodes (19): captchaEngine, config, openfluxCaptcha, captchaAddress(), captchaCheckpoint(), captchaInteractive(), deliverCaptcha(), edgeExecutable() (+11 more)
+Cohesion: 0.04
+Nodes (52): Check, Result, Report(), flag(), hasNetAdmin(), nftablesUsable(), openTun(), Report() (+44 more)
 
 ### Community 96 - "HeadlessApi.cpp"
-Cohesion: 0.09
-Nodes (33): BindResult, exitCode, retry, Bind(), CheckExplicitKeyFile(), headlessApiAddressPresent(), headlessApiBindAddress(), headlessApiDescribe() (+25 more)
+Cohesion: 0.10
+Nodes (28): BindResult, exitCode, retry, Bind(), CheckExplicitKeyFile(), headlessApiAddressPresent(), headlessApiBindAddress(), headlessApiDescribe() (+20 more)
 
 ### Community 97 - "openvpn.cpp"
 Cohesion: 0.04
@@ -1243,28 +1218,28 @@ Cohesion: 0.05
 Nodes (29): dnstt, backend, client_id_size, dnstt_compat, domain, idle_timeout, keepalive_interval, max_qname_len (+21 more)
 
 ### Community 100 - "obfs/wireguard.go"
-Cohesion: 0.03
-Nodes (73): isObfuscated(), newClusterM(), newMediaConfig(), parseMasking(), stunBindingRequestPacket(), stunBindingSuccessPacket(), stunFingerprint(), unwrapSTUN() (+65 more)
+Cohesion: 0.04
+Nodes (53): isObfuscated(), newClusterM(), newMediaConfig(), parseMasking(), stunBindingRequestPacket(), stunBindingSuccessPacket(), stunFingerprint(), unwrapSTUN() (+45 more)
 
 ### Community 101 - "CoreElevation.cpp"
 Cohesion: 0.11
 Nodes (30): ApplyEnvironment(), CanGrant(), coreElevationArgPath(), coreElevationAttributes(), coreElevationBaseDir(), coreElevationCopyModules(), coreElevationEvaluate(), coreElevationExists() (+22 more)
 
-### Community 102 - "RawRouteItem"
-Cohesion: 0.04
-Nodes (36): Form, JsonIssueList, QCheckBox, QLabel, QLineEdit, RawRouteEdit, completer, outboundIdByDisplay (+28 more)
+### Community 102 - "JsonCodeEdit.cpp"
+Cohesion: 0.03
+Nodes (43): Form, JsonIssueList, QCheckBox, QLabel, QLineEdit, RawRouteEdit, completer, outboundIdByDisplay (+35 more)
 
 ### Community 103 - "DialogEditIpList"
-Cohesion: 0.03
-Nodes (49): SourceKind, Manual, RuleSet, Url, DialogEditIpList, acceptAfterFetch, editorFromDb, editorTotal (+41 more)
+Cohesion: 0.05
+Nodes (24): DialogEditIpList, acceptAfterFetch, editorFromDb, editorTotal, editorTruncated, fetched, fetchedKind, fetchedRejected (+16 more)
 
 ### Community 104 - "sysdns_darwin.go"
-Cohesion: 0.02
-Nodes (99): DisableColor(), RunAttach(), Attached, RunAttach(), RunStub(), carriesAny(), checkMainRuleset(), findTuns() (+91 more)
+Cohesion: 0.04
+Nodes (74): checkMainRuleset(), findTuns(), newBackend(), pfRuleset(), errnoIn(), hasNetAdmin(), installError(), lanResolvers() (+66 more)
 
 ### Community 105 - "size_t"
 Cohesion: 0.04
-Nodes (42): atoi(), atoi_dec_neg(), atoi_dec_pos(), atoi_dec_unchecked(), atoi_hex(), atoi_oct(), check_if_hexs_safe(), check_if_octs_safe() (+34 more)
+Nodes (43): atoi(), atoi_dec_neg(), atoi_dec_pos(), atoi_dec_unchecked(), atoi_hex(), atoi_oct(), check_if_hexs_safe(), check_if_octs_safe() (+35 more)
 
 ### Community 106 - "proto_field"
 Cohesion: 0.05
@@ -1272,19 +1247,19 @@ Nodes (72): all_types_are_resolved(), dump_unresolved_message(), get_sub_message
 
 ### Community 107 - "database/Database.cpp"
 Cohesion: 0.08
-Nodes (42): DbError, code, extended, what, columnExists(), copyTable(), Database::backupSelective(), Database::backupTo() (+34 more)
+Nodes (30): DbError, code, extended, what, guarded(), read(), write(), Database::backupTo() (+22 more)
 
 ### Community 109 - "EngineHost"
 Cohesion: 0.03
 Nodes (25): AutoSelectorController, ConnectionManager, CoreSupervisor, EngineHost, m_apiReady, m_autoSelector, m_connection, m_coreSupervisor (+17 more)
 
-### Community 110 - "ProfilesRepo.cpp"
-Cohesion: 0.02
-Nodes (79): ProfilesRepo, identityMap, mutex, revision, tombstones, dnsTunnelHopsAllowanceMs(), dnsTunnelIsXdns(), dnsTunnelOwnAllowanceMs() (+71 more)
+### Community 110 - "ProfilesRepo"
+Cohesion: 0.04
+Nodes (25): ProfilesRepo, identityMap, mutex, revision, tombstones, ProfilesRepo::AddProfile(), ProfilesRepo::AddProfileBatch(), ProfilesRepo::BatchDeleteProfiles() (+17 more)
 
 ### Community 111 - "Router.cpp"
-Cohesion: 0.05
-Nodes (56): WaitOptions, timeoutMs, wait, bitsPerSecond(), busyConnection(), groupOrder(), killSwitchCapability(), killSwitchName() (+48 more)
+Cohesion: 0.06
+Nodes (52): WaitOptions, timeoutMs, wait, bitsPerSecond(), busyConnection(), groupOrder(), killSwitchCapability(), killSwitchName() (+44 more)
 
 ### Community 112 - "IpListsRepo.cpp"
 Cohesion: 0.08
@@ -1295,16 +1270,16 @@ Cohesion: 0.02
 Nodes (74): MainWindow, NewHome, m_add, m_announce, m_announceOpen, m_arrange, m_attached, m_bodyLayout (+66 more)
 
 ### Community 114 - "DialogEndpointDetails"
-Cohesion: 0.12
-Nodes (6): DialogEndpointDetails, public, rowFitQueued_, rows_, ui, DialogEndpointDetails::DialogEndpointDetails()
+Cohesion: 0.11
+Nodes (8): DialogEndpointDetails, public, rowFitQueued_, rows_, ui, DialogEndpointDetails::queueRowFit(), DialogEndpointDetails::resizeEvent(), DialogEndpointDetails::setRows()
 
 ### Community 115 - "custom.cpp"
 Cohesion: 0.05
 Nodes (63): outbound, Custom, bridgeAuth, bridgeHost, bridgePort, config, CustomFullConfig, CustomOutbound (+55 more)
 
 ### Community 116 - "JsonSchemaValidator.cpp"
-Cohesion: 0.06
-Nodes (40): SchemaValidator, m_document, m_relaxations, m_root, ValueType, Array, Bool, Null (+32 more)
+Cohesion: 0.07
+Nodes (37): SchemaValidator, m_document, m_relaxations, m_root, ValueType, Array, Bool, Null (+29 more)
 
 ### Community 117 - "linux_scenarios.sh"
 Cohesion: 0.26
@@ -1312,7 +1287,7 @@ Nodes (37): wait_until(), _assert_clean_end(), _assert_direct_ok_unproxied(), _a
 
 ### Community 118 - "EditMRTT"
 Cohesion: 0.04
-Nodes (30): EditMRTT, authorization, autoHashCount, captcha, checkHashes, checking, clientIds, customTurnIps (+22 more)
+Nodes (37): EditMRTT, authorization, autoHashCount, captcha, checkHashes, checking, clientIds, customTurnIps (+29 more)
 
 ### Community 119 - "openconnect"
 Cohesion: 0.03
@@ -1323,32 +1298,32 @@ Cohesion: 0.06
 Nodes (15): IpScansRepo, IpScansRepo::AddIpScan(), IpScansRepo::createTables(), IpScansRepo::GetAllIpScans(), IpScansRepo::GetIpScan(), IpScansRepo::ipScanFromRow(), IpScansRepo::IpScansRepo(), IpScansRepo::NewIpScan() (+7 more)
 
 ### Community 121 - "Validation.cpp"
-Cohesion: 0.16
-Nodes (29): AllOf(), Base64(), Base64Key(), Cidr(), EachItem(), GoRegex(), Hex(), HttpToken() (+21 more)
+Cohesion: 0.14
+Nodes (25): ConsoleReporter::printHelp(), Split, Comma, CommaOrNewline, Newline, Whitespace, Base64(), Base64Key() (+17 more)
 
 ### Community 122 - ".go"
-Cohesion: 0.16
+Cohesion: 0.15
 Nodes (8): hostname, accessTitle(), text, hasDns(), protocolTitles(), randomSecret(), roleTitle(), split()
 
 ### Community 123 - "LiveChartOptions"
 Cohesion: 0.04
-Nodes (55): LiveChartAxis, format, scale, widest, LiveChartColumn, arrow, dashed, key (+47 more)
+Nodes (47): LiveChartAxis, format, scale, widest, LiveChartColumn, arrow, dashed, key (+39 more)
 
 ### Community 124 - "outbound"
 Cohesion: 0.04
 Nodes (8): outbound, dialFields, invalid, manualRelayHashes, name, profile_id, server, server_port
 
 ### Community 125 - "GroupUpdater::refresh"
-Cohesion: 0.13
-Nodes (24): Surface, Diff, Log, Report, fetchFailure(), GroupUpdater::ImportBatch(), GroupUpdater::ImportText(), GroupUpdater::ImportTextTo() (+16 more)
+Cohesion: 0.08
+Nodes (29): Surface, Diff, Log, Report, fetchFailure(), groupLabel(), GroupUpdater::enqueue(), GroupUpdater::enqueueLocked() (+21 more)
 
 ### Community 126 - "Database"
 Cohesion: 0.06
 Nodes (30): bindArgs(), Database, db, path_, writeCount, writeMutex_, exec(), exec0() (+22 more)
 
 ### Community 127 - "pb/deserialize.hpp"
-Cohesion: 0.05
-Nodes (58): check_if_empty_or_throw(), check_tag_or_throw(), check_wire_type_or_throw(), deserialize(), deserialize_bitfield(), deserialize_packed(), deserialize_variant(), field_from_tag() (+50 more)
+Cohesion: 0.04
+Nodes (62): check_if_empty_or_throw(), check_tag_or_throw(), check_wire_type_or_throw(), deserialize(), deserialize_bitfield(), deserialize_packed(), deserialize_variant(), field_from_tag() (+54 more)
 
 ### Community 128 - "JsonCodeEdit"
 Cohesion: 0.06
@@ -1362,9 +1337,9 @@ Nodes (32): AutoSelectorPlan, build, buildLimitUsed, eligible, error, keptUnavai
 Cohesion: 0.12
 Nodes (17): ThemeColors, alternateBase, base, brightText, button, buttonText, disabledText, highlight (+9 more)
 
-### Community 131 - "MainWindow::MainWindow"
-Cohesion: 0.04
-Nodes (12): MainWindow::hideEvent(), MainWindow::openTraySelector(), MainWindow::showEvent(), MainWindow::on_tabWidget_customContextMenuRequested(), MainWindow::show_group_tab_menu(), MainWindow::loadShortcuts(), MainWindow::append_log(), MainWindow::fillPaletteSettings() (+4 more)
+### Community 131 - "RouteService.cpp"
+Cohesion: 0.16
+Nodes (34): CheckEdit(), Create(), Delete(), DetailJson(), routeServiceApply(), routeServiceApplyEndpoints(), routeServiceAtDefault(), routeServiceBad() (+26 more)
 
 ### Community 132 - "EditWdttPlus"
 Cohesion: 0.04
@@ -1375,48 +1350,48 @@ Cohesion: 0.07
 Nodes (13): DialogScanner, public, scans, showing, ui, watchedIds, DialogScanner::DialogScanner(), DialogScanner::hideEvent() (+5 more)
 
 ### Community 134 - "proto_file"
-Cohesion: 0.03
-Nodes (115): container types, function_ref, proto_base, attributes, comment, name, number, options (+107 more)
+Cohesion: 0.04
+Nodes (111): container types, proto_base, attributes, comment, name, number, options, proto_enum (+103 more)
 
 ### Community 135 - "dialog_edit_profile_xdrive.cpp"
-Cohesion: 0.15
-Nodes (13): DialogEditProfile::bindXrayXDrive(), DialogEditProfile::loadXrayXDrive(), DialogEditProfile::saveXrayXDrive(), DialogEditProfile::setupXrayXDriveControls(), DialogEditProfile::setupXrayXDriveDescriptions(), DialogEditProfile::updateXrayXDriveControls(), xdriveSecretsFromUi(), XDriveTuningEdit (+5 more)
+Cohesion: 0.17
+Nodes (9): DialogEditProfile::bindXrayXDrive(), DialogEditProfile::saveXrayXDrive(), DialogEditProfile::setupXrayXDriveControls(), xdriveSecretsFromUi(), XDriveTuningEdit, Configs, edit, xrayDefault (+1 more)
 
 ### Community 136 - "RoutesRepo"
 Cohesion: 0.08
 Nodes (5): RoutesRepo, identityMap, mutex, revision, RoutesRepo::createTables()
 
 ### Community 137 - "DialogRuleTester"
-Cohesion: 0.05
-Nodes (28): ConnectionManager, DialogRuleTester, m_busy, m_connection, m_domain, m_headline, m_ip, m_network (+20 more)
+Cohesion: 0.04
+Nodes (36): ConnectionManager, DialogRuleTester, m_busy, m_connection, m_domain, m_headline, m_ip, m_network (+28 more)
 
 ### Community 138 - "EngineHost::ObserverRelay"
 Cohesion: 0.07
-Nodes (17): BootStart, profileId, serial, TestKind, Ip, Latency, Service, Speed (+9 more)
+Nodes (17): TestKind, Ip, Latency, Service, Speed, PendingSort, changed, full (+9 more)
 
 ### Community 139 - "basic_serializer"
-Cohesion: 0.09
-Nodes (25): anchor_reference_span, first_index, base(), basic_serializer, m_anchor_reference_cache, m_anchor_reference_events, m_current_indent, m_has_anchor_table (+17 more)
+Cohesion: 0.04
+Nodes (51): anchor_reference_span, first_index, base(), basic_serializer, m_anchor_reference_cache, m_anchor_reference_events, m_current_indent, m_has_anchor_table (+43 more)
 
 ### Community 140 - "mrtt"
 Cohesion: 0.05
 Nodes (28): mrtt, autoHashCount, bridgeAuth, captchaMode, clientIds, customTurnIps, fingerprint, GroupsPerHash (+20 more)
 
 ### Community 141 - "GroupUpdater.cpp"
-Cohesion: 0.06
-Nodes (57): members, admitted(), applyCountryRules(), applyCustomHwidParams(), contentKeyOf(), CountryOutcome, deleted, kept (+49 more)
+Cohesion: 0.08
+Nodes (47): admitted(), applyCountryRules(), contentKeyOf(), CountryOutcome, deleted, kept, ok, stopped (+39 more)
 
 ### Community 142 - "EditFreeTurn"
-Cohesion: 0.05
-Nodes (25): EditFreeTurn, bond, clientId, dnsMode, dnsServers, ent, form, hashes (+17 more)
+Cohesion: 0.06
+Nodes (21): EditFreeTurn, bond, clientId, dnsMode, dnsServers, ent, form, hashes (+13 more)
 
 ### Community 143 - "OtpItem.cpp"
 Cohesion: 0.12
-Nodes (8): OtpItem::applyIconColors(), OtpItem::changeEvent(), OtpItem::enterEvent(), OtpItem::leaveEvent(), OtpItem::OtpItem(), OtpItem::Refresh(), OtpItem::resizeEvent(), RecolorOtpItemIcon()
+Nodes (7): OtpItem::applyIconColors(), OtpItem::changeEvent(), OtpItem::enterEvent(), OtpItem::leaveEvent(), OtpItem::OtpItem(), OtpItem::Refresh(), RecolorOtpItemIcon()
 
 ### Community 144 - "BackupArchive.cpp"
-Cohesion: 0.08
-Nodes (38): Database::execAndGet(), Database::tableExists(), BackupParts, icons, ipLists, otp, profiles, routes (+30 more)
+Cohesion: 0.09
+Nodes (30): BackupParts, icons, ipLists, otp, profiles, routes, settings, ApplyResult (+22 more)
 
 ### Community 145 - "CommandPalette"
 Cohesion: 0.06
@@ -1427,8 +1402,8 @@ Cohesion: 0.11
 Nodes (4): Form, d, Pause, target
 
 ### Community 147 - "sync.Mutex"
-Cohesion: 0.04
-Nodes (72): asRoot(), asRootStdin(), port(), maxGroupFromURL(), maxInfo(), maxThemeScript(), maxURL(), readMaxAccount() (+64 more)
+Cohesion: 0.03
+Nodes (86): asRoot(), asRootStdin(), port(), sshAuth(), maxGroupFromURL(), maxInfo(), maxThemeScript(), maxURL() (+78 more)
 
 ### Community 148 - "hysteria"
 Cohesion: 0.04
@@ -1447,12 +1422,12 @@ Cohesion: 0.09
 Nodes (47): assert_log_clean(), connect_env(), fail(), pk_session_clean(), m1_assert_no_ipc(), m1_connects(), m1_copy_root(), m1_count() (+39 more)
 
 ### Community 152 - "QUrlQuery"
-Cohesion: 0.02
-Nodes (137): chain, list, direct, DnsttDisplayType(), ProfileFilter, BindAddress6(), DialFields::Build(), DialFields::ExportToJson() (+129 more)
+Cohesion: 0.01
+Nodes (250): MuxSettings, brutal, brutal_down_mbps, brutal_up_mbps, by_connections, max_connections, max_streams, min_streams (+242 more)
 
 ### Community 153 - "str_view"
 Cohesion: 0.04
-Nodes (52): create_iterator_input_adapter(), deserialize(), file_input_adapter, m_buffer, m_encode_type, m_file, file_utf_encode_detector, file_writer (+44 more)
+Nodes (47): create_iterator_input_adapter(), deserialize(), file_input_adapter, m_buffer, m_encode_type, m_file, file_utf_encode_detector, file_writer (+39 more)
 
 ### Community 154 - "EditCSQTT"
 Cohesion: 0.04
@@ -1460,31 +1435,31 @@ Nodes (35): EditCSQTT, authorization, autoHashCount, captcha, checkHashes, check
 
 ### Community 155 - "QString"
 Cohesion: 0.01
-Nodes (282): AutoCompleteTextEdit::AutoCompleteTextEdit(), KeyFile, created, error, key, replaced, ExtraCoreArgs(), ExtraCoreConfigArg() (+274 more)
+Nodes (337): AutoCompleteTextEdit::AutoCompleteTextEdit(), splitCipherSuites(), DnsttDisplayType(), ExtraCoreArgs(), ExtraCoreConfigArg(), ParseReport, document, imported (+329 more)
 
 ### Community 156 - "RouteItem::makeAttributeEditorPage"
-Cohesion: 0.10
-Nodes (13): RouteItem::currentRule(), RouteItem::listedEndpointIDs(), RouteItem::makeAttributeEditorPage(), RouteItem::simpleEditors(), routeItemEndpointCandidates(), routeItemOutboundList(), RouteOutboundList, items (+5 more)
+Cohesion: 0.06
+Nodes (21): RouteItem::addEndpointRow(), RouteItem::attributeEditor(), RouteItem::currentRule(), RouteItem::listedEndpointIDs(), RouteItem::makeAttributeEditorPage(), RouteItem::refreshEndpointCandidates(), RouteItem::removeEndpointRow(), RouteItem::revealRuleIssue() (+13 more)
 
 ### Community 157 - "SeriesBuffer"
-Cohesion: 0.07
-Nodes (18): Column, key, lastSerial, values, Marker, kind, t, text (+10 more)
+Cohesion: 0.06
+Nodes (19): Column, key, lastSerial, values, Marker, kind, t, text (+11 more)
 
 ### Community 158 - "SyntaxHighlighter"
 Cohesion: 0.08
-Nodes (21): HighlightingRule, format, pattern, SyntaxHighlighter, acceptedFormat, dateFormat, debugFormat, highlightingRules (+13 more)
+Nodes (20): HighlightingRule, format, pattern, SyntaxHighlighter, acceptedFormat, dateFormat, debugFormat, highlightingRules (+12 more)
 
 ### Community 159 - "RPC.cpp"
 Cohesion: 0.08
 Nodes (29): Client::AutoSelectorAction(), Client::CancelVPNChallenge(), Client::CaptureDiagnostics(), Client::CheckConfig(), Client::CloseConnections(), Client::GenQuicSignature(), Client::GenWgKeyPair(), Client::GetDefaultInterface() (+21 more)
 
 ### Community 160 - "Result"
-Cohesion: 0.14
+Cohesion: 0.15
 Nodes (18): calcMedian(), Measure, branchinstructions, branchmisses, contextswitches, cpucycles, elapsed, instructions (+10 more)
 
 ### Community 161 - "Multiplex"
-Cohesion: 0.07
-Nodes (13): Multiplex, brutal, enabled, max_connections, max_streams, min_streams, padding, protocol (+5 more)
+Cohesion: 0.04
+Nodes (20): Multiplex, brutal, enabled, max_connections, max_streams, min_streams, padding, protocol (+12 more)
 
 ### Community 162 - "TaskRoot"
 Cohesion: 0.10
@@ -1492,11 +1467,11 @@ Nodes (11): ComApartment, hr, TaskBstr, value, TaskPtr, ptr, TaskRoot, apartment
 
 ### Community 163 - "Logger.cpp"
 Cohesion: 0.08
-Nodes (40): Level, Debug, Error, Fatal, Info, Off, Trace, Warn (+32 more)
+Nodes (43): Level, Debug, Error, Fatal, Info, Off, Trace, Warn (+35 more)
 
-### Community 164 - "RoutingDeps"
-Cohesion: 0.05
-Nodes (40): appendDnsRoute(), appendDnsRoutingRules(), AuxEndpointGroup, endpoint, hopIDs, innerHopIndexes, BuildPrerequisites, dns (+32 more)
+### Community 164 - "sqlite3.h"
+Cohesion: 0.06
+Nodes (36): fts5_api, iVersion, fts5_tokenizer, fts5_tokenizer_v2, iVersion, sqlite3, sqlite3_backup, sqlite3_context (+28 more)
 
 ### Community 165 - "EditQWDTT"
 Cohesion: 0.04
@@ -1524,43 +1499,43 @@ Nodes (19): xrayGRPC, authority, multiMode, serviceName, xrayStreamSetting, fina
 
 ### Community 171 - "xrayStreamSetting.cpp"
 Cohesion: 0.03
-Nodes (150): XrayLegProtection, Plain, Unverified, Verified, IsVlessEncrypted(), addXmuxField(), addXPaddingFields(), BindXrayDownloadLeg() (+142 more)
+Nodes (160): XrayLegProtection, Plain, Unverified, Verified, IsVlessEncrypted(), queryLiteral(), addXmuxField(), addXPaddingFields() (+152 more)
 
 ### Community 172 - "DataViewHtmlGenerator"
 Cohesion: 0.06
-Nodes (25): Content, html, toolTip, DataViewHtmlGenerator, autoSelector_, DismissRestartActionUrl, download_, latencyTest_ (+17 more)
+Nodes (22): AutoSelectorPanelState, detail, summary, visible, DataViewHtmlGenerator, autoSelector_, DismissRestartActionUrl, download_ (+14 more)
 
 ### Community 173 - "IpListItem"
-Cohesion: 0.05
-Nodes (21): IpListItem, actionsVisible, busyLabel, deleteButton, editButton, errorLabel, errorText, item (+13 more)
+Cohesion: 0.06
+Nodes (18): IpListItem, actionsVisible, busyLabel, deleteButton, editButton, errorLabel, errorText, item (+10 more)
 
-### Community 174 - "MibIPInterfaceRow"
-Cohesion: 0.20
-Nodes (10): GetIPInterfaceTable(), getIPInterfaceEntry(), getIPInterfaceTable(), initializeIPInterfaceEntry(), setIPInterfaceEntry(), LinkLocalAddressBehavior, MibIPInterfaceRow, mibIPInterfaceTable (+2 more)
+### Community 174 - "zwinipcfg_windows.go"
+Cohesion: 0.10
+Nodes (23): GetIPForwardTable2(), GetIPInterfaceTable(), GetUnicastIPAddressTable(), cancelMibChangeNotify2(), errnoErr(), freeMibTable(), getIPForwardTable2(), getIPInterfaceEntry() (+15 more)
 
 ### Community 175 - "MibIPforwardRow2"
-Cohesion: 0.22
+Cohesion: 0.21
 Nodes (8): createIPForwardEntry2(), deleteIPForwardEntry2(), getIPForwardEntry2(), initializeIPForwardEntry(), setIPForwardEntry2(), MibIPforwardRow2, RouteOrigin, RouteProtocol
 
 ### Community 176 - "GroupUpdater"
 Cohesion: 0.04
-Nodes (24): GroupUpdater, autoAttempts, bundlePassword, countryTester, mutex, pending, pendingBatch, public (+16 more)
+Nodes (20): GroupUpdater, autoAttempts, bundlePassword, countryTester, mutex, pending, pendingBatch, public (+12 more)
 
 ### Community 177 - "ContentIndex"
-Cohesion: 0.04
-Nodes (36): ContentIndex, arrivals, claimedIds, known, unclaimed, NewEntry, contentKnown, display (+28 more)
+Cohesion: 0.06
+Nodes (28): ContentIndex, arrivals, claimedIds, known, unclaimed, NewEntry, contentKnown, display (+20 more)
 
 ### Community 178 - "RelayTask"
 Cohesion: 0.11
 Nodes (9): RelayTask, failed, finishing, generation, handler, pending, process, queue (+1 more)
 
 ### Community 179 - "vpnFileImport.cpp"
-Cohesion: 0.10
-Nodes (37): IsValidDuration(), ParseAnyConnectXml(), ParseOpenConnectProfile(), ParseOvpnConfig(), vpnfiAccept(), vpnfiApplyHostEntry(), vpnfiApplyOcOption(), vpnfiDataCiphers() (+29 more)
+Cohesion: 0.09
+Nodes (38): IsValidDuration(), openconnect::ParseFromLink(), ParseAnyConnectXml(), ParseOpenConnectProfile(), ParseOvpnConfig(), vpnfiAccept(), vpnfiApplyHostEntry(), vpnfiApplyOcOption() (+30 more)
 
-### Community 180 - "Instance"
-Cohesion: 0.08
-Nodes (7): AutoSelectorStatusIterator, Instance, LocalDNSFailure, OutboundGroupIterator, pendingTraffic, RuleSetUpdateResult, StatusMessage
+### Community 180 - "gpb-compatibility.cpp"
+Cohesion: 0.06
+Nodes (20): "bool", "bytes", "double", "enum", enum_value(), equal(), ExtractOptional, ExtractOptional<std::optional<T>> (+12 more)
 
 ### Community 181 - "wdttplus"
 Cohesion: 0.05
@@ -1572,11 +1547,11 @@ Nodes (17): Profile, dl_speed, endpoint, gid, id, ip_out, latency, latency_at (+
 
 ### Community 183 - "register.go"
 Cohesion: 0.09
-Nodes (23): isRejected(), newClient(), normalizeHosts(), GenerateKey(), GeneratePrivateKey(), NewKey(), ParseKey(), enrollMASQUE() (+15 more)
+Nodes (24): isRejected(), newClient(), normalizeHosts(), responseError(), GenerateKey(), GeneratePrivateKey(), NewKey(), ParseKey() (+16 more)
 
 ### Community 184 - "ProfilesTableModel"
-Cohesion: 0.04
-Nodes (26): FilterKey, address, country, effectiveAddress, name, port, services, type (+18 more)
+Cohesion: 0.05
+Nodes (17): Profile, ProfilesTableModel, id2row, m_addressCache, m_cache, m_cacheSize, m_filterIndexBuilt, m_filterKeys (+9 more)
 
 ### Community 185 - "Form::Private"
 Cohesion: 0.09
@@ -1587,12 +1562,12 @@ Cohesion: 0.10
 Nodes (8): DialogEditOtp, form, previewTimer, profile, public, ui, DialogEditOtp::DialogEditOtp(), DialogOtpManager::addOtpProfile()
 
 ### Community 187 - "net/netip.Prefix"
-Cohesion: 0.11
-Nodes (19): SetInterfaceDnsSettings(), cancelMibChangeNotify2(), createUnicastIPAddressEntry(), deleteUnicastIPAddressEntry(), errnoErr(), getUnicastIPAddressEntry(), initializeUnicastIPAddressEntry(), notifyIPInterfaceChange() (+11 more)
+Cohesion: 0.18
+Nodes (9): createUnicastIPAddressEntry(), deleteUnicastIPAddressEntry(), getUnicastIPAddressEntry(), initializeUnicastIPAddressEntry(), setUnicastIPAddressEntry(), DadState, MibUnicastIPAddressRow, PrefixOrigin (+1 more)
 
 ### Community 188 - "Overlay"
-Cohesion: 0.04
-Nodes (47): Band, labeled, rect, CardLine, focus, reg, text, type (+39 more)
+Cohesion: 0.06
+Nodes (34): CardLine, focus, reg, text, type, values, Overlay, card (+26 more)
 
 ### Community 189 - "ServerSession"
 Cohesion: 0.16
@@ -1603,8 +1578,8 @@ Cohesion: 0.06
 Nodes (12): CoreDiagnostics, capturing_, clock_, notice_, public, stopping_, ticker_, view_ (+4 more)
 
 ### Community 191 - ".update"
-Cohesion: 0.04
-Nodes (35): Kind, Chip, Pill, Tab, Text, NewSwitch, m_anim, m_hover (+27 more)
+Cohesion: 0.03
+Nodes (60): Kind, Chip, Pill, Tab, Text, NewSwitch, m_anim, m_hover (+52 more)
 
 ### Community 192 - "OpenVPNTLS"
 Cohesion: 0.06
@@ -1612,11 +1587,11 @@ Nodes (26): OpenVPNControlWrap, direction, key, key_path, type, OpenVPNTLS, cert
 
 ### Community 193 - "qwdtt"
 Cohesion: 0.05
-Nodes (19): qwdtt, autoHashCount, bridgeAuth, captchaMode, deviceID, goDNS, hashes, hashSource (+11 more)
+Nodes (24): DeviceSlots, active, bound, current, max, ok, qwdtt, autoHashCount (+16 more)
 
 ### Community 194 - "Group"
-Cohesion: 0.04
-Nodes (34): Group, archive, auto_clear_unavailable, calculated_column_width, column_width, endpoint, front_proxy_id, id (+26 more)
+Cohesion: 0.03
+Nodes (45): Group, archive, auto_clear_unavailable, calculated_column_width, column_width, endpoint, front_proxy_id, id (+37 more)
 
 ### Community 195 - "vector"
 Cohesion: 0.03
@@ -1638,17 +1613,17 @@ Nodes (32): EditDnsTunnel, authoritative, backend, cert, clientIdSize, congestio
 Cohesion: 0.14
 Nodes (38): Assert-AdminOnlyEntry(), Assert-Contains(), Assert-Equal(), Assert-Healthy(), Assert-LogClean(), Assert-NotContains(), Assert-ProxiedThroughRawline(), Close-Step() (+30 more)
 
-### Community 200 - "StartURLTest"
-Cohesion: 0.11
-Nodes (15): StartServiceTest(), errorString(), flattenSpeedTestResult(), newTestReporter(), QuerySpeedTest(), StartIPTest(), StartSpeedTest(), StartURLTest() (+7 more)
+### Community 200 - "sqlite3ExprDup"
+Cohesion: 0.12
+Nodes (37): allowedOp(), autoIncBegin(), codeTriggerProgram(), createMask(), exprAnalyze(), exprAnalyzeOrTerm(), exprDup(), exprRowColumn() (+29 more)
 
 ### Community 201 - "nftables_linux.go"
 Cohesion: 0.13
 Nodes (15): probe(), cmpEq(), ctLabel(), loadPayload(), matchIfname(), matchLabel(), matchMeta(), matchPort() (+7 more)
 
 ### Community 202 - "host"
-Cohesion: 0.09
-Nodes (20): host(), HeadlessEarlyExit, m_armed, m_initRan, headlessMainSessionEnd(), HeadlessRuntime::beforeExec(), HeadlessRuntime::endSession(), HeadlessRuntime::evaluateWatchdog() (+12 more)
+Cohesion: 0.08
+Nodes (23): BootStart, profileId, serial, host(), HeadlessEarlyExit, m_armed, m_initRan, headlessMainSessionEnd() (+15 more)
 
 ### Community 203 - "EditOLCRTC"
 Cohesion: 0.08
@@ -1659,16 +1634,16 @@ Cohesion: 0.04
 Nodes (39): autoSelector, activeSize, balance, balanceIntervalSec, balanceMode, benchIntervalSec, buildLimit, connectivityURL (+31 more)
 
 ### Community 205 - "edit_autoselector.cpp"
-Cohesion: 0.03
-Nodes (34): Tier, gid, nameFilter, EditorCellText(), EditorComboCellText(), EditorSetComboCell(), QTableWidget, NoWheelComboBox (+26 more)
+Cohesion: 0.04
+Nodes (28): Tier, gid, nameFilter, EditorCellText(), EditorComboCellText(), EditorSetComboCell(), QTableWidget, NoWheelComboBox (+20 more)
 
 ### Community 206 - "proto_attributes"
 Cohesion: 0.10
 Nodes (33): convert_gpb_options(), convert_include_options(), convert_nanopb_options(), convert_options(), convert_spb_options(), convert_spb_options_legacy(), option_type, option_enum (+25 more)
 
 ### Community 207 - "smoke_fixtures.py"
-Cohesion: 0.08
-Nodes (15): EventLog, main(), NoContentHandler, NoContentServer, recv_exact(), relay(), socks_reply(), SocksHandler (+7 more)
+Cohesion: 0.09
+Nodes (14): EventLog, main(), NoContentHandler, NoContentServer, recv_exact(), relay(), socks_reply(), SocksHandler (+6 more)
 
 ### Community 208 - "xrayVless"
 Cohesion: 0.05
@@ -1676,47 +1651,47 @@ Nodes (13): xrayMultiplex, concurrency, enabled, maxConnections, useDefault, xud
 
 ### Community 209 - "ProfilesTableFilterHeader"
 Cohesion: 0.06
-Nodes (13): ProfilesTableFilterHeader, address_filter, m_filtersVisible, m_fitting, m_lastFilterColumn, m_mouseSizing, m_sortDescending, m_sortSection (+5 more)
+Nodes (15): count, Group, ProfilesTableFilterHeader, address_filter, m_filtersVisible, m_fitting, m_lastFilterColumn, m_mouseSizing (+7 more)
 
 ### Community 210 - "SeasonalDecoration"
 Cohesion: 0.07
-Nodes (12): installSeasonalDecoration(), SeasonalDecoration, anchor, bottom, clock, decoration, enabled, noticePriority (+4 more)
+Nodes (11): installSeasonalDecoration(), SeasonalDecoration, anchor, bottom, clock, decoration, enabled, noticePriority (+3 more)
 
-### Community 211 - "creds.go"
-Cohesion: 0.05
-Nodes (50): applyBrowserProfileFhttp(), captchaDomainFromRedirectURI(), captchaV2AcceptLanguage(), captchaV2BaseValues(), captchaV2BrowserFP(), captchaV2DeviceJSON(), captchaV2EncodeForm(), captchaV2QueryEscape() (+42 more)
+### Community 211 - "RouteRule.cpp"
+Cohesion: 0.08
+Nodes (33): ruleTypeToToken(), getOS(), osType, Darwin, Linux, unknown, Windows, filterEmpty() (+25 more)
 
 ### Community 212 - "basic_node"
 Cohesion: 0.06
 Nodes (27): alias_of(), aton(), basic_node(), boolean_scalar(), contains_self_referential_alias(), float_scalar(), has_anchor_name(), has_node_ref() (+19 more)
 
 ### Community 213 - ".PanelDeploy"
-Cohesion: 0.14
-Nodes (6): ReadFileText(), Choice, title, value, note(), OpenPanelDeploy()
+Cohesion: 0.17
+Nodes (5): ReadFileText(), Choice, title, value, note()
 
 ### Community 214 - "Client"
 Cohesion: 0.04
 Nodes (3): Client, channel, Client::IsPrivileged()
 
-### Community 215 - "ProcessRules.cpp"
-Cohesion: 0.11
-Nodes (22): FolderPattern(), HasVersionedFolder(), IsSharedFolder(), IsSharedHost(), IsSystemProgram(), isVersionName(), isWindowsPath(), KnownSpelling() (+14 more)
+### Community 215 - "Spellings"
+Cohesion: 0.20
+Nodes (6): KnownSpelling(), Learn(), loadAppMetaLocked(), Spellings, byLower, exact
 
 ### Community 216 - "WebDavSession"
-Cohesion: 0.14
-Nodes (23): Delete(), Download(), List(), Test(), Upload(), WebDavEnsureFolder(), WebDavEntryFromJson(), WebDavFailure() (+15 more)
+Cohesion: 0.12
+Nodes (26): Delete(), Download(), Test(), Upload(), WebDavEnsureFolder(), WebDavFailure(), WebDavFetchIndex(), size (+18 more)
 
 ### Community 217 - "Statement"
-Cohesion: 0.04
-Nodes (37): bind_exec(), execute_many(), reset_bind_exec(), Column, Database, sqlite3, sqlite3_stmt, Statement (+29 more)
+Cohesion: 0.05
+Nodes (29): Column, Database, sqlite3, sqlite3_stmt, Statement, mbDone, mbHasRow, mColumnCount (+21 more)
 
 ### Community 218 - "Job"
 Cohesion: 0.10
 Nodes (18): FeedWaiter, after, limit, waiter, Job, cancelRequested, finishedAt, id (+10 more)
 
-### Community 219 - "nanopb/benchmark.cpp"
-Cohesion: 0.24
-Nodes (5): main(), init_message(), main(), main(), pb_decode()
+### Community 219 - "example/addressbook.cpp"
+Cohesion: 0.10
+Nodes (13): main(), init_message(), main(), main(), load_file(), main(), PromptForAddress(), save_file() (+5 more)
 
 ### Community 220 - "State"
 Cohesion: 0.11
@@ -1724,23 +1699,23 @@ Nodes (16): formAddMarkAction(), FormMark, Error, None, Warning, formMarkColor()
 
 ### Community 221 - "go_pkg_time"
 Cohesion: 0.02
-Nodes (81): decodeGrant(), ApplyIdentity(), IdentityEnabled(), allowedParent(), TestRelayHelperCannotLaunchPrivilegedCoreMode(), CheckParentProcess(), execPath(), List() (+73 more)
+Nodes (42): boxComponent, ApplyIdentity(), IdentityEnabled(), allowedParent(), TestRelayHelperCannotLaunchPrivilegedCoreMode(), CheckParentProcess(), execPath(), List() (+34 more)
 
 ### Community 222 - "LinuxPerformanceCounters"
 Cohesion: 0.06
 Nodes (23): LinuxPerformanceCounters, mCalibratedOverhead, mCounters, mFd, mHasError, mIdToTarget, mLoopOverhead, mTimeEnabledNanos (+15 more)
 
-### Community 223 - "dnstun/tunnel.go"
-Cohesion: 0.11
-Nodes (16): backendConfig, config, dnsTunnel, slipstream, main(), readConfig(), run(), TestReadConfigTakesTheServiceFromEitherKey() (+8 more)
+### Community 223 - "masterdns"
+Cohesion: 0.06
+Nodes (20): masterdns, balancing_strategy, base64_response, domains, download_compression, encryption_key, encryption_method, mode (+12 more)
 
 ### Community 224 - "csqtt"
 Cohesion: 0.06
 Nodes (19): csqtt, autoHashCount, bridgeAuth, captchaMode, clientIds, customTurnIps, deviceID, fingerprint (+11 more)
 
 ### Community 225 - "DialogVpnAuth"
-Cohesion: 0.03
-Nodes (56): VpnAuthChallenge, banner, deadline, echo, endpointTag, error, fields, id (+48 more)
+Cohesion: 0.05
+Nodes (29): CloseAction, Acknowledge, Cancel, None, DialogVpnAuth, auth, cancelButton, challenge (+21 more)
 
 ### Community 226 - "ScannerPanelItem"
 Cohesion: 0.25
@@ -1750,21 +1725,21 @@ Nodes (6): ScannerPanelItem, found, name, tested, total, DataViewHtmlGenerator::
 Cohesion: 0.14
 Nodes (9): otsu(), pixels_setup(), quirc_begin(), quirc_end(), quirc_image_size(), quirc_pixel_count(), quirc_count(), quirc_resize() (+1 more)
 
-### Community 228 - "IpListUpdater.cpp"
-Cohesion: 0.05
-Nodes (44): DownloadProgressReport, downloadedSize, fileName, totalSize, QIODevice, QNetworkProxy, RegisterWarp(), warpProxy() (+36 more)
+### Community 228 - "ServiceChecks.cpp"
+Cohesion: 0.18
+Nodes (14): Prepare(), ResultJson(), serviceChecksCachePath(), serviceChecksCategories(), ServiceChecksMeta, attemptedAt, etag, serviceChecksMetaPath() (+6 more)
 
 ### Community 229 - "headless_smoke.sh"
 Cohesion: 0.14
 Nodes (29): assert_clean_exit(), assert_no_ipc_sockets(), b_health(), check_binaries(), cleanup_a(), connects(), ctl(), dump_a() (+21 more)
 
 ### Community 230 - "CoreSupervisor.cpp"
-Cohesion: 0.04
-Nodes (30): Notice, level, text, title, NoticeLevel, Error, Info, Warning (+22 more)
+Cohesion: 0.05
+Nodes (42): Notice, level, text, title, NoticeLevel, Error, Info, Warning (+34 more)
 
-### Community 231 - "QKeyEvent"
-Cohesion: 0.03
-Nodes (34): AutoCompleteTextEdit::focusInEvent(), AutoCompleteTextEdit::insertCompletion(), AutoCompleteTextEdit::keyPressEvent(), AutoCompleteTextEdit::lineUnderCursor(), AutoCompleteTextEdit::selectCompletion(), AutoCompleteTextEdit::wordUnderCursor(), namespace(), InstanceServer (+26 more)
+### Community 231 - "ProfilesTableModel.cpp"
+Cohesion: 0.05
+Nodes (20): QSortFilterProxyModel, ProfilesTableModel, Profile, ProfilesTableModel::columnCount(), ProfilesTableModel::data(), ProfilesTableModel::flags(), ProfilesTableModel::headerData(), ProfilesTableModel::mimeData() (+12 more)
 
 ### Community 232 - "ServiceManager.cpp"
 Cohesion: 0.08
@@ -1772,55 +1747,55 @@ Nodes (24): ChildEnvironment(), LocalClientIsAdmin(), NotifyExtendTimeout(), Not
 
 ### Community 233 - "sys"
 Cohesion: 0.07
-Nodes (16): get_base_name(), main(), parse_benchmark_output(), get_base_name(), is_executable(), main(), build_android.sh script, main() (+8 more)
+Nodes (15): get_base_name(), main(), parse_benchmark_output(), get_base_name(), is_executable(), main(), build_android.sh script, fetch() (+7 more)
 
 ### Community 234 - "DialogIpLists"
-Cohesion: 0.06
-Nodes (15): DialogIpLists, importing, lists, pendingSelectId, public, rebuildPending, reloadTimer, ui (+7 more)
+Cohesion: 0.08
+Nodes (11): DialogIpLists, importing, lists, pendingSelectId, public, rebuildPending, reloadTimer, ui (+3 more)
 
 ### Community 235 - "LocalNetwork.cpp"
 Cohesion: 0.10
 Nodes (30): Better(), Candidate, address, interfaceIndex, privateRank, typeRank, virtualRank, DefaultRouteAddress() (+22 more)
 
 ### Community 236 - "render.py"
-Cohesion: 0.09
-Nodes (12): Canvas, colour(), Coordinate, Draws, Images, load(), points(), precise() (+4 more)
+Cohesion: 0.05
+Nodes (24): bake(), main(), write_resource_indexes(), load_safe(), grounded_frame(), module_floor, OffsetDraw, call() (+16 more)
 
 ### Community 237 - "tunOptions"
 Cohesion: 0.10
 Nodes (4): mapRoutePrefix(), RoutePrefixIterator, TunOptions, tunOptions
 
 ### Community 238 - "SecurityInfo"
-Cohesion: 0.03
-Nodes (54): SecurityInfo, caVerified, compromised, label, level, publicLeg, transport, SecurityLevel (+46 more)
+Cohesion: 0.01
+Nodes (90): SecurityInfo, caVerified, compromised, label, level, publicLeg, transport, SecurityLevel (+82 more)
 
 ### Community 239 - "masque"
 Cohesion: 0.07
 Nodes (9): masque, address, disable_version_fallback, http_version, mtu, peer_public_key, private_key, quic (+1 more)
 
 ### Community 240 - "SubscriptionOptions"
-Cohesion: 0.05
-Nodes (35): sendHwid, keepDefault, off, on, subHttpVersion, automatic, http11, SubscriptionOptions (+27 more)
+Cohesion: 0.04
+Nodes (42): sendHwid, keepDefault, off, on, SubscriptionOptions, country_filter, http_version, hwid (+34 more)
 
 ### Community 241 - "ScanConfig"
-Cohesion: 0.05
+Cohesion: 0.04
 Nodes (39): PortMode, Ignore, List, Merge, ScanConfig, concurrency, config, http (+31 more)
 
 ### Community 242 - "Session"
 Cohesion: 0.13
-Nodes (6): Handler, phase, Transport, failureMessage(), parseOptions(), Session
+Nodes (5): Handler, phase, Transport, failureMessage(), Session
 
 ### Community 243 - "string"
-Cohesion: 0.02
-Nodes (75): main(), init_message(), main(), main(), main(), main(), init_message(), main() (+67 more)
+Cohesion: 0.03
+Nodes (61): main(), init_message(), main(), main(), main(), main(), init_message(), main() (+53 more)
 
 ### Community 244 - "ConnectionsTreeModel.cpp"
 Cohesion: 0.10
 Nodes (26): Groups, DisplayDest(), outboundText, ConnectionsTreeModel::columnCount(), ConnectionsTreeModel::connectionIdsAt(), ConnectionsTreeModel::ConnectionsTreeModel(), ConnectionsTreeModel::data(), ConnectionsTreeModel::displayProcessName() (+18 more)
 
 ### Community 245 - "SubscriptionParser.cpp"
-Cohesion: 0.07
-Nodes (60): ssh::Validate(), tailscale::Validate(), trusttunnel::Validate(), accept(), appendImporterNotes(), clashEntryName(), clashRealityOnXray(), clashSource() (+52 more)
+Cohesion: 0.04
+Nodes (100): ParseSink, profile, report, tailscale::Validate(), accept(), appendImporterNotes(), clashEntryName(), clashRealityOnXray() (+92 more)
 
 ### Community 246 - "math"
 Cohesion: 0.13
@@ -1843,8 +1818,8 @@ Cohesion: 0.11
 Nodes (18): Type, BYTES, DOUBLE, ENUM, FIXED32, FIXED64, FLOAT, INT32 (+10 more)
 
 ### Community 252 - "ServiceManager_win.cpp"
-Cohesion: 0.10
-Nodes (23): InstallShutdownSignals(), IsService(), NotifyEnabled(), NotifyExtendTimeout(), NotifyReady(), NotifyReloading(), NotifyStartProgress(), NotifyStatus() (+15 more)
+Cohesion: 0.08
+Nodes (31): StopKind, Fast, Graceful, ArmStopHandler(), InstallShutdownSignals(), IsService(), NotifyEnabled(), NotifyExtendTimeout() (+23 more)
 
 ### Community 253 - "EditOpenFluxKey"
 Cohesion: 0.07
@@ -1855,8 +1830,8 @@ Cohesion: 0.08
 Nodes (15): Client::IsConnected(), Client::LocalSocketChannel, CallNotConnected, CallOK, connected_, io_anchor, io_thread, kIOTimeoutMs (+7 more)
 
 ### Community 255 - "EditAdvanced"
-Cohesion: 0.06
-Nodes (20): EditAdvanced, CACHE, ent, form, m_systemInterfaces, m_systemIpv4Addresses, m_systemIpv6Addresses, public (+12 more)
+Cohesion: 0.08
+Nodes (10): EditAdvanced, CACHE, ent, form, m_systemInterfaces, m_systemIpv4Addresses, m_systemIpv6Addresses, public (+2 more)
 
 ### Community 256 - "compact"
 Cohesion: 0.15
@@ -1868,7 +1843,7 @@ Nodes (21): ScanWarpOptions, generatedIdentity, generatedMode, httpMode, i1, i2,
 
 ### Community 258 - "runOnNewThread"
 Cohesion: 0.04
-Nodes (67): function_ref<Ret(Params...)>, callable, callback, Row, entry, header, matchLength, matchStart (+59 more)
+Nodes (52): function_ref<Ret(Params...)>, callable, VpnAuthAnswer, formValues, password, secret, username, callback (+44 more)
 
 ### Community 259 - "TrayProfileSelector"
 Cohesion: 0.06
@@ -1880,19 +1855,19 @@ Nodes (20): captureTransport, ipv6Handler, marshalOptions(), countIPv6CP(), fast
 
 ### Community 261 - "types.go"
 Cohesion: 0.06
-Nodes (26): GetAdaptersAddresses(), GetIfTable2Ex(), freeMibTable(), getIfEntry2(), getIfTable2Ex(), ChangeCallback, GAAFlags, IfOperStatus (+18 more)
+Nodes (25): GetAdaptersAddresses(), GetIfTable2Ex(), getIfEntry2(), getIfTable2Ex(), ChangeCallback, GAAFlags, IfOperStatus, IfType (+17 more)
 
 ### Community 262 - "vmess"
 Cohesion: 0.08
 Nodes (10): vmess, alter_id, authenticated_length, global_padding, multiplex, packet_encoding, security, tls (+2 more)
 
-### Community 263 - "QUrlQuery"
-Cohesion: 0.02
-Nodes (110): MuxSettings, brutal, brutal_down_mbps, brutal_up_mbps, by_connections, max_connections, max_streams, min_streams (+102 more)
-
-### Community 264 - "DialogEditGroupAdvanced"
+### Community 263 - "RunConfigDump"
 Cohesion: 0.07
-Nodes (15): EndpointSource, address, ipListId, mode, DialogEditGroupAdvanced, form, globalSendHwid, profileCount (+7 more)
+Nodes (19): DataDirLock, error, Result, Acquired, Busy, Failed, CanBuildRoutes(), Dumper (+11 more)
+
+### Community 264 - "BuildTestConfigResult"
+Cohesion: 0.07
+Nodes (31): BuildTestConfigResult, coreConfig, error, fullConfigs, isXrayNeeded, outboundTags, qwdttConfigs, tag2entID (+23 more)
 
 ### Community 265 - "identify.c"
 Cohesion: 0.13
@@ -1911,16 +1886,16 @@ Cohesion: 0.14
 Nodes (14): d(), IterationLogic::Impl, mNumIters, mResult, mRng, mState, mTargetRuntimePerEpoch, mTotalElapsed (+6 more)
 
 ### Community 269 - "string"
-Cohesion: 0.08
-Nodes (17): anchor_reference_event, is_anchor, name, offset, position, escape(), get_yaml_version_type(), invalid_encoding (+9 more)
+Cohesion: 0.07
+Nodes (21): anchor_reference_event, is_anchor, name, offset, position, escape(), get_yaml_version_type(), invalid_encoding (+13 more)
 
 ### Community 270 - "wfp_windows.go"
 Cohesion: 0.10
-Nodes (31): appIDFromFile(), blockRules(), displayData(), findTuns(), isTunAlias(), resolveAppIDs(), fwpmEngineClose0(), fwpmEngineOpen0() (+23 more)
+Nodes (32): appIDFromFile(), blockRules(), displayData(), findTuns(), isTunAlias(), resolveAppIDs(), watchInterfaces(), fwpmEngineClose0() (+24 more)
 
 ### Community 271 - "TrafficLine"
-Cohesion: 0.07
-Nodes (23): LiveRates, directDown, directUp, proxyDown, proxyUp, TrafficLine, key, kind (+15 more)
+Cohesion: 0.08
+Nodes (23): RestartReason, Group, Profile, Routing, Settings, TrafficLine, key, kind (+15 more)
 
 ### Community 272 - "tuic"
 Cohesion: 0.08
@@ -1936,15 +1911,15 @@ Nodes (15): digestFile(), queryInteger(), Router::Transfer, archive, complete, h
 
 ### Community 275 - "close_test.go"
 Cohesion: 0.02
-Nodes (69): responseError(), NewClient(), newRequest(), NewUserAgentFromAppName(), newConnTracker(), newTrackedConn(), TestClientCloseClosesActiveQUICConnections(), TestClientResetConnectionsClosesActiveQUICConnections() (+61 more)
+Nodes (95): getNetDialer(), NewClient(), newRequest(), NewUserAgentFromAppName(), newConnTracker(), newTrackedConn(), TestClientCloseClosesActiveQUICConnections(), TestClientResetConnectionsClosesActiveQUICConnections() (+87 more)
 
 ### Community 276 - "platformInterfaceWrapper"
 Cohesion: 0.06
 Nodes (3): watchEgressForwarding(), watchEgressForwarding(), platformInterfaceWrapper
 
 ### Community 277 - "Cidr"
-Cohesion: 0.29
-Nodes (7): ValidationIp, kind, zoned, ValidationIpKind, Invalid, V4, V6
+Cohesion: 0.13
+Nodes (16): Family, Any, V4, V6, Cidr(), Ip(), validationCheckIp(), ValidationIp (+8 more)
 
 ### Community 278 - "MiniDump.cpp"
 Cohesion: 0.11
@@ -1979,12 +1954,12 @@ Cohesion: 0.11
 Nodes (21): Containers, CyclicDependency, Maps, default_map, my_map, MessageA, b, i (+13 more)
 
 ### Community 286 - "session_test.go"
-Cohesion: 0.12
-Nodes (20): Authenticator, recordHandler, ServerConfig, encodeFrame(), putFrameHeader(), API surface, Implementation notes & caveats, internal/ppp (+12 more)
+Cohesion: 0.17
+Nodes (17): decodeFrame(), encodeFrame(), putFrameHeader(), TestIPv6CPCodec(), Implementation notes & caveats, internal/ppp, Link bring-up state machine, Specifications (+9 more)
 
 ### Community 287 - "DialogScanInstance::loadForm"
-Cohesion: 0.10
-Nodes (14): DialogScanInstance::buildResolverPhase(), DialogScanInstance::buildWarpPhase(), DialogScanInstance::currentResolverProtocol(), DialogScanInstance::loadForm(), DialogScanInstance::refreshProfilePickers(), DialogScanInstance::reloadBaseLists(), DialogScanInstance::reloadConfigProfiles(), DialogScanInstance::reloadResolverLevels() (+6 more)
+Cohesion: 0.07
+Nodes (26): DialogScanInstance::bindValidation(), DialogScanInstance::buildResolverPhase(), DialogScanInstance::buildWarpPhase(), DialogScanInstance::collect(), DialogScanInstance::currentResolverProtocol(), DialogScanInstance::currentWarpMode(), DialogScanInstance::loadForm(), DialogScanInstance::refreshProfilePickers() (+18 more)
 
 ### Community 288 - "ScanHttpOptions"
 Cohesion: 0.10
@@ -1994,14 +1969,13 @@ Nodes (19): ScanHttpOptions, alpn, disableSni, enabled, fingerprint, fragment, f
 Cohesion: 0.07
 Nodes (14): ResumeGuard, kStrikesToSuppress, kSurviveMs, kUnstableBootsToStayUp, m_armed, m_armedAt, m_bootOpen, m_lastExit (+6 more)
 
-### Community 290 - "mobile_safe.py"
-Cohesion: 0.10
-Nodes (12): bake(), main(), write_resource_indexes(), load_safe(), grounded_frame(), module_floor, OffsetDraw, call() (+4 more)
-
-### Community 291 - "operator=="
+### Community 290 - "VpnAuthChallenge"
 Cohesion: 0.07
-Nodes (31): basic_str_view(), begin(), cbegin(), cend(), container_input_adapter_factory<
-    ContainerType, void_t<decltype(begin(std::declval<ContainerType>()), end(std::declval<ContainerType>()))>>, contains(), crbegin(), crend() (+23 more)
+Nodes (27): VpnAuthChallenge, banner, deadline, echo, endpointTag, error, fields, id (+19 more)
+
+### Community 291 - "rbegin"
+Cohesion: 0.53
+Nodes (5): crbegin(), crend(), rbegin(), rend(), reverse_iterator()
 
 ### Community 292 - "naive"
 Cohesion: 0.08
@@ -2009,11 +1983,11 @@ Nodes (9): naive, congestion_control, extra_headers, insecure_concurrency, passw
 
 ### Community 293 - "RuntimeStatus"
 Cohesion: 0.05
-Nodes (26): ConnectionState, Connecting, Idle, Running, Stopping, EngineHost, RuntimeStatus, kStuckConnectingMs (+18 more)
+Nodes (27): EngineHost, RuntimeStatus, kStuckConnectingMs, kStuckStoppingMs, m_bootMonoMs, m_coreUnusableSinceMs, m_host, m_shuttingDown (+19 more)
 
 ### Community 294 - "IpListUpdater"
 Cohesion: 0.06
-Nodes (14): ImportOutcome, entries, error, rejected, samples, IpListUpdater, active, autoAttempts (+6 more)
+Nodes (20): ImportOutcome, entries, error, rejected, samples, IpListUpdater, active, autoAttempts (+12 more)
 
 ### Community 295 - "vless"
 Cohesion: 0.09
@@ -2024,16 +1998,16 @@ Cohesion: 0.08
 Nodes (13): Client::IPTest(), Client::ParseRuleSet(), Client::ParseServiceChecks(), Client::ScanProbe(), Client::ServiceTest(), Client::SpeedTest(), Client::TestRoute(), PendingCall (+5 more)
 
 ### Community 297 - "validationParseInt"
-Cohesion: 0.16
-Nodes (14): Duration(), Int(), IntOrRange(), ParseDurationNs(), ToInt(), validationAllDigits(), validationDurationUnit(), validationFormatDuration() (+6 more)
+Cohesion: 0.26
+Nodes (11): Duration(), Int(), IntOrRange(), ParseDurationNs(), ToInt(), validationAllDigits(), validationFormatDuration(), validationParseInt() (+3 more)
 
 ### Community 298 - "GroupsRepo"
-Cohesion: 0.08
-Nodes (6): GroupsRepo, memMap, mutex, revision, tombstones, GroupsRepo::createTables()
+Cohesion: 0.06
+Nodes (14): GroupsRepo, memMap, mutex, revision, tombstones, GroupsRepo::AddGroup(), GroupsRepo::createTables(), GroupsRepo::CurrentGroup() (+6 more)
 
-### Community 299 - "LogFilter"
-Cohesion: 0.22
-Nodes (8): LogFilter, enableExclude, enableInclude, excludeCombined, excludeKeywords, includeCombined, includeKeywords, MainWindow::should_print_log()
+### Community 299 - "Statement.cpp"
+Cohesion: 0.09
+Nodes (21): Statement::getColumns(), Statement::clearBindings(), Statement::exec(), Statement::executeStep(), Statement::getBindParameterCount(), Statement::getChanges(), Statement::getColumn(), Statement::getColumnDeclaredType() (+13 more)
 
 ### Community 300 - "linux_packages.sh"
 Cohesion: 0.17
@@ -2049,7 +2023,7 @@ Nodes (20): autoUpdateKey(), autoUpdateOff(), boolKey(), enumKey(), findKey(), i
 
 ### Community 303 - "ServiceManagerWinState"
 Cohesion: 0.08
-Nodes (18): ServiceManagerWinState, armed, closed, consoleInterrupts, handle, heartbeat, held, isService (+10 more)
+Nodes (19): ServiceManagerWinState, armed, closed, consoleInterrupts, handle, handler, heartbeat, held (+11 more)
 
 ### Community 304 - "install_linux.py"
 Cohesion: 0.12
@@ -2076,52 +2050,52 @@ Cohesion: 0.05
 Nodes (3): EngineControl, public, ConnectionManager::onCoreGaveUp()
 
 ### Community 310 - "golang.org/x/sys/windows.Handle"
-Cohesion: 0.16
-Nodes (16): attach(), creationTime(), openNul(), parentPID(), parseArg0(), setOwnerToUser(), scanLine(), NewPipeConn() (+8 more)
+Cohesion: 0.03
+Nodes (64): DisableColor(), applyEnv(), attach(), creationTime(), decodeGrant(), openNul(), parentPID(), parseArg0() (+56 more)
 
 ### Community 311 - "TunePlanner.cpp"
-Cohesion: 0.20
-Nodes (14): Planner::addTrials(), Planner::budgetFor(), Planner::EstimateTotal(), Planner::fragments(), Planner::mtuTrialIndex(), TrialsFromJson(), TrialsToJson(), tunePlannerConfirmStarted() (+6 more)
+Cohesion: 0.17
+Nodes (16): Planner::addTrials(), Planner::Best(), Planner::fragments(), Planner::mtuBase(), Planner::mtuTrialIndex(), Planner::openCombine(), Planner::openRefine(), Planner::openSingles() (+8 more)
 
 ### Community 312 - "RuntimeStatsWidget"
 Cohesion: 0.06
 Nodes (19): LiveChart, RuntimeStatsWidget, connBusy_, cpuChart_, details_, egressLookup_, egressSnapshotDone_, endpointTags_ (+11 more)
 
-### Community 313 - "edit_vless.cpp"
-Cohesion: 0.08
-Nodes (11): editor_state_changed, EditMieru::bindValidation(), EditMieru::EditMieru(), EditMieru::onStart(), EditOpenConnect::EditOpenConnect(), EditOpenVPN::EditOpenVPN(), EditTrustTunnel::EditTrustTunnel(), EditVless::bindValidation() (+3 more)
+### Community 313 - "Association"
+Cohesion: 0.15
+Nodes (19): Association, ConfigFiles, Links, bundlePath(), UrlScheme_Apply(), UrlScheme_DesiredState(), UrlScheme_IsCurrent(), UrlScheme_Remove() (+11 more)
 
 ### Community 314 - "DialogRuleTester::finish"
 Cohesion: 0.14
-Nodes (9): TestRouteRequest, DialogRuleTester::buildRequest(), DialogRuleTester::DialogRuleTester(), DialogRuleTester::finish(), DialogRuleTester::runTest(), DialogRuleTester::testOffline(), DialogRuleTester::updateHeader(), ruleTesterHasRawRules() (+1 more)
+Nodes (11): TestRouteRequest, TestRouteResponse, DialogRuleTester::buildRequest(), DialogRuleTester::DialogRuleTester(), DialogRuleTester::finish(), DialogRuleTester::runTest(), DialogRuleTester::send(), DialogRuleTester::testOffline() (+3 more)
 
 ### Community 315 - "fromHapp"
-Cohesion: 0.15
+Cohesion: 0.20
 Nodes (14): armRoutingRestart(), builtinOutbound(), decodeLenientBase64(), fromHapp(), fromThroneShare(), happList(), happValue(), ImportSubscriptionRoute() (+6 more)
 
 ### Community 316 - "dump_cpp"
-Cohesion: 0.09
-Nodes (19): dump_cpp(), dump_cpp_enum(), dump_cpp_enums(), dump_cpp_header(), dump_cpp_message(), dump_cpp_messages(), construct_path(), get_relative_output_dir() (+11 more)
+Cohesion: 0.05
+Nodes (28): function_ref, dump_cpp(), dump_cpp_enum(), dump_cpp_enums(), dump_cpp_header(), dump_cpp_message(), dump_cpp_messages(), load_file() (+20 more)
 
 ### Community 317 - "HttpGetOptions"
 Cohesion: 0.11
 Nodes (16): HttpGetOptions, directWhenDisconnected, headers, http2, maxBytes, strictTls, tlsProtocol, transferTimeoutMs (+8 more)
 
 ### Community 318 - "PlatformInterface"
-Cohesion: 0.13
-Nodes (15): CheckConfig(), newBoxContext(), parseConfig(), closeBoxWithTimeout(), NewInstance(), ResolveDomains(), newPlatformInterfaceWrapper(), prepareTestEnv() (+7 more)
+Cohesion: 0.11
+Nodes (10): CheckConfig(), newBoxContext(), parseConfig(), NewInstance(), newPlatformInterfaceWrapper(), installProtector(), InterfaceUpdateListener, PlatformInterface (+2 more)
 
-### Community 319 - "GroupSortMethod"
+### Community 319 - "TuneProfiles.cpp"
 Cohesion: 0.17
-Nodes (12): GroupSortMethod, ByAddress, ById, ByLatency, ByName, BySecurity, ByTestResult, ByTraffic (+4 more)
+Nodes (17): Apply(), CheckOptions(), Copy(), Describe(), DialHost(), ParseDelays(), ParseFingerprints(), SpaceFor() (+9 more)
 
 ### Community 320 - "UiMode.cpp"
 Cohesion: 0.18
 Nodes (23): actionOf(), Allows(), appendSection(), Apply(), Fold(), FoldTarget(), formOf(), hasShownContent() (+15 more)
 
 ### Community 321 - "QJsonArray"
-Cohesion: 0.01
-Nodes (282): QRegularExpression, Claim, outcome, ownerPid, ClaimOutcome, HandedOff, HeldByHeadless, HeldByOther (+274 more)
+Cohesion: 0.02
+Nodes (132): tuple, bind(), QRegularExpression, QJsonArray, FromAsset(), IsNewer(), Parse(), get_edit_text_serverAddress (+124 more)
 
 ### Community 322 - "SpeedtestPanelState"
 Cohesion: 0.10
@@ -2140,48 +2114,48 @@ Cohesion: 0.10
 Nodes (19): ParseResult, error, errorSpan, ok, root, Span, length, offset (+11 more)
 
 ### Community 326 - "Target"
-Cohesion: 0.13
-Nodes (12): Target, coreConfig, entID, onResult, outboundTags, qwdttConfig, tag2entID, testCurrent (+4 more)
+Cohesion: 0.14
+Nodes (11): Target, coreConfig, entID, outboundTags, qwdttConfig, tag2entID, testCurrent, useDefaultOutbound (+3 more)
 
 ### Community 327 - "KdeBackend"
-Cohesion: 0.10
-Nodes (13): GlobalHotkeys::setActions(), Action, key, name, text, actionId(), callKGlobalAccel(), KdeBackend (+5 more)
+Cohesion: 0.09
+Nodes (15): GlobalHotkeys::setActions(), Action, key, name, text, actionId(), callKGlobalAccel(), KdeBackend (+7 more)
 
-### Community 328 - "TuneWorker.cpp"
-Cohesion: 0.03
-Nodes (37): createQThread(), createThreadImpl(), QThreadCreateThread, m_future, deserialize_options, delimited, deserialize(), serialize() (+29 more)
+### Community 328 - "Bootstrap.cpp"
+Cohesion: 0.02
+Nodes (108): QrDecoder, m_qr, quirc, quirc_destroy(), deserialize_options, delimited, deserialize(), serialize() (+100 more)
 
 ### Community 329 - "golang.org/x/sys/windows.GUID"
-Cohesion: 0.37
-Nodes (16): baseRules(), condition(), equal16(), equal32(), equal8(), equalAddr6(), inPrefix(), inPrefixes() (+8 more)
+Cohesion: 0.45
+Nodes (14): baseRules(), condition(), equal16(), equal32(), equal8(), equalAddr6(), inPrefix(), inPrefixes() (+6 more)
 
 ### Community 330 - ".showResult"
-Cohesion: 0.18
-Nodes (12): hash_combine(), MarkDownCode, mWhat, MarkDownColumn, MarkDownColumn::MarkDownColumn(), mPrecision, mSuffix, mTitle (+4 more)
+Cohesion: 0.16
+Nodes (13): hash_combine(), MarkDownCode, MarkDownCode::MarkDownCode(), mWhat, MarkDownColumn, MarkDownColumn::MarkDownColumn(), mPrecision, mSuffix (+5 more)
 
 ### Community 331 - "espCBC"
 Cohesion: 0.17
 Nodes (3): cbcMode, espAEAD, espCBC
 
 ### Community 333 - "ConnectionsTreeModel"
-Cohesion: 0.05
-Nodes (20): RuleToggle, Added, Failed, Moved, Removed, Column, ColOutbound, ColProtocol (+12 more)
+Cohesion: 0.06
+Nodes (12): RuleToggle, Added, Failed, Moved, Removed, ConnectionsTreeModel, m_groups, public (+4 more)
 
 ### Community 334 - "PreflightReport"
-Cohesion: 0.11
-Nodes (39): preflightApiConfig(), preflightApiKey(), preflightApiSource(), preflightBuild(), PreflightCore, path, report, reported (+31 more)
+Cohesion: 0.14
+Nodes (34): preflightApiConfig(), preflightApiKey(), preflightBuild(), PreflightCore, path, report, reported, preflightCoreGranted() (+26 more)
 
 ### Community 335 - "parse_test.go"
-Cohesion: 0.15
+Cohesion: 0.13
 Nodes (12): collectRule(), formatPrefix(), ParseIPCIDRs(), defaultRule(), logicalRule(), prefixes(), sampleRules(), TestParseBinary() (+4 more)
 
 ### Community 336 - "Group.cpp"
-Cohesion: 0.05
-Nodes (33): GroupSortAction, descending, method, bitrateToBps(), Commit, Moved, Stale, Unchanged (+25 more)
+Cohesion: 0.06
+Nodes (32): GroupSortAction, descending, method, bitrateToBps(), Commit, Moved, Stale, Unchanged (+24 more)
 
-### Community 337 - "Register"
-Cohesion: 0.08
-Nodes (23): EditTarget, Group, Profile, Routes, Settings, Change, enabled, mode (+15 more)
+### Community 337 - "IsBeingEdited"
+Cohesion: 0.25
+Nodes (8): EditTarget, Group, Profile, Routes, Settings, EditLock::EditLock(), editLockKey(), IsBeingEdited()
 
 ### Community 338 - "X11Backend"
 Cohesion: 0.09
@@ -2193,7 +2167,7 @@ Nodes (14): AutoSelectorMonitor, exhaustedSince, groupTag, lastHealthPersist, la
 
 ### Community 340 - "ProcessPicker"
 Cohesion: 0.06
-Nodes (30): ProcessPicker, addButton, chooseOne, filter, generation, matchGroup, model, public (+22 more)
+Nodes (29): ProcessPicker, addButton, chooseOne, filter, generation, matchGroup, model, public (+21 more)
 
 ### Community 341 - "DialogNewScan"
 Cohesion: 0.11
@@ -2204,16 +2178,16 @@ Cohesion: 0.05
 Nodes (24): AutoSelectorController, control_, monitorLoopStarted_, public, rankedFor_, rankingInFlight_, tests_, EngineControl (+16 more)
 
 ### Community 343 - "Validation.cpp"
-Cohesion: 0.15
-Nodes (25): Host(), HostPort(), validationAsciiAlnum(), validationDigit(), validationGoCaptureName(), validationGoOnlyProperty(), validationHexDigit(), validationHostMessage() (+17 more)
+Cohesion: 0.14
+Nodes (31): GoRegex(), HasError(), Host(), HostPort(), Regex(), validationAsciiAlnum(), validationBase64Char(), validationDigit() (+23 more)
 
 ### Community 344 - "dialog_edit_group_advanced.cpp"
-Cohesion: 0.10
-Nodes (11): QBoxLayout, IsIpAddressV4(), IsIpAddressV6(), DialogEditGroupAdvanced::accept(), DialogEditGroupAdvanced::endpointMode(), DialogEditGroupAdvanced::syncEndpoint(), GroupAdvancedStayOpenFilter, groupEndpointHost() (+3 more)
+Cohesion: 0.06
+Nodes (22): QIODevice, QNetworkProxy, QBoxLayout, RegisterWarp(), warpProxy(), loadDownloadProgressSink(), MixedInboundProxy(), NetworkRequestHelper::DownloadAsset() (+14 more)
 
 ### Community 345 - "RequestIdentity"
-Cohesion: 0.12
-Nodes (17): RequestIdentity, allowHwidRetry, device, httpVersion, hwidCookie, sendHwid, tlsVersion, userAgent (+9 more)
+Cohesion: 0.09
+Nodes (23): RequestIdentity, allowHwidRetry, device, httpVersion, hwidCookie, sendHwid, tlsVersion, userAgent (+15 more)
 
 ### Community 346 - "ssh"
 Cohesion: 0.09
@@ -2227,21 +2201,21 @@ Nodes (18): IpList, auto_update, entries, entriesLoaded, entryCount, id, last_er
 Cohesion: 0.09
 Nodes (16): OtpProfile, id, OtpProfilesRepo::AddOtpProfile(), OtpProfilesRepo::DeleteOtpProfiles(), OtpProfilesRepo::GetAllOtpProfileIds(), OtpProfilesRepo::GetAllOtpProfiles(), OtpProfilesRepo::GetOtpProfile(), OtpProfilesRepo::GetOtpProfileByName() (+8 more)
 
-### Community 349 - "FixProfileDisplayName"
-Cohesion: 0.13
-Nodes (10): FixProfileDisplayName(), MainWindow::applyConnectionFilters(), MainWindow::UpdateConnectionList(), RoutableServer, fullLabel, id, label, RoutableServers() (+2 more)
-
-### Community 350 - "shadowsocks"
+### Community 349 - "ClaimDataDir"
 Cohesion: 0.10
-Nodes (7): shadowsocks, method, multiplex, password, plugin, plugin_opts, uot
+Nodes (14): Claim, outcome, ownerPid, ClaimOutcome, HandedOff, HeldByHeadless, HeldByOther, Owned (+6 more)
+
+### Community 350 - "ProcessCatalog"
+Cohesion: 0.10
+Nodes (16): Row, entry, header, matchLength, matchStart, ProcessCatalog, age, loading (+8 more)
 
 ### Community 351 - "StatsService"
-Cohesion: 0.05
-Nodes (14): ConnectionSnapshot, rows, updatedAtMs, QTimer, StatsService, connections_, connectionsWatch_, lines_ (+6 more)
+Cohesion: 0.06
+Nodes (13): ConnectionSnapshot, rows, updatedAtMs, QTimer, StatsService, connections_, connectionsWatch_, lines_ (+5 more)
 
 ### Community 352 - "test_verify_common_artifacts.py"
-Cohesion: 0.12
-Nodes (9): DesktopResumeTests, PackageResumeTests, StablePublishTests, git(), job_section(), main(), verify_cpp_artifacts(), verify_pack_artifacts() (+1 more)
+Cohesion: 0.14
+Nodes (6): DesktopResumeTests, PackageResumeTests, StablePublishTests, verify_cpp_artifacts(), verify_pack_artifacts(), verify_release_artifacts()
 
 ### Community 353 - "LiveChart"
 Cohesion: 0.08
@@ -2255,17 +2229,17 @@ Nodes (34): _e2e_trace_errors(), _assert_direct_blocked(), _boot_lines(), _boots
 Cohesion: 0.12
 Nodes (9): GlobalHotkeyBackend_Create(), hotkeyCharacterKey(), hotkeyErrorText(), hotkeyModifiers(), hotkeyVirtualKey(), hotkeyWindowProc(), WindowsHotkeyBackend, hwnd (+1 more)
 
-### Community 356 - "edit_openvpn.cpp"
-Cohesion: 0.11
-Nodes (7): ScopedOtpSuppression, EditOpenConnect::onStart(), EditOpenConnect::saveInto(), EditOpenConnect::withInput(), EditOpenVPN::onStart(), EditOpenVPN::saveInto(), EditOpenVPN::withInput()
+### Community 356 - "edit_dnstt.cpp"
+Cohesion: 0.04
+Nodes (28): editor_state_changed, get_edit_dialog, set_edit_title, EditAutoSelector::resizeDialogToContent(), EditDnstt::EditDnstt(), EditDnstt::updateControls(), EditDnsttMode, kEditDnsttClassic (+20 more)
 
 ### Community 357 - "anyTLS"
 Cohesion: 0.10
 Nodes (6): anyTLS, idle_session_check_interval, idle_session_timeout, min_idle_session, password, tls
 
-### Community 358 - "DialogScanInstance::bindValidation"
-Cohesion: 0.17
-Nodes (11): DialogScanInstance::bindValidation(), DialogScanInstance::collect(), DialogScanInstance::currentWarpMode(), scanInstanceAlpn(), scanInstanceAlpnError(), scanInstanceNeedsTlsError(), scanInstanceNumberError(), scanInstancePathError() (+3 more)
+### Community 358 - "Session"
+Cohesion: 0.20
+Nodes (11): TestSessionStopAndEvents(), Acquire(), Lookup(), newSession(), pruneLocked(), Stop(), countingWriter, Counters (+3 more)
 
 ### Community 359 - "PreflightInstance"
 Cohesion: 0.14
@@ -2276,8 +2250,8 @@ Cohesion: 0.10
 Nodes (9): socks, password, phobos_key, phobos_masking, phobos_media_ssrc, socks4a, uot, username (+1 more)
 
 ### Community 361 - "DialogScanInstance::setupTargets"
-Cohesion: 0.20
-Nodes (6): DialogScanInstance::buildConfigPhase(), DialogScanInstance::buildHttpPhase(), DialogScanInstance::buildIcmpPhase(), DialogScanInstance::buildTcpPhase(), DialogScanInstance::setupTargets(), scanInstanceSetupNumber()
+Cohesion: 0.18
+Nodes (7): DialogScanInstance::buildConfigPhase(), DialogScanInstance::buildHttpPhase(), DialogScanInstance::buildIcmpPhase(), DialogScanInstance::buildTcpPhase(), DialogScanInstance::matchWarpTargets(), DialogScanInstance::setupTargets(), scanInstanceSetupNumber()
 
 ### Community 362 - "etl-compatibility.cpp"
 Cohesion: 0.06
@@ -2288,27 +2262,27 @@ Cohesion: 0.08
 Nodes (19): DialogAutoSelector, m_columnsSized, m_detail, m_footer, m_headline, m_onlyProblems, m_pin, m_pinnedTag (+11 more)
 
 ### Community 364 - "EditOpenConnectAdvanced"
-Cohesion: 0.04
-Nodes (20): EditOpenConnectAdvanced, CACHE, ent, form, pageInput, public, ui, Form (+12 more)
+Cohesion: 0.09
+Nodes (9): EditOpenConnectAdvanced, CACHE, ent, form, pageInput, public, ui, Form (+1 more)
 
 ### Community 366 - "StartMode"
-Cohesion: 0.15
-Nodes (11): StartMode, FromInitial, RescanResults, Resume, StartResult, error, targetsChanged, ScanManager::Start() (+3 more)
+Cohesion: 0.14
+Nodes (13): StartResult, error, targetsChanged, ScanManager::Start(), ScanManager::startTune(), scanManagerListHeader(), scanManagerRescanResumable(), BuildWarpTemplate() (+5 more)
 
 ### Community 369 - "AppTrafficRow"
 Cohesion: 0.18
 Nodes (12): AppTrafficRow, bucket_start, down, process_name, up, ConfigTrafficRow, bucket_start, down (+4 more)
 
 ### Community 370 - "QList"
-Cohesion: 0.16
-Nodes (12): AppMetaRow, first_seen, last_path, last_seen, process_name, TrafficSeriesPoint, bucket_start, down (+4 more)
+Cohesion: 0.18
+Nodes (11): ConfigUsage, down, profile_id, up, TrafficSeriesPoint, bucket_start, down, up (+3 more)
 
 ### Community 371 - "QUICFields"
 Cohesion: 0.12
 Nodes (9): QUICFields, connection_receive_window, disable_path_mtu_discovery, disable_path_mtu_discovery_unspecified, idle_timeout, initial_packet_size, keep_alive_period, max_concurrent_streams (+1 more)
 
 ### Community 372 - "re"
-Cohesion: 0.21
+Cohesion: 0.22
 Nodes (4): InterfaceRegressions, read(), tr_strings(), translations()
 
 ### Community 373 - "Transport"
@@ -2316,8 +2290,8 @@ Cohesion: 0.10
 Nodes (12): Transport, authority, early_data_header_name, headers, host, idle_timeout, max_early_data, method (+4 more)
 
 ### Community 374 - "RoutesRepo.cpp"
-Cohesion: 0.16
-Nodes (7): RoutesRepo::DeleteRouteProfile(), RoutesRepo::DeleteRouteProfiles(), RoutesRepo::GetAllRouteProfileIds(), RoutesRepo::OwnedBy(), RoutesRepo::routeRuleToJson(), RoutesRepo::RoutesRepo(), RoutesRepo::UpdateRouteProfiles()
+Cohesion: 0.14
+Nodes (6): RoutesRepo::DeleteRouteProfiles(), RoutesRepo::GetAllRouteProfileIds(), RoutesRepo::OwnedBy(), RoutesRepo::routeProfileToJson(), RoutesRepo::RoutesRepo(), RoutesRepo::saveToDatabase()
 
 ### Community 375 - "http"
 Cohesion: 0.11
@@ -2339,29 +2313,29 @@ Nodes (9): snell, mode, network, obfs_host, obfs_mode, psk, reuse, userkey (+1 m
 Cohesion: 0.23
 Nodes (9): TrafficStatsRepo::bucketExpr(), TrafficStatsRepo::createTables(), TrafficStatsRepo::PruneHour(), TrafficStatsRepo::RollupMinuteToHour(), TrafficStatsRepo::TrafficStatsRepo(), TrafficStatsRepo::UpsertAppMeta(), TrafficStatsRepo::UpsertAppMinuteBatch(), TrafficStatsRepo::UpsertConfigMeta() (+1 more)
 
-### Community 380 - "CoreSupervisorStderrTail"
-Cohesion: 0.14
-Nodes (17): CoreSupervisor::attachProcess(), CoreSupervisor::currentGeneration(), CoreSupervisor::noteCoreError(), CoreSupervisor::onCoreSpawned(), CoreSupervisor::startPrivilegeProbe(), coreSupervisorFeedStderr(), coreSupervisorIsPanicLine(), coreSupervisorNoteStderrLine() (+9 more)
+### Community 380 - "DialogEditIpList::onFetched"
+Cohesion: 0.13
+Nodes (11): DialogEditIpList::currentSource(), DialogEditIpList::defaultName(), DialogEditIpList::fetchMatchesInputs(), DialogEditIpList::loadList(), DialogEditIpList::onFetched(), DialogEditIpList::sourceError(), DialogEditIpList::startFetch(), DialogEditIpList::updateControls() (+3 more)
 
 ### Community 381 - "TrafficStatsRepo"
-Cohesion: 0.07
-Nodes (9): guarded(), read(), TrafficStatsRepo, consecutiveFailures, kMaxConsecutiveFailures, mu, write(), GroupUpdater::drain() (+1 more)
+Cohesion: 0.10
+Nodes (4): TrafficStatsRepo, consecutiveFailures, kMaxConsecutiveFailures, mu
 
 ### Community 382 - "FormIssue"
 Cohesion: 0.14
 Nodes (14): Field, active, labelText, severity, trim, FormIssue, label, message (+6 more)
 
-### Community 383 - "RuleNames"
-Cohesion: 0.11
-Nodes (14): RuleNames, builtWith, origins, outboundNames, rawProfile, routeId, vpnEndpointProfiles, TestRouteStep (+6 more)
+### Community 383 - "Profile.cpp"
+Cohesion: 0.19
+Nodes (10): Profile::DisplayLatencyColor(), Profile::Profile(), Profile::ServiceCheckedAt(), ProfileFilter::ChangedByIdentity(), ProfileFilter::Common(), ProfileFilter_ent_identity_key(), ProfileFilter_ent_key(), ProfileFilter::OnlyInSrc() (+2 more)
 
 ### Community 384 - "OpenConnectTLS"
 Cohesion: 0.07
 Nodes (20): OpenConnectTLS, certificate_authority, certificate_authority_path, client_certificate, client_certificate_path, client_key, client_key_password, client_key_path (+12 more)
 
 ### Community 385 - "AutoSelectorMemberView"
-Cohesion: 0.05
-Nodes (43): AutoSelectorMemberView, active, averageMs, cooldownUntilMs, deviationMs, dialFail, dialTotal, failures (+35 more)
+Cohesion: 0.06
+Nodes (33): AutoSelectorMemberView, active, averageMs, cooldownUntilMs, deviationMs, dialFail, dialTotal, failures (+25 more)
 
 ### Community 386 - "simple-protobuf"
 Cohesion: 0.09
@@ -2388,8 +2362,8 @@ Cohesion: 0.11
 Nodes (7): mieru, multiplexing, password, server_ports, traffic_pattern, transport, username
 
 ### Community 392 - "ProfileEditor"
-Cohesion: 0.02
-Nodes (36): EditHttp, ent, public, ui, EditJuicity, ent, public, ui (+28 more)
+Cohesion: 0.07
+Nodes (10): EditShadowSocks, ent, public, ui, Form, ProfileEditor, set_edit_text_serverAddress, set_edit_text_serverPort (+2 more)
 
 ### Community 393 - "shadowtls"
 Cohesion: 0.12
@@ -2400,12 +2374,12 @@ Cohesion: 0.13
 Nodes (13): SubUserInfo, announce, download, expire, has_quota, server_interval, support_url, title (+5 more)
 
 ### Community 395 - "LUID"
-Cohesion: 0.11
-Nodes (15): pfHosts(), forwardingEnabled(), LUIDFromIndex(), runNetsh(), GetIPForwardTable2(), GetUnicastIPAddressTable(), convertInterfaceIndexToLUID(), convertInterfaceLUIDToGUID() (+7 more)
+Cohesion: 0.14
+Nodes (10): pfHosts(), forwardingEnabled(), LUIDFromGUID(), LUIDFromIndex(), runNetsh(), convertInterfaceGUIDToLUID(), convertInterfaceIndexToLUID(), convertInterfaceLUIDToGUID() (+2 more)
 
 ### Community 396 - "PreflightSettings"
 Cohesion: 0.09
-Nodes (24): preflightApplySetting(), PreflightDbRead, code, noTable, read, preflightQuerySettings(), preflightReadSettings(), PreflightSettings (+16 more)
+Nodes (25): preflightApplySetting(), PreflightDbRead, code, noTable, read, preflightMachineIdFile(), preflightQuerySettings(), preflightReadSettings() (+17 more)
 
 ### Community 397 - "Config"
 Cohesion: 0.08
@@ -2416,20 +2390,20 @@ Cohesion: 0.08
 Nodes (20): xrayXDrive, concurrency, eagerWindowMs, flushIntervalMs, frontAddress, frontPort, holeTimeoutMs, maxPollIntervalMs (+12 more)
 
 ### Community 399 - "Column"
+Cohesion: 0.12
+Nodes (4): Column, mIndex, mStmtPtr, Column::getUInt()
+
+### Community 400 - "RunHeadless"
 Cohesion: 0.10
-Nodes (7): integer_sequence, Column, mIndex, mStmtPtr, sqlite3_stmt, Statement::getColumns(), Column::getUInt()
+Nodes (13): HeadlessInheritedReload, m_armed, headlessMainApiSummary(), headlessMainDbAdvice(), headlessMainDbPrimary(), headlessMainExecSelf(), headlessMainHasTty(), headlessMainPrint() (+5 more)
 
-### Community 400 - "MonotonicMs"
-Cohesion: 0.03
-Nodes (39): DataDirLock, error, Result, Acquired, Busy, Failed, MonotonicMs(), CurrentStatsSink() (+31 more)
+### Community 401 - "ResumeGuard.cpp"
+Cohesion: 0.15
+Nodes (13): ResumeGuard::arm(), ResumeGuard::decide(), ResumeGuard::disarm(), ResumeGuard::markStable(), ResumeGuard::noteExit(), ResumeGuard::previousExit(), ResumeGuard::ResumeGuard(), ResumeGuard::save() (+5 more)
 
-### Community 401 - "MainWindow::setupConnectionList"
-Cohesion: 0.11
-Nodes (8): MainWindow::setConnectionGroupsExpanded(), MainWindow::setupConnectionFilter(), MainWindow::setupConnectionList(), MainWindow::setupConnectionSortMenu(), MainWindow::syncConnectionExpandButton(), MainWindow::syncConnectionExpansion(), MainWindow::syncConnectionSourceColumn(), MainWindow::refresh_status()
-
-### Community 402 - "xrayCollectUnmodelled"
-Cohesion: 0.13
-Nodes (17): xrayCollectUnmodelled(), XrayKey, modelled, name, protects, value, XrayUnmodelledKey, path (+9 more)
+### Community 402 - "linux/UrlScheme.cpp"
+Cohesion: 0.25
+Nodes (16): appsDir(), DesktopEntry, current, desktopFilePath(), execLine(), execTarget(), iconTarget(), mimeappsLists() (+8 more)
 
 ### Community 403 - "TrafficLooper"
 Cohesion: 0.06
@@ -2440,8 +2414,8 @@ Cohesion: 0.10
 Nodes (23): Clash, proxies, grpcOpts, grpc_service_name, h2Opts, host, path, httpOpts (+15 more)
 
 ### Community 405 - "sqlite3Parser"
-Cohesion: 0.30
-Nodes (11): sqlite3Parser(), yy_accept(), yy_find_reduce_action(), yy_find_shift_action(), yy_parse_failed(), yy_pop_parser_stack(), yy_shift(), yy_syntax_error() (+3 more)
+Cohesion: 0.26
+Nodes (12): sqlite3Parser(), yy_accept(), yy_destructor(), yy_find_reduce_action(), yy_find_shift_action(), yy_parse_failed(), yy_pop_parser_stack(), yy_shift() (+4 more)
 
 ### Community 406 - "platform.go"
 Cohesion: 0.11
@@ -2449,55 +2423,55 @@ Nodes (5): NewWIFIState(), NetworkInterface, NetworkInterfaceIterator, Notificat
 
 ### Community 407 - "dnstt.cpp"
 Cohesion: 0.02
-Nodes (118): DnstLink, backend, domain, hasResolvers, params, resolvers, tag, transport (+110 more)
+Nodes (107): DnstLink, backend, domain, hasResolvers, params, resolvers, tag, transport (+99 more)
 
 ### Community 408 - "ImportFilter"
-Cohesion: 0.08
-Nodes (20): CountryRules, drop, keep, FilterProtocol, id, label, types, ImportFilter (+12 more)
+Cohesion: 0.07
+Nodes (28): CountryRules, drop, keep, FilterProtocol, id, label, types, ImportFilter (+20 more)
 
 ### Community 409 - "Enum"
 Cohesion: 0.11
 Nodes (14): checkIfShouldThrow(), ConsoleReporter::getSuccessOrFailColor(), ConsoleReporter::getSuccessOrFailString(), ConsoleReporter::successOrFailColoredStringToStream(), Enum, eq, ge, gt (+6 more)
 
-### Community 410 - "GroupsRepo.cpp"
-Cohesion: 0.16
-Nodes (10): ParseSubUserInfo(), GroupsRepo::AddGroup(), GroupsRepo::CurrentGroup(), GroupsRepo::DeleteGroup(), GroupsRepo::GetGroup(), GroupsRepo::groupFromJson(), GroupsRepo::loadFromDatabase(), GroupsRepo::NewGroup() (+2 more)
+### Community 410 - "ProcessPickerProgram"
+Cohesion: 0.12
+Nodes (14): ProcessCompletionModel::rebuild(), processPickerAgo(), ProcessPickerFilter, needle, showSystem, ProcessPickerProgram, browsed, connectedNow (+6 more)
 
 ### Community 411 - "VpnEndpointView"
-Cohesion: 0.11
-Nodes (17): VpnEndpointView, cipher, connected, connectedSince, displayName, dns, domains, error (+9 more)
+Cohesion: 0.09
+Nodes (18): VpnEndpointView, cipher, connected, connectedSince, displayName, dns, domains, error (+10 more)
 
 ### Community 412 - "BufferedSlice"
 Cohesion: 0.09
 Nodes (19): BufferedLine, seq, text, time, BufferedSlice, lines, more, newestSeq (+11 more)
 
-### Community 413 - "edit_autoselector.cpp"
-Cohesion: 0.03
-Nodes (50): EditChain, droppedHops, ent, form, public, stepTestRunning, ui, get_edit_dialog (+42 more)
+### Community 413 - "EditChain"
+Cohesion: 0.12
+Nodes (7): EditChain, droppedHops, ent, form, public, stepTestRunning, ui
 
 ### Community 414 - "DataViewItem"
 Cohesion: 0.12
 Nodes (17): DataViewItem, AutoSelector, Download, LatencyTest, PendingRestart, Scanner, SpeedTest, VpnEndpoint (+9 more)
 
-### Community 415 - "ChainBuildRequest"
-Cohesion: 0.04
-Nodes (44): ResolverSourceCache, ResolverSourceScope, cache_, previous_, EndpointResolution, address, origin, problem (+36 more)
+### Community 415 - "ResolverSourceScope"
+Cohesion: 0.18
+Nodes (8): ResolverSourceCache, ResolverSourceScope, cache_, previous_, GenerateEndpointScope, cache_, previous_, resolvers_
 
 ### Community 416 - "WebDavUpdateIndex"
 Cohesion: 0.15
-Nodes (12): FromSettings(), WebDavHttpDate(), WebDavIsoDate(), WebDavListedFile, modified, name, WebDavListFolder(), WebDavMultiStatus() (+4 more)
+Nodes (16): FromSettings(), List(), WebDavEntryFromJson(), WebDavHttpDate(), WebDavIsoDate(), WebDavListedFile, modified, name (+8 more)
 
-### Community 417 - "DialogScanInstance::setupResults"
-Cohesion: 0.17
-Nodes (3): DialogScanInstance::removeSelectedResults(), DialogScanInstance::setupResults(), scanInstanceSyncFoundCount()
+### Community 417 - "DialogScanInstance::DialogScanInstance"
+Cohesion: 0.07
+Nodes (18): DialogScanInstance::applyResults(), DialogScanInstance::applyWarpRegistration(), DialogScanInstance::DialogScanInstance(), DialogScanInstance::fillPortPresets(), DialogScanInstance::pauseClicked(), DialogScanInstance::registerWarpIdentity(), DialogScanInstance::rescanClicked(), DialogScanInstance::save() (+10 more)
 
 ### Community 418 - "UpdateOutcome"
 Cohesion: 0.11
 Nodes (17): Failure, Database, Empty, Fetch, Internal, NoGroup, None, UpdateOutcome (+9 more)
 
-### Community 419 - "olcrtc"
-Cohesion: 0.08
-Nodes (11): olcrtc, bridgeAuth, channel, deviceID, dns, key, options, provider (+3 more)
+### Community 419 - "exiting"
+Cohesion: 0.19
+Nodes (9): exiting(), CoreSupervisor::onCoreExited(), CoreSupervisor::onNewConnection(), CoreSupervisor::onPrivilegeProbed(), CoreSupervisor::postRestart(), CoreSupervisor::resetCore(), CoreSupervisor::restartDeadCore(), CoreSupervisor::restartForGuard() (+1 more)
 
 ### Community 420 - "EditLock"
 Cohesion: 0.15
@@ -2511,17 +2485,17 @@ Nodes (7): EditHysteriaRealm, ent, form, public, ui, Form, EditHysteriaRealm::Ed
 Cohesion: 0.14
 Nodes (8): indented_ostream, buffer, indented_streambuf, dest, indent, indent_level, indent_spaces, last_char
 
-### Community 423 - "MainWindow::dialog_message_impl"
-Cohesion: 0.09
-Nodes (14): MwMessage, GroupsChanged, ProfileChanged, Raise, RestartProgram, UpdateSettings, UpdateShortcuts, PendingSort (+6 more)
+### Community 423 - "EditOpenVPNAdvanced"
+Cohesion: 0.12
+Nodes (8): EditOpenVPNAdvanced, CACHE, ent, form, pageInput, public, ui, Form
 
 ### Community 424 - "Config"
 Cohesion: 0.09
 Nodes (19): ApplyResult, address, error, port, state, text, Config, address (+11 more)
 
-### Community 425 - "ExitReason"
-Cohesion: 0.18
-Nodes (10): ExitReason, None, Restart, RestartElevated, RestartWithTun, RunUpdater, ExitController::requestExit(), EngineHost::requestExit() (+2 more)
+### Community 425 - "InstanceServer"
+Cohesion: 0.12
+Nodes (6): InstanceServer, m_name, m_server, TrayPopupFrame::TrayPopupFrame(), TrayProfileSelector::activateItem(), TrayProfileSelector::event()
 
 ### Community 426 - "echoPair"
 Cohesion: 0.23
@@ -2532,60 +2506,60 @@ Cohesion: 0.13
 Nodes (11): BigO, BigO::BigO(), mConstant, mName, mNormalizedRootMeanSquare, mapRangeMeasure(), sqlite3_index_constraint, iColumn (+3 more)
 
 ### Community 428 - "dialog_edit_profile_singbox.cpp"
-Cohesion: 0.14
-Nodes (4): DialogEditProfile::bindSingboxStream(), DialogEditProfile::ownTlsSpoof(), DialogEditProfile::saveSingboxStream(), DialogEditProfile::setupSingboxStream()
+Cohesion: 0.18
+Nodes (3): DialogEditProfile::bindSingboxStream(), DialogEditProfile::ownTlsSpoof(), DialogEditProfile::saveSingboxStream()
 
 ### Community 429 - "Parser"
 Cohesion: 0.32
 Nodes (4): Parser, m_error, m_errorSpan, m_pos
 
-### Community 430 - "DefaultIpLists.cpp"
-Cohesion: 0.18
-Nodes (11): defaultIpListBuild(), defaultIpListFind(), DefaultIpListSpec, name, ruleSet, seedCidrs, seedResource, defaultIpListSpecs() (+3 more)
-
-### Community 431 - "tailscale.cpp"
+### Community 430 - "RuleIssue"
 Cohesion: 0.13
-Nodes (14): tailscale::Build(), tailscale::DisplayAddress(), tailscale::DisplayType(), tailscale::ExportToJson(), tailscale::ExportToLink(), tailscale::GetAddress(), tailscale::GetSecurity(), tailscale::ParseFromJson() (+6 more)
+Nodes (12): RuleIssue, attr, message, related, severity, value, routeServiceIssueLine(), RouteItem::bindAttributeEditor() (+4 more)
+
+### Community 431 - "EngineEvents::instance"
+Cohesion: 0.12
+Nodes (6): AutoSelectorController::AutoSelectorController(), EngineEvents::instance(), EngineHost::connectChangeTopics(), EngineHost::construct(), EngineHost::create(), CoreSupervisor::CoreSupervisor()
 
 ### Community 432 - "Space"
-Cohesion: 0.11
-Nodes (16): Limits, attempts, confirmTop, maxAttempts, mtuAttempts, Space, delay, fragmentOn (+8 more)
+Cohesion: 0.12
+Nodes (13): Knob, current, key, values, Space, delay, fragmentOn, knobs (+5 more)
 
 ### Community 433 - "IpListItem::IpListItem"
-Cohesion: 0.17
-Nodes (7): IpListItem::IpListItem(), IpListItem::SetActionsVisible(), IpListItem::SetList(), IpListItem::SetRefreshing(), ipListSourceText(), makeIpListItemButton(), makeIpListItemLabel()
+Cohesion: 0.16
+Nodes (8): IpListItem::IpListItem(), IpListItem::resizeEvent(), IpListItem::SetActionsVisible(), IpListItem::SetList(), IpListItem::SetRefreshing(), ipListSourceText(), makeIpListItemButton(), makeIpListItemLabel()
 
 ### Community 434 - "TestRunner"
-Cohesion: 0.03
-Nodes (69): EnginePolicy, LatencyKind, Ip, Url, TestObserver, TestRunner, credited_, creditMu_ (+61 more)
+Cohesion: 0.06
+Nodes (40): onResult, runningSnapshot_, TestRunner::applyIpResult(), TestRunner::applyServiceResult(), TestRunner::applyUrlResult(), TestRunner::clearTestState(), TestRunner::contextName(), TestRunner::creditTraffic() (+32 more)
 
 ### Community 435 - "windows/SystemProxy.cpp"
 Cohesion: 0.24
 Nodes (9): announceProxyChange(), connectionLabel(), connectionOptionList(), proxyConnectionNames(), proxyServerString(), setConnectionOptions(), SystemProxy_Apply(), SystemProxy_Clear() (+1 more)
 
 ### Community 436 - "ScanTuneOptions"
-Cohesion: 0.05
-Nodes (39): ScanTuneOptions, attempts, fingerprintList, fingerprints, fragment, fragmentDelays, maxAttempts, maxMinutes (+31 more)
+Cohesion: 0.09
+Nodes (22): ScanTuneOptions, attempts, fingerprintList, fingerprints, fragment, fragmentDelays, maxAttempts, maxMinutes (+14 more)
 
 ### Community 437 - "DiagnosticsTab"
 Cohesion: 0.10
 Nodes (11): DiagnosticsTab, coreWatch_, logsFailed_, logsStatus_, public, ui, namespace(), QLabel (+3 more)
 
 ### Community 438 - "EditHysteria"
-Cohesion: 0.06
-Nodes (20): EditHysteria, ent, form, public, ui, set_edit_text_serverAddress, set_edit_text_serverPort, EditHysteria::bindValidation() (+12 more)
+Cohesion: 0.07
+Nodes (16): EditHysteria, ent, form, public, ui, EditHysteria::bindValidation(), EditHysteria::EditHysteria(), EditHysteria::editHysteriaLayout() (+8 more)
 
 ### Community 439 - "buffered_reader"
 Cohesion: 0.10
 Nodes (13): buffered_reader, begin_index, buffer, BUFFER_SIZE, end_index, eof_reached, on_read, reader (+5 more)
 
 ### Community 440 - "Overlay"
-Cohesion: 0.06
-Nodes (25): ConfigSource, Default, Environment, Flags, Settings, Effective, config, explicitListen (+17 more)
+Cohesion: 0.10
+Nodes (18): ConfigSource, Default, Environment, Flags, Settings, Overlay, address, adminLan (+10 more)
 
-### Community 441 - "MainWindow::eventFilter"
-Cohesion: 0.09
-Nodes (10): connectOnce(), MainWindow::eventFilter(), MainWindow::finish_select_mode(), MainWindow::start_select_mode(), MainWindow::on_profilesTableView_doubleClicked(), MainWindow::applyProfileFilters(), MainWindow::refresh_proxy_list_impl(), MainWindow::refresh_sort_indicator() (+2 more)
+### Community 441 - "edit_chain.cpp"
+Cohesion: 0.22
+Nodes (10): acceptChainHop(), EditChain::AddProfileToListIfExist(), EditChain::hopIds(), EditChain::hopsError(), EditChain::on_select_profile_clicked(), EditChain::onEnd(), EditChain::onStart(), EditChain::ReplaceProfile() (+2 more)
 
 ### Community 442 - "iterator.go"
 Cohesion: 0.15
@@ -2624,12 +2598,12 @@ Cohesion: 0.36
 Nodes (6): alignMinute(), TrafficStatsManager::AddAppDelta(), TrafficStatsManager::AddConfigDelta(), TrafficStatsManager::Flush(), TrafficStatsManager::runRollupOnce(), TrafficStatsManager::SnapshotConfigMeta()
 
 ### Community 451 - "time.Time"
-Cohesion: 0.03
-Nodes (46): flightCapture, encodeFlight(), newFlightCapture(), normalizeServerName(), QUICSignature(), Process, awaitTransport(), launchExtraProcess() (+38 more)
+Cohesion: 0.02
+Nodes (79): flightCapture, encodeFlight(), newFlightCapture(), normalizeServerName(), QUICSignature(), carriesAny(), CalculateBRate(), newTransportHealth() (+71 more)
 
 ### Community 452 - "WebDavRequest"
-Cohesion: 0.10
-Nodes (17): WebDavIndex, etag, existed, root, WebDavPropfind(), WebDavRequest, body, hash (+9 more)
+Cohesion: 0.11
+Nodes (16): WebDavIndex, etag, existed, root, WebDavPropfind(), WebDavRequest, body, hash (+8 more)
 
 ### Community 453 - "AssetUpdates.cpp"
 Cohesion: 0.05
@@ -2640,24 +2614,24 @@ Cohesion: 0.13
 Nodes (7): EditWireguardAmnezia, ent, form, public, ui, Form, EditWireguardAmnezia::EditWireguardAmnezia()
 
 ### Community 455 - "TrayIcon"
-Cohesion: 0.13
-Nodes (3): TrayIcon, public, StartStopButton::updateToolTip()
+Cohesion: 0.11
+Nodes (6): TrayIcon, public, ipListIntervalText(), IpListItem::applyListTexts(), ipListUpdatedText(), StartStopButton::updateToolTip()
 
 ### Community 456 - "PeriodicRunner"
 Cohesion: 0.11
 Nodes (14): PeriodicRunner, m_tasks, m_timer, PeriodicTask, id, intervalMinutes, lastRun, run (+6 more)
 
-### Community 457 - "SupervisorLink.cpp"
-Cohesion: 0.17
-Nodes (3): SupervisorLink::attach(), SupervisorLink::setInPlaceRestart(), SupervisorLink::SupervisorLink()
+### Community 457 - "QStringList"
+Cohesion: 0.01
+Nodes (99): Request, admin, body, method, path, peer, query, Response (+91 more)
 
 ### Community 458 - "sampleInsert"
 Cohesion: 0.38
 Nodes (9): sampleClear(), sampleCopy(), sampleInsert(), sampleIsBetter(), sampleIsBetterPost(), samplePushPrevious(), sampleSetRowid(), sampleSetRowidInt64() (+1 more)
 
-### Community 459 - "ParseDiagnostics.cpp"
-Cohesion: 0.21
-Nodes (7): Accept(), Active(), Error(), Report(), Scope::take(), Warn(), AutoSelectorMonitor::Loop()
+### Community 459 - "snell.cpp"
+Cohesion: 0.10
+Nodes (21): snell::Build(), snell::DisplayType(), snell::ExportToJson(), snell::ExportToLink(), snell::GetSecurity(), snell::ParseFromClash(), snell::ParseFromJson(), snell::ParseFromLink() (+13 more)
 
 ### Community 460 - "NewOrb"
 Cohesion: 0.04
@@ -2668,7 +2642,7 @@ Cohesion: 0.08
 Nodes (22): sqlite3_rtree_geometry, aParam, nParam, pContext, pUser, sqlite3_rtree_query_info, aCoord, anQueue (+14 more)
 
 ### Community 462 - "ProfilesTableVerticalHeader"
-Cohesion: 0.15
+Cohesion: 0.14
 Nodes (7): ProfilesFilterProxyModel, ProfilesTableModel, ProfilesTableVerticalHeader, m_model, m_proxy, public, ProfilesTableVerticalHeader::setProfilesModel()
 
 ### Community 463 - "coreElevationGrant"
@@ -2679,13 +2653,13 @@ Nodes (14): coreElevationFinishUpdate(), coreElevationGrant(), CoreElevationInst
 Cohesion: 0.12
 Nodes (8): IpEntriesModel, addressKeys_, entries_, hasDownloadMtu_, hasMaxQName_, hasUploadMtu_, public, SortRole
 
-### Community 465 - "ScanLiveState"
-Cohesion: 0.13
-Nodes (13): ScanLiveState, error, found, log, removed, running, stage, stopping (+5 more)
+### Community 465 - "ProxyItem"
+Cohesion: 0.12
+Nodes (8): namespace(), ProxyItem, ent, item, public, remove_confirm, ui, EditChain::hopItem()
 
-### Community 466 - "aivpn"
-Cohesion: 0.09
-Nodes (8): aivpn, adaptiveLevel, adminPort, bridgeAuth, dns, key, mask, polymorphic
+### Community 466 - "dialog_edit_profile_kcp.cpp"
+Cohesion: 0.18
+Nodes (10): DialogEditProfile::loadXrayKCP(), DialogEditProfile::saveXrayKCP(), DialogEditProfile::setupXrayKCPControls(), KCPEdit, Configs, edit, xrayDefault, kcpEdits() (+2 more)
 
 ### Community 467 - "ProfilesFilterProxyModel"
 Cohesion: 0.11
@@ -2693,11 +2667,11 @@ Nodes (10): ProfilesFilterProxyModel, m_address, m_name, m_test, m_testTerms, m_
 
 ### Community 468 - "DialogEditProfile::typeSelected"
 Cohesion: 0.09
-Nodes (16): advancedType(), collectTabOrder(), DialogEditProfile::DialogEditProfile(), DialogEditProfile::mountEditor(), DialogEditProfile::setRowVisible(), DialogEditProfile::setupTypeList(), DialogEditProfile::typeSelected(), editorFactory() (+8 more)
+Nodes (11): advancedType(), DialogEditProfile::setupTypeList(), DialogEditProfile::typeSelected(), editorFactory(), isCustomSubtype(), DialogEditProfile::on_certificate_edit_clicked(), DialogEditProfile::setupSingboxStream(), DialogEditProfile::on_xray_xdrive_template_edit_clicked() (+3 more)
 
 ### Community 469 - "ProcessCompletionModel"
-Cohesion: 0.09
-Nodes (15): Layout, head, namePrefix, names, pathPrefix, paths, tail, ProcessCompletionModel (+7 more)
+Cohesion: 0.15
+Nodes (7): ProcessCompletionModel, config, programs, Suggestion, path, text, tip
 
 ### Community 470 - "MacHotkeyBackend"
 Cohesion: 0.13
@@ -2711,37 +2685,37 @@ Nodes (10): candle(), frame(), ghost(), leaf(), main(), pumpkin(), poly(), pts()
 Cohesion: 0.21
 Nodes (10): candle(), frame(), ghost(), leaf(), main(), pumpkin(), poly(), pts() (+2 more)
 
-### Community 473 - "openflux"
-Cohesion: 0.09
-Nodes (9): openflux, bridgeAuth, codec, context, extra, mode, negotiate, secret (+1 more)
+### Community 473 - "DialogEditIpList::accept"
+Cohesion: 0.19
+Nodes (6): DialogEditIpList::accept(), DialogEditIpList::DialogEditIpList(), DialogEditIpList::finishSave(), editIpListConfirm(), editIpListInterval(), editIpListWarning()
 
 ### Community 474 - "dialog_scan_instance.cpp"
-Cohesion: 0.03
-Nodes (46): InRange(), IsValidPort(), QCompleter, ResumeGuard::arm(), ResumeGuard::decide(), ResumeGuard::disarm(), ResumeGuard::markStable(), ResumeGuard::noteExit() (+38 more)
+Cohesion: 0.05
+Nodes (30): InRange(), IsValidPort(), defaultIpListBuild(), defaultIpListFind(), DefaultIpListSpec, name, ruleSet, seedCidrs (+22 more)
 
 ### Community 475 - "IpEntriesModel.cpp"
 Cohesion: 0.19
 Nodes (7): ipEntriesAddressKey(), IpEntriesModel::columnCount(), IpEntriesModel::data(), IpEntriesModel::headerData(), IpEntriesModel::IpEntriesModel(), IpEntriesModel::rowCount(), IpEntriesModel::setEntries()
 
-### Community 476 - "ProcessPickerProgram"
-Cohesion: 0.06
-Nodes (31): Column, ColPath, ColProgram, ColStatus, ColumnCount, ProcessCatalog, age, loading (+23 more)
+### Community 476 - "ProcessPickerModel"
+Cohesion: 0.09
+Nodes (17): Column, ColPath, ColProgram, ColStatus, ColumnCount, ProcessCompletionModel::data(), ProcessCompletionModel::rowCount(), ProcessPicker::browse() (+9 more)
 
 ### Community 477 - "HotkeyEdit"
 Cohesion: 0.22
 Nodes (6): QtExtKeySequenceEdit, QtExtKeySequenceEdit::QtExtKeySequenceEdit(), HotkeyEdit, edit, global, label
 
 ### Community 478 - "DialogScanInstance::applyTuneResult"
-Cohesion: 0.12
-Nodes (14): DialogScanInstance::pauseClicked(), DialogScanInstance::rescanClicked(), DialogScanInstance::save(), DialogScanInstance::showEvent(), DialogScanInstance::startFromBeginning(), DialogScanInstance::applyTuneResult(), DialogScanInstance::reloadTuneResults(), DialogScanInstance::saveTuneResultAsProfile() (+6 more)
+Cohesion: 0.16
+Nodes (10): DialogScanInstance::applyLock(), DialogScanInstance::applyTuneResult(), DialogScanInstance::reloadTuneResults(), DialogScanInstance::saveTuneResultAsProfile(), DialogScanInstance::setupTuneResults(), DialogScanInstance::updateTuneActions(), scanInstanceTuneLatency(), scanInstanceTuneNotice() (+2 more)
 
 ### Community 479 - "xrayReality"
 Cohesion: 0.15
 Nodes (7): xrayReality, fingerprint, mldsa65Verify, password, serverName, shortId, spiderX
 
-### Community 480 - "MainWindow::handle_deeplink_impl"
-Cohesion: 0.18
-Nodes (5): decodeImportedText(), MainWindow::handle_deeplink_impl(), MainWindow::import_or_handle_deeplink(), MainWindow::importFromFiles(), MainWindow::on_menu_scan_qr_triggered()
+### Community 480 - "ProfilesFilterProxyModel.cpp"
+Cohesion: 0.16
+Nodes (7): ProfilesFilterProxyModel::filterAcceptsRow(), ProfilesFilterProxyModel::portMatches(), ProfilesFilterProxyModel::ProfilesFilterProxyModel(), ProfilesFilterProxyModel::profilesModel(), ProfilesFilterProxyModel::setFilters(), serviceMatches(), testTermMatches()
 
 ### Community 481 - "EditTrustTunnel"
 Cohesion: 0.14
@@ -2752,8 +2726,8 @@ Cohesion: 0.22
 Nodes (8): Form::addIssueSource(), Form::addRule(), Form::eventFilter(), formHasAncestor(), formIsTextWidget(), Source, collect, owner
 
 ### Community 483 - "Colors"
-Cohesion: 0.13
-Nodes (15): Colors, axis, base, border, caption, eventLine, grid, hairline (+7 more)
+Cohesion: 0.12
+Nodes (16): Colors, axis, base, border, caption, eventLine, grid, hairline (+8 more)
 
 ### Community 484 - "build_go.sh"
 Cohesion: 0.12
@@ -2763,9 +2737,9 @@ Nodes (8): GOFLAGS, build_go.sh script, GOARCH, GOOS, test_olcrtc.sh script, GOA
 Cohesion: 0.15
 Nodes (6): DEPLOY, ROOT, pack_release.sh script, TAG, untar(), WORK
 
-### Community 486 - "fts5PorterCb"
-Cohesion: 0.23
-Nodes (15): fts5Porter_MEq1(), fts5Porter_MGt0(), fts5Porter_MGt1(), fts5Porter_MGt1_and_S_or_T(), fts5Porter_Ostar(), fts5Porter_Vowel(), fts5PorterCb(), fts5PorterGobbleVC() (+7 more)
+### Community 486 - "JsonEditorDialog"
+Cohesion: 0.18
+Nodes (9): JsonCodeEdit, JsonEditorDialog, m_editor, m_issues, m_original, m_status, public, JsonIssueList (+1 more)
 
 ### Community 487 - "ConnectionSort"
 Cohesion: 0.11
@@ -2789,19 +2763,19 @@ Nodes (11): TrafficSample, coreRunning, creditedIds, directDown, directUp, monoM
 
 ### Community 492 - "Savepoint"
 Cohesion: 0.06
-Nodes (13): Database, Savepoint, mbReleased, msName, Database, Transaction, mbCommited, TransactionBehavior (+5 more)
+Nodes (16): sqlite3_stmt, bind_exec(), execute_many(), reset_bind_exec(), Database, Savepoint, mbReleased, msName (+8 more)
 
 ### Community 494 - "AutoSelectorPlan.cpp"
 Cohesion: 0.13
 Nodes (34): AutoSelectorBuildChanged(), AutoSelectorMemberWorks(), AutoSelectorRankingCandidates(), AutoSelectorStartQuorum(), AutoSelectorUnmeasuredCandidates(), buildFilters(), byLatency(), capByTier() (+26 more)
 
 ### Community 495 - "DWORD"
-Cohesion: 0.31
-Nodes (11): SecureDataDir(), serviceManagerWinAttributes(), serviceManagerWinConfigurePreshutdown(), serviceManagerWinCreateDir(), serviceManagerWinEntryRefusal(), serviceManagerWinError(), serviceManagerWinHandleOwner(), serviceManagerWinMain() (+3 more)
+Cohesion: 0.38
+Nodes (10): SecureDataDir(), serviceManagerWinAttributes(), serviceManagerWinConfigurePreshutdown(), serviceManagerWinCreateDir(), serviceManagerWinEntryRefusal(), serviceManagerWinError(), serviceManagerWinHandleOwner(), serviceManagerWinOpenNoFollow() (+2 more)
 
-### Community 496 - "WebDavResponse"
-Cohesion: 0.33
-Nodes (6): WebDavResponse, body, etag, location, status, sunk
+### Community 496 - "IpListUpdater.cpp"
+Cohesion: 0.21
+Nodes (7): IpListUpdater::CheckAutoUpdate(), IpListUpdater::drain(), IpListUpdater::IpListUpdater(), IpListUpdater::RefreshAll(), ipListUpdaterHeader(), ipListUpdaterRefreshable(), ipListUpdaterRefreshOne()
 
 ### Community 497 - "ConnectionsTreeFilterProxyModel"
 Cohesion: 0.09
@@ -2812,12 +2786,12 @@ Cohesion: 0.10
 Nodes (18): ClientMode, Check, Health, None, PrintConnection, LaunchOptions, client, dataDir (+10 more)
 
 ### Community 499 - "Protocol.cpp"
-Cohesion: 0.21
-Nodes (10): SessionKeys, c2s, s2c, DeriveKeys(), GenerateKey(), KeyFromText(), KeyToText(), OpenFrame() (+2 more)
+Cohesion: 0.17
+Nodes (12): SessionKeys, c2s, s2c, configCreateKeyFile(), configPlaceKeyFile(), DeriveKeys(), GenerateKey(), KeyFromText() (+4 more)
 
-### Community 500 - "RouteRuleOrigin"
-Cohesion: 0.15
-Nodes (10): RouteRuleOrigin, kind, name, profileRule, RunningRouteRules, origins, outboundNames, vpnEndpointProfiles (+2 more)
+### Community 500 - "Effective"
+Cohesion: 0.17
+Nodes (8): Effective, config, explicitListen, keyFile, source, ConfigFromSettings(), EffectiveConfig(), ParseAllowList()
 
 ### Community 501 - "sources/easter.py"
 Cohesion: 0.28
@@ -2828,12 +2802,12 @@ Cohesion: 0.28
 Nodes (9): basket(), bunny(), ease(), egg(), eyes(), frame(), grass(), main() (+1 more)
 
 ### Community 503 - "json/deserialize.hpp"
-Cohesion: 0.09
-Nodes (29): base64_decode_string(), deserialize(), deserialize_int(), deserialize_key(), deserialize_map_key(), deserialize_string_or_int(), deserialize_string_to_buffer(), djb2_hash() (+21 more)
+Cohesion: 0.10
+Nodes (28): deserialize(), deserialize_int(), deserialize_key(), deserialize_map_key(), deserialize_string_or_int(), deserialize_string_to_buffer(), djb2_hash(), eof() (+20 more)
 
 ### Community 504 - "DialogEditProfile::loadXrayStream"
-Cohesion: 0.13
-Nodes (4): DialogEditProfile::loadSingboxStream(), DialogEditProfile::loadXrayNetwork(), DialogEditProfile::loadXrayStream(), DialogEditProfile::setupXrayStream()
+Cohesion: 0.22
+Nodes (4): DialogEditProfile::loadSingboxStream(), DialogEditProfile::loadXrayXDrive(), DialogEditProfile::loadXrayNetwork(), DialogEditProfile::loadXrayStream()
 
 ### Community 505 - "smuxOpts"
 Cohesion: 0.13
@@ -2849,15 +2823,15 @@ Nodes (15): StartOutcome, BuildFailed, Busy, CoreUnavailable, Exiting, ExtraCore
 
 ### Community 509 - "Trial"
 Cohesion: 0.13
-Nodes (16): Trial, assignment, dropped, failures, lastError, latenciesMs, planned, round (+8 more)
+Nodes (17): Trial, assignment, dropped, failures, lastError, latenciesMs, planned, round (+9 more)
 
-### Community 510 - "ChainStepReport"
-Cohesion: 0.15
-Nodes (11): ChainStepReport, aborted, error, hasLanding, invalidHops, results, ChainStepResult, alone (+3 more)
+### Community 510 - "TestRunner"
+Cohesion: 0.03
+Nodes (36): ChainStepReport, aborted, error, hasLanding, invalidHops, results, ChainStepResult, alone (+28 more)
 
-### Community 511 - "EngineEvents"
-Cohesion: 0.07
-Nodes (23): EngineEvents, public, ConfigApplied, usedByRunning, warnings, ProfileConfig, link, name (+15 more)
+### Community 511 - "ApplyConfig"
+Cohesion: 0.13
+Nodes (12): ConfigInput, link, outbound, ApplyConfig(), CheckConfigEdit(), CheckDelete(), ClearTestResults(), Delete() (+4 more)
 
 ### Community 512 - "Peer"
 Cohesion: 0.15
@@ -2891,9 +2865,9 @@ Nodes (14): OtpListWidget, dropRow, pressedRow, pressPos, public, OtpListWidget:
 Cohesion: 0.13
 Nodes (7): EngineEvents::EngineEvents(), EngineEvents::GroupOrderChanged(), EngineEvents::ProfilesChanged(), EngineEvents::ProfilesRemoved(), EngineEvents::SettingsChanged(), EngineEvents::SubscriptionDiff(), EngineEvents::SubscriptionGroupChanged()
 
-### Community 520 - "Exchange"
-Cohesion: 0.17
-Nodes (8): Exchange, answered, connectionId, mailbox, number, Mailbox, mutex, worker
+### Community 520 - "Mailbox"
+Cohesion: 0.40
+Nodes (3): Mailbox, mutex, worker
 
 ### Community 521 - "Reality"
 Cohesion: 0.18
@@ -2903,21 +2877,21 @@ Nodes (4): Reality, enabled, public_key, short_id
 Cohesion: 0.20
 Nodes (9): WarpIdentity, deviceId, endpoint, ipv4, ipv6, peerPublicKey, privateKey, reserved (+1 more)
 
-### Community 523 - "MainWindow::setupLogView"
+### Community 523 - "LiveRates"
 Cohesion: 0.15
-Nodes (8): appendDocumentLines(), MainWindow::flush_log_batch(), MainWindow::on_masterLogBrowser_customContextMenuRequested(), MainWindow::rebuildLogView(), MainWindow::releaseHeldLogs(), MainWindow::setLogFilterVisible(), MainWindow::setupLogView(), removeLeadingBlocks()
+Nodes (8): LiveRates, directDown, directUp, proxyDown, proxyUp, EngineHost::freshLiveRates(), StatsService::freshLiveRates(), StatsService::onApiConnections()
 
 ### Community 524 - "TrayPopupFrame"
-Cohesion: 0.13
+Cohesion: 0.15
 Nodes (9): QLineEdit, QListWidget, QVBoxLayout, TrayPopupFrame, m_card, m_cardLayout, m_list, m_search (+1 more)
 
 ### Community 525 - "RouteRuleOriginKind"
-Cohesion: 0.13
-Nodes (15): RouteRuleOriginKind, AdBlock, BlockFinal, DnsHijack, DnsInboundReject, EndpointGate, ExtraCore, L3Bridge (+7 more)
+Cohesion: 0.07
+Nodes (25): RouteRuleOrigin, kind, name, profileRule, RouteRuleOriginKind, AdBlock, BlockFinal, DnsHijack (+17 more)
 
 ### Community 526 - "ScanWorkerConfigTest"
 Cohesion: 0.14
-Nodes (10): ScanWorker::probeTimeoutMs(), ScanWorker::ScanWorker(), scanWorkerClampTimeout(), ScanWorkerConfigTest, concurrency, subBatch, timeoutMs, url (+2 more)
+Nodes (11): StartMode, FromInitial, RescanResults, Resume, ScanWorker::ScanWorker(), ScanWorkerConfigTest, concurrency, subBatch (+3 more)
 
 ### Community 527 - "PipeServerTrusted"
 Cohesion: 0.23
@@ -2928,20 +2902,20 @@ Cohesion: 0.25
 Nodes (4): JsonCodeEdit, JsonIssueList, m_editor, public
 
 ### Community 530 - "StreamStateRestorer"
-Cohesion: 0.21
-Nodes (15): generateConfigTag(), generateFirstLast(), generateResult(), generateResultMeasurement(), MarkDownCode::MarkDownCode(), Node, children, type (+7 more)
+Cohesion: 0.23
+Nodes (14): generateConfigTag(), generateFirstLast(), generateResult(), generateResultMeasurement(), Node, children, type, parseMustacheTemplate() (+6 more)
 
 ### Community 531 - "respond"
 Cohesion: 0.11
-Nodes (41): respond, Router::deleteConnection(), Router::putConnection(), Router::putModes(), isSha256Hex(), Router::deleteBackup(), Router::deleteRestore(), Router::getBackup() (+33 more)
+Nodes (42): respond, Router::deleteConnection(), Router::putActiveRoute(), Router::putConnection(), Router::putModes(), isSha256Hex(), Router::deleteBackup(), Router::deleteRestore() (+34 more)
 
 ### Community 532 - "baseConfig"
-Cohesion: 0.04
-Nodes (25): baseConfig, DialFields, bind_interface, connect_timeout, inet4_bind_address, inet6_bind_address, quic_opener, reuse_addr (+17 more)
+Cohesion: 0.03
+Nodes (33): baseConfig, DialFields, bind_interface, connect_timeout, inet4_bind_address, inet6_bind_address, quic_opener, reuse_addr (+25 more)
 
 ### Community 533 - "SortInput"
-Cohesion: 0.18
-Nodes (13): SortInput, Config, Membership, TestResult, Traffic, Group::SortReads(), sortReads(), enqueueSort() (+5 more)
+Cohesion: 0.09
+Nodes (25): SortInput, Config, Membership, TestResult, Traffic, GroupSortMethod, ByAddress, ById (+17 more)
 
 ### Community 534 - "ConfigMetaRow"
 Cohesion: 0.22
@@ -2955,9 +2929,9 @@ Nodes (8): EditAivpn, adaptive, dns, ent, key, mask, polymorphic, public
 Cohesion: 0.15
 Nodes (3): RuntimeStatsWidget::applyEndpoints(), RuntimeStatsWidget::RuntimeStatsWidget(), RuntimeStatsWidget::showEvent()
 
-### Community 537 - "DnsAddress"
-Cohesion: 0.29
-Nodes (7): DnsAddress, iface, path, port, server, type, get_jsdelivr_link()
+### Community 537 - "DialogEditProfile::DialogEditProfile"
+Cohesion: 0.22
+Nodes (7): collectTabOrder(), DialogEditProfile::DialogEditProfile(), DialogEditProfile::mountEditor(), DialogEditProfile::setRowVisible(), effectiveFocusWidget(), makeEditor(), rebuildTabOrder()
 
 ### Community 538 - "TrayProfileSelector::TrayProfileSelector"
 Cohesion: 0.15
@@ -2967,13 +2941,13 @@ Nodes (4): TrayOtpCodes::eventFilter(), TrayOtpCodes::TrayOtpCodes(), TrayProfil
 Cohesion: 0.10
 Nodes (19): Key, DefaultFile, ExplicitFile, Settings, PreflightApi, bind, enabled, key (+11 more)
 
-### Community 540 - "xrayMultiplex.cpp"
-Cohesion: 0.08
-Nodes (20): XrayMuxSettings, concurrency, max_connections, xudp_concurrency, xudp_proxy_udp443, readJsonCount(), readQueryCount(), xrayMultiplex::Build() (+12 more)
+### Community 540 - "EditOpenConnect::editPem"
+Cohesion: 0.15
+Nodes (5): editor_cache_updated, EditOpenConnect::editPem(), EditOpenConnect::get_editor_cached(), EditOpenVPN::editPem(), EditOpenVPN::get_editor_cached()
 
-### Community 541 - "MuxSettingsWidget.cpp"
-Cohesion: 0.23
-Nodes (10): name, addMuxField(), muxFieldName(), MuxSettingsWidget::bindValidation(), MuxSettingsWidget::MuxSettingsWidget(), MuxSettingsWidget::openDialog(), openMuxDialog(), XrayMuxSettingsWidget::bindValidation() (+2 more)
+### Community 541 - "ProxyItem.cpp"
+Cohesion: 0.18
+Nodes (6): EditChain::setStepStatus(), ProxyItem::get_change_button(), ProxyItem::ProxyItem(), ProxyItem::refresh_data(), ProxyItem::setColorRole(), ProxyItem::showStepResult()
 
 ### Community 542 - "TrayIconStatus"
 Cohesion: 0.23
@@ -2996,8 +2970,8 @@ Cohesion: 0.15
 Nodes (8): ThemeManager, applying, current_theme, public, standardIcons, system_font_family, system_palette, tokens
 
 ### Community 547 - "View"
-Cohesion: 0.06
-Nodes (32): Legend, None, Side, Top, GridLine, baseline, label, labelMid (+24 more)
+Cohesion: 0.07
+Nodes (27): Legend, None, Side, Top, MessageKind, BlockedMessage, EmptyMessage, HiddenMessage (+19 more)
 
 ### Community 548 - "qThrone"
 Cohesion: 0.20
@@ -3007,25 +2981,25 @@ Nodes (9): Rawline (бывший qThrone), Благодарности, Как д
 Cohesion: 0.22
 Nodes (4): EditTuic::bindValidation(), EditTuic::EditTuic(), EditTuic::onStart(), editTuicSelectIdentifier()
 
-### Community 550 - "extracore"
-Cohesion: 0.11
-Nodes (7): extracore, extraCoreArgs, extraCoreConf, extraCorePath, noLogs, socksAddress, socksPort
+### Community 550 - "DurationRule"
+Cohesion: 0.17
+Nodes (10): DurationRule, allowNegative, empty, maxNs, minNs, wholeSeconds, Empty, Allowed (+2 more)
 
-### Community 551 - "edit_masterdns.cpp"
-Cohesion: 0.21
-Nodes (9): method, EditMasterDns::EditMasterDns(), EditMasterDns::method(), EditMasterDns::onEnd(), EditMasterDns::onStart(), editMasterDnsData(), editMasterDnsInt(), editMasterDnsNumber() (+1 more)
+### Community 551 - "EditS3Bypass"
+Cohesion: 0.17
+Nodes (5): EditS3Bypass, ent, public, storage, tuning
 
 ### Community 552 - "Put"
-Cohesion: 0.07
-Nodes (26): Context, profileRunning, systemProxyOn, tunOn, PutResult, changed, restartNeeded, changes() (+18 more)
+Cohesion: 0.16
+Nodes (11): changes(), clashExposure(), check, get, Patch, keys_, writes_, portConflict() (+3 more)
 
 ### Community 554 - ".paint"
 Cohesion: 0.16
 Nodes (4): CommandPalette::activate(), mutedColor(), PaletteDelegate, scaledFont()
 
-### Community 556 - "edit_dnstt.cpp"
-Cohesion: 0.18
-Nodes (7): EditDnstt::EditDnstt(), EditDnstt::updateControls(), EditDnsttMode, kEditDnsttClassic, kEditDnsttVayDns, kEditDnsttVayDnsCompat, editDnsttRowVisible()
+### Community 555 - "SourceKind"
+Cohesion: 0.20
+Nodes (8): SourceKind, Manual, RuleSet, Url, DialogEditIpList::currentKind(), DialogIpLists::createList(), DialogIpLists::editList(), DialogIpLists::moveList()
 
 ### Community 557 - "GlobalHotkeys"
 Cohesion: 0.14
@@ -3059,6 +3033,10 @@ Nodes (8): slot, SeriesBuffer::addColumn(), SeriesBuffer::addMarker(), SeriesBuf
 Cohesion: 0.20
 Nodes (4): GlobalHotkeyBackend_WaylandSession(), GlobalHotkeyBackend_Create(), GlobalHotkeyBackend_CreateKde(), GlobalHotkeyBackend_CreateX11()
 
+### Community 566 - "Import"
+Cohesion: 0.20
+Nodes (7): BootPhase, Armed, Done, None, Waiting, Import(), importServiceDeliver()
+
 ### Community 567 - "from_node"
 Cohesion: 0.33
 Nodes (8): MyInt, value, clashNodeText(), clashReadBool(), clashReadInt(), from_node(), load_opt(), load_present()
@@ -3068,8 +3046,8 @@ Cohesion: 0.22
 Nodes (5): Prior, cpuTimeNs, wallNs, ProcessMetrics, prior_
 
 ### Community 569 - "RuntimeStatsWidget::refreshLive"
-Cohesion: 0.18
-Nodes (10): Sample, cpuPercent, cpuValid, ok, rssBytes, formatCpu(), formatRam(), runningConfigName() (+2 more)
+Cohesion: 0.17
+Nodes (11): Sample, cpuPercent, cpuValid, ok, rssBytes, formatCpu(), formatRam(), runningConfigName() (+3 more)
 
 ### Community 570 - "Hotkey"
 Cohesion: 0.15
@@ -3083,13 +3061,13 @@ Nodes (10): Page, Access, Check, Connect, Dns, Domain, Progress, Protocols (+2 m
 Cohesion: 0.32
 Nodes (4): argv(), Config, fail(), loopback()
 
-### Community 573 - "chainScan"
-Cohesion: 0.22
-Nodes (9): chainScan, coreTransitions, extraCoreCount, extraCoreIdx, hasCustomFullConfig, hopCount, xrayFullConfigCount, xrayFullConfigIdx (+1 more)
+### Community 573 - "ProfileConfig"
+Cohesion: 0.18
+Nodes (9): ProfileConfig, link, name, notEditable, outbound, type, profileServiceForeignReason(), profileServiceLink() (+1 more)
 
-### Community 574 - "Tuning"
-Cohesion: 0.29
-Nodes (8): EditS3Bypass::onEnd(), EditS3Bypass::onStart(), Tuning, key, label, maximum, minimum, value
+### Community 574 - "Register"
+Cohesion: 0.31
+Nodes (8): ChangeResult, changed, restartNeeded, Apply(), IsMode(), Register(), warpServiceCheckMode(), warpServiceEditing()
 
 ### Community 575 - "PortRangeStyle"
 Cohesion: 0.22
@@ -3099,17 +3077,17 @@ Nodes (10): PortRangeStyle, allowOpenEnds, allowSingle, checkOrder, sep, RangeSe
 Cohesion: 0.22
 Nodes (4): EditWireguardObfs, ent, public, ui
 
-### Community 577 - "edit_snell.cpp"
-Cohesion: 0.22
-Nodes (3): EditSnell::bindValidation(), EditSnell::EditSnell(), EditSnell::onStart()
-
-### Community 578 - "MainWindow::collectMenuShortcuts"
-Cohesion: 0.36
-Nodes (3): MainWindow::collectMenuShortcuts(), MainWindow::RegisterHiddenMenuShortcuts(), MainWindow::registerMenuShortcuts()
-
-### Community 579 - "MainWindow::show_group"
+### Community 577 - "StatsSink"
 Cohesion: 0.18
-Nodes (6): groupId2TabIndex(), tabIndex2GroupId(), MainWindow::on_tabWidget_currentChanged(), MainWindow::refresh_groups(), MainWindow::show_group(), MainWindow::refresh_proxy_list()
+Nodes (4): CurrentStatsSink(), SetStatsSink(), StatsSink, TrafficLooper::SetChainGroups()
+
+### Community 578 - "Layout"
+Cohesion: 0.18
+Nodes (9): Layout, head, namePrefix, names, pathPrefix, paths, tail, processCatalogRequest() (+1 more)
+
+### Community 579 - "DialogAutoSelector::sortRows"
+Cohesion: 0.25
+Nodes (10): checksKey(), DialogAutoSelector::sortRows(), dialsKey(), jitterKey(), Key, known, value, lastOKKey() (+2 more)
 
 ### Community 580 - "OpenConnectToken"
 Cohesion: 0.17
@@ -3120,24 +3098,24 @@ Cohesion: 0.17
 Nodes (11): wgPeer, allowed_ips, ip, ipv6, port, pre_shared_key, public_key, reserved (+3 more)
 
 ### Community 582 - "json/serialize.hpp"
-Cohesion: 0.05
-Nodes (34): base64_encode(), check_size(), field_attributes, max_count, max_size, has_escape_chars(), is_escape(), ostream_buffer (+26 more)
+Cohesion: 0.07
+Nodes (31): base64_decode_string(), base64_encode(), check_size(), field_attributes, max_count, max_size, serialize(), has_escape_chars() (+23 more)
 
 ### Community 583 - "Planner"
-Cohesion: 0.18
-Nodes (6): Planner, limits_, space_, Planner::Next(), Planner::openNextStage(), TuneWorker::persist()
+Cohesion: 0.15
+Nodes (7): Planner, limits_, space_, Planner::Next(), Planner::openNextStage(), tunePlannerConfirmStarted(), TuneWorker::persist()
 
 ### Community 584 - "EditSSTP"
 Cohesion: 0.13
 Nodes (8): EditSSTP, ent, insecure, password, public, serverDNS, sni, username
 
 ### Community 585 - "ImportReport"
-Cohesion: 0.07
-Nodes (15): ImportReport, failedCount, fatal, groupIndex, groups, importedCount, warnedCount, Line (+7 more)
+Cohesion: 0.05
+Nodes (26): ImportReport, failedCount, fatal, groupIndex, groups, importedCount, warnedCount, Line (+18 more)
 
-### Community 587 - ".handleIPv6CPConfigReq"
-Cohesion: 0.23
-Nodes (3): isZeroIID(), randomIID(), TestRandomIID()
+### Community 587 - "parseOptions"
+Cohesion: 0.11
+Nodes (14): cpPacket, option, parseChallenge(), parseResponse(), parseCP(), parseOptions(), FuzzParseCHAP(), FuzzParseCP() (+6 more)
 
 ### Community 588 - "LongPress"
 Cohesion: 0.25
@@ -3151,33 +3129,33 @@ Nodes (3): QScopeGuard, m_func, m_invoke
 Cohesion: 0.21
 Nodes (5): GlobalHotkeyBackend_Unmappable(), hotkeyCharacterKey(), hotkeyModifiers(), hotkeyVirtualKey(), layoutCharacterKey()
 
-### Community 591 - "Mode"
-Cohesion: 0.22
-Nodes (7): Mode, ALPHANUMERIC, ECI, KANJI, modeBits, numBitsCharCount, NUMERIC
+### Community 591 - "CoreState"
+Cohesion: 0.20
+Nodes (10): CoreState, Backoff, Connected, GaveUp, ListenFailed, NotStarted, ShuttingDown, Starting (+2 more)
 
 ### Community 592 - "Highlighter"
 Cohesion: 0.17
 Nodes (7): Highlighter, m_comment, m_key, m_literal, m_number, m_string, JsonCodeEdit::applyTheme()
 
 ### Community 593 - "Backup"
-Cohesion: 0.20
-Nodes (4): Backup, mpSQLiteBackup, Deleter, sqlite3_backup
+Cohesion: 0.11
+Nodes (8): Backup, mpSQLiteBackup, Deleter, sqlite3_backup, Backup::Backup(), Backup::getRemainingPageCount(), Backup::getTotalPageCount(), SQLite::Backup::Deleter::operator()()
 
 ### Community 594 - "Outcome"
 Cohesion: 0.22
 Nodes (7): Outcome, coreError, empty, path, rpcOK, saveError, size
 
-### Community 595 - "Response"
-Cohesion: 0.24
-Nodes (7): busyConnection(), failureText(), importFailure(), importJson(), Router::afterStop(), Router::updateResultJson(), updateFailure()
+### Community 595 - "DownloadProgressReport"
+Cohesion: 0.20
+Nodes (9): DownloadProgressReport, downloadedSize, fileName, totalSize, DownloadPanelState, report, visible, MainWindow::setDownloadReport() (+1 more)
 
 ### Community 596 - "uTLS"
 Cohesion: 0.18
 Nodes (4): uTLS, enabled, fingerPrint, supported
 
-### Community 597 - "edit_http.cpp"
-Cohesion: 0.25
-Nodes (3): EditHttp::bindValidation(), EditHttp::EditHttp(), EditHttp::onStart()
+### Community 597 - "EditChain::on_test_hops_clicked"
+Cohesion: 0.20
+Nodes (4): EditChain::bindValidation(), EditChain::clearStepResults(), EditChain::EditChain(), EditChain::on_test_hops_clicked()
 
 ### Community 598 - "simpleAction"
 Cohesion: 0.18
@@ -3187,37 +3165,41 @@ Nodes (9): simpleAction, block, bypass, proxy, warpBypass, simpleActionToString(
 Cohesion: 0.25
 Nodes (3): EditJuicity::bindValidation(), EditJuicity::EditJuicity(), EditJuicity::onStart()
 
+### Community 600 - "EditHttp"
+Cohesion: 0.20
+Nodes (4): EditHttp, ent, public, ui
+
 ### Community 601 - "TrafficChartWidget"
 Cohesion: 0.29
 Nodes (5): TrafficChartWidget, down, label, public, up
 
-### Community 602 - "edit_naive.cpp"
-Cohesion: 0.25
-Nodes (3): EditNaive::bindValidation(), EditNaive::EditNaive(), EditNaive::onStart()
+### Community 602 - "EditJuicity"
+Cohesion: 0.20
+Nodes (4): EditJuicity, ent, public, ui
 
 ### Community 603 - "RawSockaddrInet"
 Cohesion: 0.36
 Nodes (4): htons(), ntohs(), IPAddressPrefix, RawSockaddrInet
 
-### Community 604 - "RestartReason"
+### Community 604 - "EditNaive"
 Cohesion: 0.20
-Nodes (9): RestartReason, Group, Profile, Routing, Settings, ConnectionManager::noteRestartNeeded(), ConnectionManager::restartReasons(), EngineHost::noteRestartNeeded() (+1 more)
+Nodes (4): EditNaive, ent, public, ui
 
-### Community 605 - "edit_shadowtls.cpp"
-Cohesion: 0.25
-Nodes (3): EditShadowTLS::bindValidation(), EditShadowTLS::EditShadowTLS(), EditShadowTLS::onStart()
+### Community 605 - "EditShadowTLS"
+Cohesion: 0.20
+Nodes (4): EditShadowTLS, ent, public, ui
 
 ### Community 606 - "Definitions"
 Cohesion: 0.20
 Nodes (8): Category, icon, id, name, Definitions, categories, error, text
 
-### Community 607 - "edit_socks.cpp"
-Cohesion: 0.25
-Nodes (4): EditSocks::bindValidation(), EditSocks::EditSocks(), EditSocks::onEnd(), EditSocks::onStart()
-
-### Community 608 - "Variant"
+### Community 607 - "EditSocks"
 Cohesion: 0.20
-Nodes (7): BuildTestConfigResult, Variant, build, error, vpnEndpointTags, TuneWorker::attempt(), TuneWorker::variant()
+Nodes (4): EditSocks, ent, public, ui
+
+### Community 608 - "EditTrojan"
+Cohesion: 0.20
+Nodes (4): EditTrojan, ent, public, ui
 
 ### Community 609 - "Stage"
 Cohesion: 0.33
@@ -3235,10 +3217,6 @@ Nodes (14): Anchor, column, reg, set, t, Bucket, brk, from (+6 more)
 Cohesion: 0.29
 Nodes (7): Mirrors, CDN, CLOUDFLARE, FASTLY, GCORE, GITHUB, QUANTIL
 
-### Community 613 - "RoutesRepo::forgetDeleted"
-Cohesion: 0.22
-Nodes (3): RoutesRepo::forgetDeleted(), initDB(), isSetuidSet()
-
 ### Community 614 - "EditTuic"
 Cohesion: 0.20
 Nodes (4): EditTuic, ent, public, ui
@@ -3252,8 +3230,8 @@ Cohesion: 0.33
 Nodes (5): Build, CLI, Config, sing-trusttunnel, Usage
 
 ### Community 617 - "FloatCheckBox"
-Cohesion: 0.27
-Nodes (3): FloatCheckBox, parent, window
+Cohesion: 0.18
+Nodes (4): FloatCheckBox, parent, window, JsonIssueList::JsonIssueList()
 
 ### Community 618 - "DialogVPNSettings"
 Cohesion: 0.15
@@ -3263,9 +3241,9 @@ Nodes (5): DialogVPNSettings, form, public, settingsLock, ui
 Cohesion: 0.20
 Nodes (4): ImportReport::addFatal(), ImportReport::details(), ImportReport::lines(), ImportReport::summary()
 
-### Community 620 - "RunningProfiles.cpp"
-Cohesion: 0.22
-Nodes (3): ResolveRouteId(), RouteIdFor(), SetRunningProfiles()
+### Community 620 - "DialogIpLists::rebuildRows"
+Cohesion: 0.29
+Nodes (4): DialogIpLists::deleteList(), DialogIpLists::listById(), DialogIpLists::rebuildRows(), DialogIpLists::selectedList()
 
 ### Community 621 - "Issue"
 Cohesion: 0.25
@@ -3275,37 +3253,41 @@ Nodes (8): Issue, field, message, severity, value, Severity, Error, Warning
 Cohesion: 0.22
 Nodes (8): AutoUpdatePlan, interval, source, Source, global, group, off, server
 
-### Community 625 - "DeviceDetailsHelper.cpp"
-Cohesion: 0.08
-Nodes (19): VersionInfo, BuildNum, Major, Minor, WinVersion, deviceDetailsIsMachineId(), deviceDetailsMachineId(), deviceDetailsPersistedId() (+11 more)
+### Community 623 - "IPConfig"
+Cohesion: 0.24
+Nodes (5): Authenticator, recordHandler, ServerConfig, API surface, IPConfig
+
+### Community 625 - "KillSwitch.cpp"
+Cohesion: 0.02
+Nodes (62): QLocalServer, CurrentLinkScheme(), ApplyEnvironment(), CurrentStatus(), OpenWatch(), QObject, Status, Granted (+54 more)
 
 ### Community 626 - "HistoryEntry"
 Cohesion: 0.20
 Nodes (7): HistoryEntry, builds, failures, firstUsed, id, lastUsed, name
 
-### Community 627 - "edit_mrtt.h"
-Cohesion: 0.29
-Nodes (6): QFormLayout, QLabel, QProcess, QPushButton, QTemporaryDir, QTimer
+### Community 627 - "Exception"
+Cohesion: 0.22
+Nodes (3): Exception, mErrcode, mExtendedErrcode
 
-### Community 628 - "Planner::openRefine"
-Cohesion: 0.31
-Nodes (5): Planner::mtuBase(), Planner::openCombine(), Planner::openRefine(), Planner::openSingles(), Rank()
+### Community 628 - "combo"
+Cohesion: 0.25
+Nodes (3): combo(), EditFreeTurn::EditFreeTurn(), EditFreeTurn::onStart()
 
-### Community 629 - "SelectorSink"
-Cohesion: 0.29
-Nodes (7): SelectorSink, domains, ipCIDRs, keywords, regexes, ruleSets, suffixes
+### Community 629 - "judgeSteps"
+Cohesion: 0.36
+Nodes (5): aloneNote(), joinLines(), judgeSteps(), stepLatencyText(), stepWorks()
 
 ### Community 630 - "SpeedTestMode"
 Cohesion: 0.33
 Nodes (6): SpeedTestMode, COUNTRY, DL, FULL, SIMPLEDL, UL
 
-### Community 632 - "testCandidate"
-Cohesion: 0.29
-Nodes (7): testCandidate, Build, Skip, XrayFullConfig, testCandidateKind, kind, skipReason
+### Community 632 - "geopolyParseJson"
+Cohesion: 0.36
+Nodes (5): geopolyAddOneSegment(), geopolyAddSegments(), geopolyParseJson(), geopolyParseNumber(), geopolySkipSpace()
 
 ### Community 633 - "NewHome.cpp"
 Cohesion: 0.02
-Nodes (130): clear(), from_chars(), tuple, gpb_compatibility_array(), gpb_compatibility_value(), bind(), QAbstractButton, accent (+122 more)
+Nodes (124): clear(), from_chars(), gpb_compatibility_array(), gpb_compatibility_value(), QAbstractButton, accent, QListView, MyLineEdit (+116 more)
 
 ### Community 634 - "Issue"
 Cohesion: 0.22
@@ -3315,25 +3297,21 @@ Nodes (9): Issue, message, pointer, severity, span, variantMismatch, Severity, E
 Cohesion: 0.22
 Nodes (8): Callbacks, chooseRoute, isRunning, runningGid, runningId, runningName, startProfile, stopProfile
 
-### Community 637 - "BOOL"
-Cohesion: 0.67
-Nodes (5): BOOL, winceLockFile(), winceUnlockFile(), winLockFile(), winUnlockFile()
-
 ### Community 638 - "ThemeManager::ApplyTheme"
 Cohesion: 0.25
 Nodes (5): buildThemePalette(), macPaneStyleSheet(), overlayStyleSheet(), requestColorScheme(), ThemeManager::ApplyTheme()
 
-### Community 639 - "VpnAuthAnswer"
-Cohesion: 0.33
-Nodes (5): VpnAuthAnswer, formValues, password, secret, username
-
-### Community 641 - "Scope"
+### Community 639 - "ConnectionState"
 Cohesion: 0.25
-Nodes (3): Scope, collected, previous
+Nodes (8): ConnectionState, Connecting, Idle, Running, Stopping, connectionStateName(), ConnectionManager::connectionState(), EngineHost::connectionState()
 
-### Community 643 - "Request"
-Cohesion: 0.29
-Nodes (7): Request, groupId, payload, source, Source, Text, Url
+### Community 641 - "PutResult"
+Cohesion: 0.21
+Nodes (7): Context, profileRunning, systemProxyOn, tunOn, PutResult, changed, restartNeeded
+
+### Community 643 - "Change"
+Cohesion: 0.25
+Nodes (6): Change, enabled, mode, RegisterResult, error, restartNeeded
 
 ### Community 644 - "Series"
 Cohesion: 0.33
@@ -3343,17 +3321,17 @@ Nodes (6): Series, bufferColumn, column, legendPos, on, reg
 Cohesion: 0.33
 Nodes (5): API surface, Implementation notes & caveats, internal/mschap, Specifications, What it computes
 
-### Community 646 - "DialogScanInstance::buildPhases"
-Cohesion: 0.15
-Nodes (3): DialogScanInstance::applyLock(), DialogScanInstance::buildPhases(), DialogScanInstance::startClicked()
-
-### Community 647 - "RunMarker"
+### Community 646 - "InterfaceFields"
 Cohesion: 0.25
-Nodes (6): RunMarker, Started, Stopped, Switched, MainWindow::add_traffic_point(), MainWindow::addRunMarker()
+Nodes (8): InterfaceFields, interface_name, system, udp_filtering, udp_mapping, udp_nat_max, udp_timeout, EditAdvanced::GetInterfaceFields()
+
+### Community 647 - "Column"
+Cohesion: 0.25
+Nodes (8): Column, ColOutbound, ColProtocol, ColSource, ColSpeed, ColTarget, ColTraffic, ColumnCount
 
 ### Community 648 - "StringIterator"
-Cohesion: 0.09
-Nodes (5): newIterator(), ConnectionOwner, ResolvedDomain, ResolvedDomainIterator, StringIterator
+Cohesion: 0.11
+Nodes (4): GenQuicSignature(), newIterator(), ConnectionOwner, StringIterator
 
 ### Community 649 - "Role"
 Cohesion: 0.25
@@ -3372,12 +3350,12 @@ Cohesion: 0.22
 Nodes (8): Status, addresses, configured, enabled, endpoint, mode, registering, termsAccepted
 
 ### Community 655 - "openfluxkey/captcha.go"
-Cohesion: 0.43
-Nodes (3): captchaEngine, captchaAddress(), watchCaptcha()
+Cohesion: 0.24
+Nodes (7): captchaEngine, captchaAddress(), captchaInteractive(), deliverCaptcha(), watchCaptcha(), main(), run()
 
-### Community 656 - "parseCP"
-Cohesion: 0.32
-Nodes (6): cpPacket, option, parseCP(), decodeFrame(), TestIPv6CPCodec(), hasAuthProto()
+### Community 656 - "sqlite3GenerateColumnNames"
+Cohesion: 0.38
+Nodes (6): generateColumnTypes(), initMemArray(), setPragmaResultColumnNames(), sqlite3GenerateColumnNames(), sqlite3VdbeSetColName(), sqlite3VdbeSetNumCols()
 
 ### Community 658 - "HelperExit"
 Cohesion: 0.22
@@ -3395,25 +3373,21 @@ Nodes (5): AppUsage, down, process_name, up, TrafficStatsRepo::QueryAppUsage()
 Cohesion: 0.25
 Nodes (3): EditTrojan::bindValidation(), EditTrojan::EditTrojan(), EditTrojan::onStart()
 
-### Community 662 - "testShowItems"
-Cohesion: 0.40
-Nodes (5): testShowItems, all, ipOnly, none, speedOnly
+### Community 662 - "Limits"
+Cohesion: 0.29
+Nodes (7): Limits, attempts, confirmTop, maxAttempts, mtuAttempts, Planner::Planner(), LimitsFor()
 
-### Community 664 - "done"
-Cohesion: 0.06
-Nodes (26): BootPhase, Armed, Done, None, Waiting, NewGroup, autoUpdate, importRoute (+18 more)
+### Community 664 - "CheckDelete"
+Cohesion: 0.23
+Nodes (8): Add(), CheckDelete(), Delete(), groupServiceDeliver(), groupServiceTabGroups(), groupServiceUnknown(), Update(), UpdateAll()
 
 ### Community 666 - "i64"
 Cohesion: 0.03
-Nodes (145): Fts5Context, Fts5PhraseIter, a, b, assert_expr_depth_ok(), fts5ApiColumnCount(), fts5ApiColumnLocale(), fts5ApiColumnSize() (+137 more)
+Nodes (134): Fts5Context, Fts5PhraseIter, a, b, assert_expr_depth_ok(), fts5_iswhitespace(), fts5ApiColumnCount(), fts5ApiColumnLocale() (+126 more)
 
-### Community 667 - "AutoSelectorMonitor.cpp"
-Cohesion: 0.10
-Nodes (10): AutoSelectorMonitor::Clear(), AutoSelectorMonitor::poll(), AutoSelectorMonitor::RequestSelect(), AutoSelectorMonitor::SetBuild(), AutoSelectorMonitor::Snapshot(), AutoSelectorView::detail(), AutoSelectorView::summary(), AutoSelectorView::tierLabel() (+2 more)
-
-### Community 668 - "LogLine"
-Cohesion: 0.67
-Nodes (3): LogLine, text, visible
+### Community 668 - "EditAdvanced::EditAdvanced"
+Cohesion: 0.29
+Nodes (3): EditAdvanced::accept(), EditAdvanced::EditAdvanced(), EditAdvanced::syncEndpoint()
 
 ### Community 669 - ".refresh"
 Cohesion: 0.12
@@ -3431,13 +3405,13 @@ Nodes (5): Stage, CheckingNetwork, Preparing, Probing, TestingConfigs
 Cohesion: 0.50
 Nodes (3): Mobile audit (read-only), Rawline 1.6, Validation
 
-### Community 675 - "Request"
-Cohesion: 0.29
-Nodes (7): Request, admin, body, method, path, peer, query
+### Community 675 - "newyear.py"
+Cohesion: 0.57
+Nodes (5): frame(), main(), primitives(), snowman(), tree()
 
-### Community 678 - "OpenConnectMobile"
+### Community 678 - "StepVerdict"
 Cohesion: 0.29
-Nodes (4): OpenConnectMobile, device_type, device_unique_id, platform_version
+Nodes (7): StepRow, role, text, StepVerdict, rows, status, statusRole
 
 ### Community 679 - "XrayVlessPreference"
 Cohesion: 0.50
@@ -3451,14 +3425,6 @@ Nodes (3): CoreDiagnostics::elapsedMs(), CoreDiagnostics::fail(), CoreDiagnostic
 Cohesion: 0.50
 Nodes (4): LiveChartAlign, kLiveChartCenter, kLiveChartLeft, kLiveChartRight
 
-### Community 682 - "Outcome"
-Cohesion: 0.40
-Nodes (5): Outcome, Failed, NetworkLost, Passed, Stopped
-
-### Community 683 - "ScanRunHooks"
-Cohesion: 0.25
-Nodes (5): ScanRunHooks, finished, progress, results, TuneWorker::TuneWorker()
-
 ### Community 684 - "ChangeTopic"
 Cohesion: 0.25
 Nodes (8): ChangeTopic, Profiles, Settings, Status, Tests, TopicName, name, topic
@@ -3467,25 +3433,21 @@ Nodes (8): ChangeTopic, Profiles, Settings, Status, Tests, TopicName, name, topi
 Cohesion: 0.25
 Nodes (8): Config, deviceId, deviceName, pass, path, server, useProxy, user
 
-### Community 687 - "Response"
-Cohesion: 0.29
-Nodes (5): Response, body, errorCode, errorMessage, status
-
-### Community 689 - "OpenVPNRemote"
-Cohesion: 0.29
-Nodes (4): OpenVPNRemote, network, server, server_port
-
-### Community 690 - "GenerateServerless"
+### Community 687 - "RoutesRepo::loadRulesForProfileIdsChunk"
 Cohesion: 0.40
-Nodes (5): GenerateServerless, Missing, None, NoServer, Realm
+Nodes (3): RoutesRepo::loadFromDatabase(), RoutesRepo::loadRulesForProfileIdsChunk(), RoutesRepo::routeProfileFromJson()
 
-### Community 691 - "serviceManagerWinWindowProc"
-Cohesion: 0.15
-Nodes (10): StopKind, Fast, Graceful, ArmStopHandler(), serviceManagerWinDeliver(), serviceManagerWinPost(), serviceManagerWinQueueLocked(), handler (+2 more)
-
-### Community 692 - "ParseSink"
+### Community 689 - "AppMetaRow"
 Cohesion: 0.33
-Nodes (5): ParseSink, profile, report, ParseDocument(), ParseText()
+Nodes (6): AppMetaRow, first_seen, last_path, last_seen, process_name, TrafficStatsRepo::GetAllAppMeta()
+
+### Community 690 - "NewGroup"
+Cohesion: 0.33
+Nodes (6): NewGroup, autoUpdate, importRoute, name, routeId, url
+
+### Community 692 - "VpnEndpointState"
+Cohesion: 0.33
+Nodes (6): VpnEndpointState, authFailed, connected, error, state, tag
 
 ### Community 695 - "HappEntry"
 Cohesion: 0.40
@@ -3507,9 +3469,9 @@ Nodes (16): preflightApiListenCovers(), preflightHeldByInstance(), preflightList
 Cohesion: 0.29
 Nodes (5): ParseResult, duplicates, entries, rejected, samples
 
-### Community 700 - "OutboundGroup"
-Cohesion: 0.33
-Nodes (3): OutboundGroup, OutboundGroupItem, OutboundGroupItemIterator
+### Community 700 - "Planner::EstimateTotal"
+Cohesion: 0.47
+Nodes (4): Planner::budgetFor(), Planner::EstimateTotal(), tunePlannerHasStage(), tunePlannerLatestStage()
 
 ### Community 701 - ".labelFor"
 Cohesion: 0.33
@@ -3529,31 +3491,35 @@ Nodes (7): xhttpReuseSettings, c_max_reuse_times, h_keep_alive_period, h_max_req
 
 ### Community 732 - "net/netip.Addr"
 Cohesion: 0.02
-Nodes (132): DefaultInterface(), Finder(), dnsTunnelAllowance(), BatchIPTest(), BatchIPTestTo(), ipLookupChain(), ipTest(), awaitTunnels() (+124 more)
+Nodes (155): Context(), BrateToStr(), dnsTunnelAllowance(), BatchIPTest(), BatchIPTestTo(), ipLookupChain(), ipTest(), awaitTunnels() (+147 more)
 
-### Community 733 - "DeviceSlots"
+### Community 733 - "DbErrorTally"
 Cohesion: 0.33
-Nodes (6): DeviceSlots, active, bound, current, max, ok
+Nodes (5): DbErrorTally, count, lastLogMs, lastNoticeMs, suppressed
 
-### Community 734 - "Planner::startConfirm"
-Cohesion: 0.40
-Nodes (3): Planner::MtuWinner(), Planner::openMtuProbe(), Planner::startConfirm()
+### Community 734 - "preflightOpenToOthers"
+Cohesion: 0.47
+Nodes (3): preflightGroupName(), preflightOpenToOthers(), preflightPrivateGroup()
 
-### Community 736 - "RelayAutoHashes"
-Cohesion: 0.09
-Nodes (21): DialogVKRelay, EditCSQTT::EditCSQTT(), EditMRTT::EditMRTT(), EditMRTT::showVk(), EditWdttPlus::EditWdttPlus(), EditWdttPlus::onStart(), NewPanelServer(), ApplyHashesToProfiles() (+13 more)
-
-### Community 737 - "XraySubType"
+### Community 736 - "TestRunnerClaimedTags"
 Cohesion: 0.33
-Nodes (6): XraySubType, configJsonArray, invalid, outboundInJson, outboundJsonArray, outboundObject
+Nodes (3): TestRunnerClaimedTags, mu_, tags_
 
-### Community 738 - "ScanTestTarget"
-Cohesion: 0.67
-Nodes (3): ScanTestTarget, address, port
+### Community 737 - "SetInterfaceDnsSettings"
+Cohesion: 0.70
+Nodes (5): SetInterfaceDnsSettings(), setInterfaceDnsSettingsByDwords(), setInterfaceDnsSettingsByPtr(), setInterfaceDnsSettingsByQwords(), DnsInterfaceSettings
 
-### Community 769 - "testBy"
+### Community 741 - "HeadlessApiState"
 Cohesion: 0.40
-Nodes (5): testBy, dlSpeed, ipOut, latency, ulSpeed
+Nodes (5): HeadlessApiState, addressMissing, keyError, quietRetry, retrying
+
+### Community 762 - "HitType"
+Cohesion: 0.40
+Nodes (5): HitType, ColumnHit, NoHit, RangeHit, RowHit
+
+### Community 768 - "MarkerItem"
+Cohesion: 0.40
+Nodes (5): MarkerItem, flag, flagged, text, x
 
 ### Community 771 - "Options"
 Cohesion: 0.40
@@ -3563,101 +3529,61 @@ Nodes (4): Options, contention, includeLogs, trace
 Cohesion: 0.40
 Nodes (5): folding_state_t, EMPTY_AFTER_FOLDABLE, EMPTY_AFTER_OTHER, FOLDABLE, OTHER
 
-### Community 774 - "Router::getEvents"
-Cohesion: 0.20
-Nodes (7): queryInteger(), readCursor(), Router::getEvents(), Router::getLogs(), Router::pollLogs(), Router::settleEvents(), sameInstance()
-
 ### Community 775 - "Entry"
 Cohesion: 0.11
 Nodes (12): Entry, kind, owner, rule, formElide(), FormKind, Combo, Line (+4 more)
 
-### Community 777 - "Mode"
-Cohesion: 0.40
-Nodes (5): Mode, Address, Inherit, IpList, Own
+### Community 777 - "ConfigApplied"
+Cohesion: 0.50
+Nodes (3): ConfigApplied, usedByRunning, warnings
 
-### Community 778 - "ConfigUsage"
-Cohesion: 0.40
-Nodes (5): ConfigUsage, down, profile_id, up, TrafficStatsRepo::QueryConfigUsage()
+### Community 778 - "PortUser"
+Cohesion: 0.50
+Nodes (4): PortUser, key, label, Settings
 
 ### Community 779 - "VpnEndpointPanelState"
 Cohesion: 0.40
 Nodes (5): VpnEndpointPanelState, detail, problem, summary, visible
 
-### Community 782 - "Router::eventsResponse"
+### Community 782 - "Write"
 Cohesion: 0.50
-Nodes (3): Router::changedAfter(), Router::eventsResponse(), Router::logsResponse()
+Nodes (4): Write, key, Settings, value
 
-### Community 783 - "Protocol"
-Cohesion: 0.40
-Nodes (5): Protocol, clash, schemes, singbox, type
-
-### Community 784 - "SingBoxSubType"
-Cohesion: 0.40
-Nodes (5): SingBoxSubType, invalid, outboundInJson, outboundJsonArray, outboundObject
+### Community 784 - "Protocol"
+Cohesion: 0.50
+Nodes (4): Protocol, group, id, title
 
 ### Community 787 - "TestQwdttImport"
 Cohesion: 0.10
-Nodes (4): QStandardItemModel, RestartNotice, TestQwdttImport(), EditWdttPlus::consumeHashCheckOutput()
-
-### Community 788 - "RuleTesterColumn"
-Cohesion: 0.40
-Nodes (5): RuleTesterColumn, RuleTesterColAction, RuleTesterColCount, RuleTesterColDetails, RuleTesterColRule
+Nodes (6): QStandardItemModel, RestartNotice, TestQwdttImport(), types, EditWdttPlus::consumeHashCheckOutput(), ResetQWDTTHashSources()
 
 ### Community 791 - "RecolorIcon"
 Cohesion: 0.60
 Nodes (3): FoldIcon(), MainWindow::refreshConnectionIcons(), RecolorIcon()
 
-### Community 793 - "Family"
-Cohesion: 0.50
-Nodes (4): Family, Any, V4, V6
-
-### Community 795 - "AutoSelectorPanelState"
-Cohesion: 0.50
-Nodes (4): AutoSelectorPanelState, detail, summary, visible
-
 ### Community 796 - "MW_show_log"
-Cohesion: 0.05
-Nodes (39): SlowOperation, SlowOperationKind, Start, Stop, VpnEndpointState, authFailed, connected, error (+31 more)
-
-### Community 797 - "PendingRestartPanelState"
-Cohesion: 0.50
-Nodes (3): PendingRestartPanelState, reasons, visible
-
-### Community 801 - "Effect"
-Cohesion: 0.50
-Nodes (4): Effect, ApplyKillSwitch, CheckPeriodic, NoEffect
-
-### Community 810 - "ItemKind"
-Cohesion: 0.50
-Nodes (4): ItemKind, KindGroup, KindProfile, KindRoute
-
-### Community 815 - "sqlite3_index_constraint_usage"
-Cohesion: 0.67
-Nodes (3): sqlite3_index_constraint_usage, argvIndex, omit
-
-### Community 818 - "DomainMatcher"
-Cohesion: 0.67
-Nodes (3): DomainMatcher, DEFAULT, MPH
+Cohesion: 0.09
+Nodes (25): ConnectionManager::onCoreStarted(), ConnectionManager::chooseRoute(), HeadlessPolicy::confirmGeoAssetDownload(), HeadlessPolicy::confirmRestartProgram(), HeadlessPolicy::exitProgram(), HeadlessPolicy::extraCoreNotPermitted(), HeadlessPolicy::geoAssetDownloadFinished(), HeadlessPolicy::geoAssetMissingCategory() (+17 more)
 
 ## Knowledge Gaps
 - **6201 isolated node(s):** `m_future`, `m_qr`, `mpSQLiteBackup`, `mStmtPtr`, `mIndex` (+6196 more)
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 12506 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **133 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **121 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `QString` connect `QString` to `QString`, `wireguard.cpp`, `SettingsRepo`, `ArrangeOverlay`, `MainWindow`, `shadowsocks.cpp`, `RouteItem::syncEndpointRules`, `Utils.cpp`, `EngineHost::PolicyRelay`, `Proxies`, `RowEntry`, `generate.cpp`, `KillSwitch`, `DialogAutoSelector::buildRows`, `dialog_otp_manager.cpp`, `wireguard`, `SupervisorLink`, `DialogBasicSettings`, `ProfilesFilterProxyModel.cpp`, `DialogEditProfile`, `ResolverSource.cpp`, `QJsonObject`, `TuneWorker`, `RouteItem.cpp`, `DialogScanInstance`, `RouteItem::RouteItem`, `HeadlessRuntime`, `array`, `LiveChart::Impl`, `DatabaseManager`, `LiveChart.cpp`, `SubscriptionInfoCard`, `ScanItem.cpp`, `Server::Worker`, `ElidingLabel.cpp`, `RouteProfile`, `OTP.cpp`, `QString`, `shadowsocksr`, `ScanWorker`, `RouteItem.cpp`, `ConnectionManager`, `QApplication`, `QJsonArray`, `TLS.cpp`, `PanelDeploy`, `RouteRule`, `dnstunnel`, `IpScan`, `openvpn`, `CoreSupervisor`, `xrayXHTTP`, `BuildConfigResult`, `hysteria.cpp`, `HeadlessApi.cpp`, `openvpn.cpp`, `freeturn`, `dnstt`, `CoreElevation.cpp`, `RawRouteItem`, `DialogEditIpList`, `database/Database.cpp`, `ProfilesRepo.cpp`, `Router.cpp`, `IpListsRepo.cpp`, `NewHome`, `DialogEndpointDetails`, `custom.cpp`, `JsonSchemaValidator.cpp`, `EditMRTT`, `openconnect`, `IpScansRepo.cpp`, `Validation.cpp`, `.go`, `LiveChartOptions`, `outbound`, `GroupUpdater::refresh`, `JsonCodeEdit`, `AutoSelectorPlan`, `MainWindow::MainWindow`, `dialog_edit_profile_xdrive.cpp`, `DialogRuleTester`, `EngineHost::ObserverRelay`, `mrtt`, `GroupUpdater.cpp`, `EditFreeTurn`, `OtpItem.cpp`, `BackupArchive.cpp`, `CommandPalette`, `hysteria`, `VpnAuthController`, `IpListParse.cpp`, `QUrlQuery`, `EditCSQTT`, `RouteItem::makeAttributeEditorPage`, `SeriesBuffer`, `SyntaxHighlighter`, `RPC.cpp`, `Multiplex`, `TaskRoot`, `Logger.cpp`, `RoutingDeps`, `EditQWDTT`, `ProviderRouting.cpp`, `Collector`, `Server`, `xrayStreamSetting`, `xrayStreamSetting.cpp`, `DataViewHtmlGenerator`, `IpListItem`, `GroupUpdater`, `ContentIndex`, `vpnFileImport.cpp`, `wdttplus`, `Profile`, `ProfilesTableModel`, `Form::Private`, `Overlay`, `CoreDiagnostics`, `.update`, `OpenVPNTLS`, `qwdtt`, `Group`, `vector`, `windows/AutoRun.cpp`, `SeasonalDecoration`, `EditDnsTunnel`, `host`, `EditOLCRTC`, `autoSelector`, `edit_autoselector.cpp`, `xrayVless`, `SeasonalDecoration`, `.PanelDeploy`, `ProcessRules.cpp`, `WebDavSession`, `Job`, `State`, `csqtt`, `DialogVpnAuth`, `ScannerPanelItem`, `.decode`, `IpListUpdater.cpp`, `CoreSupervisor.cpp`, `QKeyEvent`, `ServiceManager.cpp`, `DialogIpLists`, `LocalNetwork.cpp`, `SecurityInfo`, `masque`, `SubscriptionOptions`, `ScanConfig`, `string`, `ConnectionsTreeModel.cpp`, `SubscriptionParser.cpp`, `ConnectionsFilterHeader`, `ConnectionLister`, `ServiceManager_win.cpp`, `Client::LocalSocketChannel`, `EditAdvanced`, `ScanWarpOptions`, `runOnNewThread`, `TrayProfileSelector`, `vmess`, `QUrlQuery`, `DialogEditGroupAdvanced`, `TrafficLine`, `tuic`, `ProcessGroupItem`, `RouterBackup.cpp`, `MiniDump.cpp`, `ExitInfo`, `QString`, `AutoSelectorView`, `tailscale`, `DialogScanInstance::loadForm`, `ScanHttpOptions`, `ResumeGuard`, `naive`, `RuntimeStatus`, `IpListUpdater`, `vless`, `data`, `validationParseInt`, `LogFilter`, `TrafficStatsManager`, `Key`, `ServiceManagerWinState`, `trusttunnel`, `EngineControl`, `TunePlanner.cpp`, `RuntimeStatsWidget`, `edit_vless.cpp`, `DialogRuleTester::finish`, `fromHapp`, `HttpGetOptions`, `UiMode.cpp`, `QJsonArray`, `SpeedtestPanelState`, `ShortcutGuard`, `Trojan`, `Value`, `Target`, `KdeBackend`, `TuneWorker.cpp`, `ConnectionsTreeModel`, `PreflightReport`, `Group.cpp`, `Register`, `X11Backend`, `AutoSelectorMonitor`, `ProcessPicker`, `DialogNewScan`, `Validation.cpp`, `dialog_edit_group_advanced.cpp`, `RequestIdentity`, `ssh`, `IpList`, `OtpProfilesRepo.cpp`, `FixProfileDisplayName`, `shadowsocks`, `windows/GlobalHotkeys.cpp`, `edit_openvpn.cpp`, `anyTLS`, `DialogScanInstance::bindValidation`, `PreflightInstance`, `socks`, `DialogScanInstance::setupTargets`, `DialogAutoSelector`, `EditOpenConnectAdvanced`, `StartMode`, `AppTrafficRow`, `QList`, `QUICFields`, `Transport`, `RoutesRepo.cpp`, `http`, `juicity`, `xrayTLS`, `snell`, `TrafficStatsRepo.cpp`, `CoreSupervisorStderrTail`, `FormIssue`, `RuleNames`, `OpenConnectTLS`, `AutoSelectorMemberView`, `Entry`, `mieru`, `ProfileEditor`, `shadowtls`, `SubUserInfo`, `PreflightSettings`, `xrayXDrive`, `MonotonicMs`, `MainWindow::setupConnectionList`, `xrayCollectUnmodelled`, `TrafficLooper`, `dnstt.cpp`, `ImportFilter`, `GroupsRepo.cpp`, `VpnEndpointView`, `BufferedSlice`, `edit_autoselector.cpp`, `ChainBuildRequest`, `WebDavUpdateIndex`, `UpdateOutcome`, `olcrtc`, `EditHysteriaRealm`, `MainWindow::dialog_message_impl`, `Config`, `dialog_edit_profile_singbox.cpp`, `Parser`, `DefaultIpLists.cpp`, `tailscale.cpp`, `IpListItem::IpListItem`, `TestRunner`, `windows/SystemProxy.cpp`, `ScanTuneOptions`, `DiagnosticsTab`, `EditHysteria`, `Overlay`, `MainWindow::eventFilter`, `ConnectionMetadata`, `CoreProcess`, `DialogIntegration`, `TrafficStatsManager.cpp`, `AssetUpdates.cpp`, `PeriodicRunner`, `ParseDiagnostics.cpp`, `NewOrb`, `coreElevationGrant`, `IpEntriesModel`, `ScanLiveState`, `aivpn`, `ProfilesFilterProxyModel`, `DialogEditProfile::typeSelected`, `ProcessCompletionModel`, `openflux`, `dialog_scan_instance.cpp`, `IpEntriesModel.cpp`, `ProcessPickerProgram`, `HotkeyEdit`, `DialogScanInstance::applyTuneResult`, `xrayReality`, `MainWindow::handle_deeplink_impl`, `QObject`, `TrafficSample`, `AutoSelectorPlan.cpp`, `DWORD`, `WebDavResponse`, `ConnectionsTreeFilterProxyModel`, `LaunchOptions`, `Protocol.cpp`, `RouteRuleOrigin`, `DialogEditProfile::loadXrayStream`, `sstp`, `Trial`, `ChainStepReport`, `EngineEvents`, `Peer`, `Entry`, `DetailRow`, `EngineEvents.cpp`, `Reality`, `WarpIdentity`, `MainWindow::setupLogView`, `ScanWorkerConfigTest`, `PipeServerTrusted`, `respond`, `baseConfig`, `ConfigMetaRow`, `RuntimeStatsWidget::RuntimeStatsWidget`, `DnsAddress`, `PreflightApi`, `xrayMultiplex.cpp`, `MuxSettingsWidget.cpp`, `TrayIconStatus`, `EditOpenFlux`, `ThemeManager.cpp`, `ScanWorker::runChunks`, `ThemeManager`, `View`, `edit_tuic.cpp`, `extracore`, `edit_masterdns.cpp`, `Put`, `.paint`, `CrossRule`, `ChunkResult`, `SeriesBuffer.cpp`, `GlobalHotkeyBackend_Create`, `.setFiltersVisible`, `from_node`, `RuntimeStatsWidget::refreshLive`, `Hotkey`, `Tuning`, `PortRangeStyle`, `edit_snell.cpp`, `OpenConnectToken`, `ImportReport`, `.add`, `Highlighter`, `Outcome`, `Response`, `uTLS`, `simpleAction`, `TrafficChartWidget`, `RestartReason`, `Definitions`, `edit_socks.cpp`, `Variant`, `PrivilegeInfo`, `RoutesRepo::forgetDeleted`, `TrayIcon.cpp`, `ImportReport.cpp`, `Issue`, `MainWindow::HotkeyEvent`, `DeviceDetailsHelper.cpp`, `HistoryEntry`, `NewHome.cpp`, `Issue`, `Callbacks`, `ThemeManager::ApplyTheme`, `VpnAuthAnswer`, `Request`, `RunMarker`, `Info`, `Status`, `HostTun.cpp`, `AppUsage`, `done`, `AutoSelectorMonitor.cpp`, `LogLine`, `.refresh`, `Request`, `OpenConnectMobile`, `CoreDiagnostics::succeed`, `ScanRunHooks`, `Config`, `Response`, `OpenVPNRemote`, `serviceManagerWinWindowProc`, `ParseSink`, `HappEntry`, `Item`, `PreflightListener`, `.labelFor`, `.updateTuneControls`, `Planner::startConfirm`, `RelayAutoHashes`, `ScanTestTarget`, `MainWindow::log_process_loop`, `GrantAsync`, `Router::getEvents`, `Entry`, `VpnEndpointPanelState`, `.Run`, `Client::ScanURLTest`, `paint`, `TestQwdttImport`, `EditMasque::bindValidation`, `RecolorIcon`, `AutoSelectorPanelState`, `MW_show_log`, `MainWindow::showCommandPalette`, `RecolorIcon`, `Client::QueryScan`, `Response`, `RecolorIpListItemIcon`, `EditMRTT::onStart`, `DialogUpdate::DialogUpdate`?**
-  _High betweenness centrality (0.429) - this node is a cross-community bridge._
+- **Why does `QString` connect `QString` to `Algorithm`, `wireguard.cpp`, `SettingsRepo`, `MainWindow`, `RouteItem::syncEndpointRules`, `Utils.cpp`, `EngineHost::PolicyRelay`, `RowEntry`, `Profile`, `KillSwitch`, `DialogAutoSelector::buildRows`, `dialog_otp_manager.cpp`, `wireguard`, `SupervisorLink`, `DialogBasicSettings`, `FilterKey`, `DialogEditProfile`, `ResolverSource.cpp`, `QJsonObject`, `TuneWorker`, `RouteItem.cpp`, `DialogScanInstance`, `HeadlessRuntime`, `DataViewHtmlGenerator.cpp`, `LiveChart::Impl`, `DatabaseManager`, `LiveChart.cpp`, `SubscriptionInfoCard`, `ScanItem.cpp`, `Server::Worker`, `RouteProfile`, `OTP.cpp`, `QString`, `shadowsocksr`, `ScanWorker`, `RouteItem.cpp`, `ConnectionManager`, `Router`, `QApplication`, `QJsonArray`, `HeadlessCli.cpp`, `TLS`, `PanelDeploy`, `RouteRule`, `IpScan`, `openvpn`, `CoreSupervisor`, `xrayXHTTP`, `BuildConfigResult`, `hysteria.cpp`, `HeadlessApi.cpp`, `openvpn.cpp`, `freeturn`, `dnstt`, `CoreElevation.cpp`, `JsonCodeEdit.cpp`, `DialogEditIpList`, `database/Database.cpp`, `ProfilesRepo`, `Router.cpp`, `IpListsRepo.cpp`, `NewHome`, `DialogEndpointDetails`, `custom.cpp`, `JsonSchemaValidator.cpp`, `EditMRTT`, `openconnect`, `IpScansRepo.cpp`, `Validation.cpp`, `.go`, `LiveChartOptions`, `outbound`, `GroupUpdater::refresh`, `JsonCodeEdit`, `AutoSelectorPlan`, `RouteService.cpp`, `dialog_edit_profile_xdrive.cpp`, `DialogRuleTester`, `EngineHost::ObserverRelay`, `mrtt`, `GroupUpdater.cpp`, `OtpItem.cpp`, `BackupArchive.cpp`, `CommandPalette`, `hysteria`, `VpnAuthController`, `IpListParse.cpp`, `QUrlQuery`, `EditCSQTT`, `RouteItem::makeAttributeEditorPage`, `SeriesBuffer`, `SyntaxHighlighter`, `RPC.cpp`, `Multiplex`, `TaskRoot`, `Logger.cpp`, `EditQWDTT`, `ProviderRouting.cpp`, `Collector`, `Server`, `xrayStreamSetting`, `xrayStreamSetting.cpp`, `DataViewHtmlGenerator`, `IpListItem`, `GroupUpdater`, `ContentIndex`, `vpnFileImport.cpp`, `wdttplus`, `Profile`, `ProfilesTableModel`, `Form::Private`, `Overlay`, `CoreDiagnostics`, `.update`, `OpenVPNTLS`, `qwdtt`, `Group`, `vector`, `windows/AutoRun.cpp`, `SeasonalDecoration`, `EditDnsTunnel`, `host`, `EditOLCRTC`, `autoSelector`, `edit_autoselector.cpp`, `xrayVless`, `ProfilesTableFilterHeader`, `SeasonalDecoration`, `RouteRule.cpp`, `.PanelDeploy`, `Spellings`, `WebDavSession`, `Statement`, `Job`, `State`, `masterdns`, `csqtt`, `DialogVpnAuth`, `ScannerPanelItem`, `.decode`, `ServiceChecks.cpp`, `CoreSupervisor.cpp`, `ProfilesTableModel.cpp`, `ServiceManager.cpp`, `LocalNetwork.cpp`, `SecurityInfo`, `masque`, `SubscriptionOptions`, `ScanConfig`, `ConnectionsTreeModel.cpp`, `SubscriptionParser.cpp`, `ConnectionsFilterHeader`, `ConnectionLister`, `ServiceManager_win.cpp`, `Client::LocalSocketChannel`, `ScanWarpOptions`, `runOnNewThread`, `TrayProfileSelector`, `vmess`, `RunConfigDump`, `BuildTestConfigResult`, `TrafficLine`, `tuic`, `ProcessGroupItem`, `RouterBackup.cpp`, `Cidr`, `MiniDump.cpp`, `ExitInfo`, `QString`, `AutoSelectorView`, `tailscale`, `DialogScanInstance::loadForm`, `ScanHttpOptions`, `ResumeGuard`, `VpnAuthChallenge`, `naive`, `RuntimeStatus`, `IpListUpdater`, `vless`, `data`, `validationParseInt`, `GroupsRepo`, `TrafficStatsManager`, `Key`, `ServiceManagerWinState`, `trusttunnel`, `EngineControl`, `TunePlanner.cpp`, `RuntimeStatsWidget`, `Association`, `DialogRuleTester::finish`, `fromHapp`, `dump_cpp`, `HttpGetOptions`, `TuneProfiles.cpp`, `UiMode.cpp`, `QJsonArray`, `SpeedtestPanelState`, `ShortcutGuard`, `Trojan`, `Value`, `Target`, `KdeBackend`, `Bootstrap.cpp`, `ConnectionsTreeModel`, `PreflightReport`, `Group.cpp`, `X11Backend`, `AutoSelectorMonitor`, `ProcessPicker`, `DialogNewScan`, `Validation.cpp`, `dialog_edit_group_advanced.cpp`, `RequestIdentity`, `ssh`, `IpList`, `OtpProfilesRepo.cpp`, `ClaimDataDir`, `ProcessCatalog`, `windows/GlobalHotkeys.cpp`, `edit_dnstt.cpp`, `anyTLS`, `PreflightInstance`, `socks`, `DialogScanInstance::setupTargets`, `DialogAutoSelector`, `StartMode`, `AppTrafficRow`, `QUICFields`, `Transport`, `RoutesRepo.cpp`, `http`, `juicity`, `xrayTLS`, `snell`, `TrafficStatsRepo.cpp`, `DialogEditIpList::onFetched`, `FormIssue`, `Profile.cpp`, `OpenConnectTLS`, `AutoSelectorMemberView`, `Entry`, `mieru`, `ProfileEditor`, `shadowtls`, `SubUserInfo`, `PreflightSettings`, `xrayXDrive`, `RunHeadless`, `ResumeGuard.cpp`, `linux/UrlScheme.cpp`, `TrafficLooper`, `dnstt.cpp`, `ImportFilter`, `ProcessPickerProgram`, `VpnEndpointView`, `BufferedSlice`, `WebDavUpdateIndex`, `DialogScanInstance::DialogScanInstance`, `UpdateOutcome`, `EditHysteriaRealm`, `Config`, `InstanceServer`, `dialog_edit_profile_singbox.cpp`, `Parser`, `RuleIssue`, `Space`, `IpListItem::IpListItem`, `TestRunner`, `windows/SystemProxy.cpp`, `ScanTuneOptions`, `DiagnosticsTab`, `EditHysteria`, `Overlay`, `edit_chain.cpp`, `ConnectionMetadata`, `CoreProcess`, `DialogIntegration`, `TrafficStatsManager.cpp`, `AssetUpdates.cpp`, `TrayIcon`, `PeriodicRunner`, `QStringList`, `snell.cpp`, `NewOrb`, `coreElevationGrant`, `IpEntriesModel`, `dialog_edit_profile_kcp.cpp`, `ProfilesFilterProxyModel`, `DialogEditProfile::typeSelected`, `ProcessCompletionModel`, `DialogEditIpList::accept`, `dialog_scan_instance.cpp`, `IpEntriesModel.cpp`, `ProcessPickerModel`, `HotkeyEdit`, `DialogScanInstance::applyTuneResult`, `xrayReality`, `ProfilesFilterProxyModel.cpp`, `QObject`, `TrafficSample`, `AutoSelectorPlan.cpp`, `DWORD`, `IpListUpdater.cpp`, `ConnectionsTreeFilterProxyModel`, `LaunchOptions`, `Protocol.cpp`, `Effective`, `DialogEditProfile::loadXrayStream`, `sstp`, `Trial`, `TestRunner`, `ApplyConfig`, `Peer`, `Entry`, `DetailRow`, `EngineEvents.cpp`, `Reality`, `WarpIdentity`, `RouteRuleOriginKind`, `ScanWorkerConfigTest`, `PipeServerTrusted`, `respond`, `baseConfig`, `ConfigMetaRow`, `RuntimeStatsWidget::RuntimeStatsWidget`, `DialogEditProfile::DialogEditProfile`, `PreflightApi`, `EditOpenConnect::editPem`, `ProxyItem.cpp`, `TrayIconStatus`, `EditOpenFlux`, `ThemeManager.cpp`, `ScanWorker::runChunks`, `ThemeManager`, `View`, `edit_tuic.cpp`, `EditS3Bypass`, `Put`, `.paint`, `SourceKind`, `CrossRule`, `ChunkResult`, `SeriesBuffer.cpp`, `GlobalHotkeyBackend_Create`, `Import`, `from_node`, `RuntimeStatsWidget::refreshLive`, `Hotkey`, `ProfileConfig`, `Register`, `PortRangeStyle`, `Layout`, `DialogAutoSelector::sortRows`, `OpenConnectToken`, `ImportReport`, `.add`, `Highlighter`, `Outcome`, `DownloadProgressReport`, `uTLS`, `simpleAction`, `TrafficChartWidget`, `Definitions`, `PrivilegeInfo`, `TrayIcon.cpp`, `FloatCheckBox`, `ImportReport.cpp`, `DialogIpLists::rebuildRows`, `Issue`, `KillSwitch.cpp`, `HistoryEntry`, `combo`, `judgeSteps`, `NewHome.cpp`, `Issue`, `Callbacks`, `ThemeManager::ApplyTheme`, `ConnectionState`, `Change`, `InterfaceFields`, `Info`, `Status`, `HostTun.cpp`, `AppUsage`, `CheckDelete`, `AutoSelectorMonitor::poll`, `EditAdvanced::EditAdvanced`, `.refresh`, `EditOpenVPNAdvanced::EditOpenVPNAdvanced`, `StepVerdict`, `CoreDiagnostics::succeed`, `Config`, `RoutesRepo::loadRulesForProfileIdsChunk`, `AppMetaRow`, `NewGroup`, `VpnEndpointState`, `HappEntry`, `Item`, `PreflightListener`, `.labelFor`, `.updateTuneControls`, `preflightOpenToOthers`, `TestRunnerClaimedTags`, `HeadlessApiState`, `MarkerItem`, `GrantAsync`, `Entry`, `PortUser`, `VpnEndpointPanelState`, `.Run`, `Client::ScanURLTest`, `Write`, `validationDurationUnit`, `Protocol`, `paint`, `TestQwdttImport`, `AllOf`, `RecolorIcon`, `MW_show_log`, `RecolorIcon`, `Client::QueryScan`, `Response`, `RecolorIpListItemIcon`?**
+  _High betweenness centrality (0.449) - this node is a cross-community bridge._
 - **Are the 242 inferred relationships involving `QString` (e.g. with `GlobalHotkeyBackend_WaylandSession()` and `paint()`) actually correct?**
   _`QString` has 242 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `m_future`, `m_qr`, `mpSQLiteBackup` to the rest of the system?**
   _6201 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `listenerTestSession` be split into smaller, more focused modules?**
-  _Cohesion score 0.049094097019286964 - nodes in this community are weakly interconnected._
-- **Why does `QJsonObject` connect `QJsonObject` to `QString`, `wireguard.cpp`, `shadowsocks.cpp`, `respond`, `baseConfig`, `Utils.cpp`, `generate.cpp`, `KillSwitch`, `xrayMultiplex.cpp`, `DialogBasicSettings`, `extracore`, `Put`, `ResolverSource.cpp`, `array`, `RouteProfile`, `OTP.cpp`, `shadowsocksr`, `RouteItem.cpp`, `QApplication`, `QJsonArray`, `ChainBuildMark`, `TLS.cpp`, `PanelDeploy`, `RouteRule`, `dnstunnel`, `Response`, `IpScan`, `xrayXHTTP`, `BuildConfigResult`, `hysteria.cpp`, `HeadlessApi.cpp`, `openvpn.cpp`, `freeturn`, `CoreElevation.cpp`, `RawRouteItem`, `ProfilesRepo.cpp`, `Router.cpp`, `custom.cpp`, `JsonSchemaValidator.cpp`, `Planner::openRefine`, `IpScansRepo.cpp`, `.go`, `GroupUpdater::refresh`, `GroupUpdater.cpp`, `BackupArchive.cpp`, `hysteria`, `QUrlQuery`, `QString`, `RoutingDeps`, `ProviderRouting.cpp`, `xrayStreamSetting`, `xrayStreamSetting.cpp`, `RelayTask`, `SeasonalDecoration`, `.PanelDeploy`, `WebDavSession`, `RelayAutoHashes`, `IpListUpdater.cpp`, `SecurityInfo`, `SubscriptionParser.cpp`, `ScanWarpOptions`, `QUrlQuery`, `RouterBackup.cpp`, `TestQwdttImport`, `QString`, `.ParseFromJson`, `ResumeGuard`, `RuntimeStatus`, `TunePlanner.cpp`, `fromHapp`, `RoutesRepo::routeProfileToJson`, `QJsonArray`, `TuneWorker.cpp`, `PreflightReport`, `Group.cpp`, `PreflightInstance`, `RoutesRepo.cpp`, `TrafficStatsRepo.cpp`, `SubUserInfo`, `xrayXDrive`, `MonotonicMs`, `xrayCollectUnmodelled`, `dnstt.cpp`, `GroupsRepo.cpp`, `WebDavUpdateIndex`, `olcrtc`, `tailscale.cpp`, `TestRunner`, `ConnectionMetadata`, `WebDavRequest`, `openflux`, `dialog_scan_instance.cpp`, `QJsonArray`, `EngineEvents`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **Should `sqlite3` be split into smaller, more focused modules?**
+  _Cohesion score 0.013618835911627275 - nodes in this community are weakly interconnected._
+- **Why does `Profile()` connect `Profile` to `Algorithm`, `MainWindow`, `ScanWorkerConfigTest`, `Utils.cpp`, `SortInput`, `EditAivpn`, `ProxyItem.cpp`, `EditOpenFlux`, `edit_tuic.cpp`, `DialogBasicSettings`, `EditS3Bypass`, `DialogEditProfile`, `FilterKey`, `QJsonObject`, `TuneWorker`, `ProfileConfig`, `EditWireguardObfs`, `ScanWorker`, `EditSSTP`, `ImportReport`, `edit_direct.cpp`, `RouteItem.cpp`, `QJsonArray`, `edit_juicity.cpp`, `EditHttp`, `EditJuicity`, `BuildConfigResult`, `EditNaive`, `EditShadowTLS`, `EditSocks`, `EditTrojan`, `EditTuic`, `ProfilesRepo`, `Router.cpp`, `combo`, `EditMRTT`, `EditWdttPlus`, `GroupUpdater.cpp`, `EditFreeTurn`, `edit_trojan.cpp`, `QUrlQuery`, `EditCSQTT`, `QString`, `EditAdvanced::EditAdvanced`, `EditOpenVPNAdvanced::EditOpenVPNAdvanced`, `EditQWDTT`, `ProviderRouting.cpp`, `EditDnsTunnel`, `EditOLCRTC`, `RouteRule.cpp`, `SubscriptionParser.cpp`, `EditOpenFluxKey`, `EditAdvanced`, `runOnNewThread`, `RunConfigDump`, `EditShadowsocksR`, `TuneProfiles.cpp`, `QJsonArray`, `Group.cpp`, `AutoSelectorController`, `edit_dnstt.cpp`, `EditOpenConnectAdvanced`, `StartMode`, `Profile.cpp`, `ProfileEditor`, `TrafficLooper`, `dnstt.cpp`, `ImportFilter`, `EditChain`, `EditHysteriaRealm`, `EditOpenVPNAdvanced`, `TestRunner`, `EditHysteria`, `edit_chain.cpp`, `EditWireguardAmnezia`, `ProxyItem`, `EditTrustTunnel`, `AutoSelectorPlan.cpp`?**
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Are the 71 inferred relationships involving `QJsonObject` (e.g. with `Router::getRestore()` and `Router::deleteConnections()`) actually correct?**
   _`QJsonObject` has 71 INFERRED edges - model-reasoned connections that need verification._
-- **Should `QString` be split into smaller, more focused modules?**
-  _Cohesion score 0.00927976209578212 - nodes in this community are weakly interconnected._
+- **Should `Algorithm` be split into smaller, more focused modules?**
+  _Cohesion score 0.008132211417342671 - nodes in this community are weakly interconnected._

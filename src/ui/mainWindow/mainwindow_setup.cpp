@@ -661,6 +661,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     tray->setIcon(Icon::GetTrayIcon(Icon::TrayIconStatus::None));
     QApplication::setWindowIcon(Icon::GetTaskbarIcon(Icon::TrayIconStatus::None));
     trayMenu = new QMenu();
+    // See-through from birth: the tray makes this menu's window when it is handed over, and a window made opaque
+    // keeps black squares behind the new style's round corners. A classic theme paints it whole, so it looks the same.
+    trayMenu->setObjectName(QStringLiteral("trayMenu"));
+    trayMenu->setAttribute(Qt::WA_TranslucentBackground);
+    trayMenu->setWindowFlag(Qt::NoDropShadowWindowHint);
     trayMenu->addAction(ui->actionShow_window);
     trayMenu->addSeparator();
 
