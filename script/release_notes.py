@@ -50,6 +50,7 @@ print("""
 - Режимы по умолчанию для профилей VK-релея.
 - Расширены настройки mux для Xray, Hysteria2 принимает пустой obfs, у Hysteria v1 есть скорости по умолчанию.
 - Исправлены утечка соединений xhttp и зависания WireGuard, Xray сбрасывается при смене сети, конечная точка WireGuard за detour не пересоздаёт поток при смене сети, улучшена работа MASQUE.
+- Обновлены sing-box и сетевые библиотеки.
 - Kill switch работает надёжнее.
 - На Windows с правами администратора запускается только ядро, сам Rawline работает без них.
 - Простой режим настроек, где видны только основные параметры, и окно «О программе» с проверкой обновлений.
@@ -58,6 +59,4 @@ print("""
 - Вместо ссылки на устранение неполадок TUN есть кнопка перезапуска ядра. Если файл ядра пропал, Rawline перестаёт перезапускать ядро.
 - Ссылки throne:// тоже открываются в Rawline.
 - Linux: вход в VK и MAX находит браузер.
-- macOS: исправлен DNS в режиме TUN.
-
-Основа: Throne {rawline_version}, коммит [{short}](https://github.com/throneproj/Throne/commit/{commit}).""".replace("{rawline_version}", version["rawline_version"]).replace("{short}", version["rawline_commit"][:8]).replace("{commit}", version["rawline_commit"]))
+- macOS: исправлен DNS в режиме TUN.""")
