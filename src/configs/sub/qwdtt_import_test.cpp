@@ -250,6 +250,17 @@ int TestQwdttImport() {
             }
         }
     }
+    {
+        QMainWindow window;
+        Ui::MainWindow ui;
+        ui.setupUi(&window);
+        auto *filter = new QToolButton(&window);
+        auto *decoration = installSeasonalDecoration(ui.centralwidget, ui.horizontalLayout_2, ui.tabWidget->tabBar(), filter);
+        QWidget otherPage;
+        ui.data_view->setParent(&otherPage);
+        decoration->setDecoration("halloween");
+        check(decoration->isHidden(), "seasonal artwork ignores a notice moved to the new home page (Windows 7 crash)");
+    }
     check(SaveVKRelayPreviews(qEnvironmentVariable("RAWLINE_SEASONAL_PREVIEW_DIR")), "VK relay screenshots saved");
     check(SaveProviderRoutingPreviews(qEnvironmentVariable("RAWLINE_SEASONAL_PREVIEW_DIR")), "provider routing screenshots saved");
     const QByteArray android = "qwdtt://config?name=Main+%28demo%29&peer=203.0.113.10%3A56000&hashes=hash1%2Chash2&workers=9&port=9000&pass=a%2Bb+%26%25";

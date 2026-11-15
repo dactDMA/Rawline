@@ -122,6 +122,12 @@ private:
     }
     void updateBounds() {
         if (!anchor || !bottom || !parentWidget()) return;
+        // NewHome moves the notice to another page; Qt 6.2 mapTo requires an ancestor and crashes otherwise.
+        if (!parentWidget()->isAncestorOf(anchor) || !parentWidget()->isAncestorOf(bottom) ||
+            (notice && !parentWidget()->isAncestorOf(notice))) {
+            hide();
+            return;
+        }
         const QString resolved = selection == "auto" ? themeForDate(QDate::currentDate()) : selection;
         const bool enabled = resolved != "none" && manifest().contains(resolved);
         const QPoint top = anchor->mapTo(parentWidget(), QPoint());

@@ -84,7 +84,7 @@ public:
     void setTextSize(qreal px) { m_textSize = px; updateGeometry(); update(); }
     void setFlat(bool flat) { m_flat = flat; update(); }
     QSize sizeHint() const override;
-    // Tabs and text buttons may narrow to an elided title, so they never hold the window wide.
+    // Tabs keep their full titles; text buttons may narrow.
     QSize minimumSizeHint() const override;
 
 protected:
