@@ -310,14 +310,9 @@ void DialogManageRoutes::show_dns_rules_editor() {
         e.setWindowTitle(index >= 0 ? tr("Rule") : tr("New rule"));
         auto *form = new QFormLayout(&e);
         auto *sites = new QPlainTextEdit(&e);
-        sites->setPlaceholderText(tr("One per line, domain: takes the subdomains too:") + QStringLiteral("
-domain:example.com
-full:only.example.com
-keyword:openai
-regexp:^chat[0-9]+\.example\.org$
-geosite:category-ai-chat-!cn"));
-        sites->setPlainText(rule.sites.join("
-"));
+        sites->setPlaceholderText(tr("One per line, domain: takes the subdomains too:") +
+                                  QStringLiteral("\ndomain:example.com\nfull:only.example.com\nkeyword:openai\nregexp:^chat[0-9]+\\.example\\.org$\ngeosite:category-ai-chat-!cn"));
+        sites->setPlainText(rule.sites.join("\n"));
         form->addRow(tr("Sites"), sites);
         auto *server = new QLineEdit(rule.server, &e);
         server->setPlaceholderText(QStringLiteral("https://dns.example/dns-query"));
