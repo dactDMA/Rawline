@@ -10,6 +10,7 @@
 #include "include/configs/outbounds/qwdtt.h"
 #include "include/configs/outbounds/csqtt.h"
 #include "include/configs/outbounds/wdttplus.h"
+#include "include/configs/outbounds/mrtt.h"
 #include "include/configs/outbounds/wireguard.h"
 #include "include/configs/outbounds/vless.h"
 #include "include/configs/outbounds/trojan.h"
@@ -980,6 +981,8 @@ proxies:
         check(Configs::wdttplus::NormalizeWorkers(20, 0) == 18 && Configs::wdttplus::NormalizeWorkers(500, 0) == 108
               && Configs::wdttplus::NormalizeWorkers(1, 0) == 9 && Configs::wdttplus::NormalizeWorkers(108, 45) == 45,
               "WDTT Plus workers go in groups of 9 up to 108 or the server's limit");
+        check(Configs::mrtt::MaxWorkersFor(6, false) == 126 && Configs::mrtt::NormalizeWorkers(162, 6, false) == 126,
+              "manual MRTT workers cannot exceed the native transport's 126-worker limit");
         Configs::wdttplus fresh;
         Configs::qwdtt sibling;
         check(fresh.workers == 18 && fresh.server_port == 56000 && fresh.wgPort == 56001 && fresh.localPort == 9000 && fresh.turnSni == "ya.ru" && fresh.deviceID == sibling.deviceID,

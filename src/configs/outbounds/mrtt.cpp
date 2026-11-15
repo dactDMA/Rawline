@@ -66,7 +66,7 @@ QStringList mrtt::NormalizeHashes(const QStringList &input) {
     return result;
 }
 int mrtt::MaxWorkersFor(int hashCount, bool anyCount) {
-    return anyCount ? MaxWorkers / WorkersPerGroup * WorkersPerGroup : qBound(1, hashCount, int(MaxHashes)) * GroupsPerHash * WorkersPerGroup;
+    return anyCount ? MaxWorkers / WorkersPerGroup * WorkersPerGroup : qMin(int(MaxWorkers), qBound(1, hashCount, int(MaxHashes)) * GroupsPerHash * WorkersPerGroup);
 }
 int mrtt::NormalizeWorkers(int requested, int hashCount, bool anyCount) {
     return qBound(int(WorkersPerGroup), requested, MaxWorkersFor(hashCount, anyCount)) / WorkersPerGroup * WorkersPerGroup;
