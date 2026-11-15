@@ -204,9 +204,11 @@ protected:
     void leaveEvent(QEvent *) override;
     void paintEvent(QPaintEvent *) override;
     void dropEvent(QDropEvent *) override;
+    void wheelEvent(QWheelEvent *) override;
 
 private:
     QTimer *m_spinner = nullptr;
+    QVariantAnimation *m_scroll = nullptr;
 };
 
 class NewHome : public QWidget {
@@ -289,6 +291,7 @@ private:
     QLabel *m_announce = nullptr;
     // Which routing the subscription runs with; a click opens where it is changed.
     QLabel *m_routeLine = nullptr;
+    QWidget *m_routeBox = nullptr;
     bool m_routeFromProvider = false;
     QLineEdit *m_search = nullptr;
     QWidget *m_notice = nullptr;

@@ -82,8 +82,9 @@ class InterfaceRegressions(unittest.TestCase):
         block = text.split("void NewHome::applyArrangement()", 1)[1].split("\n}\n", 1)[0]
         self.assertIn("m_side->setMaximumWidth(QWIDGETSIZE_MAX);", block)
 
-    def test_tabs_let_the_window_narrow(self):
-        self.assertIn("m_kind == Tab || m_kind == Text ? QSize(40,", read("src/ui/widget/NewHome.cpp"))
+    def test_tabs_keep_their_titles_at_the_minimum_width(self):
+        tile = read("src/ui/widget/NewHome.cpp").split("QSize NewTile::minimumSizeHint()", 1)[1].split("\n}", 1)[0]
+        self.assertIn("m_kind == Text ? QSize(40,", tile)
         # The minimum is worked out for the new arrangement and leaves out the centering room,
         # which follows the window's width and would otherwise keep it from narrowing.
         self.assertIn("setMinimumSize(newHome->windowMinimum()", read("src/ui/mainWindow/mainwindow_view.cpp"))

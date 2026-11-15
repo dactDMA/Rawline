@@ -99,6 +99,22 @@ QIcon Icon::GetTrayIcon(TrayIconStatus status) {
         }
         icon = tinted;
     }
+    if (!own && status != TrayIconStatus::None) {
+        const QColor dot = status == TrayIconStatus::Connecting ? QColor("#F5B942") : QColor("#32C98B");
+        QIcon marked;
+        for (const int size : {16, 24, 32, 48, 64, 128}) {
+            auto pixmap = icon.pixmap(size, size);
+            QPainter painter(&pixmap);
+            painter.setRenderHint(QPainter::Antialiasing);
+            const qreal side = pixmap.width();
+            painter.setPen(QPen(QColor("#17171C"), side * .08));
+            painter.setBrush(dot);
+            painter.drawEllipse(QRectF(side * .59, side * .59, side * .34, side * .34));
+            painter.end();
+            marked.addPixmap(pixmap);
+        }
+        icon = marked;
+    }
     g_trayIcons.insert(status, icon);
     return icon;
 }

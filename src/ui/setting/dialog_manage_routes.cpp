@@ -37,6 +37,7 @@
 
 #include <algorithm>
 #include <climits>
+#include <srslist.h>
 
 #include "include/configs/generate.h"
 #include "include/configs/sub/warp.h"
@@ -314,6 +315,38 @@ void DialogManageRoutes::show_dns_rules_editor() {
                                   QStringLiteral("\ndomain:example.com\nfull:only.example.com\nkeyword:openai\nregexp:^chat[0-9]+\\.example\\.org$\ngeosite:category-ai-chat-!cn"));
         sites->setPlainText(rule.sites.join("\n"));
         form->addRow(tr("Sites"), sites);
+        auto *pickSets = new QPushButton(tr("Rule sets"), &e);
+        form->addRow(pickSets);
+        connect(pickSets, &QPushButton::clicked, &e, [&, sites] {
+            QDialog picker(&e);
+            picker.setWindowTitle(tr("Rule sets"));
+            auto *layout = new QVBoxLayout(&picker);
+            auto *search = new QLineEdit(&picker);
+            layout->addWidget(search);
+            auto *choices = new QListWidget(&picker);
+            layout->addWidget(choices, 1);
+            const auto selected = Configs::ParseDnsRuleSites(Configs::DnsRuleLines(sites->toPlainText())).ruleSets;
+            QStringList entries = selected;
+            for (const auto &item : ruleSetList) entries << QString::fromUtf8(item.first.data(), qsizetype(item.first.size()));
+            entries.removeDuplicates();
+            for (const auto &entry : entries) {
+                auto *item = new QListWidgetItem(entry, choices);
+                item->setCheckState(selected.contains(entry) ? Qt::Checked : Qt::Unchecked);
+            }
+            connect(search, &QLineEdit::textChanged, choices, [choices](const QString &query) {
+                for (int i = 0; i < choices->count(); ++i) choices->item(i)->setHidden(!choices->item(i)->text().contains(query, Qt::CaseInsensitive));
+            });
+            auto *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &picker);
+            layout->addWidget(buttons);
+            connect(buttons, &QDialogButtonBox::accepted, &picker, &QDialog::accept);
+            connect(buttons, &QDialogButtonBox::rejected, &picker, &QDialog::reject);
+            picker.resize(500, 480);
+            if (picker.exec() != QDialog::Accepted) return;
+            auto lines = Configs::DnsRuleLines(sites->toPlainText());
+            lines.removeIf([](const QString &line) { const auto kind = line.section(':', 0, 0).toLower(); return kind == "geosite" || kind == "rule-set"; });
+            for (int i = 0; i < choices->count(); ++i) if (choices->item(i)->checkState() == Qt::Checked) lines << "rule-set:" + choices->item(i)->text();
+            sites->setPlainText(lines.join('\n'));
+        });
         auto *server = new QLineEdit(rule.server, &e);
         server->setPlaceholderText(QStringLiteral("https://dns.example/dns-query"));
         form->addRow(tr("DNS server"), server);

@@ -756,6 +756,11 @@ int TestQwdttImport() {
         check(Subscription::UnwrapProviderLink(wrapped) == "https://link.flagman.click/sub/example", "SSConnect unwraps without fetching its HTML");
         check(Subscription::UnwrapProviderLink(wrapped + "&q=second").isEmpty(), "duplicate wrapper payload rejected");
         check(Subscription::UnwrapProviderLink("https://ssconnect.app:444/?q=secret").isEmpty(), "nonstandard wrapper port rejected");
+        QString largeList;
+        for (int i = 0; i < 6000; ++i) largeList += QStringLiteral("socks://127.0.0.1:1080#") + QString(180, 'a') + QString::number(i) + '\n';
+        check(Subscription::UnwrapProviderLink(largeList) == largeList.trimmed(), "large plain subscriptions are not rejected as wrappers (#22)");
+        check(parse(Subscription::UnwrapProviderLink(largeList).toUtf8()).size() == 6000, "all 6000 profiles above the former 1 MiB threshold import (#22)");
+        check(Subscription::UnwrapProviderLink(QStringLiteral("happ://add/") + QString(1024 * 1024, 'a')).isEmpty(), "wrapper size guard remains");
         const QByteArray masqueLink = "masque://MHcCAQEEKey%2BWith%2FSlash%3D%3D@162.159.198.2:443?publickey=Peer%2BPublic%2FKey%3D&address=172.16.0.2%2C2001%3Adb8%3A%3A1&network=h2&sni=4pda.to#MASQUE%20h2";
         const auto imported = parse(masqueLink);
         check(imported.size() == 1, "MASQUE clipboard URI imports");
