@@ -13,6 +13,7 @@
 DialogUpdate::DialogUpdate(const QString &version, bool preRelease, const QString &notes, const QUrl &releaseUrl,
                            bool canUpdate, const QString &notice, QWidget *parent) : QDialog(parent) {
     setWindowTitle(preRelease ? tr("Update (Pre-release)") : tr("Update"));
+    setWindowFlag(Qt::WindowMaximizeButtonHint);
 
     auto *heading = new QLabel(tr("Rawline %1 is available, you are using %2.").arg(version, QStringLiteral(NKR_VERSION)), this);
     heading->setTextFormat(Qt::PlainText);

@@ -132,10 +132,15 @@ namespace Subscription {
 
     QString UnwrapProviderLink(const QString &text) {
         auto content = text.trimmed();
-        if (content.size() > 1024 * 1024) return {};
+        if (content.contains('\n') || content.contains('\r')) return content;
         const QRegularExpression add("^(happ|incy)://(?:add|import)/(.*)$", QRegularExpression::CaseInsensitiveOption);
         const QRegularExpression crypt("^(happ|incy)://crypt[0-9]*/", QRegularExpression::CaseInsensitiveOption);
         for (int depth = 0; depth < 8; ++depth) {
+            // The wrapper limit protects individual links; ordinary subscription bodies may be much larger.
+            const bool wrapped = content.startsWith("happ://", Qt::CaseInsensitive) || content.startsWith("incy://", Qt::CaseInsensitive) ||
+                content.startsWith("https://ssconnect.app", Qt::CaseInsensitive) || content.startsWith("https://www.ssconnect.app", Qt::CaseInsensitive);
+            if (!wrapped) return content;
+            if (content.size() > 1024 * 1024) return {};
             const QUrl url(content);
             if (url.scheme() == "https" && (url.host() == "ssconnect.app" || url.host() == "www.ssconnect.app")) {
                 if (!url.userInfo().isEmpty() || url.port(443) != 443) return {};

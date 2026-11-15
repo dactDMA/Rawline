@@ -61,6 +61,9 @@
 #include <QPointer>
 #include <QSet>
 #include <QStandardItemModel>
+#include <QScrollArea>
+#include <QScreen>
+#include <QVBoxLayout>
 
 namespace {
 using EditorFactory = std::pair<QWidget *, ProfileEditor *> (*)(QWidget *);
@@ -192,6 +195,16 @@ void rebuildTabOrder(const QList<QWidget *> &tabOrder) {
 DialogEditProfile::DialogEditProfile(const QString &_type, int profileOrGroupId, QWidget *parent)
     : QDialog(parent), ui(new Ui::DialogEditProfile) {
     ui->setupUi(this);
+    auto *content = new QWidget(this);
+    content->setLayout(ui->dialog_layout);
+    auto *scroll = new QScrollArea(this);
+    scroll->setFrameShape(QFrame::NoFrame);
+    scroll->setWidgetResizable(true);
+    scroll->setWidget(content);
+    auto *outer = new QVBoxLayout(this);
+    outer->addWidget(scroll, 1);
+    // Save and Cancel stay outside even the tallest protocol form.
+    outer->addWidget(ui->buttonBox);
     form = new Validation::Form(this);
     form->attachStatus(ui->buttonBox);
 
@@ -415,7 +428,11 @@ void DialogEditProfile::relayout() {
 }
 
 void DialogEditProfile::fitToContent() {
-    adjustSize();
+    ui->dialog_layout->activate();
+    const auto margins = layout()->contentsMargins();
+    const QSize preferred = ui->dialog_layout->sizeHint() + QSize(margins.left() + margins.right() + 20,
+        margins.top() + margins.bottom() + ui->buttonBox->sizeHint().height() + layout()->spacing());
+    resize(preferred.boundedTo(screen()->availableGeometry().size() * .9));
     adjustPosition(mainwindow);
 }
 

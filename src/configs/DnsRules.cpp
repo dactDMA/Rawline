@@ -8,7 +8,7 @@
 
 namespace Configs {
     namespace {
-        const QStringList dnsRuleKinds{"", "domain", "full", "keyword", "regexp", "regex", "geosite"};
+        const QStringList dnsRuleKinds{"", "domain", "full", "keyword", "regexp", "regex", "geosite", "rule-set"};
 
         void splitDnsRuleSite(const QString &raw, QString &kind, QString &value) {
             const QString site = raw.trimmed();
@@ -80,6 +80,7 @@ namespace Configs {
             else if (kind == "keyword") match.keywords << value;
             else if (kind == "regexp" || kind == "regex") match.regexes << value;
             else if (kind == "geosite") match.ruleSets << "geosite-" + value.toLower();
+            else if (kind == "rule-set") match.ruleSets << value;
             // domain: and a bare name both take the subdomains, as v2ray reads them.
             else {
                 if (value.startsWith('.')) value.remove(0, 1);
@@ -105,6 +106,9 @@ namespace Configs {
         check(match.keywords == QJsonArray{"openai"}, "keyword:");
         check(match.regexes.size() == 1, "regexp:");
         check(match.ruleSets == QStringList{"geosite-category-ai-chat-!cn"}, "geosite: is a catalog list");
+        check(ParseDnsRuleSites({"rule-set:custom-list", "rule-set:https://example.org/sites.srs"}).ruleSets ==
+            QStringList{"custom-list", "https://example.org/sites.srs"}, "picker entries preserve catalog names and URLs");
+        check(DnsRule{true, {"rule-set:custom-list"}, "1.1.1.1", false}.Problem().isEmpty(), "selected DNS rule sets validate");
         check(DnsRuleLines("a.com\n\n# note\nb.com, c.com") == QStringList{"a.com", "b.com", "c.com"}, "lines");
         const QList<DnsRule> rules{twitch, DnsRule{false, {"x.org"}, "1.1.1.1", true}};
         check(DecodeDnsRules(EncodeDnsRules(rules)) == rules, "round trip");

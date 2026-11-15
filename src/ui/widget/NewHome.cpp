@@ -51,6 +51,7 @@
 #include <QStyleFactory>
 #include <QStyleOption>
 #include <QRegularExpression>
+#include <QRegion>
 #include <QScreen>
 #include <QScrollArea>
 #include <QScrollBar>
@@ -60,6 +61,7 @@
 #include <QTextBrowser>
 #include <QTimer>
 #include <QVariantAnimation>
+#include <QWheelEvent>
 #include <QVBoxLayout>
 #include <QWindow>
 
@@ -293,7 +295,9 @@ namespace {
 
     void frameDialog(QDialog *dialog) {
         if (dialog->property("newFrame").toBool()) return;
+        const bool shown = dialog->isVisible();
         dialog->setProperty("newFrame", true);
+        dialog->setProperty("newWindowFlags", QVariant::fromValue(dialog->windowFlags()));
         dialog->setWindowFlags(dialog->windowFlags() | Qt::FramelessWindowHint);
         // See-through, so only the round body shows; this also stops the sheet's square background.
         dialog->setAttribute(Qt::WA_TranslucentBackground);
@@ -302,10 +306,11 @@ namespace {
         dialog->setContentsMargins(margins.left(), margins.top() + kDialogBar, margins.right(), margins.bottom());
         auto *bar = new NewTitleBar(dialog);
         bar->setObjectName(QStringLiteral("newDialogBar"));
-        // A dialog only closes: its minimise and maximise buttons go.
+        // Keep maximise available for long forms and update notes.
         const auto buttons = bar->findChildren<QAbstractButton *>();
-        for (int i = 0; i + 1 < buttons.size(); ++i) buttons[i]->hide();
+        if (!buttons.isEmpty()) buttons.first()->hide();
         bar->follow(dialog);
+        if (shown) dialog->show();
     }
 
     Qt::Edges dialogEdges(QWidget *dialog, const QPoint &pos) {
@@ -345,6 +350,7 @@ namespace {
                     return true;
                 }
                 if (event->type() == QEvent::Resize || event->type() == QEvent::Show) {
+                    NewStyle::roundCorners(widget, false);
                     if (auto *bar = widget->findChild<QWidget *>(QStringLiteral("newDialogBar"), Qt::FindDirectChildrenOnly)) {
                         bar->setGeometry(10, 0, widget->width() - 16, kDialogBar);
                         bar->raise();
@@ -521,6 +527,15 @@ namespace {
 QStyle *NewStyle::createStyle() { return new NewProxyStyle; }
 
 void NewStyle::roundCorners(QWidget *window, bool compact) {
+    if (window && (window->windowFlags() & Qt::FramelessWindowHint)) {
+        if (window->isMaximized() || window->isFullScreen()) window->clearMask();
+        else {
+            QPainterPath shape;
+            const qreal radius = compact ? 10 : 14;
+            shape.addRoundedRect(QRectF(window->rect()), radius, radius);
+            window->setMask(QRegion(shape.toFillPolygon().toPolygon()));
+        }
+    }
 #ifdef Q_OS_WIN
     // Windows 11 rounds a window without a frame only when asked; older systems ignore the attribute.
     using SetAttribute = HRESULT(WINAPI *)(HWND, DWORD, LPCVOID, DWORD);
@@ -566,12 +581,18 @@ bool NewStyle::isTheme(const QString &theme) {
 void NewStyle::setTheme(const QString &theme) {
     static MenuCorners *corners = nullptr;
     if (!corners) { corners = new MenuCorners(qApp); qApp->installEventFilter(corners); }
-    if (isTheme(g_theme) && !isTheme(theme)) {
+    const bool leaving = isTheme(g_theme) && !isTheme(theme);
+    const bool entering = !isTheme(g_theme) && isTheme(theme);
+    // Restoring a visible dialog sends Show synchronously; it must already see the incoming theme.
+    g_theme = theme;
+    if (leaving) {
         // Back in the classic look: menus get their own background again, and every control its own cursor.
         for (auto *widget : QApplication::allWidgets()) {
             // The tray menu stays see-through: its window cannot be made again once the tray holds it.
             if (auto *menu = qobject_cast<QMenu *>(widget); menu && menu->objectName() != QLatin1String("trayMenu")) {
                 menu->setAttribute(Qt::WA_TranslucentBackground, false);
+                menu->setAttribute(Qt::WA_NoSystemBackground, false);
+                menu->clearMask();
                 menu->setProperty("newCleared", QVariant());
             }
             if (widget->property("newHand").toBool()) { widget->unsetCursor(); widget->setProperty("newHand", QVariant()); }
@@ -579,21 +600,28 @@ void NewStyle::setTheme(const QString &theme) {
             // A dialog kept between uses gets its system frame back.
             if (widget->property("newFrame").toBool()) {
                 widget->setProperty("newFrame", QVariant());
-                delete widget->findChild<QWidget *>(QStringLiteral("newDialogBar"), Qt::FindDirectChildrenOnly);
+                if (auto *bar = widget->findChild<QWidget *>(QStringLiteral("newDialogBar"), Qt::FindDirectChildrenOnly)) {
+                    bar->hide();
+                    bar->setObjectName(QString());
+                    // allWidgets() still holds the title bar and its children during this traversal.
+                    bar->deleteLater();
+                }
                 const QMargins m = widget->contentsMargins();
                 widget->setContentsMargins(m.left(), std::max(0, m.top() - kDialogBar), m.right(), m.bottom());
                 widget->setAttribute(Qt::WA_TranslucentBackground, false);
+                widget->setAttribute(Qt::WA_NoSystemBackground, false);
+                widget->clearMask();
                 const bool shown = widget->isVisible();
-                widget->setWindowFlag(Qt::FramelessWindowHint, false);
+                widget->setWindowFlags(widget->property("newWindowFlags").value<Qt::WindowFlags>());
+                widget->setProperty("newWindowFlags", QVariant());
                 if (shown) widget->show();
             }
         }
     }
-    const bool entering = !isTheme(g_theme) && isTheme(theme);
-    g_theme = theme;
     // Controls made before the switch are polished already.
     if (entering) for (auto *widget : QApplication::allWidgets()) {
         giveHand(widget);
+        if (auto *dialog = qobject_cast<QDialog *>(widget); dialog && dialog->isWindow()) frameDialog(dialog);
         // A menu shown under the classic look keeps its window; one not shown yet is cleared before it is.
         if (auto *menu = qobject_cast<QMenu *>(widget); menu && !menu->isVisible()) clearMenuWindow(menu);
     }
@@ -623,7 +651,8 @@ QString NewStyle::fontFamily() {
 }
 
 QFont NewStyle::font(qreal px, int weight) {
-    QFont f(fontFamily());
+    const auto &chosen = Configs::dataManager->settingsRepo->font;
+    QFont f(chosen.isEmpty() ? fontFamily() : chosen);
     f.setPixelSize(qRound(px));
     f.setWeight(QFont::Weight(weight));
     return f;
@@ -672,7 +701,6 @@ QString NewStyle::styleSheet() {
     // Pastel's rows are plum plates, as on the phone; the others are glass.
     const QColor glassTop = pastel() ? QColor(46, 39, 68, 240) : day ? QColor(255, 255, 255, 205) : QColor(255, 255, 255, 15);
     const QColor glassBottom = pastel() ? QColor(40, 34, 60, 235) : day ? QColor(248, 248, 250, 160) : QColor(255, 255, 255, 9);
-    const QColor rim = day ? QColor(0, 0, 0, 22) : QColor(255, 255, 255, 26);
     const QColor well = day ? QColor(0, 0, 0, 10) : QColor(255, 255, 255, 14);
     const QColor hover = overlay(22), press = overlay(44);
     const QColor tint = withAlpha(accent(), pastel() ? 70 : day ? 30 : 40), tintRim = withAlpha(accent(), pastel() ? 200 : 90);
@@ -680,6 +708,7 @@ QString NewStyle::styleSheet() {
     const QString glass = QStringLiteral("qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 %1,stop:1 %2)").arg(rgba(glassTop), rgba(glassBottom));
     return QStringLiteral(
         "QMainWindow, QDialog { background: %1; }\n"
+        "QDialog[newFrame=\"true\"] { background: transparent; }\n"
         "QToolTip { background: %2; color: %3; border: 1px solid %4; padding: 6px 10px; }\n"
         "QMenu { background: %5; border: 1px solid transparent; border-radius: 16px; padding: 6px; }\n"
         "QMenu::item { padding: 7px 26px 7px 14px; border-radius: 12px; background: transparent; color: %3; }\n"
@@ -689,12 +718,12 @@ QString NewStyle::styleSheet() {
         "QMenu::icon { padding-left: 6px; }\n"
         "QPushButton { background: %8; border: 1px solid transparent; border-radius: 14px; padding: 7px 16px; color: %3; }\n"
         "QPushButton:hover { background: %6; }\n"
-        "QPushButton:pressed { background: %10; }\n"
+        "QPushButton:pressed { background: %9; }\n"
         "QPushButton:disabled { color: %7; }\n"
         "QToolButton { background: transparent; border: none; border-radius: 10px; padding: 4px; }\n"
         "QToolButton:hover { background: %6; }\n"
-        "QToolButton:checked, QToolButton:pressed { background: %10; }\n"
-        "QLineEdit, QPlainTextEdit, QTextEdit, QAbstractSpinBox, QComboBox, QKeySequenceEdit { background: %12; border: 1px solid transparent; border-radius: 12px; padding: 5px 10px; selection-background-color: %13; selection-color: %3; }\n"
+        "QToolButton:checked, QToolButton:pressed { background: %9; }\n"
+        "QLineEdit, QPlainTextEdit, QTextEdit, QAbstractSpinBox, QComboBox, QKeySequenceEdit { background: %10; border: 1px solid transparent; border-radius: 12px; padding: 5px 10px; selection-background-color: %11; selection-color: %3; }\n"
         "QAbstractSpinBox QLineEdit, QComboBox QLineEdit { background: transparent; border: none; border-radius: 0; padding: 0; }\n"
         "QAbstractSpinBox::up-button, QAbstractSpinBox::down-button { border: none; background: transparent; width: 20px; }\n"
         "QAbstractSpinBox::up-arrow, QAbstractSpinBox::down-arrow, QComboBox::down-arrow { image: none; width: 0; height: 0; }\n"
@@ -702,32 +731,32 @@ QString NewStyle::styleSheet() {
         "QComboBox QAbstractItemView { background: %2; border: none; selection-background-color: %6; outline: 0; padding: 4px; }\n"
         "QComboBox QAbstractItemView::item { min-height: 26px; padding: 2px 8px; border-radius: 8px; border: none; color: %3; }\n"
         "QComboBox QAbstractItemView::item:hover { background: %6; }\n"
-        "QComboBox QAbstractItemView::item:selected { background: %13; color: %3; }\n"
+        "QComboBox QAbstractItemView::item:selected { background: %11; color: %3; }\n"
         "QTabWidget::pane { border: 1px solid transparent; border-radius: 18px; background: transparent; }\n"
         "QTabBar::tab { background: transparent; border: 1px solid transparent; border-radius: 12px; padding: 5px 11px; margin: 2px 2px; color: %7; }\n"
-        "QTabBar::tab:selected { background: %13; color: %3; }\n"
+        "QTabBar::tab:selected { background: %11; color: %3; }\n"
         "QTabBar::tab:hover:!selected { background: %6; }\n"
         "QHeaderView { background: transparent; }\n"
         "QHeaderView::section { background: transparent; border: none; border-bottom: 1px solid %4; padding: 6px; color: %7; }\n"
-        "QTableView, QTreeView, QListView, QListWidget, QTableWidget, QTreeWidget { background: transparent; border: none; alternate-background-color: %12; selection-background-color: %13; selection-color: %3; gridline-color: %4; outline: 0; }\n"
+        "QTableView, QTreeView, QListView, QListWidget, QTableWidget, QTreeWidget { background: transparent; border: none; alternate-background-color: %10; selection-background-color: %11; selection-color: %3; gridline-color: %4; outline: 0; }\n"
         "QScrollArea { background: transparent; border: none; }\n"
         "QScrollBar:vertical { background: transparent; width: 10px; margin: 2px; }\n"
-        "QScrollBar::handle:vertical { background: %15; border-radius: 3px; min-height: 30px; margin: 0 2px; }\n"
+        "QScrollBar::handle:vertical { background: %13; border-radius: 3px; min-height: 30px; margin: 0 2px; }\n"
         "QScrollBar:horizontal { background: transparent; height: 10px; margin: 2px; }\n"
-        "QScrollBar::handle:horizontal { background: %15; border-radius: 3px; min-width: 30px; margin: 2px 0; }\n"
+        "QScrollBar::handle:horizontal { background: %13; border-radius: 3px; min-width: 30px; margin: 2px 0; }\n"
         "QScrollBar::add-line, QScrollBar::sub-line { width: 0; height: 0; }\n"
         "QScrollBar::add-page, QScrollBar::sub-page { background: transparent; }\n"
         "QGroupBox { border: 1px solid transparent; border-radius: 18px; margin-top: 14px; padding-top: 8px; }\n"
         "QGroupBox::title { subcontrol-origin: margin; left: 14px; padding: 0 4px; color: %7; }\n"
-        "QProgressBar { background: %12; border: 1px solid transparent; border-radius: 8px; text-align: center; }\n"
-        "QProgressBar::chunk { background: %14; border-radius: 7px; }\n"
+        "QProgressBar { background: %10; border: 1px solid transparent; border-radius: 8px; text-align: center; }\n"
+        "QProgressBar::chunk { background: %12; border-radius: 7px; }\n"
         "QSplitter::handle { background: transparent; }\n"
         "#stats_widget::pane { border: none; }\n"
         "QLabel[newRole=\"muted\"] { color: %7; }\n"
         "QLabel[newRole=\"link\"] { color: %7; }\n"
         "QLabel[newRole=\"link\"]:hover { color: %3; }\n"
-    ).arg(rgba(background()), rgba(solid()), rgba(ink), rgba(line), rgba(menu), rgba(hover), rgba(dim), glass, rgba(rim))
-     .arg(rgba(press), rgba(withAlpha(ink, 120)), rgba(well), rgba(tint), rgba(tintRim), rgba(withAlpha(dim, 110)));
+    ).arg(rgba(background()), rgba(solid()), rgba(ink), rgba(line), rgba(menu), rgba(hover), rgba(dim), glass, rgba(press))
+     .arg(rgba(well), rgba(tint), rgba(tintRim), rgba(withAlpha(dim, 110)));
 }
 
 void NewStyle::paintBackdrop(QPainter &p, const QRect &r) {
@@ -932,7 +961,7 @@ QSize NewTile::sizeHint() const {
 }
 
 QSize NewTile::minimumSizeHint() const {
-    return m_kind == Tab || m_kind == Text ? QSize(40, sizeHint().height()) : sizeHint();
+    return m_kind == Text ? QSize(40, sizeHint().height()) : sizeHint();
 }
 
 void NewTile::animatePress(qreal to, int duration) {
@@ -1486,12 +1515,6 @@ void NewProfileDelegate::paint(QPainter *p, const QStyleOptionViewItem &option, 
     if (leadingUcs.size() == 2 && leadingUcs[0] >= 0x1F1E6 && leadingUcs[0] <= 0x1F1FF && leadingUcs[1] >= 0x1F1E6 && leadingUcs[1] <= 0x1F1FF)
         name = name.mid(leading.size()).trimmed();
     else leading.clear();
-    // The server's country from the tests' IP lookup, else the name's country flag, else a globe.
-    const QString geo = index.data(ProfilesTableModel::GeoCountryRole).toString().trimmed().toUpper();
-    if (geo.size() == 2 && geo[0] >= 'A' && geo[0] <= 'Z' && geo[1] >= 'A' && geo[1] <= 'Z') {
-        const char32_t indicators[] = {char32_t(0x1F1E6 + geo[0].unicode() - 'A'), char32_t(0x1F1E6 + geo[1].unicode() - 'A')};
-        leading = QString::fromUcs4(indicators, 2);
-    }
     const QRectF badge(row.left() + 10, row.center().y() - 14, 28, 28);
     const QPixmap flag = NewStyle::flag(leading, 28, p->device()->devicePixelRatioF());
     if (!flag.isNull()) {
@@ -1513,10 +1536,10 @@ void NewProfileDelegate::paint(QPainter *p, const QStyleOptionViewItem &option, 
     // The test result: a spinner while it runs, then the latency in its colour.
     const QString result = index.siblingAtColumn(ProfilesTableModel::ColTestResult).data().toString();
     const int testState = index.siblingAtColumn(ProfilesTableModel::ColTestResult).data(ProfilesTableModel::TestStateRole).toInt();
-    p->setFont(NewStyle::font(12));
-    const int resultWidth = std::clamp(p->fontMetrics().horizontalAdvance(result) + 12, 62, 200);
-    QRectF resultBox(chevron.left() - resultWidth, row.center().y() - 16, resultWidth, 32);
     const bool measuring = testState == 2 && index.siblingAtColumn(ProfilesTableModel::ColTestResult).data(ProfilesTableModel::TestCountryRole).toString().isEmpty();
+    p->setFont(NewStyle::font(12));
+    const int resultWidth = testState == 1 || measuring ? 38 : result.isEmpty() ? 0 : std::clamp(p->fontMetrics().horizontalAdvance(result) + 8, 0, 200);
+    QRectF resultBox(chevron.left() - resultWidth, row.center().y() - 16, resultWidth, 32);
     if (testState == 1) {
         p->setPen(QPen(ink, 2, Qt::SolidLine, Qt::RoundCap));
         p->setBrush(Qt::NoBrush);
@@ -1629,6 +1652,31 @@ void NewProfileList::paintEvent(QPaintEvent *e) {
     }
 }
 
+void NewProfileList::wheelEvent(QWheelEvent *event) {
+    // Touchpads already supply smooth pixel motion, including their own momentum.
+    if (!event->pixelDelta().isNull() || event->angleDelta().y() == 0 || event->modifiers()) {
+        if (m_scroll) m_scroll->stop();
+        QListView::wheelEvent(event);
+        return;
+    }
+    auto *bar = verticalScrollBar();
+    if (!m_scroll) {
+        m_scroll = new QVariantAnimation(this);
+        m_scroll->setDuration(160);
+        m_scroll->setEasingCurve(QEasingCurve::OutCubic);
+        connect(m_scroll, &QVariantAnimation::valueChanged, bar, [bar](const QVariant &v) { bar->setValue(qRound(v.toReal())); });
+        connect(bar, &QScrollBar::sliderPressed, m_scroll, &QVariantAnimation::stop);
+    }
+    const int from = m_scroll->state() == QAbstractAnimation::Running ? m_scroll->endValue().toInt() : bar->value();
+    const int delta = qRound(event->angleDelta().y() / 120.0 * QApplication::wheelScrollLines() * bar->singleStep());
+    const int target = std::clamp(from - delta, bar->minimum(), bar->maximum());
+    m_scroll->stop();
+    m_scroll->setStartValue(bar->value());
+    m_scroll->setEndValue(target);
+    m_scroll->start();
+    event->accept();
+}
+
 void NewProfileList::dropEvent(QDropEvent *event) {
     // The same reorder as the classic table: source rows, kept as a manual order.
     if (event->source() != this || !event->mimeData()->hasFormat("application/profile-row-number") || !rowsSwapped) {
@@ -1686,6 +1734,15 @@ NewHome::NewHome(MainWindow *window) : QWidget(nullptr), mw(window) {
         m_up->setText(QStringLiteral("↑ ") + ReadableSize(qint64(m_rateUp)) + QStringLiteral("/s"));
     });
     connect(mw->ui->tabWidget, &QTabWidget::currentChanged, this, [this] { groupChanged(); });
+    connect(themeManager(), &ThemeManager::themeChanged, this, [this] {
+        const auto family = NewStyle::font(14).family();
+        for (auto *text : findChildren<QLabel *>()) {
+            auto font = text->font();
+            font.setFamily(family);
+            text->setFont(font);
+        }
+        if (m_attached) mw->applyTopBarMetrics();
+    });
     connect(mw->ui->data_view, &QTextBrowser::textChanged, this, [this] { updateNotice(); });
     connect(mw->ui->stats_widget, &QTabWidget::currentChanged, this, [this](int index) {
         if (!m_syncingTabs && m_attached && m_pages->currentIndex() == 1) selectTab(index + 1);
@@ -1815,7 +1872,7 @@ void NewHome::buildBody(QVBoxLayout *body) {
     for (int i = 0; i < titles.size(); ++i) {
         auto *tab = new NewTile(NewTile::Tab);
         tab->setText(titles[i]);
-        // Narrow, the tabs give way and cut their titles short rather than hold the window wide.
+        // Their full titles determine the minimum width for each panel arrangement.
         tab->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         connect(tab, &QAbstractButton::clicked, this, [this, i] { selectTab(i); });
         m_tabs << tab;
@@ -1879,13 +1936,26 @@ void NewHome::buildBody(QVBoxLayout *body) {
     m_groupMore = action("more", T("More"), [this] { showGroupMenu(); });
     serversLayout->addLayout(title);
     m_routeLine = label({}, 11, true);
-    m_routeLine->setContentsMargins(14, 0, 14, 8);
+    m_routeBox = new QWidget;
+    auto *routeRow = new QHBoxLayout(m_routeBox);
+    routeRow->setContentsMargins(14, 0, 14, 8);
+    routeRow->setSpacing(6);
+    auto *routeIcon = new NewTile(NewTile::Icon);
+    routeIcon->setIconName("route");
+    routeIcon->setFlat(true);
+    routeIcon->setFixedSize(20, 20);
+    routeIcon->setToolTip(T("Routing"));
+    connect(routeIcon, &QAbstractButton::clicked, this, [this, routeIcon] {
+        mw->ui->menuRouting_Menu->popup(routeIcon->mapToGlobal(QPoint(0, routeIcon->height())));
+    });
+    routeRow->addWidget(routeIcon);
+    routeRow->addWidget(m_routeLine, 1);
     m_routeLine->setCursor(Qt::PointingHandCursor);
     // Wraps rather than cutting the label off; wrapped, a long profile name never widens the panel either.
     m_routeLine->setWordWrap(true);
     m_routeLine->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
     m_routeLine->installEventFilter(this);
-    serversLayout->addWidget(m_routeLine);
+    serversLayout->addWidget(m_routeBox);
 
     m_traffic = new QWidget;
     auto *traffic = new QHBoxLayout(m_traffic);
@@ -2118,7 +2188,7 @@ void NewHome::refreshGroupHeader() {
     const QString key = QStringLiteral("%1|%2|%3|%4|%5|%6|%7|%8|%9|%10")
         .arg(group->id).arg(group->name).arg(group->sub_last_update).arg(sub.used()).arg(sub.total).arg(sub.expire)
         .arg(sub.announce, sub.support_url).arg(int(mw_sub_updating) * 2 + int(m_announceOpen)).arg(route);
-    m_routeLine->setVisible(!route.isEmpty());
+    m_routeBox->setVisible(!route.isEmpty());
     m_routeLine->setToolTip(route);
     m_routeLine->setText(route);
     m_refresh->setSpinning(subscription && mw_sub_updating);
@@ -2744,6 +2814,7 @@ void NewHome::setArranging(bool on) {
 void NewHome::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
     updateCentering();
+    if (NewStyle::active()) NewStyle::roundCorners(window(), false);
 }
 
 void NewHome::paintEvent(QPaintEvent *) {
@@ -2866,6 +2937,7 @@ void MainWindow::syncWindowFrame() {
     const bool shown = isVisible();
     const bool maximized = isMaximized();
     setWindowFlag(Qt::FramelessWindowHint, frameless);
+    if (!frameless) clearMask();
     if (shown) maximized ? showMaximized() : show();
     if (frameless) NewStyle::roundCorners(this, false);
 }

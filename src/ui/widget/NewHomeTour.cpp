@@ -12,6 +12,10 @@
 #include <QDialog>
 #include <QDir>
 #include <QMenu>
+#include <QPointer>
+#include <QPushButton>
+#include <QStyleFactory>
+#include <QRegularExpression>
 #include <QScreen>
 #include <QTabWidget>
 #include <QTimer>
@@ -63,6 +67,13 @@ namespace {
             return;
         }
         const auto &[name, open] = tour->steps[tour->at];
+        if (name == QLatin1String("theme-switch-regression")) {
+            open();
+            tour->shoot(name);
+            tour->clear();
+            next(tour);
+            return;
+        }
         // Armed first: a step that opens a modal dialog returns only once the dialog is closed.
         QTimer::singleShot(1400, qApp, [tour, name = name] {
             if (!name.isEmpty()) tour->shoot(name);
@@ -157,6 +168,29 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
                 });
             })};
         }
+        s << std::pair{QStringLiteral("theme-switch-regression"), std::function<void()>([theme, mw] {
+            const auto check = [](bool ok, const char *message) { if (!ok) qFatal("Theme regression: %s", message); };
+            check(!NewStyle::styleSheet().contains(QRegularExpression("%[0-9]+")), "unresolved palette placeholder");
+            QDialog dialog(mw);
+            const auto flags = dialog.windowFlags();
+            const QMargins margins(7, 9, 11, 13);
+            dialog.setContentsMargins(margins);
+            QPointer<QPushButton> child = new QPushButton(QStringLiteral("Regression"), &dialog);
+            dialog.show();
+            QApplication::processEvents();
+            check(dialog.testAttribute(Qt::WA_TranslucentBackground), "new dialog must have a translucent surface");
+            for (const auto &classic : QStyleFactory::keys()) {
+                themeManager()->ApplyTheme(classic);
+                QApplication::processEvents();
+                check(child && dialog.windowFlags() == flags, "classic dialog flags or children changed");
+                check(dialog.contentsMargins() == margins, "title bar space leaked into classic layout");
+                check(!dialog.testAttribute(Qt::WA_TranslucentBackground) && !dialog.testAttribute(Qt::WA_NoSystemBackground), "classic dialog still transparent");
+                themeManager()->ApplyTheme(theme);
+                QApplication::processEvents();
+                check(dialog.property("newFrame").toBool(), "existing dialog did not recover the new frame");
+            }
+            dialog.close();
+        })};
     }
     QTimer::singleShot(4000, qApp, [tour] { run(tour); });
 }
