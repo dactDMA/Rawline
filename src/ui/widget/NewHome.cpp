@@ -2773,7 +2773,8 @@ QSize NewHome::windowMinimum() {
 
 void NewHome::updateCentering() {
     const bool centered = Configs::dataManager->settingsRepo->new_layout_panel == QLatin1String("center");
-    const int margin = centered ? std::max(0, (width() - 32 - 480) / 2) : 0;
+    const int contentWidth = std::max(480, m_bodyLayout->minimumSize().width());
+    const int margin = centered ? std::max(0, (width() - 32 - contentWidth) / 2) : 0;
     m_columns->setContentsMargins(margin, 0, margin, 0);
 }
 

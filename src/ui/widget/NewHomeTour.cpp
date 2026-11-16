@@ -14,6 +14,7 @@
 #include <QDir>
 #include <QMenu>
 #include <QMouseEvent>
+#include <QFontMetrics>
 #include "include/database/GroupsRepo.h"
 #include <QPointer>
 #include <QPushButton>
@@ -200,9 +201,16 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
         })};
         s << std::pair{QStringLiteral("narrow-center"), std::function<void()>([home, mw] {
             home()->setArranging(false);
-            Configs::dataManager->settingsRepo->new_layout_panel = QStringLiteral("center");
-            home()->applyArrangement();
-            mw->resize(380, 760);
+            for (const QString panel : {QStringLiteral("left"), QStringLiteral("right"), QStringLiteral("center")}) {
+                Configs::dataManager->settingsRepo->new_layout_panel = panel;
+                home()->applyArrangement();
+                mw->resize(380, 760);
+                QApplication::processEvents();
+                const QFontMetrics metrics(NewStyle::font(14, QFont::Medium));
+                for (const auto *tab : home()->m_tabs)
+                    if (tab->width() < metrics.horizontalAdvance(tab->text()) + 20)
+                        qFatal("A full tab title does not fit the minimum window in %s", qPrintable(panel));
+            }
         })};
         s << std::pair{QString(), std::function<void()>([home, mw] {
             Configs::dataManager->settingsRepo->new_layout_panel = QStringLiteral("left");
