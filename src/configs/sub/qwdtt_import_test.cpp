@@ -842,6 +842,7 @@ proxies:
                     {"workers",type=="csqtt" ? 50 : 27},{"mode","raw"},{"turn_tcp",false},{"turn_transport","tcp_tls"},
                     {"srtp_mode","dtls"},{"tcp_only",true},{"turn_sni","turn.example.org"},{"rt_masque",true},
                     {"rt_masque_server_bootstrap",true},{"captcha_mode","wv"}};
+                if (type != "csqtt") saved.remove("turn_transport");
                 check(profile->outbound->ParseFromJson(saved), "saved relay choices load");
                 for (int refresh = 0; refresh < 3; ++refresh) {
                     saved = profile->outbound->ExportToJson(); saved["_type"] = type;
@@ -1545,7 +1546,7 @@ proxies:
         check(profiles.size() == 1, "import five hashes and non-group workers");
         if (profiles.size() != 1) continue;
         const auto *profile = dynamic_cast<Configs::qwdtt *>(profiles.first()->outbound.get());
-        check(profile && profile->hashes == QStringList{"hash1", "hash2", "hash3", "hash4"}, "first four hashes in order");
+        check(profile && profile->hashes == QStringList{"hash1", "hash2", "hash3", "hash4", "hash5"}, "all five hashes in order within the six-hash limit");
         check(profile && profile->workers == 9 && profile->mode == "wg", "normalize worker count and keep the WG default");
         const auto roundTrip = parse(profiles.first()->outbound->ExportToLink().toUtf8());
         check(roundTrip.size() == 1 && roundTrip.first()->outbound->ExportIdentity() == profiles.first()->outbound->ExportIdentity(), "normalized import round trip");

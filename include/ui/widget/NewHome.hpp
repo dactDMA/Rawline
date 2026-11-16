@@ -107,6 +107,7 @@ private:
     qreal m_angle = 0;
     QVariantAnimation *m_pressAnim = nullptr;
     QTimer *m_spin = nullptr;
+    QElapsedTimer m_spinClock;
 };
 
 // The TUN and system proxy switches of the mobile home screen.
@@ -208,6 +209,7 @@ protected:
 
 private:
     QTimer *m_spinner = nullptr;
+    QElapsedTimer m_spinClock;
     QVariantAnimation *m_scroll = nullptr;
 };
 

@@ -78,6 +78,11 @@
 
 static QString T(const char *text) { return QCoreApplication::translate("NewHome", text); }
 
+static int frameInterval(const QWidget *widget) {
+    const auto rate = widget->screen() ? widget->screen()->refreshRate() : 60.0;
+    return qMax(4, int(1000.0 / qMax(30.0, rate)));
+}
+
 // The mobile app's motion curve: PathInterpolator(.2, 0, 0, 1).
 static QEasingCurve softCurve() {
     QEasingCurve curve(QEasingCurve::BezierSpline);
@@ -944,8 +949,15 @@ void NewTile::setSpinning(bool spinning) {
     if (spinning == (m_spin != nullptr)) return;
     if (!spinning) { delete m_spin; m_spin = nullptr; m_angle = 0; update(); return; }
     m_spin = new QTimer(this);
-    connect(m_spin, &QTimer::timeout, this, [this] { m_angle = std::fmod(m_angle + 6.4, 360); update(); });
-    m_spin->start(16);
+    m_spin->setTimerType(Qt::PreciseTimer);
+    m_spinClock.restart();
+    connect(m_spin, &QTimer::timeout, this, [this] {
+        const int interval = window()->isActiveWindow() ? frameInterval(this) : 120;
+        if (m_spin->interval() != interval) m_spin->setInterval(interval);
+        m_angle = std::fmod(m_spinClock.elapsed() * .4, 360.0);
+        if (isVisible()) update();
+    });
+    m_spin->start(frameInterval(this));
 }
 
 QSize NewTile::sizeHint() const {
@@ -1124,8 +1136,8 @@ NewOrb::NewOrb(QWidget *parent) : QAbstractButton(parent) {
         if (window()->isMinimized()) return;
         // Full rate in front, a slow wave is enough behind other windows.
         if (!window()->isActiveWindow() && m_clock.elapsed() - m_lastFrame < 120) return;
-        const auto rate = screen() ? screen()->refreshRate() : 60.0;
-        m_frame->setInterval(qMax(4, int(1000.0 / qMax(30.0, rate))));
+        const int interval = frameInterval(this);
+        if (m_frame->interval() != interval) m_frame->setInterval(interval);
         update();
     });
 }
@@ -1604,21 +1616,26 @@ NewProfileList::NewProfileList(QWidget *parent) : QListView(parent) {
     viewport()->setAutoFillBackground(false);
     setAutoFillBackground(false);
     m_spinner = new QTimer(this);
+    m_spinner->setTimerType(Qt::PreciseTimer);
+    m_spinClock.start();
     connect(m_spinner, &QTimer::timeout, this, [this] {
-        if (!model() || !isVisible()) return;
+        if (!model() || !isVisible()) { m_spinner->setInterval(250); return; }
         // Repaints only while a visible row is being tested.
         const QModelIndex first = indexAt(QPoint(10, 2));
         const int from = first.isValid() ? first.row() : 0;
         const int to = std::min(model()->rowCount(), from + viewport()->height() / 55 + 2);
         for (int row = from; row < to; ++row) {
             if (model()->index(row, ProfilesTableModel::ColTestResult).data(ProfilesTableModel::TestStateRole).toInt() != 0) {
-                rowDelegate->spinAngle = std::fmod(rowDelegate->spinAngle + 9, 360);
+                const int interval = window()->isActiveWindow() ? frameInterval(this) : 120;
+                if (m_spinner->interval() != interval) m_spinner->setInterval(interval);
+                rowDelegate->spinAngle = std::fmod(m_spinClock.elapsed() * .27, 360.0);
                 viewport()->update();
                 return;
             }
         }
+        m_spinner->setInterval(250);
     });
-    m_spinner->start(33);
+    m_spinner->start(250);
 }
 
 void NewProfileList::mousePressEvent(QMouseEvent *e) {
