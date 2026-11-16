@@ -1012,8 +1012,9 @@ void NewTile::paintEvent(QPaintEvent *) {
     const int lift = (m_hover && isEnabled() ? 12 : 0) + qRound(m_press * 40);
     const bool ring = hasFocus() && g_keyFocus;
     if (lift > 0 || ring) {
-        p.setPen(ring && !m_hover ? QPen(NewStyle::text(), 1.5) : Qt::NoPen);
-        p.setBrush(NewStyle::overlay(lift));
+        const bool softFocus = m_kind == Icon && m_icon == QLatin1String("more");
+        p.setPen(ring && !m_hover && !softFocus ? QPen(NewStyle::text(), 1.5) : Qt::NoPen);
+        p.setBrush(NewStyle::overlay(std::max(lift, ring && softFocus ? 24 : 0)));
         const qreal c = std::min(radius, r.height() / 2);
         if (m_flat) p.drawEllipse(r.center(), std::min(r.width(), r.height()) / 2 - 2, std::min(r.width(), r.height()) / 2 - 2);
         else p.drawRoundedRect(r.adjusted(.5, .5, -.5, -.5), c, c);
@@ -2766,7 +2767,11 @@ namespace {
 }
 
 QSize NewHome::windowMinimum() {
-    // Freshly rearranged, the layout still holds the old arrangement's minimum until it is worked out again.
+    // Child layouts cache their own minimums; invalidating only the root keeps the previous arrangement's sizes.
+    for (auto *part : findChildren<QLayout *>()) part->invalidate();
+    m_controls->layout()->activate();
+    m_sideLayout->activate();
+    m_columns->invalidate();
     layout()->invalidate();
     layout()->activate();
     QSize size = minimumSizeHint();

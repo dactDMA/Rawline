@@ -209,6 +209,10 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
                 auto *h = home();
                 const auto bounds = [h](QWidget *widget) { return QRect(widget->mapTo(h, QPoint()), widget->size()); };
                 const QRect orb = bounds(h->m_orb), tun = bounds(h->m_tun), proxy = bounds(h->m_proxy);
+                if (bounds(h->m_side).intersects(h->m_bodyLayout->geometry()))
+                    qFatal("Side panel overlaps the body in %s: window=%dx%d side=%d bodyTop=%d minimumHeight=%d",
+                           qPrintable(panel), mw->width(), mw->height(), h->m_side->height(),
+                           h->m_bodyLayout->geometry().top(), h->windowMinimum().height());
                 if (orb.intersects(tun) || (h->m_proxy->isVisible() && (orb.intersects(proxy) || tun.intersects(proxy))) ||
                     bounds(h->m_controls).intersects(bounds(h->m_running)) || bounds(h->m_controls).intersects(bounds(h->m_inbound)))
                     qFatal("Connect controls overlap in %s", qPrintable(panel));
