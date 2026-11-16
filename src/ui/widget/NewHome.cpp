@@ -1640,6 +1640,15 @@ NewProfileList::NewProfileList(QWidget *parent) : QListView(parent) {
 
 void NewProfileList::mousePressEvent(QMouseEvent *e) {
     const QModelIndex index = indexAt(e->pos());
+    if (e->button() == Qt::LeftButton) {
+        QPainterPath tile;
+        if (index.isValid()) tile.addRoundedRect(QRectF(visualRect(index)).adjusted(5, 0, -5, -3), 20, 20);
+        if (!tile.contains(e->position())) {
+            if (auto *selection = selectionModel()) selection->clear();
+            e->accept();
+            return;
+        }
+    }
     if (e->button() == Qt::LeftButton && index.isValid() && NewProfileDelegate::chevronRect(visualRect(index)).contains(e->pos())) {
         if (editRequested) editRequested(index);
         e->accept();
@@ -1963,12 +1972,12 @@ void NewHome::buildBody(QVBoxLayout *body) {
     m_routeLine = label({}, 11, true);
     m_routeBox = new QWidget;
     auto *routeRow = new QHBoxLayout(m_routeBox);
-    routeRow->setContentsMargins(14, 0, 14, 8);
+    routeRow->setContentsMargins(22, 0, 12, 8);
     routeRow->setSpacing(6);
     auto *routeIcon = new NewTile(NewTile::Icon);
     routeIcon->setIconName("route");
     routeIcon->setFlat(true);
-    routeIcon->setFixedSize(20, 20);
+    routeIcon->setFixedSize(24, 24);
     routeIcon->setToolTip(T("Routing"));
     connect(routeIcon, &QAbstractButton::clicked, this, [this, routeIcon] {
         mw->ui->menuRouting_Menu->popup(routeIcon->mapToGlobal(QPoint(0, routeIcon->height())));
@@ -2896,6 +2905,10 @@ void NewHome::mouseMoveEvent(QMouseEvent *e) {
 }
 
 void NewHome::mousePressEvent(QMouseEvent *e) {
+    // Ignored presses bubble here from containers; labels and controls are not empty space.
+    const QWidget *hit = childAt(e->pos());
+    if (e->button() == Qt::LeftButton && !m_arrange && m_list && m_list->isVisible() &&
+        (!hit || hit->metaObject() == &QWidget::staticMetaObject)) m_list->selectionModel()->clear();
     const Qt::Edges edges = edgesAt(e->pos());
     if (e->button() == Qt::LeftButton && window()->windowHandle()) {
         if (edges) window()->windowHandle()->startSystemResize(edges);

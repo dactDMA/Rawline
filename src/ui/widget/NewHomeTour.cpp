@@ -13,6 +13,8 @@
 #include <QDialog>
 #include <QDir>
 #include <QMenu>
+#include <QMouseEvent>
+#include "include/database/GroupsRepo.h"
 #include <QPointer>
 #include <QPushButton>
 #include <QStyleFactory>
@@ -102,6 +104,8 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
     s << std::pair{QString(), std::function<void()>([tour] {
         tour->clear();
         Subscription::updater()->ImportText(QString::fromUtf8(kSampleLinks));
+        // Local sample data only: display the subscription routing row without fetching a subscription.
+        if (const auto group = Configs::dataManager->groupsRepo->CurrentGroup()) group->url = QStringLiteral("https://subscription.example.invalid");
     })};
     for (const QString theme : {QString::fromLatin1(NewStyle::OledTheme), QString::fromLatin1(NewStyle::WhiteTheme), QString::fromLatin1(NewStyle::PastelTheme)}) {
         s << std::pair{QString(), std::function<void()>([tour, mw, theme] {
@@ -117,6 +121,42 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
         })};
         s << std::pair{QStringLiteral("home"), std::function<void()>([home] {
             if (auto *h = home(); h && h->m_list->model() && h->m_list->model()->rowCount() > 1) h->m_list->setCurrentIndex(h->m_list->model()->index(1, 0));
+        })};
+        s << std::pair{QStringLiteral("empty-space-selection"), std::function<void()>([home, mw] {
+            auto *h = home();
+            const auto check = [](bool ok, const char *message) { if (!ok) qFatal("Selection regression: %s", message); };
+            auto *selection = h->m_list->selectionModel();
+            const auto row = h->m_list->model()->index(1, 0);
+            check(row.isValid(), "sample profile missing");
+            const int running = mw->runningSnapshot() ? mw->runningSnapshot()->id : -1;
+            const auto choose = [&] { selection->select(row, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows); };
+            const auto click = [](QWidget *widget, QPoint point) {
+                const QPointF global = widget->mapToGlobal(point);
+                QMouseEvent press(QEvent::MouseButtonPress, QPointF(point), global, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+                QApplication::sendEvent(widget, &press);
+                QMouseEvent release(QEvent::MouseButtonRelease, QPointF(point), global, Qt::LeftButton, Qt::NoButton, Qt::NoModifier);
+                QApplication::sendEvent(widget, &release);
+            };
+            choose();
+            click(h->m_more, h->m_more->rect().center());
+            if (auto *popup = QApplication::activePopupWidget()) popup->close();
+            check(selection->hasSelection(), "clicking a control cleared the selected profile");
+            const QPoint blank(h->width() / 2, h->height() - 12);
+            check(!h->childAt(blank), "sample background point is not empty");
+            click(h, blank);
+            check(!selection->hasSelection(), "empty home background kept selection");
+            choose();
+            const QPoint gap(1, h->m_list->visualRect(row).center().y());
+            click(h->m_list->viewport(), gap);
+            check(!selection->hasSelection(), "empty tile margin kept selection");
+            choose();
+            const QPoint below(h->m_list->viewport()->width() / 2, h->m_list->viewport()->height() - 1);
+            check(!h->m_list->indexAt(below).isValid(), "sample list has no empty area");
+            click(h->m_list->viewport(), below);
+            check(!selection->hasSelection(), "empty list background kept selection");
+            check((mw->runningSnapshot() ? mw->runningSnapshot()->id : -1) == running, "clearing view selection changed the running profile");
+            check(h->m_routeBox->isVisible(), "subscription routing row missing");
+            check(h->m_routeBox->findChildren<QAbstractButton *>().size() == 1, "routing icon missing");
         })};
         s << std::pair{QStringLiteral("groups"), std::function<void()>([home] { home()->showGroupPicker(); })};
         s << std::pair{QStringLiteral("hidden-subscription-block"), std::function<void()>([home] {
