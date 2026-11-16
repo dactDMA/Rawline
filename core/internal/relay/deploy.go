@@ -123,7 +123,7 @@ func validateServer(s map[string]string, install bool) error {
 	return nil
 }
 func artifact(ctx context.Context, kind string) (*zip.Reader, error) {
-	source, digest := "https://github.com/makriq-org/qwdtt/releases/download/v1.4.4/qWDTT_v1.4.4.apk", "ff5b2d1f265b0c4253cdf54ebf1f8a5d64afd1424086aa8b8be754b5c14df6a7"
+	source, digest := "https://github.com/SpaceNeuroX/proxy-turn-vk-android/releases/download/v1.4.5/qwdtt-1.4.5-universal.apk", "794a91308aadd0d7739f289a93ec10704baba8d313b60100438f0268d3dd112e"
 	if kind == "csqtt" {
 		source = "https://github.com/ttrroyy/MRTT/releases/download/v2.5.0-legacy/CSQTT-universal.apk"
 		digest = "bbc261eff2fce56b0ee774271416b0764b34ee16349e9e250ce3c8d45d660d0f"
@@ -532,9 +532,17 @@ func deploymentLink(s map[string]string) string {
 		if name == "" {
 			name = s["password"]
 		}
+		ports := ""
+		if s["rawPort"] != "" {
+			ports += "&raw=" + url.QueryEscape(s["rawPort"])
+		}
+		if s["directPort"] != "" {
+			ports += "&direct=" + url.QueryEscape(s["directPort"])
+		}
 		// URLEncoder.encode of the original app.
 		return "qwdtt://config?name=" + url.QueryEscape(name) +
 			"&peer=" + url.QueryEscape(net.JoinHostPort(s["host"], s["peerPort"])) +
+			ports +
 			"&hashes=&workers=18&port=9000&pass=" + url.QueryEscape(s["password"])
 	}
 	return "csqtt://connect?v=2&host=" + encodeURIComponent(s["host"]) +

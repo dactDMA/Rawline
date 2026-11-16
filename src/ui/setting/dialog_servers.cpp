@@ -148,7 +148,7 @@ QTableWidget *table(QWidget *parent, const QStringList &headers) {
 class HashFields : public QWidget {
 public:
     QList<QLineEdit *> fields;
-    HashFields(QWidget *parent, const QStringList &initial, int count = 4) : QWidget(parent), limit(count) {
+    HashFields(QWidget *parent, const QStringList &initial, int count = Configs::qwdtt::MaxHashes) : QWidget(parent), limit(count) {
         auto *column = new QVBoxLayout(this);
         column->setContentsMargins(0, 0, 0, 0);
         for (int i = 0; i < limit; ++i) {

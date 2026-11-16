@@ -27,8 +27,8 @@ func applyHashCheckConfig(path string) error {
 	if err = json.NewDecoder(io.LimitReader(f, 16384)).Decode(&c); err != nil {
 		return err
 	}
-	if len(c.Hashes) < 1 || len(c.Hashes) > 4 {
-		return fmt.Errorf("one to four VK hashes required")
+	if len(c.Hashes) < 1 || len(c.Hashes) > 6 {
+		return fmt.Errorf("one to six VK hashes required")
 	}
 	for _, h := range c.Hashes {
 		if len(h) < 8 || strings.ContainsAny(h, "/|, \r\n") {

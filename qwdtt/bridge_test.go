@@ -378,11 +378,21 @@ func TestPrivateBridgeConfig(t *testing.T) {
 			t.Fatalf("normalize imported workers in %s mode: %v", mode, e)
 		}
 	}
-	for _, bad := range []string{strings.Replace(valid, "127.0.0.1:19001", "0.0.0.0:19001", 1), strings.Replace(valid, `"hash"`, `"a","b","c","d","e"`, 1)} {
+	for _, bad := range []string{strings.Replace(valid, "127.0.0.1:19001", "0.0.0.0:19001", 1), strings.Replace(valid, `"hash"`, `"a","b","c","d","e","f","g"`, 1)} {
 		_ = os.WriteFile(p, []byte(bad), 0600)
 		if _, e = readBridgeConfig(p); e == nil {
 			t.Fatal("invalid config accepted")
 		}
+	}
+	updated := strings.Replace(valid, `"hash"`, `"a","b","c","d","e","f"`, 1)
+	updated = strings.Replace(updated, `"peer":`, `"workers":162,"turn_transport":"tcp","custom_turn_ips":"192.0.2.1:443,[2001:db8::1]:3478","network_dns":["192.0.2.53:53"],"diag_key":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","diag_ports":"dtls=56000,raw=56003,direct=56002","peer":`, 1)
+	_ = os.WriteFile(p, []byte(updated), 0600)
+	if c, err := readBridgeConfig(p); err != nil || c.Workers != 162 || len(c.Hashes) != 6 {
+		t.Fatalf("1.4.5 private configuration: %+v, %v", c, err)
+	}
+	for _, bad := range []string{strings.Replace(updated, `"tcp"`, `"tls"`, 1), strings.Replace(updated, "192.0.2.1:443", "192.0.2.1:65536", 1), strings.Replace(updated, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "bad-key", 1)} {
+		_ = os.WriteFile(p, []byte(bad), 0600)
+		if _, err := readBridgeConfig(p); err == nil { t.Fatal("invalid 1.4.5 configuration accepted") }
 	}
 }
 

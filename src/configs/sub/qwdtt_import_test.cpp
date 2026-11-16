@@ -1001,6 +1001,15 @@ proxies:
               "manual MRTT workers cannot exceed the native transport's 126-worker limit");
         Configs::wdttplus fresh;
         Configs::qwdtt sibling;
+        Configs::qwdtt updated;
+        const QString sixHashes = "fixture_hash_123456781,fixture_hash_123456782,fixture_hash_123456783,fixture_hash_123456784,fixture_hash_123456785,fixture_hash_123456786";
+        check(updated.ParseFromLink("qwdtt://config?peer=192.0.2.1%3A46000&pass=fixture&hashes=" + sixHashes + "&workers=162&raw=46003&direct=46002&dk=" + QString(43, 'A')),
+              "qWDTT 1.4.5 link imports");
+        check(updated.hashes.size() == 6 && updated.workers == 162 && updated.rawPort == 46003 && updated.directPort == 46002 && updated.diagKey.size() == 43,
+              "qWDTT 1.4.5 keeps all six hashes and diagnostic ports");
+        Configs::qwdtt restored;
+        check(restored.ParseFromLink(updated.ExportToLink()) && restored.ExportToJson()["hashes"] == updated.ExportToJson()["hashes"] && restored.diagKey == updated.diagKey,
+              "qWDTT 1.4.5 share round trip");
         check(fresh.workers == 18 && fresh.server_port == 56000 && fresh.wgPort == 56001 && fresh.localPort == 9000 && fresh.turnSni == "ya.ru" && fresh.deviceID == sibling.deviceID,
               "new WDTT Plus profiles follow the app's defaults and this computer's device id");
         check(EditWdttPlus::HashVerdict("ok") == QStringLiteral("TURN доступен") && EditWdttPlus::HashVerdict("Weird").contains(QStringLiteral("Диагностика")),
@@ -1420,6 +1429,17 @@ proxies:
             const auto prepared = QJsonDocument::fromJson(tunnel(soarProfile)->extraCoreConf.toUtf8()).object();
             check(prepared["server_public_key"].toString() == tunnel(soarProfile)->data["pubkey"].toString(), "Soar helper gets the server key");
         }
+        QByteArray unpaddedSoarJson = soarJson;
+        unpaddedSoarJson.replace("VKUC08=", "VKUC08");
+        const auto unpaddedSoar = read("soar://" + b64(unpaddedSoarJson));
+        check(bool(unpaddedSoar), "Soar accepts a valid unpadded public key");
+        if (unpaddedSoar && tunnel(unpaddedSoar)->Prepare().isEmpty()) {
+            const auto prepared = QJsonDocument::fromJson(tunnel(unpaddedSoar)->extraCoreConf.toUtf8()).object();
+            check(prepared["server_public_key"].toString() == "JFHtVsmq5DauWWsc/PbXYS3xd5jCnstAPYEIEVKUC08=", "Soar helper receives canonical base64");
+        }
+        QByteArray invalidSoarJson = soarJson;
+        invalidSoarJson.replace("VKUC08=", "VKUC08=!");
+        check(!read("soar://" + b64(invalidSoarJson)), "Soar rejects junk in its public key instead of passing it to Go");
         // openflux://import links of the wlruscfd/openflux-server fork run its own client.
         const QByteArray forkJson = R"({"name":"Board","mode":"key","control_url":"https://203.0.113.10","key_token":"key_example0000000000",)"
                                     R"("doc_url":"https://boards.yandex.ru/whiteboard/?hash=0123456789abcdef0123456789abcdef","transport":"boards","e2e_encryption":true})";

@@ -245,8 +245,10 @@ func oauthToken(raw, state string) (account, bool) {
 }
 
 type devTools struct {
-	conn *websocket.Conn
-	id   int
+	conn    *websocket.Conn
+	id      int
+	firefox bool
+	context string
 	// A browser that has just started on a slow machine can take this long to answer one command.
 	wait time.Duration
 }
@@ -256,10 +258,12 @@ func devToolsTimeout(e error) bool {
 	var failure net.Error
 	return errors.As(e, &failure) && failure.Timeout()
 }
+
 type browserTab struct {
 	Type      string `json:"type"`
 	URL       string `json:"url"`
 	WebSocket string `json:"webSocketDebuggerUrl"`
+	Context   string `json:"context"`
 }
 
 func browserTabs(client *http.Client, endpoint string) ([]browserTab, error) {
@@ -274,6 +278,13 @@ func browserTabs(client *http.Client, endpoint string) ([]browserTab, error) {
 }
 
 func (c *devTools) call(method string, params any) (json.RawMessage, error) {
+	if c.firefox {
+		return c.firefoxCall(method, params)
+	}
+	return c.rawCall(method, params)
+}
+
+func (c *devTools) rawCall(method string, params any) (json.RawMessage, error) {
 	c.id++
 	id := c.id
 	_ = c.conn.SetReadDeadline(time.Now().Add(c.wait))
@@ -284,15 +295,13 @@ func (c *devTools) call(method string, params any) (json.RawMessage, error) {
 		var response struct {
 			ID     int             `json:"id"`
 			Result json.RawMessage `json:"result"`
-			Error  *struct {
-				Message string `json:"message"`
-			} `json:"error"`
+			Error  json.RawMessage `json:"error"`
 		}
 		if e := c.conn.ReadJSON(&response); e != nil {
 			return nil, e
 		}
 		if response.ID == id {
-			if response.Error != nil {
+			if len(response.Error) > 0 && string(response.Error) != "null" {
 				return nil, fmt.Errorf("Ошибка окна VK")
 			}
 			return response.Result, nil
@@ -305,11 +314,15 @@ func (c *devTools) evaluate(expression string) (string, error) {
 		return "", e
 	}
 	var r struct {
+		Type   string `json:"type"`
 		Result struct {
 			Value string `json:"value"`
 		} `json:"result"`
 	}
 	e = json.Unmarshal(result, &r)
+	if r.Type == "exception" {
+		return "", fmt.Errorf("Ошибка страницы Firefox")
+	}
 	return r.Result.Value, e
 }
 func browserPath() string {
@@ -371,7 +384,7 @@ func browserPath() string {
 			return path
 		}
 	}
-	return ""
+	return firefoxPath()
 }
 func (p *protocol) login(r Request) error {
 	tokenMode := r.Operation == "vk-token"
@@ -381,7 +394,11 @@ func (p *protocol) login(r Request) error {
 		return fmt.Errorf("Браузер для входа в VK не найден")
 	}
 	// A private, temporary profile avoids reading the user's existing browser sessions.
-	dir, e := os.MkdirTemp("", "rawline-vk-")
+	profileRoot := ""
+	if isFirefox(path) {
+		profileRoot = firefoxProfileRoot()
+	}
+	dir, e := os.MkdirTemp(profileRoot, "rawline-vk-")
 	if e != nil {
 		return e
 	}
@@ -393,48 +410,65 @@ func (p *protocol) login(r Request) error {
 		return e
 	}
 	state := hex.EncodeToString(stateBytes)
-	command := exec.CommandContext(ctx, path, "--user-data-dir="+dir, "--remote-debugging-address=127.0.0.1", "--remote-debugging-port=0", "--window-size=480,680", "--no-first-run", "--no-default-browser-check", "--disable-popup-blocking", "--app=about:blank")
-	if e = command.Start(); e != nil {
-		return fmt.Errorf("Не удалось открыть окно входа VK")
-	}
-	defer func() { _ = command.Process.Kill(); _ = command.Wait() }()
-	p.emit("progress", "Войдите в VK в открывшемся окне", nil)
-	var endpoint string
-	for i := 0; i < 300; i++ {
-		if b, e := os.ReadFile(filepath.Join(dir, "DevToolsActivePort")); e == nil {
-			lines := strings.Split(string(b), "\n")
-			if len(lines) > 1 {
-				endpoint = "http://127.0.0.1:" + lines[0]
+	httpClient := &http.Client{Timeout: 20 * time.Second}
+	var command *exec.Cmd
+	var c devTools
+	var ws, endpoint string
+	if isFirefox(path) {
+		var browser *devTools
+		command, browser, e = startFirefox(ctx, path, dir)
+		if e != nil {
+			return e
+		}
+		c = *browser
+	} else {
+		command = exec.CommandContext(ctx, path, "--user-data-dir="+dir, "--remote-debugging-address=127.0.0.1", "--remote-debugging-port=0", "--window-size=480,680", "--no-first-run", "--no-default-browser-check", "--disable-popup-blocking", "--app=about:blank")
+		if e = command.Start(); e != nil {
+			return fmt.Errorf("Не удалось открыть окно входа VK")
+		}
+		defer func() { _ = command.Process.Kill(); _ = command.Wait() }()
+		for i := 0; i < 300; i++ {
+			if b, err := os.ReadFile(filepath.Join(dir, "DevToolsActivePort")); err == nil {
+				lines := strings.Split(string(b), "\n")
+				if len(lines) > 1 {
+					endpoint = "http://127.0.0.1:" + lines[0]
+					break
+				}
+			}
+			select {
+			case <-ctx.Done():
+				return ctx.Err()
+			case <-time.After(100 * time.Millisecond):
+			}
+		}
+		if endpoint == "" {
+			return fmt.Errorf("Не удалось подключиться к окну VK")
+		}
+		tabs, err := browserTabs(httpClient, endpoint)
+		if err != nil {
+			return err
+		}
+		for _, tab := range tabs {
+			if tab.Type == "page" {
+				ws = tab.WebSocket
 				break
 			}
 		}
-		time.Sleep(100 * time.Millisecond)
-	}
-	if endpoint == "" {
-		return fmt.Errorf("Не удалось подключиться к окну VK")
-	}
-	httpClient := &http.Client{Timeout: 20 * time.Second}
-	tabs, e := browserTabs(httpClient, endpoint)
-	if e != nil {
-		return e
-	}
-	var ws string
-	for _, t := range tabs {
-		if t.Type == "page" {
-			ws = t.WebSocket
-			break
+		if ws == "" {
+			return fmt.Errorf("Окно VK не найдено")
 		}
+		conn, _, err := websocket.DefaultDialer.DialContext(ctx, ws, nil)
+		if err != nil {
+			return err
+		}
+		c = devTools{conn: conn, wait: 20 * time.Second}
 	}
-	if ws == "" {
-		return fmt.Errorf("Окно VK не найдено")
+	if c.firefox {
+		defer func() { _ = command.Process.Kill(); _ = command.Wait() }()
 	}
-	conn, _, e := websocket.DefaultDialer.DialContext(ctx, ws, nil)
-	if e != nil {
-		return e
-	}
-	defer conn.Close()
-	c := devTools{conn: conn, wait: 20 * time.Second}
+	conn := c.conn
 	defer func() { _ = c.conn.Close() }()
+	p.emit("progress", "Войдите в VK в открывшемся окне", nil)
 	_, _ = c.call("Network.enable", map[string]any{})
 	_, _ = c.call("Network.setExtraHTTPHeaders", map[string]any{"headers": map[string]string{"Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"}})
 	var restored []map[string]any
@@ -469,7 +503,7 @@ func (p *protocol) login(r Request) error {
 	loginRoute := 0
 	for ctx.Err() == nil {
 		if tokenMode {
-			pages, err := browserTabs(httpClient, endpoint)
+			pages, err := c.tabs(httpClient, endpoint)
 			if err == nil {
 				for _, page := range pages {
 					if a, ok := oauthToken(page.URL, state); ok {
@@ -486,8 +520,24 @@ func (p *protocol) login(r Request) error {
 		location, e := c.evaluate("location.href")
 		if e != nil {
 			busy := devToolsTimeout(e)
-			pages, _ := browserTabs(httpClient, endpoint)
+			pages, _ := c.tabs(httpClient, endpoint)
+			if c.firefox {
+				switched := false
+				for _, page := range pages {
+					if page.Context != c.context && trustedVK(page.URL) {
+						c.context = page.Context
+						switched = true
+						break
+					}
+				}
+				if switched {
+					continue
+				}
+			}
 			for _, page := range pages {
+				if c.firefox {
+					break
+				}
 				// A page too busy to answer is still open: only a closed one means the user left.
 				if page.Type != "page" || (page.WebSocket == ws && !busy) || (page.WebSocket != ws && !trustedVK(page.URL)) {
 					continue
@@ -568,7 +618,7 @@ func (p *protocol) login(r Request) error {
 		if _, e = c.call("Page.navigate", map[string]any{"url": oauthURL(state)}); e == nil {
 			deadline := time.Now().Add(2 * time.Minute)
 			for ctx.Err() == nil && time.Now().Before(deadline) && saved.Token == "" {
-				pages, err := browserTabs(httpClient, endpoint)
+				pages, err := c.tabs(httpClient, endpoint)
 				if err != nil || len(pages) == 0 {
 					break // the window was closed; the session alone is still linked
 				}

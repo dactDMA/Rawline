@@ -272,7 +272,7 @@ QString dnstunnel::Validate() const {
             if (domain.size() > 45 || !domain.contains('.') || part.size() > 63 || !label.match(part).hasMatch())
                 return QStringLiteral("Soar: домен туннеля один, не длиннее 45 символов");
         }
-        if (QByteArray::fromBase64(data["pubkey"].toString().trimmed().toLatin1()).size() != 32)
+        if (QByteArray::fromBase64(data["pubkey"].toString().trimmed().toLatin1(), QByteArray::AbortOnBase64DecodingErrors).size() != 32)
             return QStringLiteral("Soar: публичный ключ сервера Ed25519 в base64 (32 байта)");
     }
     if (kind == "vaydns" && !data["record_type"].toString().isEmpty() && !RecordTypes().contains(data["record_type"].toString()))
@@ -542,7 +542,8 @@ QString dnstunnel::Prepare() {
     // "backend" tells the core which transport this is; the helper reads the server's service here.
     config.remove("backend");
     if (!Keyed(kind)) config["tunnel_backend"] = d["backend"].toObject();
-    if (kind == "soar") config["server_public_key"] = d["pubkey"].toString();
+    // Import accepts unpadded base64; the native Go client requires canonical padding.
+    if (kind == "soar") config["server_public_key"] = QString::fromLatin1(QByteArray::fromBase64(d["pubkey"].toString().trimmed().toLatin1(), QByteArray::AbortOnBase64DecodingErrors).toBase64());
     if (kind == "cottendns") {
         auto options = cottenOptions(d["cotten"].toObject(), d["domain"].toString());
         const auto own = d["options"].toObject();

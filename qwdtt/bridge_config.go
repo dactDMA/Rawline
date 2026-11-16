@@ -16,33 +16,37 @@ import (
 
 // Secrets travel in Rawline's private, temporary extra-core config, never argv.
 type bridgeConfig struct {
-	HashSource         string   `json:"hash_source"`
-	VKAccessToken      string   `json:"vk_access_token"`
-	TurnTransport      string   `json:"turn_transport"`
-	SRTPMode           string   `json:"srtp_mode"`
-	PingTimeoutMS      int      `json:"ping_timeout_ms"`
-	LatencyProbe       bool     `json:"latency_probe"`
-	ProbeOnly          bool     `json:"probe_only"`
-	InteractiveCaptcha bool     `json:"interactive_captcha"`
-	VKAnonPath         string   `json:"vk_anon_path"`
-	CaptchaMode        string   `json:"captcha_mode"`
+	HashSource         string `json:"hash_source"`
+	VKAccessToken      string `json:"vk_access_token"`
+	TurnTransport      string `json:"turn_transport"`
+	SRTPMode           string `json:"srtp_mode"`
+	PingTimeoutMS      int    `json:"ping_timeout_ms"`
+	LatencyProbe       bool   `json:"latency_probe"`
+	ProbeOnly          bool   `json:"probe_only"`
+	InteractiveCaptcha bool   `json:"interactive_captcha"`
+	VKAnonPath         string `json:"vk_anon_path"`
+	CaptchaMode        string `json:"captcha_mode"`
 	// CSQTT only: "compat" runs the original 2.1.9 client, anything else 2.5.0.
-	ProtocolVariant    string   `json:"protocol_variant"`
-	Peer               string   `json:"peer"`
-	Password           string   `json:"password"`
-	Hashes             []string `json:"hashes"`
-	Mode               string   `json:"mode"`
-	Workers            int      `json:"workers"`
-	DeviceID           string   `json:"device_id"`
-	TurnTCP            bool     `json:"turn_tcp"`
-	NoDTLS             bool     `json:"no_dtls"`
-	Obfs               string   `json:"obfs"`
-	DNS                string   `json:"go_dns"`
-	Listen             string   `json:"listen"`
-	SOCKS              string   `json:"socks"`
-	SOCKSUser          string   `json:"socks_user"`
-	SOCKSPass          string   `json:"socks_pass"`
-	Diagnostics        bool     `json:"diagnostics"`
+	ProtocolVariant string   `json:"protocol_variant"`
+	Peer            string   `json:"peer"`
+	Password        string   `json:"password"`
+	Hashes          []string `json:"hashes"`
+	Mode            string   `json:"mode"`
+	Workers         int      `json:"workers"`
+	DeviceID        string   `json:"device_id"`
+	TurnTCP         bool     `json:"turn_tcp"`
+	NoDTLS          bool     `json:"no_dtls"`
+	Obfs            string   `json:"obfs"`
+	DNS             string   `json:"go_dns"`
+	Listen          string   `json:"listen"`
+	SOCKS           string   `json:"socks"`
+	SOCKSUser       string   `json:"socks_user"`
+	SOCKSPass       string   `json:"socks_pass"`
+	Diagnostics     bool     `json:"diagnostics"`
+	DiagKey         string   `json:"diag_key"`
+	DiagPorts       string   `json:"diag_ports"`
+	CustomTurnIPs   string   `json:"custom_turn_ips"`
+	NetworkDNS      []string `json:"network_dns"`
 }
 
 var desktopBridgeMode bool
@@ -74,8 +78,8 @@ func readBridgeConfig(filename string) (*bridgeConfig, error) {
 	if err != nil || host == "" || p < 1 || p > 65535 {
 		return nil, fmt.Errorf("invalid server address")
 	}
-	if len(c.Hashes) == 0 || len(c.Hashes) > 4 {
-		return nil, fmt.Errorf("one to four VK hashes required")
+	if len(c.Hashes) == 0 || len(c.Hashes) > 6 {
+		return nil, fmt.Errorf("one to six VK hashes required")
 	}
 	for _, h := range c.Hashes {
 		if strings.TrimSpace(h) == "" {
@@ -85,8 +89,25 @@ func readBridgeConfig(filename string) (*bridgeConfig, error) {
 	if c.Workers == 0 {
 		c.Workers = 9
 	}
-	if c.Workers < 1 || c.Workers > 108 {
-		return nil, fmt.Errorf("workers must be between 1 and 108")
+	if c.Workers < 1 || c.Workers > 162 {
+		return nil, fmt.Errorf("workers must be between 1 and 162")
+	}
+	if c.TurnTransport != "" && c.TurnTransport != "tcp" && c.TurnTransport != "udp" {
+		return nil, fmt.Errorf("invalid TURN transport")
+	}
+	turnIPs := parseTurnHosts(c.CustomTurnIPs)
+	if len(turnIPs) > 32 || len(c.NetworkDNS) > 32 || len(c.DiagPorts) > 256 {
+		return nil, fmt.Errorf("too many relay or DNS addresses")
+	}
+	if _, err := parseDiagToken(c.DiagKey); err != nil {
+		return nil, err
+	}
+	for _, address := range append(turnIPs, c.NetworkDNS...) {
+		host, port, err := splitHostPortDefault(address, "53")
+		p, e := strconv.Atoi(port)
+		if err != nil || e != nil || net.ParseIP(host) == nil || p < 1 || p > 65535 {
+			return nil, fmt.Errorf("invalid relay or DNS address")
+		}
 	}
 	// Match the profile editor and the anonymous client's groups of nine.
 	c.Workers = max(9, min(c.Workers, len(c.Hashes)*27)) / 9 * 9
@@ -156,6 +177,11 @@ func applyBridgeConfig(filename string) error {
 		"listen": c.Listen, "socks": c.SOCKS, "socks-auth": "true",
 		"socks-user": c.SOCKSUser, "socks-pass": c.SOCKSPass,
 		"captcha-mode": c.CaptchaMode, "vk-auth": "anonymous", "vk-anon-path": c.VKAnonPath,
+		"turn": c.CustomTurnIPs, "diag-key": c.DiagKey, "diag-ports": c.DiagPorts,
+		"dns-fallback": strings.Join(c.NetworkDNS, ","),
+	}
+	if c.TurnTransport != "" {
+		values["turn-transport"] = c.TurnTransport
 	}
 	for k, v := range values {
 		if err := flag.Set(k, v); err != nil {

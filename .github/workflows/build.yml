@@ -149,6 +149,12 @@ jobs:
           # TrustTunnel races QUIC against its HTTP/2 fallback like the official client.
           CGO_ENABLED=0 go test -tags with_quic,with_utls,with_purego github.com/xchacha20-poly1305/sing-trusttunnel
           go vet ./internal/process ./internal/rpc ./internal/relay ./internal/parentcheck ./internal/providergeo
+      - name: Test Firefox login browser against a local fixture
+        if: runner.os == 'Linux'
+        working-directory: core
+        env:
+          RAWLINE_TEST_FIREFOX: '1'
+        run: go test -race ./internal/relay -run TestFirefoxBrowser -count=1
   build-go:
     if: inputs.common_run_id == ''
     needs: test-qwdtt

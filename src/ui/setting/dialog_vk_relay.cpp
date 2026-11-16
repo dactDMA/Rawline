@@ -983,7 +983,7 @@ void ApplyHashesToProfiles(QWidget *parent, const QStringList &hashes, QLabel *s
         if (list->item(i)->checkState() != Qt::Checked) continue;
         const auto &profile = profiles[i];
         // The profile editors' slots: CSQTT has six, the others four.
-        if (auto *relay = dynamic_cast<Configs::qwdtt *>(profile->outbound.get())) { relay->hashes = hashes.mid(0, 4); relay->hashSource = "manual"; }
+        if (auto *relay = dynamic_cast<Configs::qwdtt *>(profile->outbound.get())) { relay->hashes = hashes.mid(0, Configs::qwdtt::MaxHashes); relay->hashSource = "manual"; }
         if (auto *relay = dynamic_cast<Configs::wdttplus *>(profile->outbound.get())) { relay->hashes = hashes.mid(0, 4); relay->hashSource = "manual"; }
         if (auto *relay = dynamic_cast<Configs::csqtt *>(profile->outbound.get())) { relay->hashes = hashes.mid(0, 6); relay->hashSource = "manual"; }
         if (auto *relay = dynamic_cast<Configs::mrtt *>(profile->outbound.get())) { relay->hashes = hashes.mid(0, 6); relay->hashSource = "manual"; relay->manualRelayHashes = true; }

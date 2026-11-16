@@ -52,7 +52,7 @@ QString qwdtt::NativePingConfig(const QString &transportConfig) const {
 }
 qwdtt::qwdtt() {
     server_port = 56000; socksPort = 0; deviceID = RelayDeviceID();
-    if (dataManager) { const auto *settings = dataManager->settingsRepo.get(); hashSource = settings->vk_relay_linked ? settings->qwdtt_hash_source : "manual"; autoHashCount = qBound(1, settings->qwdtt_auto_hash_count, 4); }
+    if (dataManager) { const auto *settings = dataManager->settingsRepo.get(); hashSource = settings->vk_relay_linked ? settings->qwdtt_hash_source : "manual"; autoHashCount = qBound(1, settings->qwdtt_auto_hash_count, MaxHashes); }
 }
 QString qwdtt::StripVkCallLink(const QString &input) {
     auto s = input.trimmed();
@@ -82,7 +82,7 @@ QStringList qwdtt::NormalizeHashes(const QStringList &input) {
 bool qwdtt::ParseFromJson(const QJsonObject &o) {
     hashSource = o["hash_source"].toString(hashSource);
     if (hashSource != "auto" && hashSource != "manual") return false;
-    autoHashCount = qBound(1, o["auto_hash_count"].toInt(autoHashCount), 4);
+    autoHashCount = qBound(1, o["auto_hash_count"].toInt(autoHashCount), MaxHashes);
     const auto type = o["type"].toString();
     if (!type.isEmpty() && type != "qwdtt" && type != "wdtt") return false;
     outbound::ParseFromJson(o);
@@ -91,9 +91,18 @@ bool qwdtt::ParseFromJson(const QJsonObject &o) {
     password = o.contains("password") ? o["password"].toString() : o["pass"].toString();
     const QString givenMode = o["mode"].toString().toLower();
     mode = normalizedMode(givenMode.isEmpty() && dataManager ? dataManager->settingsRepo->relay_default_qwdtt_mode : givenMode);
-    rawPort = o["raw_port"].toInt(56003);
+    rawPort = o["raw_port"].toInt(o["rawPort"].toInt(o["raw"].toInt(56003)));
+    directPort = o["direct_port"].toInt(o["directPort"].toInt(o["direct"].toInt(56002)));
+    diagKey = o["diag_key"].toString(o["diagKey"].toString(o["dk"].toString())).trimmed();
+    if (!diagKey.isEmpty() && QByteArray::fromBase64(diagKey.toLatin1(), QByteArray::Base64UrlEncoding | QByteArray::AbortOnBase64DecodingErrors).size() != 32) return false;
+    customTurnIps = o["custom_turn_ips"].toString().trimmed();
     workers = o["workers"].toInt(o["workersPerHash"].toInt(9));
     turnTCP = o["turn_tcp"].toBool(true);
+    if (o.contains("turn_transport")) {
+        const auto transport = o["turn_transport"].toString().trimmed().toLower();
+        if (transport != "udp" && transport != "tcp" && transport != "tls") return false;
+        turnTCP = transport != "udp";
+    }
     obfs = o["obfs"].toString("audio");
     vkAnonPath = o["vk_anon_path"].toString("vkcalls");
     captchaMode = o["captcha_mode"].toString("auto");
@@ -106,10 +115,10 @@ bool qwdtt::ParseFromJson(const QJsonObject &o) {
     QStringList values;
     if (h.isArray()) { for (const auto &v : h.toArray()) values.append(v.toString()); }
     else values.append(h.toString());
-    hashes = NormalizeHashes(values).mid(0, 4);
+    hashes = NormalizeHashes(values).mid(0, MaxHashes);
     workers = NormalizeWorkers(workers, hashSource == "auto" ? autoHashCount : hashes.size());
     // Empty hashes are editable after importing Android profiles using global hashes.
-    return !server.isEmpty() && validPort(server_port) && validPort(rawPort) && validPort(wgPort) && validPort(localPort) && hashes.size() <= 4 && (mode == "raw" || mode == "wg") && (vkAnonPath == "vkcalls" || vkAnonPath == "legacy") && (captchaMode == "auto" || captchaMode == "wv" || captchaMode == "rjs");
+    return !server.isEmpty() && validPort(server_port) && validPort(rawPort) && validPort(directPort) && validPort(wgPort) && validPort(localPort) && hashes.size() <= MaxHashes && (mode == "raw" || mode == "wg") && (vkAnonPath == "vkcalls" || vkAnonPath == "legacy") && (captchaMode == "auto" || captchaMode == "wv" || captchaMode == "rjs");
 }
 
 bool qwdtt::ParseFromLink(const QString &link) {
@@ -120,10 +129,10 @@ bool qwdtt::ParseFromLink(const QString &link) {
         if (!u.isValid() || u.host().compare("config", Qt::CaseInsensitive) != 0) return false;
         const QUrlQuery q(u);
         QJsonObject o{{"type", "qwdtt"}};
-        for (const auto &key : {"peer", "name", "pass", "password", "hashes", "mode", "obfs", "go_dns", "device_id", "vk_anon_path", "captcha_mode", "hash_source"}) {
+        for (const auto &key : {"peer", "name", "pass", "password", "hashes", "mode", "obfs", "go_dns", "device_id", "vk_anon_path", "captcha_mode", "hash_source", "dk", "diag_key", "custom_turn_ips", "turn_transport"}) {
             if (q.hasQueryItem(key)) o[key] = formDecodedQueryValue(q, key);
         }
-        for (const auto &key : {"raw_port", "workers", "auto_hash_count"}) {
+        for (const auto &key : {"raw_port", "raw", "direct_port", "direct", "workers", "auto_hash_count"}) {
             if (q.hasQueryItem(key)) { bool ok; int n = q.queryItemValue(key).toInt(&ok); if (!ok) return false; o[key] = n; }
         }
         if (q.hasQueryItem("turn_tcp")) o["turn_tcp"] = q.queryItemValue("turn_tcp") == "1" || q.queryItemValue("turn_tcp") == "true";
@@ -163,6 +172,7 @@ QJsonObject qwdtt::ExportToJson() {
     QJsonObject o{{"type", "qwdtt"}, {"tag", name}, {"server", server}, {"server_port", server_port},
             {"password", password}, {"hashes", QJsonArray::fromStringList(hashes)}, {"mode", mode},
             {"raw_port", rawPort}, {"workers", workers}, {"turn_tcp", turnTCP},
+            {"direct_port", directPort}, {"diag_key", diagKey}, {"custom_turn_ips", customTurnIps},
             {"obfs", obfs}, {"go_dns", goDNS}, {"device_id", deviceID},
             {"vk_anon_path", vkAnonPath}, {"captcha_mode", captchaMode}, {"manual_hashes_override", manualRelayHashes}, {"hash_source", hashSource}, {"auto_hash_count", autoHashCount}};
     if (legacy) { o["legacy"] = true; o["wg_port"] = wgPort; o["local_port"] = localPort; }
@@ -183,6 +193,9 @@ QString qwdtt::ExportToLink() {
     addText("hashes", hashes.join(','));
     q.addQueryItem("mode", mode);
     q.addQueryItem("raw_port", QString::number(rawPort));
+    q.addQueryItem("direct", QString::number(directPort));
+    if (!diagKey.isEmpty()) addText("dk", diagKey);
+    if (!customTurnIps.isEmpty()) addText("custom_turn_ips", customTurnIps);
     q.addQueryItem("workers", QString::number(workers));
     q.addQueryItem("turn_tcp", turnTCP ? "1" : "0");
     q.addQueryItem("obfs", obfs);
@@ -200,13 +213,15 @@ QString qwdtt::ExportToLink() {
 QString qwdtt::Prepare() {
     QStringList effectiveHashes = hashes;
     if (hashSource == "auto") { QString error; effectiveHashes = RelayAutoHashes("qwdtt", server, server_port, autoHashCount, &error); if (!error.isEmpty()) return error; }
-    effectiveHashes = NormalizeHashes(effectiveHashes).mid(0, 4);
-    hashes = NormalizeHashes(hashes).mid(0, 4);
+    effectiveHashes = NormalizeHashes(effectiveHashes).mid(0, MaxHashes);
+    hashes = NormalizeHashes(hashes).mid(0, MaxHashes);
     workers = NormalizeWorkers(workers, effectiveHashes.size());
-    if (server.isEmpty() || !validPort(server_port) || !validPort(rawPort)) return QObject::tr("qWDTT: invalid server address or port");
+    if (server.isEmpty() || !validPort(server_port) || !validPort(rawPort) || !validPort(directPort)) return QObject::tr("qWDTT: invalid server address or port");
+    if (!diagKey.isEmpty() && QByteArray::fromBase64(diagKey.toLatin1(), QByteArray::Base64UrlEncoding | QByteArray::AbortOnBase64DecodingErrors).size() != 32)
+        return QObject::tr("qWDTT: invalid diagnostic key");
     if (password.isEmpty() || password.contains('|') || password.contains('\n') || password.contains('\r')) return QObject::tr("qWDTT: a valid connection password is required");
-    if (effectiveHashes.isEmpty() || effectiveHashes.size() > 4) return QObject::tr("qWDTT: enter one to four VK call hashes");
-    if (workers < 1 || workers > 108) return QObject::tr("qWDTT: workers must be between 1 and 108");
+    if (effectiveHashes.isEmpty() || effectiveHashes.size() > MaxHashes) return QObject::tr("qWDTT: enter one to six VK call hashes");
+    if (workers < 1 || workers > MaxWorkers(MaxHashes)) return QObject::tr("qWDTT: workers must be between 1 and 162");
     if (mode != "raw" && mode != "wg") return QObject::tr("qWDTT: invalid tunnel mode");
     if (obfs != "audio" && obfs != "video") return QObject::tr("qWDTT: invalid obfuscation mode");
     if (vkAnonPath != "vkcalls" && vkAnonPath != "legacy") return QObject::tr("qWDTT: invalid VK authorization mode");
@@ -229,6 +244,8 @@ QString qwdtt::Prepare() {
                      {"password", password}, {"hashes", QJsonArray::fromStringList(effectiveHashes)},
                      {"mode", mode}, {"workers", workers}, {"device_id", deviceID},
                      {"turn_tcp", turnTCP}, {"obfs", obfs}, {"go_dns", goDNS},
+                     {"custom_turn_ips", customTurnIps}, {"diag_key", diagKey},
+                     {"diag_ports", QStringLiteral("dtls=%1,raw=%2,direct=%3").arg(server_port).arg(rawPort).arg(directPort)},
                      {"vk_anon_path", vkAnonPath}, {"captcha_mode", captchaMode},
                      {"listen", peerString("127.0.0.1", udp.localPort())},
                      {"socks", peerString("127.0.0.1", socksPort)}, {"socks_user", auth}, {"socks_pass", auth}};

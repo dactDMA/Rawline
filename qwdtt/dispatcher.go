@@ -91,6 +91,7 @@ type Dispatcher struct {
 	tunFile       io.ReadWriteCloser // не nil в -mode rawtun: сырые IP-пакеты вместо локального WG-loopback
 	ready         chan struct{}
 	clientAddr    atomic.Pointer[net.Addr]
+	pinner        flowPinner
 	mu            sync.Mutex
 	workers       []*WorkerSlot
 	rrIndex       int
@@ -293,6 +294,14 @@ func (d *Dispatcher) readLoop() {
 			d.rrIndex = (d.rrIndex + 1) % nw
 			d.rrCount = 0
 			d.chunkStartTs = now
+		}
+
+		// rawtun: мелкий UDP (игры, голос, DNS) держим на одном воркере,
+		// чтобы пакеты одного потока не перемешивались между relay.
+		if d.tunFile != nil && d.pinner.send(d.workers, pkt, now) {
+			atomic.AddUint64(&d.tunSentCount, 1)
+			d.mu.Unlock()
+			continue
 		}
 
 		// Маленькие пакеты (вероятно ACK) — отдельный приоритетный канал с

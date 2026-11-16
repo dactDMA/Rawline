@@ -30,7 +30,7 @@ func TestPingCancellationInterruptsSilentTURNAllocation(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
 	defer cancel()
 	start := time.Now()
-	_, err = RunPing(ctx, &TurnParams{TCPTransport: true}, &net.UDPAddr{IP: net.IPv4(127, 0, 0, 1), Port: 56000}, &Credentials{User: "test", Pass: "test", TurnURLs: []string{listener.Addr().String()}})
+	_, err = RunPing(ctx, &TurnParams{Transport: turnTransportTCP}, &net.UDPAddr{IP: net.IPv4(127, 0, 0, 1), Port: 56000}, &Credentials{User: "test", Pass: "test", TurnURLs: []string{listener.Addr().String()}})
 	if err == nil || time.Since(start) > time.Second {
 		t.Fatalf("silent relay ignored cancellation: %v", err)
 	}

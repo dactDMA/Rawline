@@ -1,11 +1,12 @@
 package obfs
 
 import (
+	"RawlineCore/internal/karing"
+	"RawlineCore/internal/ssr"
 	"context"
 	"errors"
 	"net"
 	"net/netip"
-	"RawlineCore/internal/ssr"
 	"strings"
 	"sync"
 	"time"
@@ -309,5 +310,6 @@ func (c *obfsPacketConn) Close() error {
 func Registries() (*outbound.Registry, *endpoint.Registry) {
 	outbounds, endpoints := include.OutboundRegistry(), include.EndpointRegistry()
 	Register(outbounds, endpoints)
+	karing.Register(outbounds)
 	return outbounds, endpoints
 }

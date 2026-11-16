@@ -1,5 +1,6 @@
 #pragma once
 #include "profile_editor.h"
+#include "include/configs/outbounds/qwdtt.h"
 #include <QComboBox>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -27,9 +28,9 @@ class EditQWDTT : public QWidget, public ProfileEditor {
     QComboBox *hashSource;
     QSpinBox *autoHashCount;
     QFormLayout *form;
-    std::array<QLineEdit *, 4> hashes;
-    std::array<QWidget *, 4> hashRows;
-    std::array<QLabel *, 4> hashStatus;
+    std::array<QLineEdit *, Configs::qwdtt::MaxHashes> hashes;
+    std::array<QWidget *, Configs::qwdtt::MaxHashes> hashRows;
+    std::array<QLabel *, Configs::qwdtt::MaxHashes> hashStatus;
     QPushButton *checkHashes;
     QProcess *hashProcess = nullptr;
     std::unique_ptr<QTemporaryDir> hashCheckDirectory;
@@ -42,6 +43,9 @@ class EditQWDTT : public QWidget, public ProfileEditor {
     void stopHashCheck();
     void consumeHashCheckOutput();
     QSpinBox *rawPort;
+    QSpinBox *directPort;
+    QLineEdit *diagKey;
+    QLineEdit *customTurnIps;
     QComboBox *workers;
     void updateWorkers(int requested = -1);
     QComboBox *transport;

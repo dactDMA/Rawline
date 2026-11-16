@@ -38,16 +38,16 @@ EditQWDTT::EditQWDTT(QWidget *parent) : QWidget(parent) {
         ->setEnabled(Configs::dataManager->settingsRepo->vk_relay_linked);
     form->addRow(QStringLiteral("Источник хешей"), hashSource);
     autoHashCount = new QSpinBox(this);
-    autoHashCount->setRange(1, 4);
+    autoHashCount->setRange(1, Configs::qwdtt::MaxHashes);
     form->addRow(QStringLiteral("Количество хешей"), autoHashCount);
     auto *pickHashes = new QPushButton(QStringLiteral("Выбрать хеши из созданных"), this);
     pickHashes->setObjectName("relayPickHashes");
     pickHashes->setToolTip(QStringLiteral("Какие из созданных хешей использовать для этого сервера. Если ничего не выбрано, работает количество выше."));
     form->addRow(pickHashes);
     connect(pickHashes, &QPushButton::clicked, this, [this] {
-        RelayPickHashes(this, "qwdtt", ent && ent->outbound ? ent->outbound->server : QString(), ent && ent->outbound ? ent->outbound->server_port : 0, 4);
+        RelayPickHashes(this, "qwdtt", ent && ent->outbound ? ent->outbound->server : QString(), ent && ent->outbound ? ent->outbound->server_port : 0, Configs::qwdtt::MaxHashes);
     });
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < Configs::qwdtt::MaxHashes; ++i) {
         hashes[i] = new QLineEdit(this);
         hashes[i]->setObjectName(QString("qwdttHash%1").arg(i + 1));
         hashes[i]->setPlaceholderText(tr("Call hash or VK call link"));
@@ -115,7 +115,7 @@ EditQWDTT::EditQWDTT(QWidget *parent) : QWidget(parent) {
         checkingSlots.clear();
         completedHashChecks.clear();
         activeCheckingSlot = -1;
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < Configs::qwdtt::MaxHashes; ++i) {
             const auto normalized = Configs::qwdtt::NormalizeHashes({hashes[i]->text()});
             hashStatus[i]->clear();
             if (!normalized.isEmpty()) { values.append(normalized.first()); checkingSlots.append(i); }
@@ -151,12 +151,20 @@ EditQWDTT::EditQWDTT(QWidget *parent) : QWidget(parent) {
     rawPort->setValue(56003);
     form->addRow(tr("RAW server port"), rawPort);
     rawPort->setToolTip(tr("qWDTT RAW listener, normally 56003. The main server port is used by WG."));
+    directPort = new QSpinBox(this);
+    directPort->setRange(1, 65535);
+    form->addRow(tr("Direct server port"), directPort);
+    diagKey = new QLineEdit(this);
+    form->addRow(tr("Diagnostic key"), diagKey);
+    customTurnIps = new QLineEdit(this);
+    customTurnIps->setPlaceholderText("IP:port, IP:port");
+    form->addRow(tr("TURN addresses"), customTurnIps);
     workers = new QComboBox(this);
     workers->setObjectName("qwdttWorkers");
     const auto updateSource = [this] {
         const bool automatic = hashSource->currentData() == "auto";
         stopHashCheck();
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < Configs::qwdtt::MaxHashes; ++i) {
             hashes[i]->setVisible(!automatic);
             hashRows[i]->setVisible(!automatic);
             form->labelForField(hashRows[i])->setVisible(!automatic);
@@ -194,7 +202,7 @@ EditQWDTT::EditQWDTT(QWidget *parent) : QWidget(parent) {
     obfs->addItem(tr("Video"), "video");
     form->addRow(tr("Obfuscation"), obfs);
     dns = new QComboBox(this);
-    dns->addItems({"yandex", "cloudflare", "google", "doh-yandex", "doh-cloudflare", "doh-google"});
+    dns->addItems({"yandex", "cloudflare", "google", "doh-yandex", "doh-cloudflare", "doh-google", "operator"});
     dns->setEditable(true);
     form->addRow(tr("VK DNS"), dns);
     device = new QLineEdit(this);
@@ -289,9 +297,12 @@ void EditQWDTT::onStart(std::shared_ptr<Configs::Profile> profile) {
     password->setText(o->password);
     autoHashCount->setValue(o->autoHashCount);
     hashSource->setCurrentIndex(o->hashSource == "auto" ? 1 : 0);
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < Configs::qwdtt::MaxHashes; ++i)
         hashes[i]->setText(i < o->hashes.size() ? o->hashes[i] : QString());
     rawPort->setValue(o->rawPort);
+    directPort->setValue(o->directPort);
+    diagKey->setText(o->diagKey);
+    customTurnIps->setText(o->customTurnIps);
     rawPort->setEnabled(o->mode == "raw");
     updateWorkers(o->workers);
     transport->setCurrentIndex(o->turnTCP ? 1 : 0);
@@ -323,8 +334,8 @@ bool EditQWDTT::onEnd() {
     if (password->text().isEmpty() || password->text().contains('|') || password->text().contains('\n') ||
         password->text().contains('\r'))
         return invalid(tr("Enter a valid connection password."));
-    if (hashSource->currentData() != "auto" && values.size() > 4)
-        return invalid(QStringLiteral("Укажите не больше четырёх хешей звонков VK."));
+    if (hashSource->currentData() != "auto" && values.size() > Configs::qwdtt::MaxHashes)
+        return invalid(QStringLiteral("Укажите не больше шести хешей звонков VK."));
     if (device->text().trimmed().isEmpty() || device->text().contains('|'))
         return invalid(tr("Enter a valid device ID."));
     o->mode = mode->currentData().toString();
@@ -334,6 +345,9 @@ bool EditQWDTT::onEnd() {
     o->hashSource = hashSource->currentData().toString();
     o->autoHashCount = autoHashCount->value();
     o->rawPort = rawPort->value();
+    o->directPort = directPort->value();
+    o->diagKey = diagKey->text().trimmed();
+    o->customTurnIps = customTurnIps->text().trimmed();
     o->workers = workers->currentData().toInt();
     o->turnTCP = transport->currentIndex() == 1;
     o->vkAnonPath = authorization->currentData().toString();

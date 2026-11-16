@@ -8,7 +8,8 @@ namespace Configs {
     // Dedicated profile UI; execution uses Rawline's existing extra-core lifecycle.
     class qwdtt : public extracore {
     public:
-        static int MaxWorkers(int hashCount) { return qBound(1, hashCount, 4) * 27; }
+        static constexpr int MaxHashes = 6;
+        static int MaxWorkers(int hashCount) { return qBound(1, hashCount, MaxHashes) * 27; }
         static int NormalizeWorkers(int count, int hashCount) { return qBound(9, count, MaxWorkers(hashCount)) / 9 * 9; }
         qwdtt();
         [[nodiscard]] QString NativePingConfig(const QString &transportConfig) const;
@@ -18,6 +19,9 @@ namespace Configs {
         QString password;
         QStringList hashes;
         int rawPort = 56003;
+        int directPort = 56002;
+        QString diagKey;
+        QString customTurnIps;
         int workers = 9;
         bool turnTCP = true;
         QString obfs = "audio";
@@ -40,7 +44,7 @@ namespace Configs {
         QString Prepare();
         BuildResult Build() override;
         bool SupportsCredentialStrip() const override { return true; }
-        void StripCredentials() override { password.clear(); hashes.clear(); deviceID.clear(); }
+        void StripCredentials() override { password.clear(); hashes.clear(); deviceID.clear(); diagKey.clear(); }
         static QStringList NormalizeHashes(const QStringList &input);
         // A call hash from what the user pastes: the hash itself or a VK call link, as stripVkUrlStatic
         // of the original qWDTT and CSQTT apps reads it.

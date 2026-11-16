@@ -14,7 +14,11 @@ func TestTURNConnectHonorsCancelledContext(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
 	for _, tcp := range []bool{false, true} {
-		_, _, err := dialTURNConn(ctx, "not-resolved.invalid:3478", tcp)
+		transport := turnTransportUDP
+		if tcp {
+			transport = turnTransportTCP
+		}
+		_, _, err := dialTURNConn(ctx, turnTarget{Addr: "not-resolved.invalid:3478", Transport: transport})
 		if !errors.Is(err, context.Canceled) {
 			t.Fatalf("TURN dial ignored cancellation: %v", err)
 		}

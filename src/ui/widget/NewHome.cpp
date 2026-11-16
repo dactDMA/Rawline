@@ -1124,8 +1124,8 @@ NewOrb::NewOrb(QWidget *parent) : QAbstractButton(parent) {
         if (window()->isMinimized()) return;
         // Full rate in front, a slow wave is enough behind other windows.
         if (!window()->isActiveWindow() && m_clock.elapsed() - m_lastFrame < 120) return;
-        // The resting wave is slow: 30 frames a second are enough, the full rate only while connecting.
-        if (!m_connecting && m_spin < .01 && m_clock.elapsed() - m_lastFrame < 30) return;
+        const auto rate = screen() ? screen()->refreshRate() : 60.0;
+        m_frame->setInterval(qMax(4, int(1000.0 / qMax(30.0, rate))));
         update();
     });
 }
