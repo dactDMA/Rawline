@@ -1,3 +1,5 @@
+#include "include/configs/ParseDiagnostics.h"
+#include "include/configs/common/xrayStreamSetting.h"
 #include "include/configs/sub/SubscriptionParser.hpp"
 #include "include/configs/sub/ProviderRouting.h"
 #include "include/configs/sub/GroupUpdater.hpp"
@@ -94,6 +96,18 @@ int TestQwdttImport() {
     const auto check = [&failures](bool ok, const char *name) {
         if (!ok) { qCritical() << "qWDTT import test failed:" << name; ++failures; }
     };
+    for (const QString extra : {QStringLiteral("null"), QStringLiteral("{}"), QString()}) {
+        Configs::ParseDiag::Scope diagnostics;
+        Configs::xrayXHTTP xhttp;
+        check(xhttp.ParseFromLink(QStringLiteral("vless://id@example.org:443?type=xhttp&extra=") + extra) && diagnostics.issues().isEmpty(),
+              "null and empty XHTTP extras import without warnings");
+    }
+    {
+        Configs::ParseDiag::Scope diagnostics;
+        Configs::xrayXHTTP xhttp;
+        xhttp.ParseFromLink(QStringLiteral("vless://id@example.org:443?type=xhttp&extra=broken"));
+        check(!diagnostics.issues().isEmpty(), "malformed XHTTP extra still warns");
+    }
     const auto checkWarp = [&](const std::shared_ptr<Configs::Profile> &profile, bool tcpOnly) {
         auto &s = *Configs::dataManager->settingsRepo;
         const auto saved = std::tuple{s.enable_warp, s.warp_mode, s.warp_masque_http_mode,

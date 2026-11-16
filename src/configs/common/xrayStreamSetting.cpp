@@ -623,7 +623,7 @@ namespace Configs {
 
         void warnUnparsableExtra(const QString& value) {
             const auto trimmed = value.trimmed();
-            if (trimmed.isEmpty()) return;
+            if (trimmed.isEmpty() || trimmed == QLatin1String("null")) return;
             QJsonParseError err;
             if (const auto doc = QJsonDocument::fromJson(trimmed.toUtf8(), &err);
                 err.error == QJsonParseError::NoError && doc.isObject() && doc.object().isEmpty()) return;

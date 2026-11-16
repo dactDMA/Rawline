@@ -206,6 +206,12 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
                 home()->applyArrangement();
                 mw->resize(380, 760);
                 QApplication::processEvents();
+                auto *h = home();
+                const auto bounds = [h](QWidget *widget) { return QRect(widget->mapTo(h, QPoint()), widget->size()); };
+                const QRect orb = bounds(h->m_orb), tun = bounds(h->m_tun), proxy = bounds(h->m_proxy);
+                if (orb.intersects(tun) || (h->m_proxy->isVisible() && (orb.intersects(proxy) || tun.intersects(proxy))) ||
+                    bounds(h->m_controls).intersects(bounds(h->m_running)) || bounds(h->m_controls).intersects(bounds(h->m_inbound)))
+                    qFatal("Connect controls overlap in %s", qPrintable(panel));
                 const QFontMetrics metrics(NewStyle::font(14, QFont::Medium));
                 for (const auto *tab : home()->m_tabs)
                     if (tab->width() < metrics.horizontalAdvance(tab->text()) + 20)

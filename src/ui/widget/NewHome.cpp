@@ -383,7 +383,10 @@ namespace {
                 m_painting = false;
                 return true;
             }
-            if (event->type() == QEvent::FocusIn) {
+            if (event->type() == QEvent::MouseButtonPress) {
+                g_keyFocus = false;
+                if (auto *focused = QApplication::focusWidget()) focused->update();
+            } else if (event->type() == QEvent::FocusIn) {
                 const auto reason = static_cast<QFocusEvent *>(event)->reason();
                 g_keyFocus = reason == Qt::TabFocusReason || reason == Qt::BacktabFocusReason || reason == Qt::ShortcutFocusReason;
             } else if (event->type() == QEvent::Polish) {
@@ -1018,7 +1021,7 @@ void NewTile::paintEvent(QPaintEvent *) {
     const QColor ink = NewStyle::text();
     switch (m_kind) {
     case Icon: {
-        const qreal size = m_flat ? 22 : 24;
+        const qreal size = m_icon == QLatin1String("add") ? (m_flat ? 18 : 22) : (m_flat ? 22 : 24);
         QRectF box(0, 0, size, size);
         box.moveCenter(r.center());
         if (m_spin) {
@@ -1744,6 +1747,7 @@ NewHome::NewHome(MainWindow *window) : QWidget(nullptr), mw(window) {
     m_sideLayout = new QVBoxLayout(m_side);
     m_sideLayout->setContentsMargins(0, 0, 0, 0);
     m_sideLayout->setSpacing(0);
+    m_sideLayout->setSizeConstraint(QLayout::SetMinimumSize);
     buildSide(m_sideLayout);
     m_columns->addWidget(m_side);
 
@@ -1837,6 +1841,7 @@ void NewHome::buildSide(QVBoxLayout *side) {
     auto *controls = new QVBoxLayout(m_controls);
     controls->setContentsMargins(0, 0, 0, 0);
     controls->setSpacing(0);
+    controls->setSizeConstraint(QLayout::SetMinimumSize);
     m_orb = new NewOrb;
     m_orb->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_orb, &QAbstractButton::clicked, this, [this] { mw->ui->toolButton_startstop->click(); });
