@@ -1794,6 +1794,7 @@ void NewHome::buildSide(QVBoxLayout *side) {
     m_chip->setMinimumWidth(0);
     m_chip->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
     connect(m_chip, &QAbstractButton::clicked, this, [this] { showGroupPicker(); });
+    m_chip->installEventFilter(this);
     m_add = new NewTile(NewTile::Icon);
     m_add->setIconName("add");
     m_add->setToolTip(T("Add"));
@@ -1846,9 +1847,11 @@ void NewHome::buildSide(QVBoxLayout *side) {
     connect(m_tun, &QAbstractButton::clicked, this, [this] { mw->connection()->setTun(!Configs::dataManager->settingsRepo->spmode_vpn); });
     connect(m_proxy, &QAbstractButton::clicked, this, [this] { mw->connection()->setSystemProxy(!Configs::dataManager->settingsRepo->spmode_system_proxy); });
     controls->addSpacing(10);
-    controls->addWidget(m_tun);
-    controls->addSpacing(6);
-    controls->addWidget(m_proxy);
+    m_switches = new QVBoxLayout;
+    m_switches->setSpacing(6);
+    m_switches->addWidget(m_tun);
+    m_switches->addWidget(m_proxy);
+    controls->addLayout(m_switches);
     side->addWidget(m_controls);
     side->addStretch(1);
 
@@ -1918,7 +1921,12 @@ void NewHome::buildBody(QVBoxLayout *body) {
     m_groupDate = label({}, 10, true);
     names->addWidget(m_groupName);
     names->addWidget(m_groupDate);
-    title->addLayout(names, 1);
+    m_groupHeading = new QWidget;
+    m_groupHeading->setLayout(names);
+    m_groupHeading->setCursor(Qt::PointingHandCursor);
+    for (auto *widget : {m_groupHeading, static_cast<QWidget *>(m_groupName), static_cast<QWidget *>(m_groupDate)}) widget->installEventFilter(this);
+    title->addWidget(m_groupHeading, 1);
+    m_subscriptionTitle = title;
     const auto action = [this, title](const QString &icon, const QString &tip, const std::function<void()> &callback) {
         auto *button = new NewTile(NewTile::Icon);
         button->setFlat(true);
@@ -2355,8 +2363,9 @@ void NewHome::showGroupPicker() {
     layout->addLayout(actions);
     popup->setFixedWidth(std::max({440, m_chip->width() + 56, buttonsWidth}));
     popup->adjustSize();
-    guardReopen(popup, m_chip);
-    popup->showAt(m_chip->mapToGlobal(QPoint(0, m_chip->height() + 6)));
+    QWidget *anchor = m_chipBox->isVisible() ? static_cast<QWidget *>(m_chip) : m_groupHeading;
+    guardReopen(popup, anchor);
+    popup->showAt(anchor->mapToGlobal(QPoint(0, anchor->height() + 6)));
 }
 
 void NewHome::showMoreMenu() {
@@ -2771,7 +2780,21 @@ void NewHome::applyArrangement() {
     // Beside the servers the room takes the panel's height; centered, the panel keeps only what it needs.
     if (!centered) m_sideLayout->insertStretch(at++, 1);
     m_chipBox->layout()->setContentsMargins(0, 14, 0, 0);
-    m_chipBox->show();
+    const bool hiddenChip = settings.new_layout_chip == QLatin1String("hidden");
+    m_chipBox->setVisible(!hiddenChip);
+    if (hiddenChip) {
+        m_chipBox->layout()->removeWidget(m_add);
+        m_subscriptionTitle->insertWidget(m_subscriptionTitle->indexOf(m_refresh), m_add);
+    } else {
+        m_subscriptionTitle->removeWidget(m_add);
+        qobject_cast<QHBoxLayout *>(m_chipBox->layout())->addWidget(m_add);
+    }
+    m_switches->removeWidget(m_tun);
+    m_switches->removeWidget(m_proxy);
+    m_switches->addWidget(settings.new_layout_switch_order == QLatin1String("proxy") ? m_proxy : m_tun);
+    m_switches->addWidget(settings.new_layout_switch_order == QLatin1String("proxy") ? m_tun : m_proxy);
+    m_proxy->setVisible(settings.new_layout_proxy != QLatin1String("hidden"));
+    m_add->show();
     m_orb->setFixedHeight(settings.new_layout_size == QLatin1String("compact") ? 148 : 190);
     // The window's smallest size follows the arrangement.
     if (m_attached) mw->applyTopBarMetrics();
@@ -2794,8 +2817,20 @@ void NewHome::setArranging(bool on) {
         const QString place = at.x() < width() / 3 ? QStringLiteral("left") : at.x() > width() * 2 / 3 ? QStringLiteral("right") : QStringLiteral("center");
         if (settings.new_layout_panel != place) set(settings.new_layout_panel, place);
     });
+    const auto swapSwitches = [=, &settings](NewSwitch *target, QPoint at) {
+        if (target->isVisible() && QRect(target->mapTo(this, QPoint()), target->size()).contains(at))
+            set(settings.new_layout_switch_order, settings.new_layout_switch_order == QLatin1String("proxy") ? QStringLiteral("tun") : QStringLiteral("proxy"));
+    };
+    overlay->addBlock(m_tun, [=](QPoint at) { swapSwitches(m_proxy, at); });
+    overlay->addBlock(m_proxy, [=](QPoint at) { swapSwitches(m_tun, at); });
     overlay->rebuild = [=, &settings] {
         overlay->clearButtons();
+        const bool hiddenChip = settings.new_layout_chip == QLatin1String("hidden");
+        overlay->addButton(hiddenChip ? m_groupHeading : m_chipBox, hiddenChip ? QStringLiteral("+") : QStringLiteral("×"), hiddenChip ? T("Restore") : T("Hide"),
+                           [=, &settings] { set(settings.new_layout_chip, hiddenChip ? QStringLiteral("top") : QStringLiteral("hidden")); });
+        const bool hiddenProxy = settings.new_layout_proxy == QLatin1String("hidden");
+        overlay->addButton(hiddenProxy ? static_cast<QWidget *>(m_tun) : m_proxy, hiddenProxy ? QStringLiteral("+") : QStringLiteral("×"), hiddenProxy ? T("Restore") : T("Hide"),
+                           [=, &settings] { set(settings.new_layout_proxy, hiddenProxy ? QStringLiteral("shown") : QStringLiteral("hidden")); });
         const bool compact = settings.new_layout_size == QLatin1String("compact");
         overlay->addButton(m_orb, compact ? QStringLiteral("⤢") : QStringLiteral("⤡"), T("Change size"),
                            [=, &settings] { set(settings.new_layout_size, compact ? QStringLiteral("normal") : QStringLiteral("compact")); });
@@ -2859,6 +2894,33 @@ void NewHome::leaveEvent(QEvent *e) {
 }
 
 bool NewHome::eventFilter(QObject *watched, QEvent *event) {
+    const bool subscription = watched == m_chip || watched == m_groupHeading || watched == m_groupName || watched == m_groupDate;
+    if (subscription && (event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseMove || event->type() == QEvent::MouseButtonRelease)) {
+        auto *mouse = static_cast<QMouseEvent *>(event);
+        const QPoint point = mouse->globalPosition().toPoint();
+        if (event->type() == QEvent::MouseButtonPress && mouse->button() == Qt::LeftButton) {
+            m_subscriptionPress = point;
+            m_subscriptionDragging = false;
+        } else if (event->type() == QEvent::MouseMove && mouse->buttons().testFlag(Qt::LeftButton)) {
+            const auto delta = point - m_subscriptionPress;
+            if (qAbs(delta.x()) > QApplication::startDragDistance() && qAbs(delta.x()) > qAbs(delta.y())) m_subscriptionDragging = true;
+            if (m_subscriptionDragging) { m_chip->setDown(false); return true; }
+        } else if (event->type() == QEvent::MouseButtonRelease && mouse->button() == Qt::LeftButton) {
+            const auto delta = point - m_subscriptionPress;
+            if (m_subscriptionDragging) {
+                m_subscriptionDragging = false;
+                m_chip->setDown(false);
+                if (qAbs(delta.x()) >= 40 && qAbs(delta.x()) > qAbs(delta.y())) {
+                    const auto order = Configs::dataManager->groupsRepo->GetGroupsTabOrder();
+                    const int next = order.indexOf(Configs::dataManager->settingsRepo->current_group) + (delta.x() < 0 ? 1 : -1);
+                    if (next >= 0 && next < order.size()) mw->ui->tabWidget->setCurrentIndex(groupId2TabIndex(order[next]));
+                }
+                return true;
+            }
+            if (watched != m_chip) { showGroupPicker(); return true; }
+        }
+        if (watched != m_chip) return true;
+    }
     // A label ignores the press, so its release would go to the parent: the press is the click.
     if (event->type() == QEvent::MouseButtonPress && static_cast<QMouseEvent *>(event)->button() == Qt::LeftButton) {
         if (watched == m_check) { checkCurrentConnection(); return true; }

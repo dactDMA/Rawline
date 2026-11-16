@@ -63,10 +63,16 @@ QString QueryEscape(const QString &value) {
     return out;
 }
 
-QString Qwdtt(const QJsonObject &server, const QString &name, const QString &password, const QStringList &hashes) {
+QString Qwdtt(const QJsonObject &server, const QString &name, const QString &password, const QStringList &hashes, const QJsonObject &access = {}) {
     auto host = server["host"].toString().trimmed();
     if (host.contains(':') && !host.startsWith('[')) host = "[" + host + "]";
-    return "qwdtt://config?name=" + QueryEscape(name.isEmpty() ? password : name) + "&peer=" + QueryEscape(host + ":" + server["peerPort"].toString()) +
+    QString extras;
+    for (const auto &[parameter, key] : {std::pair{"raw", "raw_port"}, std::pair{"direct", "direct_port"}}) {
+        const int port = access[key].toInt(server[parameter == QLatin1String("raw") ? "rawPort" : "directPort"].toString().toInt());
+        if (port > 0 && port <= 65535) extras += QString("&%1=%2").arg(parameter).arg(port);
+    }
+    if (!access["diag_key"].toString().isEmpty()) extras += "&dk=" + QueryEscape(access["diag_key"].toString());
+    return "qwdtt://config?name=" + QueryEscape(name.isEmpty() ? password : name) + "&peer=" + QueryEscape(host + ":" + server["peerPort"].toString()) + extras +
            "&hashes=" + QueryEscape(hashes.join(',')) + "&workers=18&port=9000&pass=" + QueryEscape(password);
 }
 
@@ -362,7 +368,7 @@ class QwdttAccess : public ServerScreen {
         auto *body = new QWidget(scroll);
         scroll->setWidget(body);
         auto *layout = new QVBoxLayout(body);
-        const auto link = ServerLinks::Qwdtt(server, title, password, hashes);
+        const auto link = ServerLinks::Qwdtt(server, title, password, hashes, access);
         layout->addWidget(ShareBlocks::Text(body, QStringLiteral("Ссылка qWDTT"), link));
         layout->addWidget(ShareBlocks::Qr(body, QStringLiteral("QR-код"), link));
         layout->addWidget(ShareBlocks::Text(body, QStringLiteral("Ссылка WDTT (легаси)"), ServerLinks::LegacyWdtt(server, password, hashes)));

@@ -278,6 +278,11 @@ private:
     NewTile *m_support = nullptr;
     NewSwitch *m_tun = nullptr;
     NewSwitch *m_proxy = nullptr;
+    QVBoxLayout *m_switches = nullptr;
+    QHBoxLayout *m_subscriptionTitle = nullptr;
+    QWidget *m_groupHeading = nullptr;
+    QPoint m_subscriptionPress;
+    bool m_subscriptionDragging = false;
     QLabel *m_check = nullptr;
     QLabel *m_down = nullptr;
     QLabel *m_up = nullptr;

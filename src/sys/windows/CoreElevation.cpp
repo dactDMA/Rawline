@@ -161,7 +161,12 @@ namespace Sys::CoreElevation {
             const bool current = coreElevationExists(install.grantDir + "\\RawlineCore.exe") && coreElevationStamp(install.core, &size, &mtime)
                 && record.value("size").toInteger(-1) == size && record.value("mtime").toInteger(-1) == mtime
                 && record.value("core").toString().compare(install.core, Qt::CaseInsensitive) == 0;
-            return current ? Status::Granted : Status::Stale;
+            const QString cronet = QFileInfo(install.core).dir().filePath("libcronet.dll");
+            qint64 dllSize = 0, dllMtime = 0;
+            const bool runtimeCurrent = !QFileInfo::exists(cronet) ||
+                (coreElevationStamp(cronet, &dllSize, &dllMtime) && coreElevationExists(install.grantDir + "\\libcronet.dll")
+                 && record.value("cronet_size").toInteger(-1) == dllSize && record.value("cronet_mtime").toInteger(-1) == dllMtime);
+            return current && runtimeCurrent ? Status::Granted : Status::Stale;
         }
 
         // WinCommander quotes every argument, so a trailing backslash would escape the closing quote.
@@ -314,11 +319,29 @@ namespace Sys::CoreElevation {
                 return HelperCopyFailed;
             }
 
+            // The elevated executable lives in its protected grant directory; Cronet searches beside that copy.
+            qint64 dllSize = 0, dllMtime = 0;
+            const QString cronet = QFileInfo(install.core).dir().filePath("libcronet.dll");
+            if (QFileInfo::exists(cronet)) {
+                QFile library(cronet);
+                if (!coreElevationStamp(cronet, &dllSize, &dllMtime) || !library.open(QIODevice::ReadOnly)) return HelperCopyFailed;
+                const QByteArray bytes = library.readAll();
+                const QString dllTarget = install.grantDir + "\\libcronet.dll";
+                const QString dllTemp = dllTarget + ".tmp";
+                if (bytes.size() != dllSize || !coreElevationWriteFile(dllTemp, bytes)) return HelperCopyFailed;
+                if (!MoveFileExW(qUtf16Printable(dllTemp), qUtf16Printable(dllTarget), MOVEFILE_REPLACE_EXISTING)
+                    && !(coreElevationSetAside(dllTarget) && MoveFileExW(qUtf16Printable(dllTemp), qUtf16Printable(dllTarget), 0))) {
+                    DeleteFileW(qUtf16Printable(dllTemp));
+                    return HelperCopyFailed;
+                }
+            }
             const QJsonObject record{
                 {"core", install.core},
                 {"gui", install.gui},
                 {"size", size},
                 {"mtime", mtime},
+                {"cronet_size", dllSize},
+                {"cronet_mtime", dllMtime},
                 {"version", QString::fromUtf8(NKR_VERSION)},
                 {"sid", install.sid},
             };

@@ -670,6 +670,7 @@ namespace Subscription {
             if (old.contains("turn_tcp")) incoming["turn_tcp"] = old.value("turn_tcp");
             if (type == "qwdtt") for (const auto *key : {"raw_port", "direct_port", "custom_turn_ips", "obfs", "vk_anon_path", "captcha_mode", "go_dns"})
                 if (old.contains(key)) incoming[key] = old.value(key);
+            if (type == "qwdtt" && incoming["diag_key"].toString().isEmpty() && old.contains("diag_key")) incoming["diag_key"] = old["diag_key"];
             if (type == "mrtt") {
                 for (const auto *key : {"srtp_mode", "turn_transport", "vk_anon_path", "captcha_mode", "fingerprint", "client_ids", "custom_turn_ips", "mtu", "jitsi_workers", "transport", "max_group"})
                     if (old.contains(key)) incoming[key] = old.value(key);

@@ -67,6 +67,8 @@ namespace Engine {
         // Behind fixed hops a direct test says nothing about a member, so the core ranks them itself.
         const auto selectorEnt = Configs::RunningSelectorOf(ent);
         if (selectorEnt == nullptr || Configs::SelectorBehindHops(ent)) return false;
+        const auto selector = selectorEnt->AutoSelector();
+        if (selector && !selector->Prioritized() && !selector->balance && !selector->passive) return false;
         const auto plan = Configs::PlanAutoSelector(selectorEnt);
         if (!plan.error.isEmpty() || !plan.needsRanking) return false;
 
