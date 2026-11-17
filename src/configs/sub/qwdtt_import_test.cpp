@@ -23,7 +23,6 @@
 #include "include/configs/outbounds/s3bypass.h"
 #include "include/configs/outbounds/openfluxkey.h"
 #include "include/configs/generate.h"
-#include "include/engine/services/AssetUpdates.h"
 #include "include/global/Configs.hpp"
 #include "include/global/Utils.hpp"
 #include "include/database/ProfilesRepo.h"
@@ -1550,14 +1549,6 @@ proxies:
         for (const auto &rule : open->coreConfig["route"].toObject()["rules"].toArray())
             quicLeft |= rule.toObject() == quicReject || rule.toObject()["type"] == "logical";
         check(!quicLeft, "QUIC blocking can be switched off");
-    }
-    {
-        constexpr qint64 day = 24 * 60 * 60;
-        constexpr qint64 now = day * 10;
-        check(Engine::AssetUpdates::GeoUpdateDue(0, now), "missing geodata is due");
-        check(Engine::AssetUpdates::GeoUpdateDue(now - day, now), "day-old geodata is due");
-        check(!Engine::AssetUpdates::GeoUpdateDue(now - day + 1, now), "fresh geodata is kept");
-        check(!Engine::AssetUpdates::GeoUpdateDue(now + day, now), "future timestamps do not cause download loops");
     }
     EditQWDTT editor;
     auto *workers = editor.findChild<QComboBox *>("qwdttWorkers");

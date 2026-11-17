@@ -19,6 +19,10 @@
 
 namespace Engine::AssetUpdates {
     namespace {
+        static_assert(GeoUpdateDue(0, 864000));
+        static_assert(GeoUpdateDue(777600, 864000));
+        static_assert(!GeoUpdateDue(777601, 864000));
+        static_assert(!GeoUpdateDue(864001, 864000));
         // The core's reply when no box runs (core/internal/rpc/rulesets.go).
         constexpr auto kAssetUpdatesNotRunning = "no instance is running";
 
