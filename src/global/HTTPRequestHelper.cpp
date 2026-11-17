@@ -7,6 +7,7 @@
 #include <QSslSocket>
 #include <QTimer>
 #include <QFile>
+#include <QSaveFile>
 #include <QEventLoop>
 #include <QMutex>
 #include <QMutexLocker>
@@ -225,20 +226,15 @@ namespace Configs_network {
         }
 
         const auto filePath = Configs::GetBasePath() + "/" + fileName;
-        const auto tmpPath = filePath + ".tmp";
-        QFile tmp(tmpPath);
-        if (!tmp.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        QSaveFile tmp(filePath);
+        if (!tmp.open(QIODevice::WriteOnly)) {
             return QObject::tr("Could not open file.");
         }
-        if (tmp.write(body) != body.size() || !tmp.flush()) {
-            tmp.close();
-            tmp.remove();
+        if (tmp.write(body) != body.size()) {
+            tmp.cancelWriting();
             return QObject::tr("Could not write file.");
         }
-        tmp.close();
-        QFile::remove(filePath);
-        if (!tmp.rename(filePath)) {
-            tmp.remove();
+        if (!tmp.commit()) {
             return QObject::tr("Could not save downloaded file.");
         }
         return "";
