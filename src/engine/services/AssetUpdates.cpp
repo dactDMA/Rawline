@@ -19,6 +19,9 @@
 
 namespace Engine::AssetUpdates {
     namespace {
+        constexpr bool GeoUpdateDue(qint64 modifiedAt, qint64 now) {
+            return modifiedAt <= 0 || (now >= modifiedAt && now - modifiedAt >= 24 * 60 * 60);
+        }
         static_assert(GeoUpdateDue(0, 864000));
         static_assert(GeoUpdateDue(777600, 864000));
         static_assert(!GeoUpdateDue(777601, 864000));
