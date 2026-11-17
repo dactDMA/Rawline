@@ -23,6 +23,7 @@
 #include "include/configs/outbounds/s3bypass.h"
 #include "include/configs/outbounds/openfluxkey.h"
 #include "include/configs/generate.h"
+#include "include/engine/services/AssetUpdates.h"
 #include "include/global/Configs.hpp"
 #include "include/global/Utils.hpp"
 #include "include/database/ProfilesRepo.h"
@@ -107,6 +108,13 @@ int TestQwdttImport() {
         Configs::xrayXHTTP xhttp;
         xhttp.ParseFromLink(QStringLiteral("vless://id@example.org:443?type=xhttp&extra=broken"));
         check(!diagnostics.issues().isEmpty(), "malformed XHTTP extra still warns");
+    }
+    {
+        Configs::wdttplus profile, restored;
+        check(profile.ParseFromLink(QStringLiteral("wdtt://192.0.2.5:56000:56001:9000:fixture:abcDEF123_-xyz789")), "legacy WDTT fixture parses");
+        profile.password = QStringLiteral("пароль:#%2B +");
+        check(restored.ParseFromLink(profile.ExportToLink()) && restored.password == profile.password && restored.hashes == profile.hashes,
+              "legacy WDTT sharing preserves password delimiters and percent escapes");
     }
     const auto checkWarp = [&](const std::shared_ptr<Configs::Profile> &profile, bool tcpOnly) {
         auto &s = *Configs::dataManager->settingsRepo;
@@ -1494,8 +1502,24 @@ proxies:
         const auto &settings = Configs::dataManager->settingsRepo;
         const bool oldTun = settings->spmode_vpn;
         const bool oldIPv6 = settings->vpn_ipv6;
+        const auto oldStack = settings->vpn_stack;
         settings->spmode_vpn = true;
         settings->vpn_ipv6 = true;
+        for (const auto &stack : {QString(), QString("system"), QString("gvisor"), QString("mixed")}) {
+            settings->vpn_stack = stack;
+            const auto config = Configs::BuildSingBoxConfig(testProfiles.first());
+            check(config->error.isEmpty(), "each explicit TUN stack builds");
+            bool foundTun = false;
+            for (const auto &inbound : config->coreConfig["inbounds"].toArray()) {
+                const auto tun = inbound.toObject();
+                if (tun["type"] != "tun") continue;
+                foundTun = true;
+                check(tun.contains("stack") == !stack.isEmpty() && tun["stack"].toString() == stack,
+                      "Auto leaves the core default unchanged; explicit TUN stacks reach the core");
+            }
+            check(foundTun, "stack configuration contains a TUN inbound");
+        }
+        settings->vpn_stack = oldStack;
         const auto live = Configs::BuildSingBoxConfig(testProfiles.first());
         settings->spmode_vpn = oldTun;
         settings->vpn_ipv6 = oldIPv6;
@@ -1526,6 +1550,14 @@ proxies:
         for (const auto &rule : open->coreConfig["route"].toObject()["rules"].toArray())
             quicLeft |= rule.toObject() == quicReject || rule.toObject()["type"] == "logical";
         check(!quicLeft, "QUIC blocking can be switched off");
+    }
+    {
+        constexpr qint64 day = 24 * 60 * 60;
+        constexpr qint64 now = day * 10;
+        check(Engine::AssetUpdates::GeoUpdateDue(0, now), "missing geodata is due");
+        check(Engine::AssetUpdates::GeoUpdateDue(now - day, now), "day-old geodata is due");
+        check(!Engine::AssetUpdates::GeoUpdateDue(now - day + 1, now), "fresh geodata is kept");
+        check(!Engine::AssetUpdates::GeoUpdateDue(now + day, now), "future timestamps do not cause download loops");
     }
     EditQWDTT editor;
     auto *workers = editor.findChild<QComboBox *>("qwdttWorkers");

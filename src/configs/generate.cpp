@@ -1814,6 +1814,13 @@ namespace Configs {
                 inboundObj["interface_name"] = genTunName();
                 inboundObj["auto_route"] = true;
                 inboundObj["mtu"] = settings.vpn_mtu;
+                if (!settings.vpn_stack.isEmpty()) {
+                    if (!QStringList{"system", "gvisor", "mixed"}.contains(settings.vpn_stack)) {
+                        ctx.error = QObject::tr("Unknown TUN stack");
+                        return {};
+                    }
+                    inboundObj["stack"] = settings.vpn_stack;
+                }
                 inboundObj["strict_route"] = settings.vpn_strict_route;
                 if (ctx.os == Linux && settings.vpn_auto_redirect) inboundObj["auto_redirect"] = true;
                 const auto tunIPv4CIDR = settings.vpn_tun_ipv4_cidr;

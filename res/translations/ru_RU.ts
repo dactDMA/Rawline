@@ -418,6 +418,8 @@ It stays a preference, not a lock: if that profile stops working the selector st
 </context>
 <context>
     <name>DialogBasicSettings</name>
+    <message><source>Update geodata automatically</source><translation>Обновлять геоданные автоматически</translation></message>
+    <message><source>Download geoip.dat and geosite.dat when they are more than a day old. If a download fails, keep the previous files.</source><translation>Загружать geoip.dat и geosite.dat старше суток. При ошибке загрузки сохраняются прежние файлы.</translation></message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Registers Rawline as the handler for throne:// links, re-applying the registration whenever the install is moved.&lt;/p&gt;&lt;p&gt;Turning this off does not undo an existing registration: use Uninstall for that.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Регистрирует Rawline в качестве обработчика ссылок «throne://», повторно применяя регистрацию при каждом перемещении исполняемых файлов.&lt;/p&gt;&lt;p&gt;Отключение этой функции не отменяет существующую регистрацию: для этого нажмите кнопку «Удалить».&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -6111,6 +6113,12 @@ https://matsuridayo.github.io/n-configuration/#vpn-tun</translation>
         <source>Use the SNI or host found by sniffing only to choose the route, without replacing the connection address: the server gets the IP. Turn it off when the server has to route by domain, for example in a cascade; then the server gets the domain.</source>
         <translation>Использовать SNI или host из сниффинга только для выбора маршрута, не подменяя адрес соединения: сервер получает IP. Выключите, если серверу нужно маршрутизировать по доменам, например в каскаде, тогда сервер получит домен.</translation>
     </message>
+
+<message><source>TCP/IP stack</source><translation>Сетевой стек</translation></message>
+
+<message><source>Auto (core default)</source><translation>Авто (выбор ядра)</translation></message>
+
+<message><source>Auto keeps the current core default. Reconnect to apply changes.</source><translation>Авто сохраняет прежний выбор ядра. Изменения применяются после переподключения.</translation></message>
 </context>
 <context>
     <name>DialogVpnAuth</name>

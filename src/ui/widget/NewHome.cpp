@@ -2774,7 +2774,9 @@ QSize NewHome::windowMinimum() {
     m_columns->invalidate();
     layout()->invalidate();
     layout()->activate();
-    QSize size = minimumSizeHint();
+    const int neededHeight = std::max(layout()->minimumSize().height(), layout()->minimumHeightForWidth(width()));
+    setMinimumHeight(neededHeight);
+    QSize size = minimumSizeHint().expandedTo(QSize(0, neededHeight));
     // The centering margins follow the window's width: counted in, the window could never narrow.
     const QMargins room = m_columns->contentsMargins();
     size.rwidth() -= room.left() + room.right();
@@ -2881,6 +2883,18 @@ void NewHome::setArranging(bool on) {
         Configs::dataManager->settingsRepo->new_layout_tutorial = QStringLiteral("seen");
         Configs::dataManager->settingsRepo->Save();
     });
+}
+
+bool NewHome::event(QEvent *event) {
+    const bool handled = QWidget::event(event);
+    if (event->type() == QEvent::LayoutRequest && m_columns && m_sideLayout) {
+        const int neededHeight = std::max(layout()->minimumSize().height(), layout()->minimumHeightForWidth(width()));
+        if (minimumHeight() != neededHeight) {
+            setMinimumHeight(neededHeight);
+            if (m_attached) mw->applyTopBarMetrics();
+        }
+    }
+    return handled;
 }
 
 void NewHome::resizeEvent(QResizeEvent *event) {

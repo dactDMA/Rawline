@@ -290,6 +290,7 @@ namespace Configs {
         bool vpn_auto_redirect = true;
         // Only UDP and ICMP reach the bridge: pre-match aborts at the sniff rule for TCP.
         bool vpn_l3_bridge = false;
+        QString vpn_stack = "";
         int vpn_mtu = 1500;
         bool disable_private_range_bypass = false;
         QStringList vpn_private_ranges = defaultTunPrivateRanges();
@@ -363,6 +364,7 @@ namespace Configs {
         bool xray_use_system_ca = false;
         Xray::XrayVlessPreference xray_vless_preference = Xray::XhttpAndReality;
         // Fetched on demand into GetBasePath(), which the core exposes to Xray via XRAY_LOCATION_ASSET.
+        bool xray_geo_auto_update = false;
         QString xray_geoip_url = "https://github.com/Loyalsoldier/v2ray-rules-dat/raw/release/geoip.dat";
         QString xray_geosite_url = "https://github.com/Loyalsoldier/v2ray-rules-dat/raw/release/geosite.dat";
         // Last 5 hand-typed URLs per field, offered alongside the built-in providers.

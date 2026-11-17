@@ -6,6 +6,8 @@
 #include <QString>
 #include <QStringList>
 
+class QObject;
+
 namespace Engine {
     class EnginePolicy;
 }
@@ -69,6 +71,11 @@ namespace Engine::AssetUpdates {
     bool UpdateGeoAssets(const GeoRequest &request, const std::function<void(const QList<GeoFileResult> &)> &done);
 
     bool GeoUpdateRunning();
+    constexpr bool GeoUpdateDue(qint64 modifiedAt, qint64 now) {
+        return modifiedAt <= 0 || (now >= modifiedAt && now - modifiedAt >= 24 * 60 * 60);
+    }
+    void CheckAutomaticGeoUpdates();
+    void StartAutomaticGeoUpdates(QObject *owner);
 
     struct GeoError {
         // The core error names geoip.dat or geosite.dat.

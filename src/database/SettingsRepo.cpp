@@ -60,6 +60,7 @@ namespace Configs {
 
     void SettingsRepo::initMaps() {
         boolMap = {
+            {"xray_geo_auto_update", &xray_geo_auto_update},
             {"seasonal_auto_13_migrated", &seasonal_auto_13_migrated},
             {"dns_optimistic_164_migrated", &dns_optimistic_164_migrated},
             {"test_defaults_182_migrated", &test_defaults_182_migrated},
@@ -253,6 +254,7 @@ namespace Configs {
             {"device_name",                &device_name},
             {"active_routing",             &active_routing},
             {"mw_size",                    &mw_size},
+            {"vpn_stack",                  &vpn_stack},
             {"vpn_tun_ipv4_cidr",          &vpn_tun_ipv4_cidr},
             {"vpn_tun_ipv6_cidr",          &vpn_tun_ipv6_cidr},
             {"sub_custom_hwid_params",     &sub_custom_hwid_params},

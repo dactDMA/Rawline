@@ -15,6 +15,12 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <layout class="QHBoxLayout" name="tunStackRow">
+     <item><widget class="QLabel" name="tun_stack_label"><property name="text"><string>TCP/IP stack</string></property><property name="buddy"><cstring>vpn_stack</cstring></property></widget></item>
+     <item><widget class="QComboBox" name="vpn_stack"><property name="toolTip"><string>Auto keeps the current core default. Reconnect to apply changes.</string></property></widget></item>
+    </layout>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="uiLevel" stdset="0">
       <string notr="true">advanced</string>

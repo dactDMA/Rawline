@@ -8,6 +8,7 @@
 #include <QDateTime>
 #include <QFileInfo>
 #include <QRegularExpression>
+#include <QTimer>
 
 #include "include/api/RPC.h"
 #include "include/engine/EnginePolicy.h"
@@ -161,6 +162,27 @@ namespace Engine::AssetUpdates {
 
     bool GeoUpdateRunning() {
         return assetGeoInFlight.load() != 0;
+    }
+
+    void CheckAutomaticGeoUpdates() {
+        ENGINE_CHECK_MAIN_THREAD();
+        if (!Configs::dataManager->settingsRepo->xray_geo_auto_update || GeoUpdateRunning()) return;
+        GeoRequest request;
+        request.files.clear();
+        const auto now = QDateTime::currentSecsSinceEpoch();
+        for (const auto &status : GeoStatus()) {
+            if (GeoUpdateDue(status.modifiedAt, now)) request.files << status.file;
+        }
+        if (!request.files.isEmpty()) UpdateGeoAssets(request, {});
+    }
+
+    void StartAutomaticGeoUpdates(QObject *owner) {
+        ENGINE_CHECK_MAIN_THREAD();
+        auto *timer = new QTimer(owner);
+        timer->setInterval(60 * 60 * 1000);
+        QObject::connect(timer, &QTimer::timeout, owner, CheckAutomaticGeoUpdates);
+        timer->start();
+        QTimer::singleShot(15000, owner, CheckAutomaticGeoUpdates);
     }
 
     GeoError ClassifyGeoError(const QString &coreError) {

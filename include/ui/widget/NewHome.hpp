@@ -231,6 +231,7 @@ public:
     static void runTour(MainWindow *mw, const QString &dir);
 
 protected:
+    bool event(QEvent *event) override;
     void paintEvent(QPaintEvent *) override;
     void resizeEvent(QResizeEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;

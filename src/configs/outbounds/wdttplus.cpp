@@ -170,7 +170,7 @@ QJsonObject wdttplus::ExportIdentity() { auto object = ExportToJson(); object.re
 QString wdttplus::ExportToLink() {
     // The device id is per installation and never travels in a link.
     if (legacy) return "wdtt://" + server + ":" + QString::number(server_port) + ":" + QString::number(wgPort) + ":" + QString::number(localPort)
-        + ":" + password + ":" + hashes.join(',') + (name.isEmpty() ? QString() : "#" + wdttEncode(name));
+        + ":" + wdttEncode(password) + ":" + hashes.join(',') + (name.isEmpty() ? QString() : "#" + wdttEncode(name));
     QString result = "wdtt://connect?v=1&host=" + wdttEncode(server) + "&dtls=" + QString::number(server_port) + "&wg=" + QString::number(wgPort)
         + "&local=" + QString::number(localPort) + "&password=" + wdttEncode(password) + "&hashes=" + wdttEncode(hashes.join(','));
     if (!name.isEmpty()) result += "&name=" + wdttEncode(name);

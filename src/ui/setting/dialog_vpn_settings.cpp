@@ -32,6 +32,11 @@ namespace {
 
 DialogVPNSettings::DialogVPNSettings(QWidget *parent) : QDialog(parent), ui(new Ui::DialogVPNSettings) {
     ui->setupUi(this);
+    ui->vpn_stack->addItem(tr("Auto (core default)"), "");
+    ui->vpn_stack->addItem("System", "system");
+    ui->vpn_stack->addItem("gVisor", "gvisor");
+    ui->vpn_stack->addItem("Mixed", "mixed");
+    ui->vpn_stack->setCurrentIndex(qMax(0, ui->vpn_stack->findData(Configs::dataManager->settingsRepo->vpn_stack)));
     ADD_ASTERISK(this);
     form = new Validation::Form(this);
     form->attachStatus(ui->buttonBox);
@@ -99,6 +104,7 @@ void DialogVPNSettings::accept() {
     auto privateRanges = Configs::dataManager->settingsRepo->vpn_private_ranges;
     if (ui->privRangeGroupBox->isChecked()) privateRanges = Validation::Items(ui->priv_ranges->toPlainText(), Validation::Split::Newline);
 
+    Configs::dataManager->settingsRepo->vpn_stack = ui->vpn_stack->currentData().toString();
     Configs::dataManager->settingsRepo->vpn_mtu = mtu;
     Configs::dataManager->settingsRepo->vpn_ipv6 = ui->vpn_ipv6->isChecked();
     Configs::dataManager->settingsRepo->vpn_strict_route = ui->strict_route->isChecked();

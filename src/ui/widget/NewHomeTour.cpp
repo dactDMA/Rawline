@@ -12,6 +12,8 @@
 #include <QBoxLayout>
 #include <QDialog>
 #include <QDir>
+#include <QFile>
+#include <QTextStream>
 #include <QMenu>
 #include <QMouseEvent>
 #include <QFontMetrics>
@@ -199,14 +201,23 @@ void NewHome::runTour(MainWindow *mw, const QString &dir) {
         s << std::pair{QStringLiteral("arrange-plain"), std::function<void()>([home] {
             for (auto *w : home()->findChildren<QWidget *>(QStringLiteral("arrangeTutorial"))) w->close();
         })};
-        s << std::pair{QStringLiteral("narrow-center"), std::function<void()>([home, mw] {
+        s << std::pair{QStringLiteral("narrow-center"), std::function<void()>([home, mw, dir] {
             home()->setArranging(false);
             for (const QString panel : {QStringLiteral("left"), QStringLiteral("right"), QStringLiteral("center")}) {
                 Configs::dataManager->settingsRepo->new_layout_panel = panel;
                 home()->applyArrangement();
                 mw->resize(380, 760);
                 QApplication::processEvents();
+                mw->applyTopBarMetrics();
+                QApplication::processEvents();
                 auto *h = home();
+                QFile trace(QDir(dir).filePath("layout-geometry.txt"));
+                if (trace.open(QIODevice::WriteOnly | QIODevice::Append)) {
+                    QTextStream(&trace) << panel << " window=" << mw->width() << 'x' << mw->height()
+                        << " homeHeight=" << h->height() << " minimumHeight=" << h->minimumHeight()
+                        << " sideY=" << h->m_side->y() << " sideHeight=" << h->m_side->height()
+                        << " bodyY=" << h->m_bodyLayout->geometry().top() << '\n';
+                }
                 const auto bounds = [h](QWidget *widget) { return QRect(widget->mapTo(h, QPoint()), widget->size()); };
                 const QRect orb = bounds(h->m_orb), tun = bounds(h->m_tun), proxy = bounds(h->m_proxy);
                 if (bounds(h->m_side).intersects(h->m_bodyLayout->geometry()))

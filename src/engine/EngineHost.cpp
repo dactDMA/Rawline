@@ -220,6 +220,7 @@ namespace Engine {
         auto *created = new EngineHost(options);
         engineHostInstance = created;
         created->construct();
+        AssetUpdates::StartAutomaticGeoUpdates(created);
         return created;
     }
 

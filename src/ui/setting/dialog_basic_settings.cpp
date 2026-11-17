@@ -507,6 +507,7 @@ DialogBasicSettings::DialogBasicSettings(QWidget *parent)
                           Configs::dataManager->settingsRepo->xray_geosite_url,
                           Configs::dataManager->settingsRepo->xray_geosite_url_history);
 
+    ui->xray_geo_auto_update->setChecked(Configs::dataManager->settingsRepo->xray_geo_auto_update);
     ui->ntp_enable->setChecked(Configs::dataManager->settingsRepo->enable_ntp);
     ui->ntp_server->setEnabled(Configs::dataManager->settingsRepo->enable_ntp);
     ui->ntp_port->setEnabled(Configs::dataManager->settingsRepo->enable_ntp);
@@ -833,6 +834,8 @@ void DialogBasicSettings::accept() {
     };
     Configs::dataManager->settingsRepo->xray_geoip_url = geoAssetUrl(ui->xray_geoip_url);
     Configs::dataManager->settingsRepo->xray_geosite_url = geoAssetUrl(ui->xray_geosite_url);
+    Configs::dataManager->settingsRepo->xray_geo_auto_update = ui->xray_geo_auto_update->isChecked();
+    Engine::AssetUpdates::CheckAutomaticGeoUpdates();
 
     Configs::dataManager->settingsRepo->enable_ntp = ui->ntp_enable->isChecked();
     Configs::dataManager->settingsRepo->ntp_server_address = ui->ntp_server->text().trimmed();
